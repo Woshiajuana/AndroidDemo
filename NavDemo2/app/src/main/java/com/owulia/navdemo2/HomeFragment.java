@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 
 /**
@@ -40,6 +41,8 @@ public class HomeFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText editText = getView().findViewById(R.id.editText);
+
                 NavController navController = Navigation.findNavController(view);
                 navController.navigate(R.id.action_homeFragment_to_detailFragment);
             }
