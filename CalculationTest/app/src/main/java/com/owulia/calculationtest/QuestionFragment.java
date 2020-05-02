@@ -34,6 +34,7 @@ public class QuestionFragment extends Fragment {
 
         final MyViewModel myViewModel = new ViewModelProvider(requireActivity(), new ViewModelProvider.NewInstanceFactory())
                 .get(MyViewModel.class);
+        myViewModel.getCurrentScore().setValue(0);
         myViewModel.generator();
 
         final FragmentQuestionBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_question, container, false);
@@ -102,6 +103,9 @@ public class QuestionFragment extends Fragment {
         binding.buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (builder.length() == 0) {
+                    builder.append("-1");
+                }
                 if (Integer.valueOf(builder.toString()).intValue() == myViewModel.getAnswer().getValue()) {
                     myViewModel.answerCorrent();
                     builder.setLength(0);
