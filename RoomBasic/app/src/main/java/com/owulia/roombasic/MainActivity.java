@@ -43,8 +43,35 @@ public class MainActivity extends AppCompatActivity {
         });
 
         buttonUpdate = findViewById(R.id.buttonUpdate);
+        buttonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Word word = new Word("Hi", "你好呀");
+                word.setId(20);
+                wordDao.updateWords(word);
+                updateView();
+            }
+        });
+
         buttonClear = findViewById(R.id.buttonClear);
+        buttonClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                wordDao.deleteAllWords();
+                updateView();
+            }
+        });
+
         buttonDelete = findViewById(R.id.buttonDelete);
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Word word = new Word("Hi", "你好呀");
+                word.setId(17);
+                wordDao.deleteWords(word);
+                updateView();
+            }
+        });
 
         updateView();
 
@@ -55,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         String text = "";
         for (int i = 0; i < list.size(); i++) {
             Word word = list.get(i);
-            text += word.getId() + ":" + word.getWord() + "=" + word.getChineseMeaning();
+            text += word.getId() + ":" + word.getWord() + "=" + word.getChineseMeaning() + "\n";
         }
         textView.setText(text);
     }
