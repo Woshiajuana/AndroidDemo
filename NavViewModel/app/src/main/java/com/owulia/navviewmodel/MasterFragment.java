@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
 
 import com.owulia.navviewmodel.databinding.FragmentMasterBinding;
 
@@ -30,9 +31,9 @@ public class MasterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        MyViewModel myViewModel = new ViewModelProvider(getActivity(), new ViewModelProvider.NewInstanceFactory())
+        final MyViewModel myViewModel = new ViewModelProvider(getActivity(), new ViewModelProvider.NewInstanceFactory())
                 .get(MyViewModel.class);
-        FragmentMasterBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_master, container, false);
+        final FragmentMasterBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_master, container, false);
         binding.setData(myViewModel);
         binding.setLifecycleOwner(getActivity());
         binding.button.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +41,23 @@ public class MasterFragment extends Fragment {
             public void onClick(View view) {
                 NavController controller = Navigation.findNavController(view);
                 controller.navigate(R.id.action_masterFragment_to_detailFragment);
+            }
+        });
+        binding.seekBar.setProgress(myViewModel.getNumber().getValue());
+        binding.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                myViewModel.getNumber().setValue(i);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
         return binding.getRoot();
