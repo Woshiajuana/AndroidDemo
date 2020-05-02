@@ -35,15 +35,13 @@ public class TitleFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
 
-        MyViewModel myViewModel;
-//        myViewModel = new ViewModelProvider(this,new SavedStateViewModelFactory(getActivity().getApplication(), (SavedStateRegistryOwner) this)).get(MyViewModel.class);
-        myViewModel = new ViewModelProvider(requireActivity(),
+        MyViewModel myViewModel = new ViewModelProvider(requireActivity(),
                 new SavedStateViewModelFactory(requireActivity().getApplication(), requireActivity()))
                 .get(MyViewModel.class);
-//        myViewModel = ViewModelProviders.of(this,
-//                new SavedStateViewModelFactory(requireActivity().getApplication(), this))
+
+//        final MyViewModel myViewModel = new ViewModelProvider(requireActivity(), new ViewModelProvider.NewInstanceFactory())
 //                .get(MyViewModel.class);
-//        myViewModel = ViewModelProviders.of(requireActivity(), new SavedStateViewModelFactory(requireActivity().getApplication(), requireActivity())).get(MyViewModel.class);
+
         FragmentTitleBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_title, container, false);
         binding.setData(myViewModel);
         binding.setLifecycleOwner(requireActivity());

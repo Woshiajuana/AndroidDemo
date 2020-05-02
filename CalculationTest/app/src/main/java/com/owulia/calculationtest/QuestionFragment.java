@@ -35,12 +35,12 @@ public class QuestionFragment extends Fragment {
         final MyViewModel myViewModel = new ViewModelProvider(requireActivity(), new ViewModelProvider.NewInstanceFactory())
                 .get(MyViewModel.class);
         myViewModel.generator();
+
         final FragmentQuestionBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_question, container, false);
         binding.setData(myViewModel);
         binding.setLifecycleOwner(requireActivity());
 
         final StringBuilder builder = new StringBuilder();
-
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +105,7 @@ public class QuestionFragment extends Fragment {
                 if (Integer.valueOf(builder.toString()).intValue() == myViewModel.getAnswer().getValue()) {
                     myViewModel.answerCorrent();
                     builder.setLength(0);
-                    builder.append(getString(R.string.answer_correct_message));
+                    binding.textView9.setText(R.string.answer_correct_message);
                 } else {
                     NavController controller = Navigation.findNavController(view);
                     if (myViewModel.win_flag) {
