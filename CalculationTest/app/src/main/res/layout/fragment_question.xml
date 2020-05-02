@@ -177,7 +177,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toTopOf="@+id/guideline7"
-            tools:text="Your Answer:" />
+            tools:text="Your Answer" />
 
         <Button
             android:id="@+id/button1"
