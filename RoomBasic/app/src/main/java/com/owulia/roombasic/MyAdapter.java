@@ -15,6 +15,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     List<Word> allWords = new ArrayList<>();
 
+    boolean useCardViews;
+
+    public MyAdapter(boolean useCardViews) {
+        this.useCardViews = useCardViews;
+    }
+
     public void setAllWords(List<Word> allWords) {
         this.allWords = allWords;
     }
@@ -23,7 +29,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View itemView = layoutInflater.inflate(R.layout.cell_normal, parent, false);
+        View itemView;
+        if (useCardViews) {
+            itemView = layoutInflater.inflate(R.layout.cell_card, parent, false);
+        } else  {
+            itemView = layoutInflater.inflate(R.layout.cell_normal, parent, false);
+        }
         return new MyViewHolder(itemView);
     }
 

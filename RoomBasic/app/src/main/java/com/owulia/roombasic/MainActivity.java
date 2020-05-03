@@ -2,7 +2,6 @@ package com.owulia.roombasic;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import java.util.List;
 
@@ -21,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
     WordViewModel wordViewModel;
 
     RecyclerView recyclerView;
-    MyAdapter myAdapter;
+    MyAdapter myAdapter1, myAdapter2;
+
+    Switch aSwitch;
 
 
 
@@ -32,8 +34,21 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        myAdapter = new MyAdapter();
-        recyclerView.setAdapter(myAdapter);
+        myAdapter1 = new MyAdapter(false);
+        myAdapter2 = new MyAdapter(true);
+        recyclerView.setAdapter(myAdapter1);
+
+        aSwitch = findViewById(R.id.switch1);
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    recyclerView.setAdapter(myAdapter2);
+                } else {
+                    recyclerView.setAdapter(myAdapter1);
+                }
+            }
+        });
 
 //        wordViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(WordViewModel.class);
         wordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
@@ -41,8 +56,10 @@ public class MainActivity extends AppCompatActivity {
         wordViewModel.getAllWordsLive().observe(this, new Observer<List<Word>>() {
             @Override
             public void onChanged(List<Word> words) {
-                myAdapter.setAllWords(words);
-                myAdapter.notifyDataSetChanged();
+                myAdapter1.setAllWords(words);
+                myAdapter2.setAllWords(words);
+                myAdapter1.notifyDataSetChanged();
+                myAdapter2.notifyDataSetChanged();
             }
         });
 
@@ -70,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
         buttonClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                wordDao.deleteAllWords();
                 wordViewModel.deleteAllWords();
             }
         });
@@ -81,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Word word = new Word("Hi", "你好呀");
                 word.setId(17);
-//                wordDao.deleteWords(word);
                 wordViewModel.deleteWords(word);
             }
         });
