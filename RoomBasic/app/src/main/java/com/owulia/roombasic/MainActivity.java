@@ -1,6 +1,8 @@
 package com.owulia.roombasic;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.room.Room;
 
 import android.os.Bundle;
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     Button buttonInsert, buttonUpdate, buttonClear, buttonDelete;
 
+    LiveData<List<Word>> allWordsLive;
+
 
 
     @Override
@@ -29,6 +33,18 @@ public class MainActivity extends AppCompatActivity {
                 .allowMainThreadQueries() // 强制允许在主线程执行
                 .build();
         wordDao = wordDatabase.getWordDao();
+        allWordsLive = wordDao.getAllWordsLive();
+        allWordsLive.observe(this, new Observer<List<Word>>() {
+            @Override
+            public void onChanged(List<Word> words) {
+                StringBuilder text = new StringBuilder();
+                for (int i = 0; i < words.size(); i++) {
+                    Word word = words.get(i);
+                    text.append(word.getId()).append(":").append(word.getWord()).append("=").append(word.getChineseMeaning()).append("\n");
+                }
+                textView.setText(text.toString());
+            }
+        });
 
         textView = findViewById(R.id.textView);
         buttonInsert = findViewById(R.id.buttonInsert);
@@ -38,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 Word word1 = new Word("Hello", "你好");
                 Word word2 = new Word("World", "世界");
                 wordDao.insertWords(word1, word2);
-                updateView();
             }
         });
 
@@ -49,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 Word word = new Word("Hi", "你好呀");
                 word.setId(20);
                 wordDao.updateWords(word);
-                updateView();
             }
         });
 
@@ -58,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 wordDao.deleteAllWords();
-                updateView();
             }
         });
 
@@ -72,8 +85,6 @@ public class MainActivity extends AppCompatActivity {
                 updateView();
             }
         });
-
-        updateView();
 
     }
 
