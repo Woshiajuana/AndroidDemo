@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 Word word = new Word("Hi", "你好呀");
                 word.setId(17);
 //                wordDao.deleteWords(word);
-                wordViewModel.deletetWords(word);
+                wordViewModel.deleteWords(word);
             }
         });
     }
