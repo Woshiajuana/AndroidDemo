@@ -27,10 +27,10 @@ public abstract class WordDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    static final Migration MIGRATION_2_3 = new Migration(1, 2) {
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
-//            database.execSQL();
+            database.execSQL();
         }
     };
 
