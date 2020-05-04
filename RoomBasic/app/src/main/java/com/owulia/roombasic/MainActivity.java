@@ -32,10 +32,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        wordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
+
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        myAdapter1 = new MyAdapter(false);
-        myAdapter2 = new MyAdapter(true);
+        myAdapter1 = new MyAdapter(false, wordViewModel);
+        myAdapter2 = new MyAdapter(true, wordViewModel);
         recyclerView.setAdapter(myAdapter1);
 
         aSwitch = findViewById(R.id.switch1);
@@ -51,15 +53,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
 //        wordViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(WordViewModel.class);
-        wordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
 
         wordViewModel.getAllWordsLive().observe(this, new Observer<List<Word>>() {
             @Override
             public void onChanged(List<Word> words) {
+                int temp = myAdapter1.getItemCount();
                 myAdapter1.setAllWords(words);
                 myAdapter2.setAllWords(words);
-                myAdapter1.notifyDataSetChanged();
-                myAdapter2.notifyDataSetChanged();
+                if (temp != words.size()) {
+                    myAdapter1.notifyDataSetChanged();
+                    myAdapter2.notifyDataSetChanged();
+                }
             }
         });
 
