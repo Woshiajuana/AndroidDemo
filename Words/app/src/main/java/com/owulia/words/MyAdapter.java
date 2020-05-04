@@ -13,23 +13,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-
-    List<Word> allWords = new ArrayList<>();
+public class MyAdapter extends ListAdapter<Word, MyAdapter.MyViewHolder> {
 
     private WordViewModel wordViewModel;
 
     boolean useCardViews;
 
-    public MyAdapter(boolean useCardViews, WordViewModel wordViewModel) {
+    MyAdapter(boolean useCardViews, WordViewModel wordViewModel) {
+        super(new DiffUtil.ItemCallback<Word>() {
+            @Override
+            public boolean areItemsTheSame(@NonNull Word oldItem, @NonNull Word newItem) {
+                return oldItem.getId() == newItem.getId();
+            }
+            @Override
+            public boolean areContentsTheSame(@NonNull Word oldItem, @NonNull Word newItem) {
+                return (oldItem.getWord().equals(newItem.getWord())
+                        &&oldItem.getChineseMeaning().equals(newItem.getChineseMeaning())
+                        &&oldItem.isChineseInvisible() == newItem.isChineseInvisible()
+                );
+            }
+        });
         this.useCardViews = useCardViews;
         this.wordViewModel = wordViewModel;
-    }
-
-    public void setAllWords(List<Word> allWords) {
-        this.allWords = allWords;
     }
 
     @NonNull
@@ -48,10 +57,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri uri = Uri.parse("https://m.youdao.com/dict?le=en&q=" + holder.textViewEnglish.getText());
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(uri);
-                holder.itemView.getContext().startActivity(intent);
+//                Uri uri = Uri.parse("https://m.youdao.com/dict?le=en&q=" + holder.textViewEnglish.getText());
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                intent.setData(uri);
+//                holder.itemView.getContext().startActivity(intent);
             }
         });
 
@@ -76,7 +85,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
-        final Word word = allWords.get(position);
+        final Word word = getItem(position);
         holder.itemView.setTag(R.id.word_for_view_holder, word);
         holder.textViewNumber.setText(String.valueOf(position + 1));
         holder.textViewEnglish.setText(word.getWord());
@@ -88,11 +97,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             holder.textViewChinse.setVisibility(View.VISIBLE);
             holder.switchChineseInvisible.setChecked(false);
         }
-    }
-
-    @Override
-    public int getItemCount() {
-        return allWords.size();
     }
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -108,5 +112,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
     }
 
+    // 当 item 出现再屏幕上市
 
+
+    @Override
+    public void onViewAttachedToWindow(@NonNull MyViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        holder.textViewNumber.setText(String.valueOf(holder.getAdapterPosition() + 1));
+    }
 }

@@ -85,7 +85,7 @@ public class AddFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String english = editTextEnglish.getText().toString().trim();
-                String chinese = editTextEnglish.getText().toString().trim();
+                String chinese = editTextChinese.getText().toString().trim();
                 Word word = new Word(english, chinese);
                 wordViewModel.insertWords(word);
                 NavController navController = Navigation.findNavController(view);
