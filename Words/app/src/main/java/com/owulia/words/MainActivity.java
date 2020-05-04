@@ -17,6 +17,13 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController);
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        navController.navigateUp();
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
         navController.navigateUp();
