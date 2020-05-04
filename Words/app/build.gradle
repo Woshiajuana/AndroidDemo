@@ -46,5 +46,10 @@ dependencies {
     testImplementation "androidx.room:room-testing:$room_version"
     implementation 'androidx.recyclerview:recyclerview:1.0.0-rc02'
     implementation 'androidx.cardview:cardview:1.0.0-rc02'
-    implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha06'
+//    implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha06'
+    implementation 'com.google.android.material:material:1.0.0-rc02'
+
+
+    implementation 'androidx.navigation:navigation-fragment:2.0.0'
+    implementation 'androidx.navigation:navigation-ui:2.1.0'
 }
