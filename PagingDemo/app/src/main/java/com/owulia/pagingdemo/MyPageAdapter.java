@@ -39,7 +39,7 @@ public class MyPageAdapter extends PagedListAdapter<Student, MyPageAdapter.MyVie
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Student student = getItem(position);
         holder.textView.setText(String.valueOf(student.getStudentNumber()));
-        
+
     }
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
