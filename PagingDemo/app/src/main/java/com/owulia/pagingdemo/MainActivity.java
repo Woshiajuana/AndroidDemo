@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -41,8 +42,25 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         allStudentsLivePaged.observe(this, new Observer<PagedList<Student>>() {
             @Override
-            public void onChanged(PagedList<Student> students) {
+            public void onChanged(final PagedList<Student> students) {
                 pageAdapter.submitList(students);
+
+                students.addWeakCallback(null, new PagedList.Callback() {
+                    @Override
+                    public void onChanged(int position, int count) {
+                        Log.d("TAG", "onChanged: " + students);
+                    }
+
+                    @Override
+                    public void onInserted(int position, int count) {
+
+                    }
+
+                    @Override
+                    public void onRemoved(int position, int count) {
+
+                    }
+                });
             }
         });
 
