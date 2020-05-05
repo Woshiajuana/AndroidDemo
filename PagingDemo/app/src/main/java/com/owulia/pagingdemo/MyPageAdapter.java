@@ -38,7 +38,11 @@ public class MyPageAdapter extends PagedListAdapter<Student, MyPageAdapter.MyVie
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Student student = getItem(position);
-        holder.textView.setText(String.valueOf(student.getStudentNumber()));
+        if (student == null) {
+            holder.textView.setText("loading");
+        } else {
+            holder.textView.setText(String.valueOf(student.getStudentNumber()));
+        }
 
     }
 
