@@ -34,4 +34,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation 'com.android.volley:volley:1.1.1' // http 链接
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0' // 下拉刷新
+    implementation 'com.github.bumptech.glide:glide:4.10.0' // 加载图片
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc03' //
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0' // 导航组件
+    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0' // 导航组件
+    implementation 'com.google.code.gson:gson:2.8.6'  // gson json 处理的
+    implementation 'io.supercharge:shimmerlayout:2.1.0' // 占位符
+    implementation 'com.github.chrisbanes.photoview:library:1.2.4' // 图片缩放
 }
