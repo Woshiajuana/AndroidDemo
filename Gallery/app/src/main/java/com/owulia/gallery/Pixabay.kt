@@ -1,6 +1,8 @@
 package com.owulia.gallery
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 data class Pixabay (
     val totalHits: Int,
@@ -28,8 +30,8 @@ data class Pixabay (
     }
 }
 
-data class PhotoItem (
+@Parcelize data class PhotoItem (
     @SerializedName("id") val photoId: Int,
     @SerializedName("webformatURL") val previewUrl: String,
     @SerializedName("largeImageURL") val fullUrl: String
-)
+): Parcelable
