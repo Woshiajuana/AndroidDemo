@@ -31,12 +31,17 @@ class GalleryFragment : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), 2)
         }
 
-        val galleryViewModel: GalleryViewModel = ViewModelProvider(this).get(GalleryViewModel::class.java)
+        val galleryViewModel: GalleryViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(requireActivity().application)).get(GalleryViewModel::class.java)
         galleryViewModel.photoListLive.observe(this, Observer {
             galleryAdapter.submitList(it)
+            swipeLayoutGallery.isRefreshing = false
         })
 
         galleryViewModel.photoListLive.value?:galleryViewModel.fetchData()
+
+        swipeLayoutGallery.setOnRefreshListener {
+            galleryViewModel.fetchData()
+        }
     }
 
 }
