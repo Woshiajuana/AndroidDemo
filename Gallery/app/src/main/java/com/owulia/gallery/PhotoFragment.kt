@@ -35,7 +35,7 @@ class PhotoFragment : Fragment() {
         }
 
         Glide.with(requireContext())
-            .load(arguments?.getParcelable<PhotoItem>("PHOTO")?.previewUrl)
+            .load(arguments?.getParcelable<PhotoItem>("PHOTO")?.fullUrl)
             .placeholder(R.drawable.ic_photo_black_24dp)
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
@@ -44,7 +44,6 @@ class PhotoFragment : Fragment() {
                     target: Target<Drawable>?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    TODO("Not yet implemented")
                     return false
                 }
 
@@ -55,7 +54,6 @@ class PhotoFragment : Fragment() {
                     dataSource: DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    TODO("Not yet implemented")
                     return false.also { shimmerLayoutPhoto.startShimmerAnimation() }
                 }
             })
