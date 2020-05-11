@@ -20,6 +20,10 @@ class GalleryAdapter:ListAdapter<PhotoItem, MyViewHolder>(DIFFCALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : MyViewHolder {
         val holder = MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.gallery_cell, parent, false))
         holder.itemView.setOnClickListener {
+//            var b:Bundle = Bundle();
+//            b.putParcelable("PHOTO", getItem(holder.adapterPosition))
+//            holder.itemView.findNavController().navigate(R.id.action_galleryFragment_to_photoFragment2,b)
+
             Bundle().apply {
                 putParcelable("PHOTO", getItem(holder.adapterPosition))
                 holder.itemView.findNavController().navigate(R.id.action_galleryFragment_to_photoFragment2,this)
