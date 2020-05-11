@@ -54,7 +54,9 @@ class PhotoFragment : Fragment() {
                     dataSource: DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    return false.also { shimmerLayoutPhoto.startShimmerAnimation() }
+                    return false.also {
+                        shimmerLayoutPhoto?.stopShimmerAnimation()
+                    }
                 }
             })
             .into(photoView)
