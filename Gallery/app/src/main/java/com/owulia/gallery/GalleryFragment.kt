@@ -1,6 +1,7 @@
 package com.owulia.gallery
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -30,7 +31,12 @@ class GalleryFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.swipeIndictor -> galleryViewModel.fetchData()
+            R.id.swipeIndictor -> {
+                swipeLayoutGallery.isRefreshing = true
+                Handler().postDelayed({
+                    galleryViewModel.fetchData()
+                }, 1000)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
