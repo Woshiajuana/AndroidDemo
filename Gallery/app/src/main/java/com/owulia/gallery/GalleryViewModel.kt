@@ -11,12 +11,19 @@ import com.android.volley.toolbox.StringRequest
 import com.google.gson.Gson
 import kotlin.math.ceil
 
+const val DATA_STATUS_CAN_LOAD_MODE = 0
+const val DATA_STATUS_NO_MODE = 1
+const val DATA_STATUS_NETWORK_ERROR = 2
+
 class GalleryViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val _dataStatusLive = MutableLiveData<Int>()
+    val dataStatusLive: LiveData<Int> get() = _dataStatusLive
     private val _photoListLive = MutableLiveData<List<PhotoItem>>()
     val photoListLive : LiveData<List<PhotoItem>>
     get() = _photoListLive
 
+    var needToScrollToTop = true
     private val keyWords = arrayOf("cat", "dog", "car", "beauty");
     private var currentPage = 1
     private var totalPage = 1
@@ -25,18 +32,26 @@ class GalleryViewModel(application: Application) : AndroidViewModel(application)
     private var isLoading = false
     private val perPage = 30
 
+    init {
+        resetQuery()
+    }
+
     fun resetQuery () {
         currentPage = 1
         totalPage = 1
         currentKey = keyWords.random()
         isNewQuery = true
+        needToScrollToTop = true
         fetchData()
     }
 
     fun fetchData () {
         if (isLoading) return
         isLoading = true
-        if (currentPage > totalPage) return
+        if (currentPage > totalPage) {
+            _dataStatusLive.value = DATA_STATUS_NO_MODE
+            return
+        }
         val stringRequest = StringRequest(
             Request.Method.GET,
             getUrl(),
@@ -49,12 +64,14 @@ class GalleryViewModel(application: Application) : AndroidViewModel(application)
                         _photoListLive.value = arrayListOf(_photoListLive.value!!, hits.toList()).flatten()
                     }
                 }
+                _dataStatusLive.value = DATA_STATUS_CAN_LOAD_MODE
                 isLoading = false
                 isNewQuery = false
                 currentPage++
             },
             Response.ErrorListener {
                 Log.d("hello", it.toString())
+                _dataStatusLive.value = DATA_STATUS_NETWORK_ERROR
                 isLoading = false
             }
         )

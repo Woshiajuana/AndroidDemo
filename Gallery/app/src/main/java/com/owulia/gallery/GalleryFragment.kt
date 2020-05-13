@@ -36,7 +36,7 @@ class GalleryFragment : Fragment() {
             R.id.swipeIndictor -> {
                 swipeLayoutGallery.isRefreshing = true
                 Handler().postDelayed({
-                    galleryViewModel.fetchData()
+                    galleryViewModel.resetQuery()
                 }, 1000)
             }
         }
@@ -46,23 +46,27 @@ class GalleryFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setHasOptionsMenu(true)
-        val galleryAdapter = GalleryAdapter()
+        galleryViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(requireActivity().application)).get(GalleryViewModel::class.java)
+        val galleryAdapter = GalleryAdapter(galleryViewModel)
         recyclerView.apply {
             adapter = galleryAdapter
 //            layoutManager = GridLayoutManager(requireContext(), 2) // 规律的
             layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         }
 
-        galleryViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(requireActivity().application)).get(GalleryViewModel::class.java)
         galleryViewModel.photoListLive.observe(this, Observer {
+            if (galleryViewModel.needToScrollToTop) {
+                recyclerView.scrollToPosition(0)
+                galleryViewModel.needToScrollToTop = false
+            }
             galleryAdapter.submitList(it)
             swipeLayoutGallery.isRefreshing = false
         })
 
-        galleryViewModel.photoListLive.value?:galleryViewModel.fetchData()
+//        galleryViewModel.photoListLive.value?:galleryViewModel.resetQuery()
 
         swipeLayoutGallery.setOnRefreshListener {
-            galleryViewModel.fetchData()
+            galleryViewModel.resetQuery()
         }
 
         // 监听滚动
@@ -74,10 +78,19 @@ class GalleryFragment : Fragment() {
                 val intArray = IntArray(2)
                 layoutManager.findLastVisibleItemPositions(intArray)
                 if (intArray[0] == galleryAdapter.itemCount - 1) {
-
+                    galleryViewModel.fetchData()
                 }
             }
         })
+
+        galleryViewModel.dataStatusLive.observe(this, Observer {
+            galleryAdapter.footerViewStatus = it
+            galleryAdapter.notifyItemChanged(galleryAdapter.itemCount - 1)
+            if (it == DATA_STATUS_NETWORK_ERROR) {
+                swipeLayoutGallery.isRefreshing = false
+            }
+        })
+
     }
 
 }
