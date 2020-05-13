@@ -17,20 +17,42 @@ import com.bumptech.glide.request.target.Target
 import kotlinx.android.synthetic.main.gallery_cell.view.*
 
 class GalleryAdapter:ListAdapter<PhotoItem, MyViewHolder>(DIFFCALLBACK) {
+
+    companion object {
+        const val NORMAL_VIEW_TYPE = 0
+        const val FOOTER_VIEW_TYPE = 1
+    }
+
+    override fun getItemCount(): Int {
+        return super.getItemCount() + 1
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (position == itemCount - 1) FOOTER_VIEW_TYPE else NORMAL_VIEW_TYPE
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : MyViewHolder {
-        val holder = MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.gallery_cell, parent, false))
-        holder.itemView.setOnClickListener {
+
+        val holder : MyViewHolder
+        if (viewType == NORMAL_VIEW_TYPE) {
+            holder = MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.gallery_cell, parent, false))
+            holder.itemView.setOnClickListener {
 //            var b:Bundle = Bundle();
 //            b.putParcelable("PHOTO", getItem(holder.adapterPosition))
 //            holder.itemView.findNavController().navigate(R.id.action_galleryFragment_to_photoFragment2,b)
-
-            Bundle().apply {
-                //                putParcelable("PHOTO", getItem(holder.adapterPosition))
-                putParcelableArrayList("PHOTO_LIST", ArrayList(currentList))
-                putInt("PHOTO_POSITION", holder.adapterPosition)
-                holder.itemView.findNavController().navigate(R.id.action_galleryFragment_to_pagerPhotoFragment,this)
+                Bundle().apply {
+                    //                putParcelable("PHOTO", getItem(holder.adapterPosition))
+                    putParcelableArrayList("PHOTO_LIST", ArrayList(currentList))
+                    putInt("PHOTO_POSITION", holder.adapterPosition)
+                    holder.itemView.findNavController().navigate(R.id.action_galleryFragment_to_pagerPhotoFragment,this)
+                }
             }
+        } else {
+            holder = MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.gallery_footer, parent, false))
         }
+
+
+
         return holder;
     }
 
