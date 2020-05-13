@@ -9,6 +9,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -16,7 +17,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import kotlinx.android.synthetic.main.gallery_cell.view.*
 
-class GalleryAdapter:ListAdapter<PhotoItem, MyViewHolder>(DIFFCALLBACK) {
+class GalleryAdapter : ListAdapter<PhotoItem, MyViewHolder>(DIFFCALLBACK) {
 
     companion object {
         const val NORMAL_VIEW_TYPE = 0
@@ -31,11 +32,13 @@ class GalleryAdapter:ListAdapter<PhotoItem, MyViewHolder>(DIFFCALLBACK) {
         return if (position == itemCount - 1) FOOTER_VIEW_TYPE else NORMAL_VIEW_TYPE
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
-        val holder : MyViewHolder
+        val holder: MyViewHolder
         if (viewType == NORMAL_VIEW_TYPE) {
-            holder = MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.gallery_cell, parent, false))
+            holder = MyViewHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.gallery_cell, parent, false)
+            )
             holder.itemView.setOnClickListener {
 //            var b:Bundle = Bundle();
 //            b.putParcelable("PHOTO", getItem(holder.adapterPosition))
@@ -44,19 +47,27 @@ class GalleryAdapter:ListAdapter<PhotoItem, MyViewHolder>(DIFFCALLBACK) {
                     //                putParcelable("PHOTO", getItem(holder.adapterPosition))
                     putParcelableArrayList("PHOTO_LIST", ArrayList(currentList))
                     putInt("PHOTO_POSITION", holder.adapterPosition)
-                    holder.itemView.findNavController().navigate(R.id.action_galleryFragment_to_pagerPhotoFragment,this)
+                    holder.itemView.findNavController()
+                        .navigate(R.id.action_galleryFragment_to_pagerPhotoFragment, this)
                 }
             }
         } else {
-            holder = MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.gallery_footer, parent, false))
+            holder = MyViewHolder(
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.gallery_footer, parent, false)
+                    .also {
+                        (it.layoutParams as StaggeredGridLayoutManager.LayoutParams).isFullSpan = true
+                    }
+            )
         }
-
-
 
         return holder;
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        if (position == itemCount - 1) {
+            return
+        }
         val photoItem: PhotoItem = getItem(position)
         with(holder.itemView) {
             shimmerLayoutCell.apply {
@@ -96,7 +107,7 @@ class GalleryAdapter:ListAdapter<PhotoItem, MyViewHolder>(DIFFCALLBACK) {
             .into(holder.itemView.imageView2)
     }
 
-    object DIFFCALLBACK: DiffUtil.ItemCallback<PhotoItem>() {
+    object DIFFCALLBACK : DiffUtil.ItemCallback<PhotoItem>() {
         override fun areItemsTheSame(oldItem: PhotoItem, newItem: PhotoItem): Boolean {
             return oldItem === newItem
         }
@@ -107,4 +118,4 @@ class GalleryAdapter:ListAdapter<PhotoItem, MyViewHolder>(DIFFCALLBACK) {
     }
 }
 
-class MyViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView)
+class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
