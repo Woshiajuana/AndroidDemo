@@ -25,6 +25,6 @@
     <fragment
         android:id="@+id/pagerPhotoFragment"
         android:name="com.owulia.gallery.PagerPhotoFragment"
-        android:label="pagerPhoto"
+        android:label="PagerPhoto"
         tools:layout="@layout/fragment_pager_photo" />
 </navigation>
