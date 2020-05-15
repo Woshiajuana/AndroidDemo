@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,12 +11,32 @@
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1" >
+
+    </androidx.viewpager.widget.ViewPager>
+
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="?android:attr/listDivider" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="49.5dp"
         android:orientation="horizontal">
+
+        <LinearLayout
+            style="@style/tab_bar_item">
+            <ImageView
+                style="@style/tab_bar_item_image"
+                android:src="@mipmap/tab_bar_home_normal"/>
+            <TextView
+                style="@style/tab_bar_item_text"
+                android:text="@string/tab_bar_home" />
+        </LinearLayout>
+
         <LinearLayout
             style="@style/tab_bar_item">
             <ImageView
@@ -23,8 +44,19 @@
                 android:src="@mipmap/tab_bar_material_normal"/>
             <TextView
                 style="@style/tab_bar_item_text"
-                android:text="@string/tab_bar_home" />
+                android:text="@string/tab_bar_material" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/tab_bar_item">
+            <ImageView
+                style="@style/tab_bar_item_image"
+                android:src="@mipmap/tab_bar_mine_normal"/>
+            <TextView
+                style="@style/tab_bar_item_text"
+                android:text="@string/tab_bar_mine" />
         </LinearLayout>
 
     </LinearLayout>
+
 </LinearLayout>
