@@ -9,7 +9,7 @@
 
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1" />
 
     <LinearLayout
@@ -17,13 +17,16 @@
         android:layout_height="50dp"
         android:orientation="horizontal">
         <LinearLayout
+            android:clickable="true"
+            android:focusable="true"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_width="match_parent"
+            android:background="?selectableItemBackground"
+            android:layout_width="0dp"
             android:layout_height="match_parent">
             <ImageView
-                android:src="@mipmap/boxd_icon3x1"
+                android:src="@mipmap/tab_bar_material_normal"
                 android:layout_width="24dp"
                 android:layout_height="24dp"/>
             <TextView
@@ -33,7 +36,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-
 
     </LinearLayout>
 </LinearLayout>
