@@ -9,6 +9,7 @@
     tools:context=".MainActivity" >
 
     <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
@@ -25,6 +26,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/tabBarHome"
             style="@style/tab_bar_item">
             <ImageView
                 style="@style/tab_bar_item_image"
@@ -35,6 +37,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tabBarMaterial"
             style="@style/tab_bar_item">
             <ImageView
                 style="@style/tab_bar_item_image"
@@ -45,6 +48,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tabBarMine"
             style="@style/tab_bar_item">
             <ImageView
                 style="@style/tab_bar_item_image"
