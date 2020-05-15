@@ -29,9 +29,11 @@
             android:id="@+id/tabBarHome"
             style="@style/tab_bar_item">
             <ImageView
+                android:id="@+id/tabBarHomeImage"
                 style="@style/tab_bar_item_image"
                 android:src="@mipmap/tab_bar_home_normal"/>
             <TextView
+                android:id="@+id/tabBarHomeText"
                 style="@style/tab_bar_item_text"
                 android:text="@string/tab_bar_home" />
         </LinearLayout>
@@ -40,9 +42,11 @@
             android:id="@+id/tabBarMaterial"
             style="@style/tab_bar_item">
             <ImageView
+                android:id="@+id/tabBarMaterialImage"
                 style="@style/tab_bar_item_image"
                 android:src="@mipmap/tab_bar_material_normal"/>
             <TextView
+                android:id="@+id/tabBarMaterialText"
                 style="@style/tab_bar_item_text"
                 android:text="@string/tab_bar_material" />
         </LinearLayout>
@@ -51,9 +55,11 @@
             android:id="@+id/tabBarMine"
             style="@style/tab_bar_item">
             <ImageView
+                android:id="@+id/tabBarMineImage"
                 style="@style/tab_bar_item_image"
                 android:src="@mipmap/tab_bar_mine_normal"/>
             <TextView
+                android:id="@+id/tabBarMineText"
                 style="@style/tab_bar_item_text"
                 android:text="@string/tab_bar_mine" />
         </LinearLayout>
