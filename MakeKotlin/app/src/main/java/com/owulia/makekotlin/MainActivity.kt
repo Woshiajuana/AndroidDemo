@@ -14,8 +14,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private val TAG = "MainActivity"
-    private var numCurrent = 0
-
     private lateinit var homeFragment: Fragment
     private lateinit var materialFragment: Fragment
     private lateinit var mineFragment: Fragment
