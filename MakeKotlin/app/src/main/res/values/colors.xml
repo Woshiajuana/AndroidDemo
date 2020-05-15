@@ -3,4 +3,7 @@
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#007FD6</color>
     <color name="colorAccent">#007FD6</color>
+
+    <color name="tabBarTextColorNormal">#ACACAC</color>
+    <color name="tabBarTextColorActive">@color/colorPrimaryDark</color>
 </resources>
