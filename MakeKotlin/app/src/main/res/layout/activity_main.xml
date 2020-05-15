@@ -10,7 +10,6 @@
 
     <View
         android:id="@+id/statusBar"
-        android:background="#ff0000"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
