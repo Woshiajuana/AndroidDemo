@@ -24,13 +24,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        statusBar.layoutParams.height = getStatusBarHeight()
+
         //判断版本是否支持沉浸式状态栏
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //透明状态栏
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             //透明导航栏
 //            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        }
+//        }
         // 初始化底部导航栏
         init()
     }
@@ -75,6 +77,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
         supportFragmentManager.beginTransaction().replace(R.id.frameLayout, fragment).commit();
+    }
+
+    private fun getStatusBarHeight() : Int {
+        var result = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            result = resources.getDimensionPixelSize(resourceId);
+        }
+        Log.d(TAG,"result =>" + result.toString());
+        return result
     }
 
 }
