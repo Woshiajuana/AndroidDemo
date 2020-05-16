@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
 //        statusBar.layoutParams.height = getStatusBarHeight()
 
         //判断版本是否支持沉浸式状态栏
@@ -40,6 +41,19 @@ class MainActivity : AppCompatActivity() {
 
 //            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 //        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.statusBarColor = Color.TRANSPARENT
+            headerView.setPadding(0, getStatusBarHeight(), 0, 0)
+            Log.d(TAG, "headerView.height => ${headerView.layoutParams.height}")
+            headerView.layoutParams.height = headerView.layoutParams.height + getStatusBarHeight()
+        }
+
+
         // 初始化底部导航栏
         init()
     }
