@@ -7,11 +7,13 @@
     android:paddingRight="@dimen/marginSize"
     android:layout_height="@dimen/navBarHeight">
     <ImageView
+        android:id="@+id/mBackBtn"
         android:layout_gravity="center_vertical"
         android:src="@drawable/ic_arrow"
         android:layout_width="@dimen/navIconSize"
         android:layout_height="@dimen/navIconSize"/>
     <TextView
+        android:id="@+id/mTitleTxt"
         android:layout_gravity="center"
         android:textColor="@android:color/white"
         android:textSize="@dimen/navBarTitleSize"
@@ -19,7 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <ImageView
-        android:layout_gravity="right|center_vertical"
+        android:id="@+id/mMineBtn"
+        android:layout_gravity="end|center_vertical"
         android:src="@drawable/ic_person"
         android:layout_width="@dimen/navIconSize"
         android:layout_height="@dimen/navIconSize"/>
