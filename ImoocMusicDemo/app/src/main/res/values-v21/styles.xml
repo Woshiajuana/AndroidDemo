@@ -7,6 +7,8 @@
         <item name="colorPrimaryDark">@color/mainColor</item>
 <!--        <item name="colorAccent">@color/colorAccent</item>-->
         
+<!--        设置 statusBar 的背景颜色-->
+        <item name="android:statusBarColor">@color/mainColor</item>
     </style>
 
 </resources>
