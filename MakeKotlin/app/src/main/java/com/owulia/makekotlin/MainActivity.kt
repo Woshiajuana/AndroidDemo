@@ -26,40 +26,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-//        statusBar.layoutParams.height = getStatusBarHeight()
-
-        //判断版本是否支持沉浸式状态栏
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
-//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//            window.statusBarColor = Color.TRANSPARENT
-            //透明状态栏
-//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            //透明导航栏
-
-//            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//        }
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 ////            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 //            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
               // 设置状态栏为透明
 //            window.statusBarColor = Color.TRANSPARENT
-//            headerView.setPadding(0, getStatusBarHeight(), 0, 0)
-//            headerView.layoutParams.height = headerView.layoutParams.height + getStatusBarHeight()
+            headerView.setPadding(0, getStatusBarHeight(), 0, 0)
+            headerView.layoutParams.height = headerView.layoutParams.height + getStatusBarHeight()
         }
-
-
-        // 设置状态栏显示字体内容颜
-//        if (ColorUtils.calculateLuminance(Color.parseColor("#ff0000")) > 0.5) {
-//            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-//        } else {
-//            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-//        }
 
         // 初始化底部导航栏
         init()
