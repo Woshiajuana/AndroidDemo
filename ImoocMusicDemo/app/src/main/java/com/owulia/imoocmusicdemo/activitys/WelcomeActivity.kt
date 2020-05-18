@@ -16,12 +16,11 @@ class WelcomeActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
-
         init()
     }
 
     // 初始化
-    fun init () {
+    private fun init () {
         mTimer = Timer()
         mTimer.schedule(object: TimerTask() {
             override fun run() {
@@ -32,8 +31,14 @@ class WelcomeActivity : BaseActivity() {
     }
 
     // 跳转页面
-    fun toMain () {
-        var intent = Intent(this, MainActivity::class.java)
+    private fun toMain () {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun toLogin () {
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }
