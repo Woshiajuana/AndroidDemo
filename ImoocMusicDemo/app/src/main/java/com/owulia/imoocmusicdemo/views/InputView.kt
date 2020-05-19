@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.text.InputType
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.owulia.imoocmusicdemo.R
@@ -29,20 +30,15 @@ class InputView  : FrameLayout {
     @SuppressLint("Recycle", "CustomViewStyleable")
     private fun init (ctx: Context, attrs: AttributeSet?) {
         if (attrs == null) return
-        // 获取自定义属性
         val typedArray =  context.obtainStyledAttributes(attrs, R.styleable.inputView)
-        var inputIcon = typedArray.getResourceId(R.styleable.inputView_input_icon, R.drawable.ic_arrow)
-        var inputHint = typedArray.getString(R.styleable.inputView_input_hint).toString()
-        var isPassword = typedArray.getBoolean(R.styleable.inputView_is_password, false)
+        val inputIcon = typedArray.getResourceId(R.styleable.inputView_input_icon, R.drawable.ic_arrow)
+        val inputHint = typedArray.getString(R.styleable.inputView_input_hint).toString()
+        val isPassword = typedArray.getBoolean(R.styleable.inputView_is_password, false)
         typedArray.recycle()
-
         val mView = LayoutInflater.from(ctx).inflate(R.layout.input_view, this, false)
-        mInputIcon.setImageResource(inputIcon)
-        mInputEdit.hint = inputHint
-        mInputEdit.inputType = if (isPassword) InputType.TYPE_NUMBER_VARIATION_PASSWORD else InputType.TYPE_CLASS_PHONE
-
-//        set(InputType.TYPE_NUMBER_VARIATION_PASSWORD | InputType.TYPE_NUMBER_VARIATION_PASSWORD )
-
+        mView.mInputIcon.setImageResource(inputIcon)
+        mView.mInputEdit.hint = inputHint
+        mView.mInputEdit.inputType = if (isPassword) (InputType.TYPE_NUMBER_VARIATION_PASSWORD or InputType.TYPE_CLASS_TEXT) else InputType.TYPE_CLASS_PHONE
         addView(mView)
     }
 

@@ -24,4 +24,16 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/inputViewHeight"/>
 
+    <View style="@style/line" />
+
+    <com.owulia.imoocmusicdemo.views.InputView
+        app:input_icon="@drawable/ic_lock_outline"
+        app:input_hint="请输入密码"
+        app:is_password="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/inputViewHeight"/>
+
+    <View style="@style/line" />
+
+
 </LinearLayout>

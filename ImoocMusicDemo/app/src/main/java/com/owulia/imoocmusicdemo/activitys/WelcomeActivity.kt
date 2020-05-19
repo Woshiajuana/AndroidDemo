@@ -28,7 +28,7 @@ class WelcomeActivity : BaseActivity() {
 //                toMain()
                 toLogin()
             }
-        }, 3 * 1000)
+        }, 3 * 10)
     }
 
     // 跳转页面
