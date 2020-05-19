@@ -1,6 +1,7 @@
 package com.owulia.imoocmusicdemo.activitys
 
 import android.os.Bundle
+import android.view.View
 import com.owulia.imoocmusicdemo.R
 
 class LoginActivity : BaseActivity () {
@@ -14,5 +15,9 @@ class LoginActivity : BaseActivity () {
 
     private fun initView () {
         initNavBar(false, "登录", false)
+    }
+
+    public fun onRegisterClick (view: View) {
+
     }
 }

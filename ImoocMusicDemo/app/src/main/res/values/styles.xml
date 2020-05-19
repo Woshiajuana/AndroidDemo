@@ -16,4 +16,17 @@
         <item name="android:background">@color/lineColor</item>
         <item name="android:layout_margin">@dimen/marginSize</item>
     </style>
+
+<!--    登录按钮-->
+    <style name="commitBtn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/btnHeight</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/inputTextSize</item>
+        <item name="android:layout_marginLeft">@dimen/marginSize</item>
+        <item name="android:layout_marginRight">@dimen/marginSize</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background"></item>
+    </style>
+    
 </resources>

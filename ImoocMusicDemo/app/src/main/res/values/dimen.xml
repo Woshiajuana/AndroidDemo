@@ -6,5 +6,7 @@
     <dimen name="navBarTitleSize">22sp</dimen>
     <dimen name="navIconSize">36dp</dimen>
     <dimen name="inputTextSize">18sp</dimen>
+    <dimen name="infoSize">14sp</dimen>
     <dimen name="inputViewHeight">44dp</dimen>
+    <dimen name="btnHeight">44dp</dimen>
 </resources>
