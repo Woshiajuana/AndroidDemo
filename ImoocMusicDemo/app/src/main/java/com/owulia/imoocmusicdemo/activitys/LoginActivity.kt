@@ -1,8 +1,11 @@
 package com.owulia.imoocmusicdemo.activitys
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.owulia.imoocmusicdemo.R
+import com.owulia.imoocmusicdemo.utils.UserUtil
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity () {
 
@@ -17,12 +20,19 @@ class LoginActivity : BaseActivity () {
         initNavBar(false, "登录", false)
     }
 
-    public fun onRegisterClick (view: View) {
+    fun onRegisterClick (view: View) {
 
     }
 
-    public fun onCommitClick (view: View) {
-
+    fun onCommitClick (view: View) {
+        val phone = mInputPhone.getInputStr()
+        val password = mInputPassword.getInputStr()
+        if (!UserUtil.validateLogin(phone, password)) {
+            return
+        }
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
 }
