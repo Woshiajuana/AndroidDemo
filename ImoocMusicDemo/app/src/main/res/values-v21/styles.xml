@@ -3,7 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimaryDark">@color/mainColor</item>
-<!--        设置 statusBar 的背景颜色-->
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+
+        <!--        设置 statusBar 的背景颜色-->
         <item name="android:statusBarColor">@color/mainColor</item>
     </style>
 
