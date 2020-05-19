@@ -6,7 +6,6 @@ import android.view.View
 import com.blankj.utilcode.util.ToastUtils
 import com.owulia.imoocmusicdemo.R
 import com.owulia.imoocmusicdemo.utils.UserUtil
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.mInputPassword
 import kotlinx.android.synthetic.main.activity_login.mInputPhone
 import kotlinx.android.synthetic.main.activity_register.*
@@ -33,8 +32,5 @@ class RegisterActivity : BaseActivity() {
         }
         ToastUtils.showShort("注册成功")
         onBackPressed()
-//        val intent = Intent(this, MainActivity::class.java)
-//        startActivity(intent)
-//        finish()
     }
 }
