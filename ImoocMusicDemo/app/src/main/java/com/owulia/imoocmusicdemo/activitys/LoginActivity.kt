@@ -21,7 +21,8 @@ class LoginActivity : BaseActivity () {
     }
 
     fun onRegisterClick (view: View) {
-
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
     }
 
     fun onCommitClick (view: View) {
