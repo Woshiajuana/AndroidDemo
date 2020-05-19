@@ -20,4 +20,9 @@ class LoginActivity : BaseActivity () {
     public fun onRegisterClick (view: View) {
 
     }
+
+    public fun onCommitClick (view: View) {
+
+    }
+
 }

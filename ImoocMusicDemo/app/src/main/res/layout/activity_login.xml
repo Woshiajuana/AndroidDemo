@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"/>
 
     <com.owulia.imoocmusicdemo.views.InputView
+        android:id="@+id/mInputPhone"
         app:input_icon="@drawable/ic_phone"
         app:input_hint="请输入手机号"
         app:is_password="false"
@@ -27,6 +28,7 @@
     <View style="@style/line" />
 
     <com.owulia.imoocmusicdemo.views.InputView
+        android:id="@+id/mInputPassword"
         app:input_icon="@drawable/ic_lock_outline"
         app:input_hint="请输入密码"
         app:is_password="true"
@@ -46,6 +48,7 @@
         android:layout_height="wrap_content"/>
 
     <Button
+        android:onClick="onCommitClick"
         style="@style/commitBtn"
         android:layout_marginTop="@dimen/marginSize"
         android:text="登 录"/>
