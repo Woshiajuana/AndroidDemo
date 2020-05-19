@@ -2,11 +2,19 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
         <item name="colorPrimaryDark">@color/mainColor</item>
-<!--        <item name="colorAccent">@color/colorAccent</item>-->
-        
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+    </style>
+    
+    <style name="AnimationActivity" parent="@android:style/Animation.Activity">
+<!--        新 Activity 动画-->
+        <item name="android:activityOpenEnterAnimation">@anim/open_enter</item>
+<!--        员 Activity 动画-->
+        <item name="android:activityOpenExitAnimation">@anim/open_exit</item>
+<!--        退出时 退出的 Activity 执行的动画-->
+        <item name="android:activityCloseExitAnimation">@anim/close_exit</item>
+<!--        退出时进入的 Activity 执行的动画-->
+        <item name="android:activityCloseEnterAnimation">@anim/close_enter</item>
     </style>
 
 <!--    分割线-->

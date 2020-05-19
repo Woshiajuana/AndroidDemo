@@ -2,11 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
         <item name="colorPrimaryDark">@color/mainColor</item>
-<!--        <item name="colorAccent">@color/colorAccent</item>-->
-        
 <!--        设置 statusBar 的背景颜色-->
         <item name="android:statusBarColor">@color/mainColor</item>
     </style>
