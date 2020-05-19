@@ -35,10 +35,11 @@ class InputView  : FrameLayout {
         val inputHint = typedArray.getString(R.styleable.inputView_input_hint).toString()
         val isPassword = typedArray.getBoolean(R.styleable.inputView_is_password, false)
         typedArray.recycle()
+        Log.d("INPUTVIEW", "isPassword => ${isPassword}")
         val mView = LayoutInflater.from(ctx).inflate(R.layout.input_view, this, false)
         mView.mInputIcon.setImageResource(inputIcon)
         mView.mInputEdit.hint = inputHint
-        mView.mInputEdit.inputType = if (isPassword) (InputType.TYPE_NUMBER_VARIATION_PASSWORD or InputType.TYPE_CLASS_TEXT) else InputType.TYPE_CLASS_PHONE
+        mView.mInputEdit.inputType = if (isPassword) (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD) else InputType.TYPE_CLASS_PHONE
         addView(mView)
     }
 
