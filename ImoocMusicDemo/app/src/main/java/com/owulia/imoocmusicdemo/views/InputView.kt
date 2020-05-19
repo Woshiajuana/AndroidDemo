@@ -22,6 +22,10 @@ class InputView  : FrameLayout {
         init(ctx, attrs)
     }
 
+    constructor(ctx: Context, attrs: AttributeSet?, defStyle: Int): super(ctx, attrs, defStyle) {
+        init(ctx, attrs)
+    }
+
     @SuppressLint("Recycle", "CustomViewStyleable")
     private fun init (ctx: Context, attrs: AttributeSet?) {
         if (attrs == null) return
