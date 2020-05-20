@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.owulia.imoocmusicdemo.R
 import com.owulia.imoocmusicdemo.adapters.MusicGridAdapter
+import com.owulia.imoocmusicdemo.views.GridSpaceItemDecoration
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -19,6 +20,7 @@ class MainActivity : BaseActivity() {
 
         mMusicGird.apply {
             adapter = MusicGridAdapter(context)
+            addItemDecoration(GridSpaceItemDecoration(resources.getDimensionPixelOffset(R.dimen.marginTabSize)))
             layoutManager = GridLayoutManager(context, 3)
         }
 
