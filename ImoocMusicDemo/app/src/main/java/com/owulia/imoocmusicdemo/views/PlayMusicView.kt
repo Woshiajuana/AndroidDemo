@@ -2,6 +2,7 @@ package com.owulia.imoocmusicdemo.views
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.bumptech.glide.Glide
@@ -13,8 +14,10 @@ class PlayMusicView @JvmOverloads constructor(
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     init {
-        val mView = LayoutInflater.from(context).inflate(R.layout.play_music, this, false)
-        addView(mView)
+        Log.d("PlayMusicView", "context => ${context}")
+        Log.d("PlayMusicView", "this => ${this}")
+//        val mView = LayoutInflater.from(context).inflate(R.layout.play_music, this, false)
+//        addView(mView)
     }
 
     fun setMusicCover () {
