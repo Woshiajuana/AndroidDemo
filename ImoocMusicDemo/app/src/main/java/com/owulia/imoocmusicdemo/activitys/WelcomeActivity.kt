@@ -25,8 +25,8 @@ class WelcomeActivity : BaseActivity() {
         mTimer.schedule(object: TimerTask() {
             override fun run() {
                 Log.d(TAG, "当前线程${Thread.currentThread()}")
-//                toMain()
-                toLogin()
+                toMain()
+//                toLogin()
             }
         }, 3 * 10)
     }

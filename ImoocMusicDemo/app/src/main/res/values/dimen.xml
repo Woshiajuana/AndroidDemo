@@ -10,4 +10,5 @@
     <dimen name="inputViewHeight">44dp</dimen>
     <dimen name="btnHeight">44dp</dimen>
     <dimen name="radius">5dp</dimen>
+    <dimen name="marginTabSize">4dp</dimen>
 </resources>
