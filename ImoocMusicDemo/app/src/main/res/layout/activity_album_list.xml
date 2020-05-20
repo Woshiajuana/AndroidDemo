@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activitys.AlbumListActivity">
+
+    <include layout="@layout/nav_bar"/>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:padding="@dimen/marginSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_marginRight="@dimen/marginTabSize"
+            android:background="@color/mainColor"
+            android:layout_width="4dp"
+            android:layout_height="18dp"/>
+
+        <TextView
+            android:textColor="@color/titleColor"
+            android:textSize="@dimen/inputTextSize"
+            android:text="专辑哈哈哈"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mMusicList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.owulia.imoocmusicdemo.R
 import kotlinx.android.synthetic.main.item_list_music.view.*
 
-class MusicListAdapter (context: Context, parent: RecyclerView) : RecyclerView.Adapter<MusicListHolder>() {
+class MusicListAdapter (context: Context, parent: RecyclerView?) : RecyclerView.Adapter<MusicListHolder>() {
     private val _context = context
     private val _parent = parent
     private lateinit var _itemView : View
@@ -32,7 +32,7 @@ class MusicListAdapter (context: Context, parent: RecyclerView) : RecyclerView.A
     }
 
     private fun setRecyclerViewHeight () {
-        if (_isSetHeight) return
+        if (_isSetHeight || _parent == null) return
         _isSetHeight = true
         val itemViewHeight = _itemView.layoutParams.height
         val recycleViewHeight = itemCount * itemViewHeight
