@@ -6,8 +6,53 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgColor"
     tools:context=".activitys.MineActivity">
 
+    <include layout="@layout/nav_bar"/>
 
+    <LinearLayout
+        android:layout_marginTop="@dimen/marginSize"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="@dimen/btnHeight">
+        <TextView
+            android:text="用户名："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Ajuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:onClick="onChangePassword"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/marginSize"
+        android:paddingRight="@dimen/marginSize"
+        android:layout_marginTop="@dimen/marginSize"
+        android:gravity="center_vertical"
+        android:layout_height="@dimen/btnHeight">
+        <TextView
+            android:textSize="@dimen/infoSize"
+            android:text="修改密码"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:layout_width="@dimen/navIconSize"
+            android:layout_height="@dimen/navIconSize"/>
+    </LinearLayout>
+
+    <Button
+        android:onClick="onExit"
+        android:text="安全退出"
+        android:layout_marginTop="@dimen/marginSize"
+        style="@style/commitBtn"/>
 
 </LinearLayout>
