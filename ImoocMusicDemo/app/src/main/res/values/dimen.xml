@@ -15,4 +15,6 @@
     <dimen name="iconSizeS">16dp</dimen>
     <dimen name="iconSizeX">56dp</dimen>
     <dimen name="iconSizeL">36dp</dimen>
+    <dimen name="discTopSize">90dp</dimen>
+    <dimen name="playMusicIconSize">210dp</dimen>
 </resources>
