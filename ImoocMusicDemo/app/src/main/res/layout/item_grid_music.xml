@@ -8,9 +8,9 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp">
+        android:layout_height="wrap_content">
 
-        <ImageView
+        <com.owulia.imoocmusicdemo.views.WEqualsHImageView
             android:scaleType="centerCrop"
             android:src="@mipmap/item_grid_music_bg"
             android:layout_width="match_parent"
@@ -26,11 +26,11 @@
             <ImageView
                 android:src="@drawable/ic_headset"
                 android:layout_marginLeft="@dimen/marginTabSize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="@dimen/iconSizeS"
+                android:layout_height="@dimen/iconSizeS"/>
             <TextView
                 android:textStyle="bold"
-                android:textSize="@dimen/inputTextSize"
+                android:textSize="@dimen/infoSize"
                 android:textColor="@android:color/white"
                 android:text="10.00万"
                 android:layout_width="wrap_content"
