@@ -20,7 +20,7 @@ class MainActivity : BaseActivity() {
 
         mMusicGird.apply {
             adapter = MusicGridAdapter(context)
-//            addItemDecoration(GridSpaceItemDecoration(resources.getDimensionPixelOffset(R.dimen.marginTabSize)))
+//            addItemDecoration(GridSpaceItemDecoration(resources.getDimensionPixelOffset(R.dimen.marginTabSize), this))
             layoutManager = GridLayoutManager(context, 3)
         }
 
