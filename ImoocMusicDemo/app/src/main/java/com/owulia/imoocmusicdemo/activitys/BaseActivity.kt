@@ -1,13 +1,16 @@
 package com.owulia.imoocmusicdemo.activitys
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.nav_bar.*
 
+@SuppressLint("Registered")
 open class BaseActivity : Activity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
@@ -19,6 +22,11 @@ open class BaseActivity : Activity() {
 
         mBackBtn.setOnClickListener {
             onBackPressed()
+        }
+
+        mMineBtn.setOnClickListener {
+            val intent = Intent(this, MineActivity::class.java)
+            startActivity(intent)
         }
     }
 

@@ -32,7 +32,7 @@ class UserUtil {
                 ToastUtils.showShort("请输入密码")
                 return false
             }
-            if (!password.equals(passwordRed)) {
+            if (password != passwordRed) {
                 ToastUtils.showShort("两次密码不一致")
                 return false
             }
