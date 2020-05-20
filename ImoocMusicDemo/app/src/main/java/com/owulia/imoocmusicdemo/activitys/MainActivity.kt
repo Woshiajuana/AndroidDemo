@@ -3,6 +3,7 @@ package com.owulia.imoocmusicdemo.activitys
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.owulia.imoocmusicdemo.R
+import com.owulia.imoocmusicdemo.adapters.MusicGridAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -17,7 +18,7 @@ class MainActivity : BaseActivity() {
         initNavBar(false,"码可音乐", true)
 
         mMusicGird.apply {
-            adapter =
+            adapter = MusicGridAdapter(context)
             layoutManager = GridLayoutManager(context, 3)
         }
 
