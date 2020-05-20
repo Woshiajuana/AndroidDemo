@@ -4,31 +4,49 @@
     android:orientation="vertical"
     android:background="@android:color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="400dp">
 
         <ImageView
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:src="@mipmap/item_grid_music_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <LinearLayout
+            android:layout_margin="@dimen/marginTabSize"
+            android:gravity="right|center_vertical"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:src="@drawable/ic_headset"
-                android:layout_width="@dimen/navIconSize"
-                android:layout_height="@dimen/navIconSize"/>
+                android:layout_marginLeft="@dimen/marginTabSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:textStyle="bold"
+                android:textSize="@dimen/inputTextSize"
+                android:textColor="@android:color/white"
+                android:text="10.00万"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
     </FrameLayout>
 
+    <TextView
+        android:textColor="@color/titleColor"
+        android:textSize="@dimen/inputTextSize"
+        android:text="歌单名称"
+        android:textStyle="bold"
+        android:layout_margin="@dimen/marginTabSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
