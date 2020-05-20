@@ -12,14 +12,14 @@ import com.owulia.imoocmusicdemo.activitys.LoginActivity
 class UserUtil {
     companion object {
         fun validateLogin (phone: String, password: String) : Boolean {
-            if (!RegexUtils.isMobileExact(phone)) {
-                ToastUtils.showShort("无效手机号")
-                return false
-            }
-            if (TextUtils.isEmpty(password)) {
-                ToastUtils.showShort("请输入密码")
-                return false
-            }
+//            if (!RegexUtils.isMobileExact(phone)) {
+//                ToastUtils.showShort("无效手机号")
+//                return false
+//            }
+//            if (TextUtils.isEmpty(password)) {
+//                ToastUtils.showShort("请输入密码")
+//                return false
+//            }
             return true
         }
 
