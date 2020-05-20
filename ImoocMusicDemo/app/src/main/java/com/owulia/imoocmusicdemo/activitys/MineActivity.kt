@@ -2,6 +2,7 @@ package com.owulia.imoocmusicdemo.activitys
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.owulia.imoocmusicdemo.R
 import com.owulia.imoocmusicdemo.utils.UserUtil
 
@@ -15,14 +16,14 @@ class MineActivity : BaseActivity() {
     }
 
     private fun initView () {
-        initNavBar(true, "个人中心", false)
+        initNavBar(true, "个人中心1", false)
     }
 
-    fun onExit () {
+    fun onExit (view: View) {
         UserUtil.logout(this)
     }
 
-    fun onChangePassword () {
+    fun onChangePassword (view: View) {
         val intent = Intent(this, ChangePasswordActivity::class.java)
         startActivity(intent)
     }
