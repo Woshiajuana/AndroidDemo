@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?selectableItemBackground"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="@dimen/marginSize"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:src="@mipmap/item_grid_music_bg"
+        android:scaleType="centerCrop"
+        android:layout_width="@dimen/iconSizeX"
+        android:layout_height="@dimen/iconSizeX"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginStart="@dimen/marginSize"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:textSize="@dimen/inputTextSize"
+            android:textColor="@color/titleColor"
+            android:layout_weight="1"
+            android:text="歌曲名称"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"/>
+        <TextView
+            android:textSize="@dimen/infoSize"
+            android:textColor="@color/infoColor"
+            android:text="作者"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_play"
+        android:layout_width="@dimen/iconSizeL"
+        android:layout_height="@dimen/iconSizeL"/>
+
+</LinearLayout>

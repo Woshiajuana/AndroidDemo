@@ -2,6 +2,7 @@ package com.owulia.imoocmusicdemo.activitys
 
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.owulia.imoocmusicdemo.R
 import com.owulia.imoocmusicdemo.adapters.MusicGridAdapter
 import com.owulia.imoocmusicdemo.views.GridSpaceItemDecoration
@@ -22,6 +23,10 @@ class MainActivity : BaseActivity() {
             adapter = MusicGridAdapter(context)
 //            addItemDecoration(GridSpaceItemDecoration(resources.getDimensionPixelOffset(R.dimen.marginTabSize), this))
             layoutManager = GridLayoutManager(context, 3)
+        }
+
+        mMusicList.apply {
+            layoutManager = LinearLayoutManager(context)
         }
 
     }

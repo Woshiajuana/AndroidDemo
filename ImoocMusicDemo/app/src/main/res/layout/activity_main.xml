@@ -43,9 +43,36 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mMusicGird"
-                android:layout_marginRight="-4dp"
+                android:layout_marginEnd="@dimen/marginTabSizeN"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:padding="@dimen/marginSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_marginEnd="@dimen/marginTabSize"
+                    android:background="@color/mainColor"
+                    android:layout_width="4dp"
+                    android:layout_height="18dp"/>
+
+                <TextView
+                    android:textColor="@color/titleColor"
+                    android:textSize="@dimen/inputTextSize"
+                    android:text="最热歌曲"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mMusicList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
 
         </LinearLayout>
 

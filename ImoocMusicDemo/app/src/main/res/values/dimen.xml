@@ -11,5 +11,8 @@
     <dimen name="btnHeight">44dp</dimen>
     <dimen name="radius">5dp</dimen>
     <dimen name="marginTabSize">4dp</dimen>
+    <dimen name="marginTabSizeN">-4dp</dimen>
     <dimen name="iconSizeS">16dp</dimen>
+    <dimen name="iconSizeX">56dp</dimen>
+    <dimen name="iconSizeL">36dp</dimen>
 </resources>
