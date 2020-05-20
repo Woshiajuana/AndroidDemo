@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activitys.PlayMusicActivity">
+
+    <ImageView
+        android:id="@+id/mMusicBg"
+        android:src="@mipmap/item_grid_music_bg"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:onClick="onBackClick"
+        android:layout_margin="@dimen/marginSize"
+        android:src="@drawable/ic_arrow"
+        android:layout_width="@dimen/navIconSize"
+        android:layout_height="@dimen/navIconSize"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="500dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="音乐名称"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/inputTextSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="音乐作者"
+            android:layout_marginTop="@dimen/marginTabSize"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/infoSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</FrameLayout>

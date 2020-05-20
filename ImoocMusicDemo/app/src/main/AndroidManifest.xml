@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activitys.AlbumListActivity"></activity>
+        <activity android:name=".activitys.PlayMusicActivity"></activity>
+        <activity android:name=".activitys.AlbumListActivity" />
         <activity android:name=".activitys.ChangePasswordActivity" />
         <activity android:name=".activitys.MineActivity" />
         <activity android:name=".activitys.RegisterActivity" />

@@ -1,12 +1,14 @@
 package com.owulia.imoocmusicdemo.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.owulia.imoocmusicdemo.R
+import com.owulia.imoocmusicdemo.activitys.PlayMusicActivity
 import kotlinx.android.synthetic.main.item_list_music.view.*
 
 class MusicListAdapter (context: Context, parent: RecyclerView?) : RecyclerView.Adapter<MusicListHolder>() {
@@ -17,6 +19,10 @@ class MusicListAdapter (context: Context, parent: RecyclerView?) : RecyclerView.
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicListHolder {
         _itemView = LayoutInflater.from(_context).inflate(R.layout.item_list_music, parent, false)
+        _itemView.setOnClickListener{
+            val intent = Intent(_context, PlayMusicActivity::class.java)
+            _context.startActivity(intent)
+        }
         return MusicListHolder(_itemView)
     }
 
