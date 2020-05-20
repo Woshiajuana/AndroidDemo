@@ -27,12 +27,19 @@
         <TextView
             android:textSize="@dimen/inputTextSize"
             android:textColor="@color/titleColor"
-            android:layout_weight="1"
+            android:layout_gravity="top"
             android:text="歌曲名称"
             android:textStyle="bold"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"/>
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"/>
+
         <TextView
+            android:layout_gravity="bottom"
             android:textSize="@dimen/infoSize"
             android:textColor="@color/infoColor"
             android:text="作者"

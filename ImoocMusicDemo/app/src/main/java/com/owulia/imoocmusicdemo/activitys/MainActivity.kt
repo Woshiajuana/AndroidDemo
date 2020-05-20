@@ -1,10 +1,12 @@
 package com.owulia.imoocmusicdemo.activitys
 
 import android.os.Bundle
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.owulia.imoocmusicdemo.R
 import com.owulia.imoocmusicdemo.adapters.MusicGridAdapter
+import com.owulia.imoocmusicdemo.adapters.MusicListAdapter
 import com.owulia.imoocmusicdemo.views.GridSpaceItemDecoration
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -21,11 +23,15 @@ class MainActivity : BaseActivity() {
 
         mMusicGird.apply {
             adapter = MusicGridAdapter(context)
+            isNestedScrollingEnabled = false
 //            addItemDecoration(GridSpaceItemDecoration(resources.getDimensionPixelOffset(R.dimen.marginTabSize), this))
             layoutManager = GridLayoutManager(context, 3)
         }
 
         mMusicList.apply {
+            adapter = MusicListAdapter(context, this)
+            isNestedScrollingEnabled = false
+            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             layoutManager = LinearLayoutManager(context)
         }
 
