@@ -12,6 +12,7 @@
 
 
     <ImageView
+        android:id="@+id/mItemIcon"
         android:src="@mipmap/item_grid_music_bg"
         android:scaleType="centerCrop"
         android:layout_width="@dimen/iconSizeX"

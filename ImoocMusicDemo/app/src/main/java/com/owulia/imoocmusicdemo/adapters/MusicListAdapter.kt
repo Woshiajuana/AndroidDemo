@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.owulia.imoocmusicdemo.R
+import kotlinx.android.synthetic.main.item_list_music.view.*
 
 class MusicListAdapter (context: Context, parent: RecyclerView) : RecyclerView.Adapter<MusicListHolder>() {
     private val _context = context
@@ -24,6 +26,9 @@ class MusicListAdapter (context: Context, parent: RecyclerView) : RecyclerView.A
 
     override fun onBindViewHolder(holder: MusicListHolder, position: Int) {
         setRecyclerViewHeight()
+        Glide.with(holder.itemView)
+            .load("https://img4.mukewang.com/szimg/5d43953c09c0247612000676-228-128.png")
+            .into(holder.itemView.mItemIcon)
     }
 
     private fun setRecyclerViewHeight () {

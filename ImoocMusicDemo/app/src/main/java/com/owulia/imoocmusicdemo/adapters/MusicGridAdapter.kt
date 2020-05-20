@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.owulia.imoocmusicdemo.R
+import kotlinx.android.synthetic.main.item_grid_music.view.*
 
 class MusicGridAdapter(context: Context) : RecyclerView.Adapter<MusicGridHolder>() {
 
@@ -20,7 +22,9 @@ class MusicGridAdapter(context: Context) : RecyclerView.Adapter<MusicGridHolder>
     }
 
     override fun onBindViewHolder(holder: MusicGridHolder, position: Int) {
-
+        Glide.with(holder.itemView)
+            .load("https://img4.mukewang.com/szimg/5d43953c09c0247612000676-228-128.png")
+            .into(holder.itemView.mItemIcon)
     }
 
 }

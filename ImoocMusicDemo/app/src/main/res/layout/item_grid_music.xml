@@ -13,6 +13,7 @@
 
         <com.owulia.imoocmusicdemo.views.WEqualsHImageView
             android:scaleType="centerCrop"
+            android:id="@+id/mItemIcon"
             android:src="@mipmap/item_grid_music_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
