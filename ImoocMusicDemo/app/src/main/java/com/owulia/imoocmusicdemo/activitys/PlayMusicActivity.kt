@@ -22,8 +22,7 @@ class PlayMusicActivity : BaseActivity() {
             .apply(RequestOptions.bitmapTransform(BlurTransformation(25, 10)))
             .into(mMusicBg)
 
-
-
+        mPlayMusic.setMusicCover(url)
     }
 
     fun onBackClick (view: View) {

@@ -22,4 +22,7 @@ class PlayMusicView @JvmOverloads constructor(
             .into(this.mCoverImage)
     }
 
+    // 定义所需要执行的动画
+    
+
 }
