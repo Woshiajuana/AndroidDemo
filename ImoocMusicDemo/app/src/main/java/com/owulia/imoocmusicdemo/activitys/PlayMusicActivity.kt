@@ -16,10 +16,14 @@ class PlayMusicActivity : BaseActivity() {
 
         window.addFlags(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
 
+        val url = "https://img4.mukewang.com/szimg/5d43953c09c0247612000676-228-128.png"
         Glide.with(this)
-            .load("https://img4.mukewang.com/szimg/5d43953c09c0247612000676-228-128.png")
+            .load(url)
             .apply(RequestOptions.bitmapTransform(BlurTransformation(25, 10)))
             .into(mMusicBg)
+
+
+
     }
 
     fun onBackClick (view: View) {
