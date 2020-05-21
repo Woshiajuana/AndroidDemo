@@ -23,6 +23,6 @@ class PlayMusicView @JvmOverloads constructor(
     }
 
     // 定义所需要执行的动画
-    
+
 
 }
