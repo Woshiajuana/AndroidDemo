@@ -6,6 +6,9 @@
 
     
     <FrameLayout
+        android:id="@+id/mCDMusic"
+        android:clickable="true"
+        android:focusable="true"
         android:layout_marginTop="@dimen/discTopSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -25,8 +28,7 @@
             android:layout_height="@dimen/playMusicIconSize"/>
 
         <ImageView
-            android:clickable="true"
-            android:focusable="true"
+            android:id="@+id/mPlayBtn"
             android:layout_gravity="center"
             android:src="@mipmap/play_music"
             android:visibility="gone"
@@ -36,6 +38,7 @@
     </FrameLayout>
 
     <ImageView
+        android:id="@+id/mNeedleMusic"
         android:layout_gravity="center_horizontal"
         android:src="@mipmap/needle"
         android:layout_marginStart="25dp"
