@@ -16,14 +16,14 @@ class PlayMusicView @JvmOverloads constructor(
     init {
         Log.d("PlayMusicView", "context => ${context}")
         Log.d("PlayMusicView", "this => ${this}")
-//        val mView = LayoutInflater.from(context).inflate(R.layout.play_music, this, false)
-//        addView(mView)
+        val mView = LayoutInflater.from(context).inflate(R.layout.play_music, this, false)
+        addView(mView)
     }
 
     fun setMusicCover () {
-        Glide.with(this)
-            .load("https://img4.mukewang.com/szimg/5d43953c09c0247612000676-228-128.png")
-            .into(this.mCoverImage)
+//        Glide.with(this)
+//            .load("https://img4.mukewang.com/szimg/5d43953c09c0247612000676-228-128.png")
+//            .into(this.mCoverImage)
     }
 
 }
