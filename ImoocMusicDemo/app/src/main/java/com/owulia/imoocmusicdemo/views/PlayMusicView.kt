@@ -33,10 +33,8 @@ class PlayMusicView @JvmOverloads constructor(
         _animStopNeedle = AnimationUtils.loadAnimation(context, R.anim.stop_needle_anim)
 
         mCDMusic.setOnClickListener {
-            if (isPlaying) stop() else play(_path)
+            if (isPlaying) stop() else play(_path!!)
         }
-
-//        play()
 
     }
 
@@ -56,7 +54,8 @@ class PlayMusicView @JvmOverloads constructor(
         _mediaPlayerHelp.pause()
     }
 
-    private fun play (path: String) {
+    fun play (path: String) {
+        _path = path
         isPlaying = true
         mPlayBtn.visibility = View.GONE
         mCDMusic.startAnimation(_animPlayMusic)

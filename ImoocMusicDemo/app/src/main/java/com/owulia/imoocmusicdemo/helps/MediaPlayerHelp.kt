@@ -24,6 +24,10 @@ class MediaPlayerHelp private constructor(private val context: Context) {
 
     }
 
+    fun setOnMediaPlayerHelperListener (listener: OnMediaPlayerHelperListener) {
+
+    }
+
     fun setPath (path: String) {
         _path = path
         // 音乐正在播放，重置播放状态

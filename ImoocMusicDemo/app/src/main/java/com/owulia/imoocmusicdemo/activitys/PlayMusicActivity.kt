@@ -23,6 +23,7 @@ class PlayMusicActivity : BaseActivity() {
             .into(mMusicBg)
 
         mPlayMusic.setMusicCover(url)
+        mPlayMusic.play("http://res.lgdsunday.club/Nostalgic%20Piano.mp3")
     }
 
     fun onBackClick (view: View) {
