@@ -2,41 +2,16 @@ package com.owulia.imoocmusicdemo.helps
 
 import android.content.Context
 
-class MediaPlayerHelp private constructor() {
+class MediaPlayerHelp private constructor(context: Context) {
 
     companion object {
 
-        private var instant : MediaPlayerHelp ?= null
+        private var instance : MediaPlayerHelp ?= null
 
-        private fun getInstance() {
-
+        fun getInstance(context: Context) = instance ?: synchronized(this) {
+            MediaPlayerHelp(context).also { instance = it }
         }
 
-//        val instant by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
-//            MediaPlayerHelp(context)
-//        }
     }
 
 }
-
-
-class x {
-    init {
-        MediaPlayerHelp.getInstance()
-    }
-}
-//
-//
-//class VolleySingleton private constructor(context: Context) {
-//    companion object {
-//        private var INSTANCE : VolleySingleton?=null
-//        fun getInstance(context: Context) =
-//            INSTANCE?: synchronized(this) {
-//                VolleySingleton(context).also { INSTANCE = it }
-//            }
-//    }
-//
-//    val requestQueue: RequestQueue by lazy {
-//        Volley.newRequestQueue(context.applicationContext);
-//    }
-//}
