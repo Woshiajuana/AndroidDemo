@@ -7,8 +7,8 @@ import android.net.Uri
 class MediaPlayerHelp private constructor(private val context: Context) {
 
     private val _mediaPlayer : MediaPlayer ?
-
     private var _path : String? = null
+    private var _listener: (MediaPlayer) -> Unit = {}
 
     init {
         _mediaPlayer = MediaPlayer()
@@ -24,8 +24,8 @@ class MediaPlayerHelp private constructor(private val context: Context) {
 
     }
 
-    fun setOnMediaPlayerHelperListener (listener: OnMediaPlayerHelperListener) {
-
+    fun setOnMediaPlayerHelperListener (listener: (MediaPlayer) -> Unit) {
+        _listener = listener
     }
 
     fun setPath (path: String) {
@@ -39,7 +39,7 @@ class MediaPlayerHelp private constructor(private val context: Context) {
         // 准备播放
         _mediaPlayer.prepareAsync()
         _mediaPlayer.setOnPreparedListener {
-
+            _listener(it)
         }
     }
 

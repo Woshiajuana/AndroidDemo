@@ -27,6 +27,9 @@ class PlayMusicView @JvmOverloads constructor(
         addView(LayoutInflater.from(context).inflate(R.layout.play_music, this, false))
 
         _mediaPlayerHelp = MediaPlayerHelp.getInstance(context)
+        _mediaPlayerHelp.setOnMediaPlayerHelperListener {
+            it.start()
+        }
 
         _animPlayMusic = AnimationUtils.loadAnimation(context, R.anim.play_music_anim)
         _animPlayNeedle = AnimationUtils.loadAnimation(context, R.anim.play_needle_anim)
