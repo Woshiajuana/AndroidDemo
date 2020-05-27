@@ -13,8 +13,8 @@ class TabView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    val colorDefault = Color.parseColor("#ff000000")
-    val colorSelect = Color.parseColor("#ff007FD6")
+    private val colorDefault = Color.parseColor("#ff000000")
+    private val colorSelect = Color.parseColor("#ff007FD6")
 
     init {
         val mView = LayoutInflater.from(context).inflate(R.layout.tab_view, this, false)
@@ -46,9 +46,10 @@ class TabView @JvmOverloads constructor(
         val endG = endValue shr 8 and 0xff
         val endB = endValue and 0xff
 
-        return (startA + progress.toInt() * (endA - startA)) as Int shl 24 or (
-                (startR + progress.toInt() * (endR - startR)) as Int shl 16) or (
-                (startG + progress.toInt() * (endG - startG)) as Int shl 8) or
-                (startB + progress.toInt() * (endB - startB)) as Int
+        return (startA + progress * (endA - startA)).toInt() shl 24 or (
+                (startR + progress * (endR - startR)).toInt() shl 16) or (
+                (startG + progress * (endG - startG)).toInt() shl 8) or
+                (startB + progress * (endB - startB)).toInt()
     }
+
 }

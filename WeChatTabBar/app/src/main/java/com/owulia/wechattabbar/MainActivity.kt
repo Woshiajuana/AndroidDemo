@@ -26,11 +26,42 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        btnHome.setIconAndText(R.mipmap.tab_bar_home_normal, R.mipmap.tab_bar_home_active, "码可")
+        btnMaterial.setIconAndText(R.mipmap.tab_bar_material_normal, R.mipmap.tab_bar_material_active, "有料")
+        btnMine.setIconAndText(R.mipmap.tab_bar_mine_normal, R.mipmap.tab_bar_mine_active, "我的")
+
+        btnHome.setProgress(1f)
+
+        btnHome.setOnClickListener {
+            switchTab(0)
+            mMain.setCurrentItem(0, false)
+        }
+        btnMaterial.setOnClickListener {
+            switchTab(1)
+            mMain.setCurrentItem(1, false)
+        }
+        btnMine.setOnClickListener {
+            switchTab(2)
+            mMain.setCurrentItem(2, false)
+        }
+
         mTabs.add(btnHome)
         mTabs.add(btnMaterial)
         mTabs.add(btnMine)
 
         initViewPagerAdapter()
+    }
+
+    private fun switchTab (pos: Int) {
+        for (i in 0 until mTabs.size) {
+            var mTab = mTabs[i]
+            if (pos == i) {
+                mTab.setProgress(1f)
+            } else {
+                mTab.setProgress(0f)
+            }
+        }
     }
 
     private fun initViewPagerAdapter () {
