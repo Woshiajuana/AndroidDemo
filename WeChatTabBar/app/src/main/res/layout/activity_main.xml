@@ -12,6 +12,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.owulia.wechattabbar.views.TabView
+            android:id="@+id/btnHome"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+        <com.owulia.wechattabbar.views.TabView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+        <com.owulia.wechattabbar.views.TabView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
 </LinearLayout>
