@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">WeChatTabBar</string>
+
+    <string name="tab_bar_home">码可</string>
+    <string name="tab_bar_material">有料</string>
+    <string name="tab_bar_mine">我的</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

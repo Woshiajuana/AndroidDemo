@@ -1,4 +1,4 @@
-package com.owulia.makekotlin.views
+package com.owulia.wechattabbar.views
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
