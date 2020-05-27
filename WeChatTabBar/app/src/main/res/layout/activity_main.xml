@@ -9,8 +9,10 @@
     tools:context=".MainActivity">
 
     <androidx.viewpager.widget.ViewPager
+        android:id="@+id/mMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_weight="1"
+        android:layout_height="0dp" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -22,10 +24,12 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"/>
         <com.owulia.wechattabbar.views.TabView
+            android:id="@+id/btnMaterial"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"/>
         <com.owulia.wechattabbar.views.TabView
+            android:id="@+id/btnMine"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"/>
