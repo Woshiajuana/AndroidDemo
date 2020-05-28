@@ -22,6 +22,9 @@ class MainActivity : AppCompatActivity() {
 
     private var mFragment = SparseArray<Fragment>()
 
+
+//    val x = 10 downTo  1 until 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -54,6 +57,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun switchTab (pos: Int) {
+//        mTabs.forEachIndexed { index, tabView ->  }
         for (i in 0 until mTabs.size) {
             var mTab = mTabs[i]
             if (pos == i) {
