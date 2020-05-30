@@ -70,7 +70,7 @@ class WowTabBar @JvmOverloads constructor(
         viewBottom.apply {
             layoutParams = params
             orientation = HORIZONTAL
-            setBackgroundColor(Color.parseColor("#ff0000ff"))
+            setBackgroundColor(Color.parseColor("#fff2f2f2"))
         }
     }
 
@@ -107,15 +107,7 @@ class WowTabBarItem @JvmOverloads constructor(
 
         renderImage()
 
-        val text = TextView(context)
-        text.text = "h哈哈哈"
-        text.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-//            .apply {
-//                gravity = Gravity.CENTER_HORIZONTAL
-//            }
-        text.setBackgroundColor(Color.parseColor("#ffffffff"))
-//        addView(text)
-
+        renderText()
 
     }
 
@@ -138,21 +130,27 @@ class WowTabBarItem @JvmOverloads constructor(
         }
         viewFragment.apply {
             layoutParams = paramsFragment
-            setBackgroundColor(Color.parseColor("#ffdddddd"))
             addView(viewImageActive)
             addView(viewImageNormal)
         }
-
         addView(viewFragment)
     }
 
+    private fun renderText () {
+        val text = TextView(context)
+        text.text = "h哈哈哈"
+        text.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        text.textSize = 10f
+        addView(text)
+    }
+
     private fun render () {
-        orientation = VERTICAL
-        val params = LayoutParams(0, LayoutParams.MATCH_PARENT)
-        params.weight = 1f
-        gravity = Gravity.CENTER
+        val params = LayoutParams(0, LayoutParams.MATCH_PARENT).apply {
+            weight = 1f
+        }
         layoutParams = params
-        setBackgroundColor(Color.parseColor("#ff333333"))
+        orientation = VERTICAL
+        gravity = Gravity.CENTER
     }
 
 
