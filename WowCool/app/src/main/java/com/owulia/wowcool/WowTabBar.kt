@@ -21,6 +21,9 @@ class WowTabBar @JvmOverloads constructor(
     private lateinit var viewBottom: LinearLayout
     private lateinit var viewDivider: View
 
+
+    private var multiList = mutableListOf<WowTabBarItem>()
+
     init {
 
         renderWrapView()
@@ -82,18 +85,17 @@ class WowTabBar @JvmOverloads constructor(
     }
 
     fun setItem (icon: Int, iconSelect: Int, text: String, fragment: Fragment) {
-        viewBottom.addView(WowTabBarItem(context))
-        viewBottom.addView(WowTabBarItem(context))
-        viewBottom.addView(WowTabBarItem(context))
-        viewBottom.addView(WowTabBarItem(context))
+        multiList.add(WowTabBarItem(context))
     }
 
-    fun setColor (color: Color, colorSelect: Color) {
+    fun setItemText (color: String, colorSelect: String) {
 
     }
 
     fun build () {
-
+        multiList.forEach {
+            viewBottom.addView(it)
+        }
     }
 
 }
@@ -101,6 +103,8 @@ class WowTabBar @JvmOverloads constructor(
 class WowTabBarItem @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
+
+    constructor(context: Context, icon: Int, iconSelect: Int, text: String) : this(context)
 
     init {
         render()

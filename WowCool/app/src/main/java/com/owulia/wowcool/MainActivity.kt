@@ -10,7 +10,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        vWowTabBar.setItem(R.mipmap.tab_bar_home_normal, R.mipmap.tab_bar_home_active, "首页",  HomeFragment())
+        vWowTabBar.apply {
+            setItemText("#ff000000", "#ff007FD6")
+            setItem(R.mipmap.tab_bar_home_normal, R.mipmap.tab_bar_home_active, "首页",  HomeFragment())
+            build()
+        }
 
     }
 }
