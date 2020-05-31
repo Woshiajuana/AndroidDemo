@@ -21,7 +21,6 @@ class WowTabBar @JvmOverloads constructor(
     private lateinit var viewBottom: LinearLayout
     private lateinit var viewDivider: View
 
-
     private var multiList = mutableListOf<WowTabBarItem>()
 
     // 普通图片
@@ -31,8 +30,10 @@ class WowTabBar @JvmOverloads constructor(
     // 文字
     private var arrText = mutableListOf<String>()
     // Fragment
+    private var arrFragment = mutableListOf<Fragment>()
 
-
+    private var colorNormalText = Color.parseColor("#ff000000")
+    private var colorActiveText = Color.parseColor("#ff007FD6")
 
     init {
 
@@ -95,12 +96,18 @@ class WowTabBar @JvmOverloads constructor(
     }
 
     // 添加
-    fun addedItem (icon: Int, iconSelect: Int, text: String, fragment: Fragment) {
-        multiList.add(WowTabBarItem(context))
+    fun addedItem (icon: Int, iconSelect: Int, text: String, fragment: Fragment) : WowTabBar {
+        arrNormalIcon.add(icon)
+        arrActiveIcon.add(iconSelect)
+        arrText.add(text)
+        arrFragment.add(fragment)
+        return this
     }
 
-    fun setItemText (color: String, colorSelect: String) {
-
+    fun setItemText (color: String, colorSelect: String) : WowTabBar {
+        colorNormalText = Color.parseColor(color)
+        colorActiveText = Color.parseColor(colorSelect)
+        return this
     }
 
     fun build () {
@@ -115,7 +122,14 @@ class WowTabBarItem @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    constructor(context: Context, icon: Int, iconSelect: Int, text: String) : this(context)
+    constructor(
+        context: Context,
+        icon: Int,
+        iconSelect: Int,
+        text: String,
+        color: Int,
+        colorSelect: Int
+    ) : this(context)
 
     init {
         render()
