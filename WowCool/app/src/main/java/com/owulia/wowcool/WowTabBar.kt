@@ -22,41 +22,27 @@ class WowTabBar @JvmOverloads constructor(
     private lateinit var viewInner: ViewPager
     private lateinit var viewBottom: LinearLayout
     private lateinit var viewDivider: View
-
     private var arrTabBarItem = mutableListOf<WowTabBarItem>()
-
     // 普通图片
     private var arrIconNormal = mutableListOf<Int>()
-
     // 选中图片
     private var arrIconActive = mutableListOf<Int>()
-
     // 文字
     private var arrTextItem = mutableListOf<String>()
-
     // Fragment
     private var arrFragment = mutableListOf<Fragment>()
-
+    // 文字颜色
     private var colorNormalText = Color.parseColor("#ff000000")
     private var colorActiveText = Color.parseColor("#ff007FD6")
 
     init {
-
-        renderWrapView()
+        orientation = VERTICAL
 
         renderInnerView()
 
         renderDividerView()
 
         renderBottomView()
-
-        render()
-
-    }
-
-    // 初始化容器布局
-    private fun renderWrapView() {
-        orientation = VERTICAL
     }
 
     // 初始化 ViewPager
@@ -72,6 +58,7 @@ class WowTabBar @JvmOverloads constructor(
             id = 1213141516
             setBackgroundColor(Color.parseColor("#ffff0000"))
         }
+        addView(viewInner)
     }
 
     // 初始化分割线
@@ -82,6 +69,7 @@ class WowTabBar @JvmOverloads constructor(
             layoutParams = params
             setBackgroundColor(Color.parseColor("#ff00ff00"))
         }
+        addView(viewDivider)
     }
 
     // 初始化底部布局
@@ -93,38 +81,7 @@ class WowTabBar @JvmOverloads constructor(
             orientation = HORIZONTAL
             setBackgroundColor(Color.parseColor("#fff2f2f2"))
         }
-    }
-
-    // 添加布局
-    private fun render() {
-        addView(viewInner)
-        addView(viewDivider)
         addView(viewBottom)
-    }
-
-    // 添加wowTabBarItem
-    fun addedItem(icon: Int, iconSelect: Int, text: String, fragment: Fragment): WowTabBar {
-        arrIconNormal.add(icon)
-        arrIconActive.add(iconSelect)
-        arrTextItem.add(text)
-        arrFragment.add(fragment)
-        return this
-    }
-
-    // 设置文字
-    fun setItemText(color: String, colorSelect: String): WowTabBar {
-        colorNormalText = Color.parseColor(color)
-        colorActiveText = Color.parseColor(colorSelect)
-        return this
-    }
-
-    // 切换页面
-    fun switchItem(item: Int, smoothScroll: Boolean = false): WowTabBar {
-        viewInner.setCurrentItem(item, smoothScroll)
-        arrTabBarItem.forEachIndexed { index, it ->
-            it.setProgress(if (index == item) 1f else 0f)
-        }
-        return this
     }
 
     // 设置 adapter
@@ -160,6 +117,32 @@ class WowTabBar @JvmOverloads constructor(
         }
     }
 
+    // 添加wowTabBarItem
+    fun addedItem(icon: Int, iconSelect: Int, text: String, fragment: Fragment): WowTabBar {
+        arrIconNormal.add(icon)
+        arrIconActive.add(iconSelect)
+        arrTextItem.add(text)
+        arrFragment.add(fragment)
+        return this
+    }
+
+    // 设置文字
+    fun setItemText(color: String, colorSelect: String): WowTabBar {
+        colorNormalText = Color.parseColor(color)
+        colorActiveText = Color.parseColor(colorSelect)
+        return this
+    }
+
+    // 切换页面
+    fun switchItem(item: Int, smoothScroll: Boolean = false): WowTabBar {
+        viewInner.setCurrentItem(item, smoothScroll)
+        arrTabBarItem.forEachIndexed { index, it ->
+            it.setProgress(if (index == item) 1f else 0f)
+        }
+        return this
+    }
+
+    // build
     fun build(fragmentManager: FragmentManager): WowTabBar {
         arrIconNormal.forEachIndexed { index: Int, item: Int ->
             val wowTabBarItem = WowTabBarItem(
