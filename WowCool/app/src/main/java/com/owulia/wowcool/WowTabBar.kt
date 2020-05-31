@@ -4,19 +4,16 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.view.marginTop
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
-import org.w3c.dom.Text
 
 class WowTabBar @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -30,10 +27,13 @@ class WowTabBar @JvmOverloads constructor(
 
     // 普通图片
     private var arrIconNormal = mutableListOf<Int>()
+
     // 选中图片
     private var arrIconActive = mutableListOf<Int>()
+
     // 文字
     private var arrTextItem = mutableListOf<String>()
+
     // Fragment
     private var arrFragment = mutableListOf<Fragment>()
 
@@ -103,7 +103,7 @@ class WowTabBar @JvmOverloads constructor(
     }
 
     // 添加wowTabBarItem
-    fun addedItem (icon: Int, iconSelect: Int, text: String, fragment: Fragment) : WowTabBar {
+    fun addedItem(icon: Int, iconSelect: Int, text: String, fragment: Fragment): WowTabBar {
         arrIconNormal.add(icon)
         arrIconActive.add(iconSelect)
         arrTextItem.add(text)
@@ -112,20 +112,14 @@ class WowTabBar @JvmOverloads constructor(
     }
 
     // 设置文字
-    fun setItemText (color: String, colorSelect: String) : WowTabBar {
+    fun setItemText(color: String, colorSelect: String): WowTabBar {
         colorNormalText = Color.parseColor(color)
         colorActiveText = Color.parseColor(colorSelect)
         return this
     }
 
-
-    // 设置监听
-    fun addC () {
-
-    }
-
     // 切换页面
-    fun switchItem (item: Int, smoothScroll: Boolean = false): WowTabBar {
+    fun switchItem(item: Int, smoothScroll: Boolean = false): WowTabBar {
         viewInner.setCurrentItem(item, smoothScroll)
         arrTabBarItem.forEachIndexed { index, it ->
             it.setProgress(if (index == item) 1f else 0f)
@@ -134,18 +128,19 @@ class WowTabBar @JvmOverloads constructor(
     }
 
     // 设置 adapter
-    private fun setViewPagerAdapter (fragmentManager: FragmentManager) {
+    private fun setViewPagerAdapter(fragmentManager: FragmentManager) {
         viewInner.apply {
             offscreenPageLimit = arrIconNormal.size
-            adapter = object: FragmentPagerAdapter(fragmentManager) {
+            adapter = object : FragmentPagerAdapter(fragmentManager) {
                 override fun getItem(position: Int): Fragment {
                     return arrFragment[position]
                 }
+
                 override fun getCount(): Int {
                     return arrTextItem.size
                 }
             }
-            addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
+            addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
                 override fun onPageScrollStateChanged(state: Int) {}
                 override fun onPageScrolled(
                     position: Int,
@@ -159,12 +154,13 @@ class WowTabBar @JvmOverloads constructor(
                         right.setProgress(positionOffset)
                     }
                 }
+
                 override fun onPageSelected(position: Int) {}
             })
         }
     }
 
-    fun build (fragmentManager: FragmentManager) : WowTabBar {
+    fun build(fragmentManager: FragmentManager): WowTabBar {
         arrIconNormal.forEachIndexed { index: Int, item: Int ->
             val wowTabBarItem = WowTabBarItem(
                 context,
@@ -177,7 +173,12 @@ class WowTabBar @JvmOverloads constructor(
             arrTabBarItem.add(wowTabBarItem)
             viewBottom.addView(wowTabBarItem)
         }
-        setViewPagerAdapter (fragmentManager)
+        setViewPagerAdapter(fragmentManager)
+        arrTabBarItem.forEachIndexed { index, item ->
+            item.setOnClickListener {
+                switchItem(index)
+            }
+        }
         return this
     }
 
@@ -221,7 +222,7 @@ class WowTabBarItem @JvmOverloads constructor(
         setProgress(0f)
     }
 
-    private fun renderWrapView () {
+    private fun renderWrapView() {
         val params = LayoutParams(0, LayoutParams.MATCH_PARENT).apply {
             weight = 1f
         }
@@ -230,7 +231,7 @@ class WowTabBarItem @JvmOverloads constructor(
         gravity = Gravity.CENTER
     }
 
-    private fun renderImageView () {
+    private fun renderImageView() {
         viewImageNormal = ImageView(context)
         viewImageActive = ImageView(context)
         val paramsImage = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
@@ -244,7 +245,7 @@ class WowTabBarItem @JvmOverloads constructor(
         }
 
         val viewFragment = FrameLayout(context)
-        val paramsFragment = LayoutParams(60, 60) .apply {
+        val paramsFragment = LayoutParams(60, 60).apply {
             gravity = Gravity.CENTER
         }
         viewFragment.apply {
@@ -255,7 +256,7 @@ class WowTabBarItem @JvmOverloads constructor(
         addView(viewFragment)
     }
 
-    private fun renderTextView () {
+    private fun renderTextView() {
         viewText = TextView(context)
         viewText.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
             .apply {
@@ -269,13 +270,13 @@ class WowTabBarItem @JvmOverloads constructor(
         addView(viewText)
     }
 
-    fun setProgress (progress: Float) {
+    fun setProgress(progress: Float) {
         viewImageNormal.alpha = 1 - progress
         viewImageActive.alpha = progress
         viewText.setTextColor(evaluate(progress, colorNormalText, colorActiveText))
     }
 
-    private fun evaluate (progress: Float, startValue: Int, endValue: Int) : Int {
+    private fun evaluate(progress: Float, startValue: Int, endValue: Int): Int {
         val startA = startValue shr 24 and 0xff
         val startR = startValue shr 16 and 0xff
         val startG = startValue shr 8 and 0xff
