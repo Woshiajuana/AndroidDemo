@@ -24,6 +24,16 @@ class WowTabBar @JvmOverloads constructor(
 
     private var multiList = mutableListOf<WowTabBarItem>()
 
+    // 普通图片
+    private var arrNormalIcon = mutableListOf<Int>()
+    // 选中图片
+    private var arrActiveIcon = mutableListOf<Int>()
+    // 文字
+    private var arrText = mutableListOf<String>()
+    // Fragment
+
+
+
     init {
 
         renderWrapView()
@@ -84,7 +94,8 @@ class WowTabBar @JvmOverloads constructor(
         addView(viewBottom)
     }
 
-    fun setItem (icon: Int, iconSelect: Int, text: String, fragment: Fragment) {
+    // 添加
+    fun addedItem (icon: Int, iconSelect: Int, text: String, fragment: Fragment) {
         multiList.add(WowTabBarItem(context))
     }
 
