@@ -1,5 +1,6 @@
 package com.owulia.wowcool
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
@@ -59,6 +60,7 @@ class WowTabBar @JvmOverloads constructor(
     }
 
     // 初始化 ViewPager
+    @SuppressLint("ResourceType")
     private fun renderInnerView() {
         viewInner = ViewPager(context)
         val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
@@ -67,6 +69,7 @@ class WowTabBar @JvmOverloads constructor(
             }
         viewInner.apply {
             layoutParams = params
+            id = 1213141516
             setBackgroundColor(Color.parseColor("#ffff0000"))
         }
     }
@@ -115,6 +118,21 @@ class WowTabBar @JvmOverloads constructor(
         return this
     }
 
+
+    // 设置监听
+    fun addC () {
+
+    }
+
+    // 切换页面
+    fun switchItem (item: Int, smoothScroll: Boolean = false): WowTabBar {
+        viewInner.setCurrentItem(item, smoothScroll)
+        arrTabBarItem.forEachIndexed { index, it ->
+            it.setProgress(if (index == item) 1f else 0f)
+        }
+        return this
+    }
+
     // 设置 adapter
     private fun setViewPagerAdapter (fragmentManager: FragmentManager) {
         viewInner.apply {
@@ -135,7 +153,10 @@ class WowTabBar @JvmOverloads constructor(
                     positionOffsetPixels: Int
                 ) {
                     if (positionOffset > 0) {
-                        
+                        val left = arrTabBarItem[position]
+                        val right = arrTabBarItem[position + 1]
+                        left.setProgress(1 - positionOffset)
+                        right.setProgress(positionOffset)
                     }
                 }
                 override fun onPageSelected(position: Int) {}

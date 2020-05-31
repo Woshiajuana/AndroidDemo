@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
             addedItem(R.mipmap.tab_bar_material_normal, R.mipmap.tab_bar_material_active, "有料",  HomeFragment())
             addedItem(R.mipmap.tab_bar_mine_normal, R.mipmap.tab_bar_mine_active, "我的",  HomeFragment())
             build(supportFragmentManager)
+            switchItem(0)
         }
 
     }
