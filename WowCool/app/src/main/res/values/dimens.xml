@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="dimenTabBarIconSize">48dp</dimen>
-    <dimen name="dimenTabBarTextMargin">4dp</dimen>
-    <dimen name="dimenTabBarTextSize">10sp</dimen>
+    <dimen name="dimen_tab_bar_icon">48dp</dimen>
+    <dimen name="dimen_tab_bar_text_margin">4dp</dimen>
+    <dimen name="dimen_tab_bar_text_size">10sp</dimen>
 
 </resources>
