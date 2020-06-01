@@ -6,9 +6,15 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.util.AttributeSet
 import android.util.TypedValue
+import android.view.Gravity
 import android.view.View
+import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 
 class WowTabBarView @JvmOverloads constructor(
@@ -43,7 +49,7 @@ class WowTabBarView @JvmOverloads constructor(
 
     // 渲染布局
     @SuppressLint("ResourceType")
-    fun render () {
+    private fun render () {
         vpTabBarInner = ViewPager(context)
         vpTabBarInner.apply {
             id = 1213141516
@@ -74,6 +80,22 @@ class WowTabBarView @JvmOverloads constructor(
 
     }
 
+    private fun addedTabBarItem () {
+        arrTabBarItemIconNormal.forEachIndexed { index, icon ->
+            val wowTabBarItemView = WowTabBarItemView(
+                context,
+                icon,
+                arrTabBarItemIconActive[index],
+                tabBarItemIconSize,
+                arrTabBarItemText[index],
+                tabBarItemTextColorNormal,
+                tabBarItemTextColorActive
+            )
+            arrTabBarItem.add(wowTabBarItemView)
+            llTabBarBottom.addView(wowTabBarItemView)
+        }
+    }
+
     // 添加WowTabBarItemView元素
     fun addItem (icon: Int, iconSelect: Int, text: String, fragment: Fragment) : WowTabBarView {
         arrTabBarItemIconNormal.add(icon)
@@ -101,10 +123,61 @@ class WowTabBarView @JvmOverloads constructor(
         tabBarItemIconSize = size
     }
 
-    // 构建
-    fun build () : WowTabBarView {
-        render()
+    private fun setViewPagerAdapter (fragmentManager: FragmentManager) {
+        vpTabBarInner.apply {
+            offscreenPageLimit = arrTabBarItemIconNormal.size
+            adapter = object : FragmentPagerAdapter(fragmentManager) {
+                override fun getItem(position: Int): Fragment {
+                    return arrTabBarFragment[position]
+                }
+                override fun getCount(): Int {
+                    return arrTabBarItemIconNormal.size
+                }
+            }
+            addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                override fun onPageScrollStateChanged(state: Int) {}
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
+                    if (positionOffset > 0) {
+                        val left = arrTabBarItem[position]
+                        val right = arrTabBarItem[position + 1]
+                        left.setProgress(1 - positionOffset)
+                        right.setProgress(positionOffset)
+                    }
+                }
+                override fun onPageSelected(position: Int) {}
+            })
+        }
+    }
+
+    // 切换页面
+    fun switchItem (item: Int, smoothScroll: Boolean = false): WowTabBarView {
+        vpTabBarInner.setCurrentItem(item, smoothScroll)
+        arrTabBarItem.forEachIndexed { index, it ->
+            it.setProgress(if (index == item) 1f else 0f)
+        }
         return this
+    }
+
+    // 构建
+    fun build (fragmentManager: FragmentManager) : WowTabBarView {
+        render()
+        addedTabBarItem()
+        setViewPagerAdapter(fragmentManager)
+        addClickEvent()
+        switchItem(0)
+        return this
+    }
+
+    private fun addClickEvent () {
+        arrTabBarItem.forEachIndexed { index, item ->
+            item.setOnClickListener {
+                switchItem(index)
+            }
+        }
     }
 
     private fun px2dp(p: Float) = TypedValue.applyDimension(
@@ -120,6 +193,102 @@ private class WowTabBarItemView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    
+    private lateinit var imgIconNormal: ImageView
+    private lateinit var imgIconActive: ImageView
+    private lateinit var tvText: TextView
+
+    private var iconNormal = 0
+    private var iconActive = 0
+    private var iconSize = px2dp(24f).toInt()
+    private var textColorNormal = Color.parseColor("#ff000000")
+    private var textColorActive = Color.parseColor("#ff007FD6")
+    private var strText = ""
+
+    constructor (
+        context: Context,
+        icon: Int,
+        iconSelect: Int,
+        size: Int?,
+        text: String,
+        color: Int?,
+        colorSelect: Int?
+    ) : this (context) {
+        iconNormal = icon
+        iconActive = iconSelect
+        iconSize = size?: iconSize
+        strText = text
+        textColorNormal = color?: textColorNormal
+        textColorActive = colorSelect?: textColorActive
+
+        render()
+
+        setProgress(0f)
+
+    }
+
+    private fun render () {
+        layoutParams = LayoutParams(0, LayoutParams.MATCH_PARENT).apply {
+            weight = 1f
+        }
+        orientation = VERTICAL
+        gravity = Gravity.CENTER
+
+        val paramsImage = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+        imgIconNormal = ImageView(context).apply {
+            layoutParams = paramsImage
+            setImageResource(iconNormal)
+        }
+        imgIconActive = ImageView(context).apply {
+            layoutParams = paramsImage
+            setImageResource(iconActive)
+        }
+
+        val viewFragment = FrameLayout(context).apply {
+            layoutParams = LayoutParams(iconSize, iconSize)
+            addView(imgIconNormal)
+            addView(imgIconActive)
+        }
+        addView(viewFragment)
+
+        tvText = TextView(context).apply {
+            textSize = 10f
+            text = strText
+            setTextColor(textColorNormal)
+            layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+                .apply {
+                    topMargin = 4
+                }
+        }
+        addView(tvText)
+    }
+
+    fun setProgress(progress: Float) {
+        imgIconNormal.alpha = 1 - progress
+        imgIconActive.alpha = progress
+        tvText.setTextColor(evaluate(progress, textColorNormal, textColorActive))
+    }
+
+    private fun evaluate(progress: Float, startValue: Int, endValue: Int): Int {
+        val startA = startValue shr 24 and 0xff
+        val startR = startValue shr 16 and 0xff
+        val startG = startValue shr 8 and 0xff
+        val startB = startValue and 0xff
+
+        val endA = endValue shr 24 and 0xff
+        val endR = endValue shr 16 and 0xff
+        val endG = endValue shr 8 and 0xff
+        val endB = endValue and 0xff
+
+        return (startA + progress * (endA - startA)).toInt() shl 24 or (
+                (startR + progress * (endR - startR)).toInt() shl 16) or (
+                (startG + progress * (endG - startG)).toInt() shl 8) or
+                (startB + progress * (endB - startB)).toInt()
+    }
+
+    private fun px2dp(p: Float) = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        p,
+        Resources.getSystem().displayMetrics
+    )
 
 }

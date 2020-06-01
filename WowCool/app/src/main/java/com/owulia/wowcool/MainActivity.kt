@@ -14,24 +14,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        wtMainTabBar.apply {
-//            setItemText(ContextCompat.getColor(context, R.color.colorTabBarNormal), ContextCompat.getColor(context, R.color.colorTabBarActive))
-//            addedItem(R.mipmap.ic_tab_bar_home_normal, R.mipmap.ic_tab_bar_home_active, getString(R.string.string_tab_bar_home),
-//                HomeFragment()
-//            )
-//            addedItem(R.mipmap.ic_tab_bar_demo_normal, R.mipmap.ic_tab_bar_demo_active, getString(R.string.string_tab_bar_demo),
-//                MaterialFragment()
-//            )
-//            addedItem(R.mipmap.ic_tab_bar_mine_normal, R.mipmap.ic_tab_bar_mine_active, getString(R.string.string_tab_bar_mine),
-//                MineFragment()
-//            )
-//            build(supportFragmentManager)
-//            switchItem(0)
-//        }
-
         wtMainTabBar.apply {
-            setDivider(true, 100)
-            build()
+            setItemText(ContextCompat.getColor(context, R.color.colorTabBarNormal), ContextCompat.getColor(context, R.color.colorTabBarActive))
+            addItem(R.mipmap.ic_tab_bar_home_normal, R.mipmap.ic_tab_bar_home_active, getString(R.string.string_tab_bar_home),
+                HomeFragment()
+            )
+            addItem(R.mipmap.ic_tab_bar_demo_normal, R.mipmap.ic_tab_bar_demo_active, getString(R.string.string_tab_bar_demo),
+                MaterialFragment()
+            )
+            addItem(R.mipmap.ic_tab_bar_mine_normal, R.mipmap.ic_tab_bar_mine_active, getString(R.string.string_tab_bar_mine),
+                MineFragment()
+            )
+            setDivider(true, 1)
+            build(supportFragmentManager)
         }
     }
 }
