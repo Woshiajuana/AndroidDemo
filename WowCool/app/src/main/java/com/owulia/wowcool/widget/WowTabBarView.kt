@@ -9,6 +9,7 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -97,6 +98,54 @@ class WowTabBarView @JvmOverloads constructor(
         }
     }
 
+    private fun setViewPagerAdapter (
+        fragmentManager: FragmentManager,
+        onInstantiateFragment: ((Int, Fragment) -> Unit)? = null,
+        onDestroyFragment: ((Int) -> Unit)? = null
+    ) {
+        vpTabBarInner.apply {
+            offscreenPageLimit = arrTabBarItemIconNormal.size
+            adapter = object : FragmentPagerAdapter(fragmentManager) {
+                override fun getItem(position: Int): Fragment {
+                    Log.d("WOW-COOL", "getItem")
+                    return arrTabBarFragment[position]
+                }
+                override fun getCount(): Int {
+                    return arrTabBarItemIconNormal.size
+                }
+                override fun instantiateItem(container: ViewGroup, position: Int): Any {
+                    val fragment = super.instantiateItem(container, position) as Fragment
+                    if (onInstantiateFragment != null) {
+                        onInstantiateFragment(position, fragment)
+                    }
+                    return fragment
+                }
+                override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+                    if (onDestroyFragment != null) {
+                        onDestroyFragment(position)
+                    }
+                    super.destroyItem(container, position, `object`)
+                }
+            }
+            addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                override fun onPageScrollStateChanged(state: Int) {}
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
+                    if (positionOffset > 0) {
+                        val left = arrTabBarItem[position]
+                        val right = arrTabBarItem[position + 1]
+                        left.setProgress(1 - positionOffset)
+                        right.setProgress(positionOffset)
+                    }
+                }
+                override fun onPageSelected(position: Int) {}
+            })
+        }
+    }
+
     // 添加WowTabBarItemView元素
     fun addItem (icon: Int, iconSelect: Int, text: String, fragment: Fragment) : WowTabBarView {
         arrTabBarItemIconNormal.add(icon)
@@ -124,37 +173,6 @@ class WowTabBarView @JvmOverloads constructor(
         tabBarItemIconSize = size
     }
 
-    private fun setViewPagerAdapter (fragmentManager: FragmentManager) {
-        vpTabBarInner.apply {
-            offscreenPageLimit = arrTabBarItemIconNormal.size
-            adapter = object : FragmentPagerAdapter(fragmentManager) {
-                override fun getItem(position: Int): Fragment {
-                    Log.d("WOW-COOL", "getItem")
-                    return arrTabBarFragment[position]
-                }
-                override fun getCount(): Int {
-                    return arrTabBarItemIconNormal.size
-                }
-            }
-            addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-                override fun onPageScrollStateChanged(state: Int) {}
-                override fun onPageScrolled(
-                    position: Int,
-                    positionOffset: Float,
-                    positionOffsetPixels: Int
-                ) {
-                    if (positionOffset > 0) {
-                        val left = arrTabBarItem[position]
-                        val right = arrTabBarItem[position + 1]
-                        left.setProgress(1 - positionOffset)
-                        right.setProgress(positionOffset)
-                    }
-                }
-                override fun onPageSelected(position: Int) {}
-            })
-        }
-    }
-
     // 切换页面
     fun switchItem (item: Int, smoothScroll: Boolean = false): WowTabBarView {
         vpTabBarInner.setCurrentItem(item, smoothScroll)
@@ -165,10 +183,14 @@ class WowTabBarView @JvmOverloads constructor(
     }
 
     // 构建
-    fun build (fragmentManager: FragmentManager) : WowTabBarView {
+    fun build (
+        fragmentManager: FragmentManager,
+        onInstantiateFragment: ((Int, Fragment) -> Unit)? = null,
+        onDestroyFragment: ((Int) -> Unit)? = null
+    ) : WowTabBarView {
         render()
         addedTabBarItem()
-        setViewPagerAdapter(fragmentManager)
+        setViewPagerAdapter(fragmentManager, onInstantiateFragment, onDestroyFragment)
         addClickEvent()
         switchItem(0)
         return this
