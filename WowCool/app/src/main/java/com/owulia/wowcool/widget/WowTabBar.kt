@@ -2,8 +2,10 @@ package com.owulia.wowcool.widget
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
@@ -14,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.owulia.wowcool.R
 
 class WowTabBar @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -34,6 +37,7 @@ class WowTabBar @JvmOverloads constructor(
     // 文字颜色
     private var colorTextNormal: Int? = null
     private var colorTextActive: Int? = null
+    private var intTextSize: Int? = null
 
     init {
         orientation = VERTICAL
@@ -127,9 +131,10 @@ class WowTabBar @JvmOverloads constructor(
     }
 
     // 设置文字
-    fun setItemText(color: Int, colorSelect: Int): WowTabBar {
+    fun setItemText(color: Int, colorSelect: Int, textSize: Int? = null): WowTabBar {
         colorTextNormal = color
         colorTextActive = colorSelect
+        intTextSize = textSize
         return this
     }
 
@@ -151,7 +156,8 @@ class WowTabBar @JvmOverloads constructor(
                 arrIconActive[index],
                 arrTextItem[index],
                 colorTextNormal,
-                colorTextActive
+                colorTextActive,
+                null
             )
             arrTabBarItem.add(wowTabBarItem)
             viewBottom.addView(wowTabBarItem)
@@ -177,6 +183,7 @@ class WowTabBarItem @JvmOverloads constructor(
     private var iconNormal: Int = 0
     private var iconActive: Int = 0
     private var textItem: String = ""
+    private var textSize: Int = 0
     private var colorTextNormal = colorTextNormalDefault
     private var colorTextActive = colorTextActiveDefault
 
@@ -194,19 +201,28 @@ class WowTabBarItem @JvmOverloads constructor(
         iconSelect: Int,
         text: String,
         color: Int?,
-        colorSelect: Int?
+        colorSelect: Int?,
+        textSize: Int?
     ) : this(context) {
         iconNormal = icon
         iconActive = iconSelect
+
         textItem = text
         colorTextNormal = color?: colorTextNormalDefault
         colorTextActive = colorSelect?: colorTextActiveDefault
+//        textSize =
 
         renderImageView()
         renderTextView()
 
         setProgress(0f)
     }
+
+    fun px2dp(px: Float) = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        px,
+        Resources.getSystem().displayMetrics
+    )
 
     private fun renderWrapView() {
         val params = LayoutParams(0, LayoutParams.MATCH_PARENT).apply {
@@ -249,7 +265,7 @@ class WowTabBarItem @JvmOverloads constructor(
                 topMargin = 10
             }
         viewText.apply {
-            textSize = 10f
+            textSize = resources.getDimension(R.dimen.dimen_tab_bar_text_size)
             text = textItem
             setTextColor(colorTextNormal)
         }
