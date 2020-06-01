@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
@@ -128,6 +129,7 @@ class WowTabBarView @JvmOverloads constructor(
             offscreenPageLimit = arrTabBarItemIconNormal.size
             adapter = object : FragmentPagerAdapter(fragmentManager) {
                 override fun getItem(position: Int): Fragment {
+                    Log.d("WOW-COOL", "getItem")
                     return arrTabBarFragment[position]
                 }
                 override fun getCount(): Int {
