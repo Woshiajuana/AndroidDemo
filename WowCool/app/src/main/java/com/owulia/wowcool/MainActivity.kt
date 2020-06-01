@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.core.content.ContextCompat
 import com.owulia.wowcool.fragment.HomeFragment
-import com.owulia.wowcool.fragment.MaterialFragment
+import com.owulia.wowcool.fragment.DemoFragment
 import com.owulia.wowcool.fragment.MineFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
                 getString(R.string.string_tab_bar_home), HomeFragment()
             )
             addItem(R.mipmap.ic_tab_bar_demo_normal, R.mipmap.ic_tab_bar_demo_active,
-                getString(R.string.string_tab_bar_demo), MaterialFragment()
+                getString(R.string.string_tab_bar_demo), DemoFragment()
             )
             addItem(R.mipmap.ic_tab_bar_mine_normal, R.mipmap.ic_tab_bar_mine_active,
                 getString(R.string.string_tab_bar_mine), MineFragment()
