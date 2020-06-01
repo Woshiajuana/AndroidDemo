@@ -1,4 +1,4 @@
-package com.owulia.wowcool
+package com.owulia.wowcool.widget
 
 import android.annotation.SuppressLint
 import android.content.Context
