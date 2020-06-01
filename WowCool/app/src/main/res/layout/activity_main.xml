@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.owulia.wowcool.widget.WowTabBar
+    <com.owulia.wowcool.widget.WowTabBarView
         android:id="@+id/wtMainTabBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
