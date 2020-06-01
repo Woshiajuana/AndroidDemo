@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.owulia.wowcool.R
 
 class WowTabBar @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -79,7 +78,7 @@ class WowTabBar @JvmOverloads constructor(
     // 初始化底部布局
     private fun renderBottomView() {
         viewBottom = LinearLayout(context)
-        val params = LayoutParams(LayoutParams.MATCH_PARENT, 150)
+        val params = LayoutParams(LayoutParams.MATCH_PARENT, px2dp(50f))
         viewBottom.apply {
             layoutParams = params
             orientation = HORIZONTAL
@@ -87,6 +86,12 @@ class WowTabBar @JvmOverloads constructor(
         }
         addView(viewBottom)
     }
+
+    private fun px2dp(p: Float) = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        p,
+        Resources.getSystem().displayMetrics
+    ).toInt()
 
     // 设置 adapter
     private fun setViewPagerAdapter(fragmentManager: FragmentManager) {
@@ -218,11 +223,11 @@ class WowTabBarItem @JvmOverloads constructor(
         setProgress(0f)
     }
 
-    fun px2dp(px: Float) = TypedValue.applyDimension(
+    private fun px2dp(p: Float) = TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_DIP,
-        px,
+        p,
         Resources.getSystem().displayMetrics
-    )
+    ).toInt()
 
     private fun renderWrapView() {
         val params = LayoutParams(0, LayoutParams.MATCH_PARENT).apply {
@@ -247,7 +252,7 @@ class WowTabBarItem @JvmOverloads constructor(
         }
 
         val viewFragment = FrameLayout(context)
-        val paramsFragment = LayoutParams(60, 60).apply {
+        val paramsFragment = LayoutParams(px2dp(24f), px2dp(24f)).apply {
             gravity = Gravity.CENTER
         }
         viewFragment.apply {
@@ -265,7 +270,7 @@ class WowTabBarItem @JvmOverloads constructor(
                 topMargin = 10
             }
         viewText.apply {
-            textSize = resources.getDimension(R.dimen.dimen_tab_bar_text_size)
+            textSize = 10f
             text = textItem
             setTextColor(colorTextNormal)
         }
