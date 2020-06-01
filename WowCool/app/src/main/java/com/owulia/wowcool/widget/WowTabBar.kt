@@ -32,8 +32,8 @@ class WowTabBar @JvmOverloads constructor(
     // Fragment
     private var arrFragment = mutableListOf<Fragment>()
     // 文字颜色
-    private var colorNormalText = Color.parseColor("#ff000000")
-    private var colorActiveText = Color.parseColor("#ff007FD6")
+    private var colorTextNormal: Int? = null
+    private var colorTextActive: Int? = null
 
     init {
         orientation = VERTICAL
@@ -127,9 +127,9 @@ class WowTabBar @JvmOverloads constructor(
     }
 
     // 设置文字
-    fun setItemText(color: String, colorSelect: String): WowTabBar {
-        colorNormalText = Color.parseColor(color)
-        colorActiveText = Color.parseColor(colorSelect)
+    fun setItemText(color: Int, colorSelect: Int): WowTabBar {
+        colorTextNormal = color
+        colorTextActive = colorSelect
         return this
     }
 
@@ -150,8 +150,8 @@ class WowTabBar @JvmOverloads constructor(
                 item,
                 arrIconActive[index],
                 arrTextItem[index],
-                colorNormalText,
-                colorActiveText
+                colorTextNormal,
+                colorTextActive
             )
             arrTabBarItem.add(wowTabBarItem)
             viewBottom.addView(wowTabBarItem)
@@ -171,11 +171,14 @@ class WowTabBarItem @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
+    private var colorTextNormalDefault = Color.parseColor("#ff000000")
+    private var colorTextActiveDefault = Color.parseColor("#ff007FD6")
+
     private var iconNormal: Int = 0
     private var iconActive: Int = 0
     private var textItem: String = ""
-    private var colorNormalText = Color.parseColor("#ff000000")
-    private var colorActiveText = Color.parseColor("#ff007FD6")
+    private var colorTextNormal = colorTextNormalDefault
+    private var colorTextActive = colorTextActiveDefault
 
     private lateinit var viewImageNormal: ImageView
     private lateinit var viewImageActive: ImageView
@@ -190,14 +193,14 @@ class WowTabBarItem @JvmOverloads constructor(
         icon: Int,
         iconSelect: Int,
         text: String,
-        color: Int,
-        colorSelect: Int
+        color: Int?,
+        colorSelect: Int?
     ) : this(context) {
         iconNormal = icon
         iconActive = iconSelect
         textItem = text
-        colorNormalText = color
-        colorActiveText = colorSelect
+        colorTextNormal = color?: colorTextNormalDefault
+        colorTextActive = colorSelect?: colorTextActiveDefault
 
         renderImageView()
         renderTextView()
@@ -248,7 +251,7 @@ class WowTabBarItem @JvmOverloads constructor(
         viewText.apply {
             textSize = 10f
             text = textItem
-            setTextColor(colorNormalText)
+            setTextColor(colorTextNormal)
         }
         addView(viewText)
     }
@@ -256,7 +259,7 @@ class WowTabBarItem @JvmOverloads constructor(
     fun setProgress(progress: Float) {
         viewImageNormal.alpha = 1 - progress
         viewImageActive.alpha = progress
-        viewText.setTextColor(evaluate(progress, colorNormalText, colorActiveText))
+        viewText.setTextColor(evaluate(progress, colorTextNormal, colorTextActive))
     }
 
     private fun evaluate(progress: Float, startValue: Int, endValue: Int): Int {
