@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
@@ -51,7 +50,7 @@ class WowTabBarView @JvmOverloads constructor(
 
     // 渲染布局
     @SuppressLint("ResourceType")
-    private fun render () {
+    private fun render() {
         vpTabBarInner = ViewPager(context)
         vpTabBarInner.apply {
             id = 1213141516
@@ -82,7 +81,7 @@ class WowTabBarView @JvmOverloads constructor(
 
     }
 
-    private fun addedTabBarItem () {
+    private fun addedTabBarItem() {
         arrTabBarItemIconNormal.forEachIndexed { index, icon ->
             val wowTabBarItemView = WowTabBarItemView(
                 context,
@@ -98,7 +97,7 @@ class WowTabBarView @JvmOverloads constructor(
         }
     }
 
-    private fun setViewPagerAdapter (
+    private fun setViewPagerAdapter(
         fragmentManager: FragmentManager,
         onInstantiateFragment: ((Int, Fragment) -> Unit)? = null,
         onDestroyFragment: ((Int) -> Unit)? = null
@@ -107,7 +106,6 @@ class WowTabBarView @JvmOverloads constructor(
             offscreenPageLimit = arrTabBarItemIconNormal.size
             adapter = object : FragmentPagerAdapter(fragmentManager) {
                 override fun getItem(position: Int): Fragment {
-                    Log.d("WOW-COOL", "getItem")
                     return arrTabBarFragment[position]
                 }
                 override fun getCount(): Int {
@@ -141,13 +139,14 @@ class WowTabBarView @JvmOverloads constructor(
                         right.setProgress(positionOffset)
                     }
                 }
+
                 override fun onPageSelected(position: Int) {}
             })
         }
     }
 
     // 添加WowTabBarItemView元素
-    fun addItem (icon: Int, iconSelect: Int, text: String, fragment: Fragment) : WowTabBarView {
+    fun addItem(icon: Int, iconSelect: Int, text: String, fragment: Fragment): WowTabBarView {
         arrTabBarItemIconNormal.add(icon)
         arrTabBarItemIconActive.add(iconSelect)
         arrTabBarItemText.add(text)
@@ -156,25 +155,25 @@ class WowTabBarView @JvmOverloads constructor(
     }
 
     // 设置分割线
-    fun setDivider (isUse: Boolean = true, height: Int? = null, bgColor: Int? = null) {
+    fun setDivider(isUse: Boolean = true, height: Int? = null, bgColor: Int? = null) {
         isUseDivider = isUse
-        tabBarDividerHeight = height?: tabBarDividerHeight
-        tabBarBottomBackgroundColor = bgColor?: tabBarBottomBackgroundColor
+        tabBarDividerHeight = height ?: tabBarDividerHeight
+        tabBarBottomBackgroundColor = bgColor ?: tabBarBottomBackgroundColor
     }
 
     // 设置 tabBarItem 文字
-    fun setItemText (color: Int? = null, colorSelect: Int? = null) {
+    fun setItemText(color: Int? = null, colorSelect: Int? = null) {
         tabBarItemTextColorNormal = color
         tabBarItemTextColorActive = colorSelect
     }
 
     // 设置 tabBarItem icon
-    fun setItemIcon (size: Int? = null) {
+    fun setItemIcon(size: Int? = null) {
         tabBarItemIconSize = size
     }
 
     // 切换页面
-    fun switchItem (item: Int, smoothScroll: Boolean = false): WowTabBarView {
+    fun switchItem(item: Int, smoothScroll: Boolean = false): WowTabBarView {
         vpTabBarInner.setCurrentItem(item, smoothScroll)
         arrTabBarItem.forEachIndexed { index, it ->
             it.setProgress(if (index == item) 1f else 0f)
@@ -183,11 +182,11 @@ class WowTabBarView @JvmOverloads constructor(
     }
 
     // 构建
-    fun build (
+    fun build(
         fragmentManager: FragmentManager,
         onInstantiateFragment: ((Int, Fragment) -> Unit)? = null,
         onDestroyFragment: ((Int) -> Unit)? = null
-    ) : WowTabBarView {
+    ): WowTabBarView {
         render()
         addedTabBarItem()
         setViewPagerAdapter(fragmentManager, onInstantiateFragment, onDestroyFragment)
@@ -196,7 +195,7 @@ class WowTabBarView @JvmOverloads constructor(
         return this
     }
 
-    private fun addClickEvent () {
+    private fun addClickEvent() {
         arrTabBarItem.forEachIndexed { index, item ->
             item.setOnClickListener {
                 switchItem(index)
@@ -223,7 +222,7 @@ private class WowTabBarItemView @JvmOverloads constructor(
 
     private var iconNormal = 0
     private var iconActive = 0
-    private var iconSize = px2dp(24f).toInt()
+    private var iconSize = px2dp(20f).toInt()
     private var textColorNormal = Color.parseColor("#ff000000")
     private var textColorActive = Color.parseColor("#ff007FD6")
     private var strText = ""
@@ -236,13 +235,13 @@ private class WowTabBarItemView @JvmOverloads constructor(
         text: String,
         color: Int?,
         colorSelect: Int?
-    ) : this (context) {
+    ) : this(context) {
         iconNormal = icon
         iconActive = iconSelect
-        iconSize = size?: iconSize
+        iconSize = size ?: iconSize
         strText = text
-        textColorNormal = color?: textColorNormal
-        textColorActive = colorSelect?: textColorActive
+        textColorNormal = color ?: textColorNormal
+        textColorActive = colorSelect ?: textColorActive
 
         render()
 
@@ -250,7 +249,12 @@ private class WowTabBarItemView @JvmOverloads constructor(
 
     }
 
-    private fun render () {
+    private fun render() {
+        val typedArray =
+            context.obtainStyledAttributes(intArrayOf(android.R.attr.selectableItemBackground))
+        background = typedArray.getDrawable(0)
+        typedArray.recycle()
+        isClickable = true
         layoutParams = LayoutParams(0, LayoutParams.MATCH_PARENT).apply {
             weight = 1f
         }

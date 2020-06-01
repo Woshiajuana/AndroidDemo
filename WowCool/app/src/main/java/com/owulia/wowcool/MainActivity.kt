@@ -15,10 +15,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         Log.d("WOW-COOL", "onCreate")
 
         wtMainTabBar.apply {
+            setItemIcon(resources.getDimension(R.dimen.dimen_tab_bar_icon).toInt())
             setItemText(ContextCompat.getColor(context, R.color.colorTabBarNormal), ContextCompat.getColor(context, R.color.colorTabBarActive))
             addItem(R.mipmap.ic_tab_bar_home_normal, R.mipmap.ic_tab_bar_home_active,
                 getString(R.string.string_tab_bar_home), HomeFragment()
