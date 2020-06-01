@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="dimenTabBarIconSize">48dp</dimen>
+    <dimen name="dimenTabBarTextMargin">4dp</dimen>
+    <dimen name="dimenTabBarTextSize">10sp</dimen>
+
+</resources>
