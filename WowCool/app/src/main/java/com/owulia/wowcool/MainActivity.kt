@@ -17,6 +17,10 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("WOW-COOL", "onCreate")
 
+
+
+        var x = 1
+
         wtMainTabBar.apply {
             setItemIcon(resources.getDimension(R.dimen.dimen_tab_bar_icon).toInt())
             setItemText(ContextCompat.getColor(context, R.color.colorTabBarNormal), ContextCompat.getColor(context, R.color.colorTabBarActive))
