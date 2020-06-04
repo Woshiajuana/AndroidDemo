@@ -8,4 +8,7 @@
     <string name="string_tab_bar_demo">DEMO</string>
     <string name="string_tab_bar_mine">MINE</string>
 
+
+    <!--  iconfont  -->
+    <string name="string_icon_tabbar">&#xe600;</string>
 </resources>
