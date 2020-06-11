@@ -18,11 +18,12 @@ import kotlinx.android.synthetic.main.fragment_demo.*
 class DemoFragment : Fragment() {
 
 
-    val arrDemoItem = mutableListOf<DemoItemBean>(
-        DemoItemBean(R.string.string_demo_tabbar_icon, R.string.string_demo_tabbar_text)
-    )
-
-//    val
+    private var arrDemoItem = mutableListOf<DemoItemBean>()
+    init {
+        arrDemoItem = mutableListOf (
+//            DemoItemBean(resources.getString(R.string.string_demo_tabbar_icon), resources.getString(R.string.string_demo_tabbar_text))
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,14 +35,13 @@ class DemoFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        new DividerItemDecoration(requireActivity(),DividerItemDecoration.VERTICAL);
 
-        rvDemoMain.apply {
-            layoutManager = GridLayoutManager(context, 3)
-            adapter = DemoAdapter(arrDemoItem)
-            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-            addItemDecoration(DividerItemDecoration(context,  DividerItemDecoration.HORIZONTAL))
-        }
+//        rvDemoMain.apply {
+//            layoutManager = GridLayoutManager(context, 3)
+//            adapter = DemoAdapter(arrDemoItem)
+//            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+//            addItemDecoration(DividerItemDecoration(context,  DividerItemDecoration.HORIZONTAL))
+//        }
     }
 
 }
