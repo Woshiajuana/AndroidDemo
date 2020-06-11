@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.owulia.wowcool.widget.WowWEqualsHView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:background="?selectableItemBackground"
-    android:clickable="true"
-    android:focusable="true"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:background="#ff0000"
+    android:layout_height="match_parent">
 
-    <com.owulia.wowcool.widget.WowIconFontView
-        android:id="@+id/tvIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorDemoItemIcon"
-        android:textSize="@dimen/dimen_demo_icon_size" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_demo_margin"
-        android:textColor="@color/colorDemoItemText"
-        android:textSize="@dimen/dimen_demo_text_size" />
+        <com.owulia.wowcool.widget.WowIconFontView
+            android:id="@+id/tvIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorDemoItemIcon"
+            android:textSize="@dimen/dimen_demo_icon_size" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_demo_margin"
+            android:textColor="@color/colorDemoItemText"
+            android:textSize="@dimen/dimen_demo_text_size" />
 
+    </LinearLayout>
+
+</com.owulia.wowcool.widget.WowWEqualsHView>
