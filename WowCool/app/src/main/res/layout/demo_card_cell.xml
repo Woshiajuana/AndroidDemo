@@ -3,7 +3,6 @@
 <com.owulia.wowcool.widget.WowWEqualsHView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="#ff0000"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -31,5 +30,19 @@
             android:textSize="@dimen/dimen_demo_text_size" />
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/brBottom"
+        android:layout_gravity="bottom"
+        android:background="@color/colorBorder"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"/>
+
+    <View
+        android:id="@+id/brRight"
+        android:layout_gravity="end"
+        android:background="@color/colorBorder"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"/>
 
 </com.owulia.wowcool.widget.WowWEqualsHView>

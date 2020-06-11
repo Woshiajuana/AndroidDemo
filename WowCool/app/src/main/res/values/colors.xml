@@ -7,12 +7,14 @@
 
 
     <color name="colorMain">#213141</color>
+    <color name="colorBorder">#ededed</color>
 
     <color name="colorTabBarActive">@color/colorMain</color>
     <color name="colorTabBarNormal">#999999</color>
 
     <color name="colorDemoItemIcon">@color/colorMain</color>
     <color name="colorDemoItemText">#999999</color>
+
 
 
 </resources>

@@ -23,6 +23,9 @@ class DemoAdapter (private val list: MutableList<DemoItemBean>) : RecyclerView.A
         val demoItemBean = list[position]
         holder.itemView.tvIcon.text = demoItemBean.icon
         holder.itemView.tvText.text = demoItemBean.text
+        if ((position + 1) % 3 == 0) {
+            holder.itemView.brRight.visibility = View.GONE
+        }
     }
 
 }
