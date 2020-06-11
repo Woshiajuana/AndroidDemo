@@ -11,4 +11,8 @@
 
     <!--  iconfont  -->
     <string name="string_icon_tabbar">&#xe600;</string>
+
+    <string name="string_demo_tabbar_icon">&#xe600;</string>
+    <string name="string_demo_tabbar_text">TabBar</string>
+
 </resources>

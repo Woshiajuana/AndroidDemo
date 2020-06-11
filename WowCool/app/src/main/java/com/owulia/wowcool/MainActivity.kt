@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
             )
             setDivider(true, 1)
             build(supportFragmentManager)
+            switchItem(1)
         }
     }
 }
