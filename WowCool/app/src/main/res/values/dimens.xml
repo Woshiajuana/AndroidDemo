@@ -4,7 +4,7 @@
     <dimen name="dimen_tab_bar_icon">20dp</dimen>
 
     <dimen name="dimen_demo_icon_size">32sp</dimen>
-    <dimen name="dimen_demo_text_size">16sp</dimen>
+    <dimen name="dimen_demo_text_size">14sp</dimen>
     <dimen name="dimen_demo_margin">8dp</dimen>
 
 </resources>
