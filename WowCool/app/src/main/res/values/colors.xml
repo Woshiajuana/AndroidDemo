@@ -11,5 +11,8 @@
     <color name="colorTabBarActive">@color/colorMain</color>
     <color name="colorTabBarNormal">#999999</color>
 
+    <color name="colorDemoItemIcon">@color/colorMain</color>
+    <color name="colorDemoItemText">#999999</color>
+
 
 </resources>
