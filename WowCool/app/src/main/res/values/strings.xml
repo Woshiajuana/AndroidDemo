@@ -3,7 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    
+
     <string name="string_tab_bar_home">HOME</string>
     <string name="string_tab_bar_demo">DEMO</string>
     <string name="string_tab_bar_mine">MINE</string>
@@ -20,6 +20,9 @@
 
     <string name="string_demo_wh_icon">&#xe65f;</string>
     <string name="string_demo_wh_text">WowWEqualsH</string>
+
+    <string name="string_demo_slide_menu_icon">&#xe619;</string>
+    <string name="string_demo_slide_menu_text">WowSlideMenu</string>
 
 
 </resources>
