@@ -30,7 +30,6 @@ class MainFragment : Fragment() {
 
 
         tvText.setOnClickListener{
-            Navigation.findNavController(it).navigate(R.id.action_mainFragment_to_demoFragment)
         }
 
 //        wtMainTabBar.apply {

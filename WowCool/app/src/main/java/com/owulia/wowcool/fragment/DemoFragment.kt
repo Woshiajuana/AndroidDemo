@@ -37,8 +37,7 @@ class DemoFragment : Fragment() {
             DemoItemBean(resources.getString(R.string.string_demo_wh_icon), resources.getString(R.string.string_demo_wh_text)),
             DemoItemBean(
                 resources.getString(R.string.string_demo_slide_menu_icon),
-                resources.getString(R.string.string_demo_slide_menu_text),
-                R.id.action_demoFragment_to_demoSlideMenuFragment
+                resources.getString(R.string.string_demo_slide_menu_text)
             )
         )
         rvDemoMain.apply {
@@ -47,7 +46,6 @@ class DemoFragment : Fragment() {
         }
 
         tvJump.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_demoFragment_to_demoSlideMenuFragment)
         }
     }
 

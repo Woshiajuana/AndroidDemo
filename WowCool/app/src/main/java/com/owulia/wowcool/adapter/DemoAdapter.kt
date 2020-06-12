@@ -17,10 +17,10 @@ class DemoAdapter (private val list: MutableList<DemoItemBean>) : RecyclerView.A
         val holder = DemoAdapterHolder(view)
         Log.d("DEMOADAPTER", "111111111${holder.itemView}")
 
-        holder.itemView.llContent.setOnClickListener{
-            Log.d("DEMOADAPTER", "111111111")
-            holder.itemView.findNavController().navigate(R.id.action_demoFragment_to_demoSlideMenuFragment)
-        }
+//        holder.itemView.llContent.setOnClickListener{
+//            Log.d("DEMOADAPTER", "111111111")
+//            holder.itemView.findNavController().navigate(R.id.action_demoFragment_to_demoSlideMenuFragment)
+//        }
         return holder
     }
 
