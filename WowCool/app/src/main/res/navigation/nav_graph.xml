@@ -2,9 +2,18 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation"
-    app:startDestination="@id/demoFragment">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
 
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.owulia.wowcool.fragment.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_demoFragment"
+            app:destination="@id/demoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/demoFragment"
         android:name="com.owulia.wowcool.fragment.DemoFragment"
@@ -18,5 +27,9 @@
         android:id="@+id/demoSlideMenuFragment"
         android:name="com.owulia.wowcool.fragment.demo.DemoSlideMenuFragment"
         android:label="fragment_demo_slide_menu"
-        tools:layout="@layout/fragment_demo_slide_menu" />
+        tools:layout="@layout/fragment_demo_slide_menu" >
+        <action
+            android:id="@+id/action_demoSlideMenuFragment_to_demoFragment"
+            app:destination="@id/demoFragment" />
+    </fragment>
 </navigation>
