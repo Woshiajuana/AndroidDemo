@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 
 import com.owulia.wowcool.R
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -41,7 +39,7 @@ class MainFragment : Fragment() {
                 getString(R.string.string_tab_bar_mine), MineFragment()
             )
             setDivider(true, 1)
-            build(activity!!.supportFragmentManager)
+            build(requireActivity().supportFragmentManager)
             switchItem(1)
         }
 
