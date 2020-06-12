@@ -1,12 +1,10 @@
 package com.owulia.wowcool.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.owulia.wowcool.R
 import com.owulia.wowcool.adapter.DemoAdapter
@@ -35,8 +33,11 @@ class DemoFragment : Fragment() {
             DemoItemBean(resources.getString(R.string.string_demo_tabbar_icon), resources.getString(R.string.string_demo_tabbar_text)),
             DemoItemBean(resources.getString(R.string.string_demo_iconfont_icon), resources.getString(R.string.string_demo_iconfont_text)),
             DemoItemBean(resources.getString(R.string.string_demo_wh_icon), resources.getString(R.string.string_demo_wh_text)),
-            DemoItemBean(resources.getString(R.string.string_demo_slide_menu_icon),
-                resources.getString(R.string.string_demo_slide_menu_text))
+            DemoItemBean(
+                resources.getString(R.string.string_demo_slide_menu_icon),
+                resources.getString(R.string.string_demo_slide_menu_text),
+                R.id.action_demoFragment_to_demoSlideMenuFragment
+            )
         )
         rvDemoMain.apply {
             layoutManager = GridLayoutManager(context, 3)

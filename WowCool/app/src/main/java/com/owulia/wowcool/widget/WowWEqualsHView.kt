@@ -11,5 +11,4 @@ class WowWEqualsHView @JvmOverloads constructor(
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, widthMeasureSpec)
     }
-
 }

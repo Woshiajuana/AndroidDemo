@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.owulia.wowcool.widget.WowWEqualsHView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/llContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?selectableItemBackground"
@@ -46,4 +47,4 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"/>
 
-</com.owulia.wowcool.widget.WowWEqualsHView>
+</FrameLayout>
