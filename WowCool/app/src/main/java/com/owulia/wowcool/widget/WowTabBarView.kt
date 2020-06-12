@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
@@ -32,7 +33,7 @@ class WowTabBarView @JvmOverloads constructor(
     private var arrTabBarItemIconNormal = mutableListOf<Int>()
     private var arrTabBarItemIconActive = mutableListOf<Int>()
     private var arrTabBarItemText = mutableListOf<String>()
-    private var arrTabBarFragment = mutableListOf<Fragment>()
+    public var arrTabBarFragment = mutableListOf<Fragment>()
 
     // 设置
     private var tabBarBottomHeight = px2dp(50f).toInt()
@@ -43,6 +44,8 @@ class WowTabBarView @JvmOverloads constructor(
     private var tabBarItemTextColorNormal: Int? = null
     private var tabBarItemTextColorActive: Int? = null
     private var isUseDivider = true
+
+    private val TAG = "wowtabbarview"
 
     init {
         orientation = VERTICAL
@@ -102,10 +105,12 @@ class WowTabBarView @JvmOverloads constructor(
         onInstantiateFragment: ((Int, Fragment) -> Unit)? = null,
         onDestroyFragment: ((Int) -> Unit)? = null
     ) {
+        Log.d(TAG, "setViewPagerAdapter")
         vpTabBarInner.apply {
             offscreenPageLimit = arrTabBarItemIconNormal.size
             adapter = object : FragmentPagerAdapter(fragmentManager) {
                 override fun getItem(position: Int): Fragment {
+                    Log.d(TAG, "getItem position => ${position}")
                     return arrTabBarFragment[position]
                 }
                 override fun getCount(): Int {
@@ -113,12 +118,14 @@ class WowTabBarView @JvmOverloads constructor(
                 }
                 override fun instantiateItem(container: ViewGroup, position: Int): Any {
                     val fragment = super.instantiateItem(container, position) as Fragment
+                    Log.d(TAG, "instantiateItem position => ${position}")
                     if (onInstantiateFragment != null) {
                         onInstantiateFragment(position, fragment)
                     }
                     return fragment
                 }
                 override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+                    Log.d(TAG, "destroyItem position => ${position}")
                     if (onDestroyFragment != null) {
                         onDestroyFragment(position)
                     }
