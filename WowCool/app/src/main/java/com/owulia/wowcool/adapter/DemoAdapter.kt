@@ -19,7 +19,7 @@ class DemoAdapter (private val list: MutableList<DemoItemBean>) : RecyclerView.A
 
         holder.itemView.llContent.setOnClickListener{
             Log.d("DEMOADAPTER", "111111111")
-            holder.itemView.findNavController().navigate(R.id.action_demoFragment_to_demoSlideMenuFragment)
+            holder.itemView.findNavController().navigate(R.id.action_mainFragment_to_demoSlideMenuFragment)
         }
         return holder
     }

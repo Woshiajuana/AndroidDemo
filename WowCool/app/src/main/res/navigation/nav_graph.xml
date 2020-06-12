@@ -3,28 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/mainFragment">
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.owulia.wowcool.fragment.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/demoFragment"
-        android:name="com.owulia.wowcool.fragment.DemoFragment"
-        android:label="fragment_demo"
-        tools:layout="@layout/fragment_demo" >
+        android:id="@+id/mainFragment"
+        android:name="com.owulia.wowcool.fragment.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
         <action
-            android:id="@+id/action_demoFragment_to_demoSlideMenuFragment"
-            app:destination="@id/demoSlideMenuFragment2" />
+            android:id="@+id/action_mainFragment_to_demoSlideMenuFragment"
+            app:destination="@id/demoSlideMenuFragment" />
     </fragment>
     <fragment
-        android:id="@+id/mineFragment"
-        android:name="com.owulia.wowcool.fragment.MineFragment"
-        android:label="fragment_mine"
-        tools:layout="@layout/fragment_mine" />
-    <fragment
-        android:id="@+id/demoSlideMenuFragment2"
+        android:id="@+id/demoSlideMenuFragment"
         android:name="com.owulia.wowcool.fragment.demo.DemoSlideMenuFragment"
         android:label="fragment_demo_slide_menu"
         tools:layout="@layout/fragment_demo_slide_menu" />
