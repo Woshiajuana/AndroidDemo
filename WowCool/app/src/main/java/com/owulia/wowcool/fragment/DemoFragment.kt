@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.owulia.wowcool.R
 import com.owulia.wowcool.adapter.DemoAdapter
@@ -42,6 +44,10 @@ class DemoFragment : Fragment() {
         rvDemoMain.apply {
             layoutManager = GridLayoutManager(context, 3)
             adapter = DemoAdapter(arrDemoItem)
+        }
+
+        tvJump.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_demoFragment_to_demoSlideMenuFragment)
         }
     }
 
