@@ -71,6 +71,7 @@ class MainFragment : Fragment() {
 //        }
 
         Log.d("XXXXX", "onActivityCreated")
+        Log.d("XXXXX", "${requireActivity().supportFragmentManager}")
 //
         wtMainTabBar.apply {
             setItemIcon(resources.getDimension(R.dimen.dimen_tab_bar_icon).toInt())
@@ -79,7 +80,7 @@ class MainFragment : Fragment() {
                 getString(R.string.string_tab_bar_home), HomeFragment()
             )
             addItem(R.mipmap.ic_tab_bar_demo_normal, R.mipmap.ic_tab_bar_demo_active,
-                getString(R.string.string_tab_bar_demo), DemoFragment()
+                getString(R.string.string_tab_bar_demo), DemoFragment.instant
             )
             addItem(R.mipmap.ic_tab_bar_mine_normal, R.mipmap.ic_tab_bar_mine_active,
                 getString(R.string.string_tab_bar_mine), MineFragment()

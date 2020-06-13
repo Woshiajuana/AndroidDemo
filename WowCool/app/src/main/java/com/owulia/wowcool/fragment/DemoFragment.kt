@@ -26,6 +26,11 @@ class DemoFragment : Fragment() {
     val TAG = "DemoFragment"
 
 
+    companion object {
+        val instant: DemoFragment by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { DemoFragment() }
+    }
+
+
     private var arrDemoItem = mutableListOf<DemoItemBean>()
 
     override fun onCreateView(

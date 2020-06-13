@@ -17,6 +17,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 
 class WowTabBarView @JvmOverloads constructor(
@@ -108,7 +109,7 @@ class WowTabBarView @JvmOverloads constructor(
         Log.d(TAG, "setViewPagerAdapter")
         vpTabBarInner.apply {
             offscreenPageLimit = arrTabBarItemIconNormal.size
-            adapter = object : FragmentPagerAdapter(fragmentManager) {
+            adapter = object : FragmentStatePagerAdapter(fragmentManager) {
                 override fun getItem(position: Int): Fragment {
                     Log.d(TAG, "getItem position => ${position}")
                     return arrTabBarFragment[position]
@@ -118,7 +119,7 @@ class WowTabBarView @JvmOverloads constructor(
                 }
                 override fun instantiateItem(container: ViewGroup, position: Int): Any {
                     val fragment = super.instantiateItem(container, position) as Fragment
-                    Log.d(TAG, "instantiateItem position => ${position}")
+                    Log.d(TAG, "instantiateItem position => ${fragment}")
                     if (onInstantiateFragment != null) {
                         onInstantiateFragment(position, fragment)
                     }
