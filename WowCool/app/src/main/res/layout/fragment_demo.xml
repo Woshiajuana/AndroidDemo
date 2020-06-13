@@ -16,7 +16,7 @@
 
     <TextView
         android:id="@+id/tvJump"
-        android:text="体大湿答答卡"
+        android:text="ceshiceshi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

@@ -90,7 +90,6 @@ class MainFragment : Fragment() {
             )
             setDivider(true, 1)
             build(requireActivity().supportFragmentManager)
-            switchItem(1)
         }
 
 //        val supportFragmentManager = requireActivity().supportFragmentManager
