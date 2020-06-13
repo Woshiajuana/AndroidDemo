@@ -71,7 +71,7 @@ class MainFragment : Fragment() {
 //        }
 
         Log.d("XXXXX", "onActivityCreated")
-
+//
         wtMainTabBar.apply {
             setItemIcon(resources.getDimension(R.dimen.dimen_tab_bar_icon).toInt())
             setItemText(ContextCompat.getColor(context, R.color.colorTabBarNormal), ContextCompat.getColor(context, R.color.colorTabBarActive))
@@ -88,6 +88,10 @@ class MainFragment : Fragment() {
             build(requireActivity().supportFragmentManager)
             switchItem(1)
         }
+
+//        val supportFragmentManager = requireActivity().supportFragmentManager
+
+//        supportFragmentManager.beginTransaction().add(R.id.flContent, DemoFragment()).commit()
 
     }
 
