@@ -7,12 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 
 import com.owulia.wowcool.R
 import com.owulia.wowcool.adapter.DemoAdapter
+import com.owulia.wowcool.adapter.MainPagerAdapter
 import com.owulia.wowcool.bean.DemoItemBean
 import com.owulia.wowcool.viewmodel.DemoViewModel
 import kotlinx.android.synthetic.main.fragment_demo.*
@@ -93,6 +96,18 @@ class MainFragment : Fragment() {
 //        val supportFragmentManager = requireActivity().supportFragmentManager
 
 //        supportFragmentManager.beginTransaction().add(R.id.flContent, DemoFragment()).commit()
+
+
+//        vpMainContent.apply {
+//            adapter = object : FragmentPagerAdapter(requireActivity().supportFragmentManager) {
+//                override fun getItem(position: Int): Fragment {
+//                    return DemoFragment.instant
+//                }
+//                override fun getCount(): Int {
+//                    return 1
+//                }
+//            }
+//        }
 
     }
 
