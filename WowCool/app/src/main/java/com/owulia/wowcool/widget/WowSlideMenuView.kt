@@ -3,9 +3,11 @@ package com.owulia.wowcool.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
+import android.view.MotionEvent
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import java.lang.IndexOutOfBoundsException
+import kotlin.math.abs
 
 class WowSlideMenuView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -13,8 +15,42 @@ class WowSlideMenuView @JvmOverloads constructor(
 
     private val tag = "WowSlideMenuView"
 
-    lateinit var mvContentWrap: WowSlideContentWrap
-    lateinit var mvMenuWrap: WowSlideMenuWrap
+    private lateinit var mvContentWrap: WowSlideContentWrap
+    private lateinit var mvMenuWrap: WowSlideMenuWrap
+
+    private var mDownX = 0f
+    private var maxDX = 0 // 可移动最大边界
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        when (event?.action) {
+            MotionEvent.ACTION_DOWN -> {
+                mDownX = event.x
+            }
+            MotionEvent.ACTION_MOVE -> {
+                val moveX = event.x
+                // 移动的差值
+                val dx = (moveX - mDownX).toInt()
+                val resDx = -dx + scrollX
+                when {
+                    resDx <= 0 -> {
+                        scrollTo(0, 0)
+                    }
+                    resDx >= maxDX -> {
+                        scrollTo(maxDX, 0)
+                    }
+                    else -> {
+                        scrollBy(-dx, 0)
+                    }
+                }
+                mDownX = moveX
+            }
+            MotionEvent.ACTION_UP -> {
+            }
+        }
+
+//        requestLayout() 重新渲染页面
+        return true
+    }
 
     // 这里可以拿到自己的孩子
     override fun onFinishInflate() {
@@ -63,6 +99,7 @@ class WowSlideMenuView @JvmOverloads constructor(
         // 测量编辑部分的宽度: 3/4 高度跟内容高度一样
         val menuWithMeasureSpec = MeasureSpec.makeMeasureSpec(menuWidth, MeasureSpec.AT_MOST)
         mvMenuWrap.measure(menuWithMeasureSpec, MeasureSpec.makeMeasureSpec(contentMeasureHeight, MeasureSpec.EXACTLY))
+        maxDX = mvMenuWrap.measuredWidth
         Log.d(tag, "mvMenuWrap.measuredHeight => ${mvMenuWrap.measuredHeight}")
         Log.d(tag, "mvMenuWrap.measuredWidth => ${mvMenuWrap.measuredWidth}")
 
@@ -75,7 +112,7 @@ class WowSlideMenuView @JvmOverloads constructor(
 
     override fun onLayout(p0: Boolean, p1: Int, p2: Int, p3: Int, p4: Int) {
         // 拜访内容
-        val contentLeft = -100
+        val contentLeft = 0
         val contentTop = 0
         val contentRight = contentLeft + mvContentWrap.measuredWidth
         val contentBottom = contentTop + mvContentWrap.measuredHeight
@@ -87,7 +124,6 @@ class WowSlideMenuView @JvmOverloads constructor(
         val menuRight = menuLeft + mvMenuWrap.measuredWidth
         val menuBottom = menuTop + mvMenuWrap.measuredHeight
         mvMenuWrap.layout(menuLeft, menuTop, menuRight, menuBottom)
-
 
     }
 }
