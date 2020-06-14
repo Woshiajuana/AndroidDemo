@@ -24,6 +24,14 @@ class WowSlideMenuView @JvmOverloads constructor(
 
     private var mScroller: Scroller = Scroller(context)
 
+    private var isOpen = false
+    private var mCurrDirect = Direction.NONE
+
+    enum class Direction {
+        LEFT, RIGHT, NONE
+    }
+
+
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
@@ -33,6 +41,9 @@ class WowSlideMenuView @JvmOverloads constructor(
                 val moveX = event.x
                 // 移动的差值
                 val dx = (moveX - mDownX).toInt()
+
+                mCurrDirect = if (dx > 0) Direction.RIGHT else Direction.LEFT
+
                 val resDx = -dx + scrollX
                 when {
                     resDx <= 0 -> {
@@ -48,11 +59,42 @@ class WowSlideMenuView @JvmOverloads constructor(
                 mDownX = moveX
             }
             MotionEvent.ACTION_UP -> {
+
+                // 两个关注点 是否打开、 方向
+
+                if (isOpen) {
+                    // 当前状态打开
+                    if (mCurrDirect == Direction.RIGHT) {
+                        // 向右滑动 如果小于 3/4 就关闭
+                        if (scrollX <= maxDX * 3 / 4) {
+                            // 打开
+                            close()
+                        } else {
+                            open()
+                        }
+                    } else if (mCurrDirect == Direction.LEFT) {
+                        // 打开
+                        open()
+                    }
+                } else {
+                    // 当前关闭
+                    if (mCurrDirect == Direction.LEFT) {
+                        // 向左滑动
+                        if (scrollX > maxDX / 4) {
+                            // 打开
+                            open()
+                        } else {
+                            close()
+                        }
+                    } else if (mCurrDirect == Direction.RIGHT) {
+                        // 向右滑动
+                        close()
+                    }
+                }
+
                 // 处理释放之后 是显示还是收缩回去
                 if (scrollX >= maxDX / 2) {
-                    mScroller.startScroll(scrollX, 0, maxDX - scrollX, 0, 500)
                 } else {
-                    mScroller.startScroll(scrollX, 0, -scrollX, 0, 500)
                 }
                 invalidate()
             }
@@ -60,6 +102,16 @@ class WowSlideMenuView @JvmOverloads constructor(
 
 //        requestLayout() 重新渲染页面
         return true
+    }
+
+    fun open () {
+        isOpen = true
+        mScroller.startScroll(scrollX, 0, maxDX - scrollX, 0, 500)
+    }
+
+    fun close () {
+        isOpen = false
+        mScroller.startScroll(scrollX, 0, -scrollX, 0, 500)
     }
 
     override fun computeScroll() {
