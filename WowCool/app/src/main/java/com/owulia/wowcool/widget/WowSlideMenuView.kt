@@ -42,7 +42,9 @@ class WowSlideMenuView @JvmOverloads constructor(
                 // 移动的差值
                 val dx = (moveX - mDownX).toInt()
 
-                mCurrDirect = if (dx > 0) Direction.RIGHT else Direction.LEFT
+                mCurrDirect = if ((moveX - mDownX) > 0) Direction.RIGHT else Direction.LEFT
+
+                Log.d(tag, "mCurrDirect => $mCurrDirect")
 
                 val resDx = -dx + scrollX
                 when {
@@ -68,11 +70,14 @@ class WowSlideMenuView @JvmOverloads constructor(
                         // 向右滑动 如果小于 3/4 就关闭
                         if (scrollX <= maxDX * 3 / 4) {
                             // 打开
+                            Log.d(tag, "scrollX 1=> $scrollX   maxDX * 3 / 4 => ${maxDX * 3 / 4}")
                             close()
                         } else {
+                            Log.d(tag, "scrollX 2=> $scrollX   maxDX * 3 / 4 => ${maxDX * 3 / 4}")
                             open()
                         }
                     } else if (mCurrDirect == Direction.LEFT) {
+                        Log.d(tag, "scrollX 3=> $scrollX   maxDX * 3 / 4 => ${maxDX * 3 / 4}")
                         // 打开
                         open()
                     }
@@ -92,10 +97,6 @@ class WowSlideMenuView @JvmOverloads constructor(
                     }
                 }
 
-                // 处理释放之后 是显示还是收缩回去
-                if (scrollX >= maxDX / 2) {
-                } else {
-                }
                 invalidate()
             }
         }
