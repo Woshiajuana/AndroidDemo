@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Scroller
 import java.lang.IndexOutOfBoundsException
 import kotlin.math.abs
 
@@ -20,6 +21,8 @@ class WowSlideMenuView @JvmOverloads constructor(
 
     private var mDownX = 0f
     private var maxDX = 0 // 可移动最大边界
+
+    private var mScroller: Scroller = Scroller(context)
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         when (event?.action) {
@@ -45,11 +48,26 @@ class WowSlideMenuView @JvmOverloads constructor(
                 mDownX = moveX
             }
             MotionEvent.ACTION_UP -> {
+                // 处理释放之后 是显示还是收缩回去
+                if (scrollX >= maxDX / 2) {
+                    mScroller.startScroll(scrollX, 0, maxDX - scrollX, 0, 500)
+                } else {
+                    mScroller.startScroll(scrollX, 0, -scrollX, 0, 500)
+                }
+                invalidate()
             }
         }
 
 //        requestLayout() 重新渲染页面
         return true
+    }
+
+    override fun computeScroll() {
+        if (mScroller.computeScrollOffset()) {
+            val currX = mScroller.currX
+            scrollTo(currX, 0)
+            invalidate()
+        }
     }
 
     // 这里可以拿到自己的孩子
