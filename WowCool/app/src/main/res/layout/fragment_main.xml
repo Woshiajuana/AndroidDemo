@@ -6,93 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".fragment.MainFragment">
 
-
-    <com.owulia.wowcool.widget.WowSlideMenuView
+    <com.owulia.wowcool.widget.WowTabBarView
+        android:id="@+id/wtMainTabBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.owulia.wowcool.widget.WowSlideContentWrap
-            android:id="@+id/wscContent"
-            android:background="#334455"
-            android:layout_width="match_parent"
-            android:paddingTop="10dp"
-            android:layout_height="150dp">
-            <TextView
-                android:text="测试"
-                android:background="#ff0000"
-                android:paddingTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"/>
-        </com.owulia.wowcool.widget.WowSlideContentWrap>
-        <com.owulia.wowcool.widget.WowSlideMenuWrap
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:id="@+id/btn1"
-                android:background="#ff3344"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-                <TextView
-                    android:text="按钮1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/btn2"
-                android:background="#889900"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-                <TextView
-                    android:text="按钮2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/btn3"
-                android:background="#115544"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-                <TextView
-                    android:text="按钮3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-        </com.owulia.wowcool.widget.WowSlideMenuWrap>
-    </com.owulia.wowcool.widget.WowSlideMenuView>
-
-<!--    <com.owulia.wowcool.widget.WowTabBarView-->
-<!--        android:id="@+id/wtMainTabBar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"/>-->
-
-
-<!--    <FrameLayout-->
-<!--        android:id="@+id/flContent"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_weight="1"/>-->
-
-<!--    <androidx.viewpager.widget.ViewPager-->
-<!--        android:id="@+id/vpMainContent"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_weight="1"/>-->
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
-
-<!--        <TextView-->
-<!--            android:text="首页"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:layout_height="wrap_content"/>-->
-
-<!--        <TextView-->
-<!--            android:text="内容页"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:layout_height="wrap_content"/>-->
-
-<!--    </LinearLayout>-->
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

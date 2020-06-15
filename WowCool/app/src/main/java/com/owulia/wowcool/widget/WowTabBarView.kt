@@ -134,12 +134,16 @@ class WowTabBarView @JvmOverloads constructor(
                 }
             }
             addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-                override fun onPageScrollStateChanged(state: Int) {}
+                override fun onPageScrollStateChanged(state: Int) {
+                    Log.d(TAG, "onPageScrollStateChanged => ${state}")
+                }
                 override fun onPageScrolled(
                     position: Int,
                     positionOffset: Float,
                     positionOffsetPixels: Int
                 ) {
+//                    Log.d(TAG, "onPageScrollStateChanged => ${position}")
+
                     if (positionOffset > 0) {
                         val left = arrTabBarItem[position]
                         val right = arrTabBarItem[position + 1]
