@@ -42,7 +42,9 @@ class WowSlideMenuView @JvmOverloads constructor(
                 // 移动的差值
                 val dx = (moveX - mDownX).toInt()
 
-                mCurrDirect = if ((moveX - mDownX) > 0) Direction.RIGHT else Direction.LEFT
+                if (dx != 0) {
+                    mCurrDirect = if (dx > 0) Direction.RIGHT else Direction.LEFT
+                }
 
                 Log.d(tag, "mCurrDirect => $mCurrDirect")
 
