@@ -1,8 +1,8 @@
 package com.owulia.wowcool.widget
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -13,8 +13,6 @@ import kotlin.math.abs
 class WowSlideMenuView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ViewGroup(context, attrs, defStyleAttr) {
-
-    private val tag = "WowSlideMenuView"
 
     private lateinit var mvContentWrap: WowSlideContentWrap
     private lateinit var mvMenuWrap: WowSlideMenuWrap
@@ -28,12 +26,12 @@ class WowSlideMenuView @JvmOverloads constructor(
     private var mCurrDirect = Direction.NONE
 
     private var mDuration = 500
+    private var mInterceptDownX = 0f
 
     enum class Direction {
         LEFT, RIGHT, NONE
     }
 
-    private var mInterceptDownX = 0f
     // 拦截事件
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
         when (ev?.action) {
@@ -45,13 +43,11 @@ class WowSlideMenuView @JvmOverloads constructor(
                     return true
                 }
             }
-            MotionEvent.ACTION_UP -> {
-
-            }
         }
         return super.onInterceptTouchEvent(ev)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
@@ -65,9 +61,6 @@ class WowSlideMenuView @JvmOverloads constructor(
                 if (dx != 0) {
                     mCurrDirect = if (dx > 0) Direction.RIGHT else Direction.LEFT
                 }
-
-                Log.d(tag, "mCurrDirect => $mCurrDirect")
-
                 val resDx = -dx + scrollX
                 when {
                     resDx <= 0 -> {
@@ -83,23 +76,18 @@ class WowSlideMenuView @JvmOverloads constructor(
                 mDownX = moveX
             }
             MotionEvent.ACTION_UP -> {
-
                 // 两个关注点 是否打开、 方向
-
                 if (isOpen) {
                     // 当前状态打开
                     if (mCurrDirect == Direction.RIGHT) {
                         // 向右滑动 如果小于 3/4 就关闭
                         if (scrollX <= mMaxDX * 3 / 4) {
                             // 打开
-                            Log.d(tag, "scrollX 1=> $scrollX   mMaxDX * 3 / 4 => ${mMaxDX * 3 / 4}")
                             close()
                         } else {
-                            Log.d(tag, "scrollX 2=> $scrollX   mMaxDX * 3 / 4 => ${mMaxDX * 3 / 4}")
                             open()
                         }
                     } else if (mCurrDirect == Direction.LEFT) {
-                        Log.d(tag, "scrollX 3=> $scrollX   mMaxDX * 3 / 4 => ${mMaxDX * 3 / 4}")
                         // 打开
                         open()
                     }
@@ -120,7 +108,6 @@ class WowSlideMenuView @JvmOverloads constructor(
                 }
             }
         }
-
 //        requestLayout() 重新渲染页面
         return true
     }
@@ -129,7 +116,6 @@ class WowSlideMenuView @JvmOverloads constructor(
         isOpen = true
         val dx = mMaxDX - scrollX
         val duration = dx / (mMaxDX * 1f) * mDuration
-        Log.d(tag, "duration open => $duration")
         mScroller.startScroll(scrollX, 0, dx, 0, abs(duration.toInt()))
         invalidate()
     }
@@ -138,7 +124,6 @@ class WowSlideMenuView @JvmOverloads constructor(
         isOpen = false
         val dx = -scrollX
         val duration = dx / (mMaxDX * 1f) * mDuration
-        Log.d(tag, "duration close => $duration")
         mScroller.startScroll(scrollX, 0, dx, 0, abs(duration.toInt()))
         invalidate()
     }
@@ -191,7 +176,6 @@ class WowSlideMenuView @JvmOverloads constructor(
         // 拿到内容部分测量以后的高度
         val contentMeasureHeight = mvContentWrap.measuredHeight
         val menuWidth = mvMenuWrap.layoutParams.width
-        Log.d(tag, "menuWidth => $contentHeight")
         // 测量编辑部分的宽度: 3/4 高度跟内容高度一样
         val menuWithMeasureSpec = MeasureSpec.makeMeasureSpec(menuWidth, MeasureSpec.AT_MOST)
         mvMenuWrap.measure(menuWithMeasureSpec, MeasureSpec.makeMeasureSpec(contentMeasureHeight, MeasureSpec.EXACTLY))
