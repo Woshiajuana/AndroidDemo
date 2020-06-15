@@ -20,17 +20,37 @@ class WowSlideMenuView @JvmOverloads constructor(
     private lateinit var mvMenuWrap: WowSlideMenuWrap
 
     private var mDownX = 0f
-    private var maxDX = 0 // 可移动最大边界
+    private var mMaxDX = 0 // 可移动最大边界
 
     private var mScroller: Scroller = Scroller(context)
 
     private var isOpen = false
     private var mCurrDirect = Direction.NONE
 
+    private var mDuration = 500
+
     enum class Direction {
         LEFT, RIGHT, NONE
     }
 
+    private var mInterceptDownX = 0f
+    // 拦截事件
+    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
+        when (ev?.action) {
+            MotionEvent.ACTION_DOWN -> {
+                mInterceptDownX = ev.x
+            }
+            MotionEvent.ACTION_MOVE -> {
+                if (ev.x - mInterceptDownX != 0f) {
+                    return true
+                }
+            }
+            MotionEvent.ACTION_UP -> {
+
+            }
+        }
+        return super.onInterceptTouchEvent(ev)
+    }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         when (event?.action) {
@@ -53,8 +73,8 @@ class WowSlideMenuView @JvmOverloads constructor(
                     resDx <= 0 -> {
                         scrollTo(0, 0)
                     }
-                    resDx >= maxDX -> {
-                        scrollTo(maxDX, 0)
+                    resDx >= mMaxDX -> {
+                        scrollTo(mMaxDX, 0)
                     }
                     else -> {
                         scrollBy(-dx, 0)
@@ -70,16 +90,16 @@ class WowSlideMenuView @JvmOverloads constructor(
                     // 当前状态打开
                     if (mCurrDirect == Direction.RIGHT) {
                         // 向右滑动 如果小于 3/4 就关闭
-                        if (scrollX <= maxDX * 3 / 4) {
+                        if (scrollX <= mMaxDX * 3 / 4) {
                             // 打开
-                            Log.d(tag, "scrollX 1=> $scrollX   maxDX * 3 / 4 => ${maxDX * 3 / 4}")
+                            Log.d(tag, "scrollX 1=> $scrollX   mMaxDX * 3 / 4 => ${mMaxDX * 3 / 4}")
                             close()
                         } else {
-                            Log.d(tag, "scrollX 2=> $scrollX   maxDX * 3 / 4 => ${maxDX * 3 / 4}")
+                            Log.d(tag, "scrollX 2=> $scrollX   mMaxDX * 3 / 4 => ${mMaxDX * 3 / 4}")
                             open()
                         }
                     } else if (mCurrDirect == Direction.LEFT) {
-                        Log.d(tag, "scrollX 3=> $scrollX   maxDX * 3 / 4 => ${maxDX * 3 / 4}")
+                        Log.d(tag, "scrollX 3=> $scrollX   mMaxDX * 3 / 4 => ${mMaxDX * 3 / 4}")
                         // 打开
                         open()
                     }
@@ -87,7 +107,7 @@ class WowSlideMenuView @JvmOverloads constructor(
                     // 当前关闭
                     if (mCurrDirect == Direction.LEFT) {
                         // 向左滑动
-                        if (scrollX > maxDX / 4) {
+                        if (scrollX > mMaxDX / 4) {
                             // 打开
                             open()
                         } else {
@@ -98,8 +118,6 @@ class WowSlideMenuView @JvmOverloads constructor(
                         close()
                     }
                 }
-
-                invalidate()
             }
         }
 
@@ -109,12 +127,20 @@ class WowSlideMenuView @JvmOverloads constructor(
 
     fun open () {
         isOpen = true
-        mScroller.startScroll(scrollX, 0, maxDX - scrollX, 0, 500)
+        val dx = mMaxDX - scrollX
+        val duration = dx / (mMaxDX * 1f) * mDuration
+        Log.d(tag, "duration open => $duration")
+        mScroller.startScroll(scrollX, 0, dx, 0, abs(duration.toInt()))
+        invalidate()
     }
 
     fun close () {
         isOpen = false
-        mScroller.startScroll(scrollX, 0, -scrollX, 0, 500)
+        val dx = -scrollX
+        val duration = dx / (mMaxDX * 1f) * mDuration
+        Log.d(tag, "duration close => $duration")
+        mScroller.startScroll(scrollX, 0, dx, 0, abs(duration.toInt()))
+        invalidate()
     }
 
     override fun computeScroll() {
@@ -131,7 +157,6 @@ class WowSlideMenuView @JvmOverloads constructor(
         if (childCount != 2) {
             throw IndexOutOfBoundsException("need two child")
         }
-        Log.d(tag, "onFinishInflate 孩子多少个 => $childCount")
         // 取出孩子
         when (val childOne = getChildAt(0)) {
             is WowSlideContentWrap ->  mvContentWrap = childOne
@@ -155,7 +180,6 @@ class WowSlideMenuView @JvmOverloads constructor(
         // 到它的大小，直接测了
         // 如果是包内容，at_most 如果是 match_parent，那就给它大小
         val contentHeight = mvContentWrap.layoutParams.height
-        Log.d(tag, "contentHeight => $contentHeight")
         val contentHeightMeasureSpec =
             when (contentHeight) {
                 LayoutParams.MATCH_PARENT -> MeasureSpec.makeMeasureSpec(heightSize, MeasureSpec.EXACTLY)
@@ -166,19 +190,15 @@ class WowSlideMenuView @JvmOverloads constructor(
 
         // 拿到内容部分测量以后的高度
         val contentMeasureHeight = mvContentWrap.measuredHeight
-        Log.d(tag, "contentMeasureHeight => $contentMeasureHeight")
         val menuWidth = mvMenuWrap.layoutParams.width
         Log.d(tag, "menuWidth => $contentHeight")
         // 测量编辑部分的宽度: 3/4 高度跟内容高度一样
         val menuWithMeasureSpec = MeasureSpec.makeMeasureSpec(menuWidth, MeasureSpec.AT_MOST)
         mvMenuWrap.measure(menuWithMeasureSpec, MeasureSpec.makeMeasureSpec(contentMeasureHeight, MeasureSpec.EXACTLY))
-        maxDX = mvMenuWrap.measuredWidth
-        Log.d(tag, "mvMenuWrap.measuredHeight => ${mvMenuWrap.measuredHeight}")
-        Log.d(tag, "mvMenuWrap.measuredWidth => ${mvMenuWrap.measuredWidth}")
+        mMaxDX = mvMenuWrap.measuredWidth
 
         // 测量自己
         // 宽度就是前面的总和，高度和内容一样
-
         setMeasuredDimension(widthSize + mvMenuWrap.measuredWidth, contentMeasureHeight)
 
     }

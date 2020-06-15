@@ -9,11 +9,12 @@
 
     <com.owulia.wowcool.widget.WowSlideMenuView
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="wrap_content">
         <com.owulia.wowcool.widget.WowSlideContentWrap
+            android:id="@+id/wscContent"
             android:background="#334455"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="50dp">
             <TextView
                 android:text="测试"
                 android:layout_width="wrap_content"
@@ -23,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
             <LinearLayout
+                android:id="@+id/btn1"
                 android:background="#ff3344"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
@@ -32,6 +34,7 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/btn2"
                 android:background="#889900"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
@@ -41,6 +44,7 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/btn3"
                 android:background="#115544"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">

@@ -28,6 +28,7 @@ class MainFragment : Fragment() {
 
     private var arrDemoItem = mutableListOf<DemoItemBean>()
 
+    private var TAG = "MainFragmentT"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -108,6 +109,21 @@ class MainFragment : Fragment() {
 //            }
 //        }
 
+
+        wscContent.setOnClickListener {
+            Log.d(TAG, "主体部分")
+        }
+
+        btn1.setOnClickListener {
+            Log.d(TAG, "删除")
+        }
+
+        btn2.setOnClickListener {
+            Log.d(TAG, "按钮2")
+        }
+        btn3.setOnClickListener {
+            Log.d(TAG, "按钮3")
+        }
     }
 
 }
