@@ -164,9 +164,8 @@ class WowSlideMenuView @JvmOverloads constructor(
         // 宽度，跟父控件一样宽，高度有三种情况，如果指定大小，那么我们获取
         // 到它的大小，直接测了
         // 如果是包内容，at_most 如果是 match_parent，那就给它大小
-        val contentHeight = mvContentWrap.layoutParams.height
         val contentHeightMeasureSpec =
-            when (contentHeight) {
+            when (val contentHeight = mvContentWrap.layoutParams.height) {
                 LayoutParams.MATCH_PARENT -> MeasureSpec.makeMeasureSpec(heightSize, MeasureSpec.EXACTLY)
                 LayoutParams.WRAP_CONTENT -> MeasureSpec.makeMeasureSpec(heightSize, MeasureSpec.AT_MOST)
                 else -> MeasureSpec.makeMeasureSpec(contentHeight, MeasureSpec.EXACTLY)
@@ -207,13 +206,7 @@ class WowSlideMenuView @JvmOverloads constructor(
 
 class WowSlideMenuWrap @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr) {
-
-    init {
-        orientation = HORIZONTAL
-    }
-
-}
+) : LinearLayout(context, attrs, defStyleAttr)
 
 class WowSlideContentWrap @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

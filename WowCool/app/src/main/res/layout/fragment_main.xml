@@ -14,11 +14,14 @@
             android:id="@+id/wscContent"
             android:background="#334455"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:paddingTop="10dp"
+            android:layout_height="150dp">
             <TextView
                 android:text="测试"
+                android:background="#ff0000"
+                android:paddingTop="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="20dp"/>
         </com.owulia.wowcool.widget.WowSlideContentWrap>
         <com.owulia.wowcool.widget.WowSlideMenuWrap
             android:layout_width="wrap_content"
