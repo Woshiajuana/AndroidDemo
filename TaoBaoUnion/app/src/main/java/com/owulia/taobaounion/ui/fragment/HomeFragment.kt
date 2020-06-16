@@ -11,5 +11,8 @@ class HomeFragment : BaseFragment() {
 
     override fun getRootViewResId(): Int = R.layout.fragment_home
 
+    override fun loadData () {
+        // 加载数据
 
+    }
 }

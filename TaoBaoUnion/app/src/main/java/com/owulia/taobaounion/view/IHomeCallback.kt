@@ -1,9 +1,11 @@
 package com.owulia.taobaounion.view
 
+import com.owulia.taobaounion.model.domain.Categories
+
 interface IHomeCallback {
 
     /**
      *
      * */
-    fun onCategoriesLoaded()
+    fun onCategoriesLoaded(categories: Categories)
 }

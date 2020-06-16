@@ -13,8 +13,18 @@ abstract class BaseFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(getRootViewResId(), container, false)
+        val rootView = inflater.inflate(getRootViewResId(), container, false)
+        initPresenter()
+        loadData()
+        return rootView
     }
 
+    // 创建 presenter
+    open fun initPresenter () {}
+
+    // 加载数据
+    open fun loadData () {}
+
     protected abstract fun getRootViewResId(): Int
+
 }
