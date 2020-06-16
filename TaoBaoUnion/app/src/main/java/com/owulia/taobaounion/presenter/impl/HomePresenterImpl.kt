@@ -4,12 +4,9 @@ import com.owulia.taobaounion.presenter.IHomePresenter
 import com.owulia.taobaounion.view.IHomeCallback
 
 class HomePresenterImpl : IHomePresenter {
-    override fun getCategories() {
-    }
+    override fun getCategories() {}
 
-    override fun registerCallback(callback: IHomeCallback) {
-    }
+    override fun registerCallback(callback: IHomeCallback) {}
 
-    override fun unregisterCallback(callback: IHomeCallback) {
-    }
+    override fun unregisterCallback(callback: IHomeCallback) {}
 }

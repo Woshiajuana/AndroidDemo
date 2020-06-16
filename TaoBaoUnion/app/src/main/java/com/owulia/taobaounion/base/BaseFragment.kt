@@ -19,6 +19,14 @@ abstract class BaseFragment : Fragment() {
         return rootView
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        release()
+    }
+
+    // 释放资源 presenter
+    open fun release () {}
+
     // 创建 presenter
     open fun initPresenter () {}
 
