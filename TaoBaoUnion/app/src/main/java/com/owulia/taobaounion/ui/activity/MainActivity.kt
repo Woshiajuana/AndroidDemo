@@ -2,14 +2,12 @@ package com.owulia.taobaounion.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import com.owulia.taobaounion.R
 import com.owulia.taobaounion.base.BaseFragment
 import com.owulia.taobaounion.ui.fragment.HomeFragment
 import com.owulia.taobaounion.ui.fragment.RedPackerFragment
 import com.owulia.taobaounion.ui.fragment.SearchFragment
 import com.owulia.taobaounion.ui.fragment.SelectedFragment
-import com.owulia.taobaounion.utils.LogUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         mSelectedFragment = SelectedFragment()
         mRedPackerFragment = RedPackerFragment()
         mSearchFragment = SearchFragment()
+        switchFragment (mHomeFragment)
     }
 
     private fun initListener () {
