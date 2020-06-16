@@ -2,6 +2,7 @@ package com.owulia.taobaounion.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.owulia.taobaounion.R
 import com.owulia.taobaounion.base.BaseFragment
 import com.owulia.taobaounion.ui.fragment.HomeFragment
@@ -41,6 +42,16 @@ class TestActivity : AppCompatActivity() {
                 R.id.search -> switchFragment (mSearchFragment)
             }
         }
+
+//        navBar.setOnClickListener(object : View.OnClickListener{
+//            override fun onClick(p0: View?) {
+//                TODO("Not yet implemented")
+//            }
+//        })
+//
+//        navBar.setOnClickListener {
+//
+//        }
     }
 
     private fun switchFragment (targetFragment: BaseFragment) {
