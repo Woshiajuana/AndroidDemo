@@ -24,7 +24,7 @@ abstract class BaseFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        rootView = inflater.inflate(R.layout.base_fragment_layout, container, false)
+        rootView = inflater.inflate(getBaseViewResId(), container, false)
         val containerView = rootView?.findViewById<ViewGroup>(R.id.baseContainer)
         loadStateView(inflater, containerView)
         return rootView
@@ -54,6 +54,9 @@ abstract class BaseFragment : Fragment() {
         container?.addView(loadingView)
         // 错误页面 View
         errorView = inflater.inflate(R.layout.fragment_error, container, false)
+        errorView?.findViewById<View>(R.id.vNetWorkError)?.setOnClickListener {
+            onRetry()
+        }
         container?.addView(errorView)
         // 空页面
         emptyView = inflater.inflate(R.layout.fragment_empty, container, false)
@@ -81,6 +84,9 @@ abstract class BaseFragment : Fragment() {
         return inflater.inflate(getRootViewResId(), container, false)
     }
 
+    // 点击重试
+    open fun onRetry () {}
+
     // 初始化 view
     open fun initView(view: View?) {}
 
@@ -92,6 +98,9 @@ abstract class BaseFragment : Fragment() {
 
     // 加载数据
     open fun loadData() {}
+
+    // 基础
+    open fun getBaseViewResId() = R.layout.base_fragment_layout
 
     protected abstract fun getRootViewResId(): Int
 

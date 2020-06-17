@@ -24,6 +24,7 @@ class HomePresenterImpl : IHomePresenter {
             override fun onFailure(call: Call<Categories>, t: Throwable) {
                 // 加载失败
                 LogUtil.e(this, "请求错误 => $t")
+                mCallback?.onNetworkError()
             }
             override fun onResponse(call: Call<Categories>, response: Response<Categories>) {
                 // 数据结果

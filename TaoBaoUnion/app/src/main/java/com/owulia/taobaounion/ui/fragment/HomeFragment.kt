@@ -20,6 +20,8 @@ class HomeFragment : BaseFragment(), IHomeCallback {
     private var mHomePresenter: IHomePresenter? = null
     private var homePagerAdapter: HomePagerAdapter? = null
 
+    override fun getBaseViewResId() = R.layout.base_home_fragment_layout
+
     override fun getRootViewResId(): Int = R.layout.fragment_home
 
     override fun initView(view: View?) {
@@ -39,6 +41,13 @@ class HomeFragment : BaseFragment(), IHomeCallback {
     override fun loadData () {
         // 加载数据
         mHomePresenter?.getCategories()
+    }
+
+    override fun onRetry() {
+        super.onRetry()
+        // 网络错误点击重试
+        // 重新加载
+        loadData()
     }
 
     override fun onCategoriesLoaded(categories: Categories) {
