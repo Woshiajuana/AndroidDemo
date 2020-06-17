@@ -1,5 +1,6 @@
 package com.owulia.taobaounion.ui.fragment
 
+import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.owulia.taobaounion.R
@@ -8,6 +9,7 @@ import com.owulia.taobaounion.model.domain.Categories
 import com.owulia.taobaounion.presenter.IHomePresenter
 import com.owulia.taobaounion.presenter.impl.HomePresenterImpl
 import com.owulia.taobaounion.ui.adapter.HomePagerAdapter
+import com.owulia.taobaounion.utils.LogUtil
 import com.owulia.taobaounion.view.IHomeCallback
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -23,8 +25,10 @@ class HomeFragment : BaseFragment(), IHomeCallback {
 
     override fun initView(view: View) {
         super.initView(view)
-        mHomeIndicator.setupWithViewPager(mHomePager)
         homePagerAdapter = HomePagerAdapter(childFragmentManager)
+        LogUtil.d(this, "mHomePager => $mHomePager")
+        mHomePager.adapter = homePagerAdapter
+        mHomeIndicator.setupWithViewPager(mHomePager)
     }
 
     override fun initPresenter() {

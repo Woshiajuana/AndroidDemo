@@ -8,16 +8,22 @@ import androidx.fragment.app.Fragment
 
 abstract class BaseFragment : Fragment() {
 
+    private lateinit var rootView: View
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(getRootViewResId(), container, false)
+        rootView = inflater.inflate(getRootViewResId(), container, false)
+        return rootView
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         initView(rootView)
         initPresenter()
         loadData()
-        return rootView
     }
 
     override fun onDestroyView() {
