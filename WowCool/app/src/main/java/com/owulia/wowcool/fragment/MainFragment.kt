@@ -51,7 +51,7 @@ class MainFragment : Fragment() {
                 getString(R.string.string_tab_bar_mine), MineFragment()
             )
             setDivider(true, 1)
-            build(requireActivity().supportFragmentManager)
+            build(childFragmentManager)
         }
 
     }
