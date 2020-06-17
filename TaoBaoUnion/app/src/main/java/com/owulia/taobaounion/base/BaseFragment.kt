@@ -14,6 +14,7 @@ abstract class BaseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(getRootViewResId(), container, false)
+        initView(rootView)
         initPresenter()
         loadData()
         return rootView
@@ -23,6 +24,9 @@ abstract class BaseFragment : Fragment() {
         super.onDestroyView()
         release()
     }
+
+    // 初始化 view
+    open fun initView (view: View) {}
 
     // 释放资源 presenter
     open fun release () {}

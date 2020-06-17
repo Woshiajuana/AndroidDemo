@@ -13,6 +13,8 @@ import java.net.HttpURLConnection
 
 class HomePresenterImpl : IHomePresenter {
 
+    private var mCallback: IHomeCallback? = null
+
     // 加载分类数据
     override fun getCategories() {
         val api = RetrofitManager.instant.retrofit.create(Api::class.java)
@@ -31,6 +33,7 @@ class HomePresenterImpl : IHomePresenter {
                     // 请求成功
                     val categories = response.body()
                     LogUtil.d(this, "result categories is => ${categories.toString()}")
+                    categories?.let { mCallback?.onCategoriesLoaded(it) }
                 } else {
                     // 请求失败
                     LogUtil.i(this, "请求失败")
@@ -39,7 +42,11 @@ class HomePresenterImpl : IHomePresenter {
         })
     }
 
-    override fun registerCallback(callback: IHomeCallback) {}
+    override fun registerCallback(callback: IHomeCallback) {
+        mCallback = callback
+    }
 
-    override fun unregisterCallback(callback: IHomeCallback) {}
+    override fun unregisterCallback(callback: IHomeCallback) {
+        mCallback = null
+    }
 }
