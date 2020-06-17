@@ -6,6 +6,7 @@ import com.owulia.taobaounion.presenter.ICategoryPagerPresenter
 import com.owulia.taobaounion.utils.LogUtil
 import com.owulia.taobaounion.utils.RetrofitManager
 import com.owulia.taobaounion.utils.UrlUtil
+import com.owulia.taobaounion.view.ICategoryPagerCallback
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,15 +16,18 @@ class CategoryPagerPresenterImpl private constructor() : ICategoryPagerPresenter
 
     private val pagesInfo = HashMap<Int, Int>()
 
-
     companion object {
         const val DEFAULT_PAGE = 1
         val instant by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { CategoryPagerPresenterImpl() }
     }
 
     override fun getContentByCategoryId(categoryId: Int) {
-        // 加载内容
+        callbacks.forEach {
+            it.onLoading(categoryId)
+        }
+        LogUtil.d(this, "getContentByCategoryId 开始请求数据")
         val api = RetrofitManager.instant.retrofit.create(Api::class.java)
+        // 加载内容
         var targetPage = pagesInfo[categoryId]
         if (targetPage == null) {
             targetPage = DEFAULT_PAGE
@@ -36,7 +40,9 @@ class CategoryPagerPresenterImpl private constructor() : ICategoryPagerPresenter
             override fun onFailure(call: Call<HomePagerContent>, t: Throwable) {
                 // 加载失败
                 LogUtil.e(this, "请求错误 => $t")
+                handleNetworkError(categoryId)
             }
+
             override fun onResponse(
                 call: Call<HomePagerContent>,
                 response: Response<HomePagerContent>
@@ -45,16 +51,35 @@ class CategoryPagerPresenterImpl private constructor() : ICategoryPagerPresenter
                 val code = response.code()
                 LogUtil.d(this, "result code is => $code")
                 if (code == HttpURLConnection.HTTP_OK) {
+                    val pageContent = response.body()
                     // 请求成功
-                    LogUtil.i(this, "请求成功${response.body()}")
+                    LogUtil.i(this, "请求成功 $pageContent")
+                    handleHomePagerContentResult(pageContent, categoryId)
                 } else {
                     // 请求失败
                     LogUtil.i(this, "请求失败")
+                    handleNetworkError(categoryId)
                 }
             }
         })
+    }
 
-        LogUtil.d(this, "url11 => $url")
+    private fun handleNetworkError (categoryId: Int) {
+        callbacks.forEach {
+            it.onError(categoryId)
+        }
+    }
+
+    private fun handleHomePagerContentResult (pagerContent: HomePagerContent?, categoryId: Int) {
+        // 通知 UI 层通知数据
+        callbacks.forEach {
+            if (pagerContent == null || pagerContent.data.isEmpty()) {
+                it.onEmpty(categoryId)
+            } else {
+                it.onContentLoad(pagerContent.data, categoryId)
+            }
+        }
+
     }
 
     override fun loaderMore(categoryId: Int) {
@@ -65,11 +90,17 @@ class CategoryPagerPresenterImpl private constructor() : ICategoryPagerPresenter
 //        TODO("Not yet implemented")
     }
 
-    override fun registerViewCallback(callback: ICategoryPagerPresenter) {
-//        TODO("Not yet implemented")
+    private val callbacks = ArrayList<ICategoryPagerCallback>()
+
+    override fun registerViewCallback(callback: ICategoryPagerCallback) {
+        if (!callbacks.contains(callback)) {
+            callbacks.add(callback)
+        }
     }
 
-    override fun unregisterViewCallback(callback: ICategoryPagerPresenter) {
-//        TODO("Not yet implemented")
+    override fun unregisterViewCallback(callback: ICategoryPagerCallback) {
+        if (callbacks.contains(callback)) {
+            callbacks.remove(callback)
+        }
     }
 }

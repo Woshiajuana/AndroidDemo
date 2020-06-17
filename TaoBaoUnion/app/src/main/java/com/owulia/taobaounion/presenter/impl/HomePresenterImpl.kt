@@ -26,6 +26,7 @@ class HomePresenterImpl : IHomePresenter {
                 LogUtil.e(this, "请求错误 => $t")
                 mCallback?.onNetworkError()
             }
+
             override fun onResponse(call: Call<Categories>, response: Response<Categories>) {
                 // 数据结果
                 val code = response.code()

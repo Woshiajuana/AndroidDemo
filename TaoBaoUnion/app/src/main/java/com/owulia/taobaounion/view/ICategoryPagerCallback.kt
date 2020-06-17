@@ -5,27 +5,33 @@ import com.owulia.taobaounion.model.domain.HomePagerContent
 interface ICategoryPagerCallback {
 
     // 数据加载回来
-    fun onContentLoad(contents: List<HomePagerContent.Data>)
+    fun onContentLoad(contents: List<HomePagerContent.Data>, categoryId: Int)
 
     // 加载中
-    fun onLoading (category: Int)
+    fun onLoading(categoryId: Int)
 
     // 错误
-    fun onError (category: Int)
+    fun onError(categoryId: Int)
 
     // 数据为空
-    fun onEmpty (category: Int)
+    fun onEmpty(categoryId: Int)
 
     // 加载更多错误
-    fun onLoadMoreError (category: Int)
+    fun onLoadMoreError(categoryId: Int)
 
     // 没有更多内容
-    fun onLoadMoreEmpty (category: Int)
+    fun onLoadMoreEmpty(categoryId: Int)
 
     // 加载更多成功
-    fun onLoadMoreLoaded (contents: List<HomePagerContent.Data>)
+    fun onLoadMoreLoaded(
+        contents: List<HomePagerContent.Data>,
+        categoryId: Int
+    )
 
     // 轮播图
-    fun onLooperListLoaded (contents: List<HomePagerContent.Data>)
+    fun onLooperListLoaded(
+        contents: List<HomePagerContent.Data>,
+        categoryId: Int
+    )
 
 }

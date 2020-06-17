@@ -9,15 +9,16 @@ import android.view.ViewGroup
 import com.owulia.taobaounion.R
 import com.owulia.taobaounion.base.BaseFragment
 import com.owulia.taobaounion.model.domain.Categories
-import com.owulia.taobaounion.presenter.ICategoryPagerPresenter
+import com.owulia.taobaounion.model.domain.HomePagerContent
 import com.owulia.taobaounion.presenter.impl.CategoryPagerPresenterImpl
 import com.owulia.taobaounion.utils.Constants
 import com.owulia.taobaounion.utils.LogUtil
+import com.owulia.taobaounion.view.ICategoryPagerCallback
 
 /**
  * A simple [Fragment] subclass.
  */
-class HomePagerFragment : BaseFragment (), ICategoryPagerPresenter {
+class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
 
     private var mCategoryPagerPresenterImpl: CategoryPagerPresenterImpl? = null
 
@@ -36,7 +37,6 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerPresenter {
 
     override fun initView(view: View?) {
         super.initView(view)
-        setUpState(State.SUCCESS)
     }
 
     override fun initPresenter() {
@@ -54,23 +54,40 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerPresenter {
         mCategoryPagerPresenterImpl?.getContentByCategoryId(materialId!!)
     }
 
-    override fun getContentByCategoryId(categoryId: Int) {
+    override fun onContentLoad(contents: List<HomePagerContent.Data>, categoryId: Int) {
+        // 数据列表加载
+        // TODO 更新 UI
+        setUpState(State.SUCCESS)
     }
 
-    override fun loaderMore(categoryId: Int) {
+    override fun onLoading(categoryId: Int) {
+        setUpState(State.LOADING)
     }
 
-    override fun reload(categoryId: Int) {
+    override fun onError(categoryId: Int) {
+        // 网络错误
+        setUpState(State.ERROR)
     }
 
-    override fun registerViewCallback(callback: ICategoryPagerPresenter) {
+    override fun onEmpty(categoryId: Int) {
+        setUpState(State.EMPTY)
     }
 
-    override fun unregisterViewCallback(callback: ICategoryPagerPresenter) {
+    override fun onLoadMoreError(categoryId: Int) {
+    }
+
+    override fun onLoadMoreEmpty(categoryId: Int) {
+    }
+
+    override fun onLoadMoreLoaded(contents: List<HomePagerContent.Data>, categoryId: Int) {
+    }
+
+    override fun onLooperListLoaded(contents: List<HomePagerContent.Data>, categoryId: Int) {
     }
 
     override fun release() {
         super.release()
+        LogUtil.d(this, "releasereleasereleasereleaserelease")
         mCategoryPagerPresenterImpl?.unregisterViewCallback(this)
     }
 }
