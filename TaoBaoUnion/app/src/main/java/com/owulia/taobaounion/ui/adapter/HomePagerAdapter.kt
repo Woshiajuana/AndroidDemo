@@ -15,7 +15,7 @@ class HomePagerAdapter (fragmentManager: FragmentManager) : FragmentPagerAdapter
     }
 
     override fun getItem(position: Int): Fragment {
-        return HomePagerFragment()
+        return HomePagerFragment.instant(categoryList[position])
     }
 
     override fun getCount(): Int {
