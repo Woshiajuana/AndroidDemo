@@ -29,7 +29,9 @@ class CategoryPagerPresenterImpl private constructor() : ICategoryPagerPresenter
             targetPage = DEFAULT_PAGE
             pagesInfo[categoryId] = targetPage
         }
-        val task = api.getContentByCategoryId(UrlUtil.createHomePagerUrl(categoryId, targetPage))
+        val url = UrlUtil.createHomePagerUrl(categoryId, targetPage)
+        val task = api.getContentByCategoryId(url)
+        LogUtil.d(this, "url => $url")
         task.enqueue(object : Callback<HomePagerContent> {
             override fun onFailure(call: Call<HomePagerContent>, t: Throwable) {
                 // 加载失败
@@ -44,12 +46,15 @@ class CategoryPagerPresenterImpl private constructor() : ICategoryPagerPresenter
                 LogUtil.d(this, "result code is => $code")
                 if (code == HttpURLConnection.HTTP_OK) {
                     // 请求成功
+                    LogUtil.i(this, "请求成功${response.body()}")
                 } else {
                     // 请求失败
                     LogUtil.i(this, "请求失败")
                 }
             }
         })
+
+        LogUtil.d(this, "url11 => $url")
     }
 
     override fun loaderMore(categoryId: Int) {

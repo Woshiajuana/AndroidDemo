@@ -12,6 +12,7 @@ import com.owulia.taobaounion.model.domain.Categories
 import com.owulia.taobaounion.presenter.ICategoryPagerPresenter
 import com.owulia.taobaounion.presenter.impl.CategoryPagerPresenterImpl
 import com.owulia.taobaounion.utils.Constants
+import com.owulia.taobaounion.utils.LogUtil
 
 /**
  * A simple [Fragment] subclass.
@@ -49,6 +50,7 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerPresenter {
         val title = arguments?.getString(Constants.KEY_HOME_PAGER_TITLE)
         val materialId = arguments?.getInt(Constants.KEY_HOME_PAGER_MATERIAL_ID)
         // 加载数据
+        LogUtil.d(this, "loadData materialId => $materialId ")
         mCategoryPagerPresenterImpl?.getContentByCategoryId(materialId!!)
     }
 
