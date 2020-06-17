@@ -5,17 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.owulia.taobaounion.R
+import kotlinx.android.synthetic.main.base_fragment_layout.*
 
 abstract class BaseFragment : Fragment() {
 
-    private lateinit var rootView: View
+    private var rootView: View? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        rootView = inflater.inflate(getRootViewResId(), container, false)
+        rootView = inflater.inflate(R.layout.base_fragment_layout, container, false)
+        val containerView = rootView?.findViewById<ViewGroup>(R.id.baseContainer)
+        loadStateView(inflater, containerView)
         return rootView
     }
 
@@ -31,8 +35,21 @@ abstract class BaseFragment : Fragment() {
         release()
     }
 
+    private fun loadStateView  (
+        inflater: LayoutInflater,
+        container: ViewGroup?)  {
+        val successView = loadSuccessView(inflater, container)
+        container?.addView(successView)
+    }
+
+    private fun loadSuccessView (
+        inflater: LayoutInflater,
+        container: ViewGroup?): View {
+        return inflater.inflate(getRootViewResId(), container, false)
+    }
+
     // 初始化 view
-    open fun initView (view: View) {}
+    open fun initView (view: View?) {}
 
     // 释放资源 presenter
     open fun release () {}

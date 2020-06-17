@@ -22,7 +22,7 @@ class HomeFragment : BaseFragment(), IHomeCallback {
 
     override fun getRootViewResId(): Int = R.layout.fragment_home
 
-    override fun initView(view: View) {
+    override fun initView(view: View?) {
         super.initView(view)
         homePagerAdapter = HomePagerAdapter(childFragmentManager)
         LogUtil.d(this, "mHomePager => $mHomePager")
