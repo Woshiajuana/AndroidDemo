@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.fragment.HomeFragment">
 
@@ -47,11 +48,17 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/mHomeIndicator"
+        app:tabMode="scrollable"
+        app:tabIndicatorColor="@color/colorTabSelect"
+        app:tabTextColor="@color/colorTabNormal"
+        app:tabSelectedTextColor="@color/colorTabSelect"
+        android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="30dp"/>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/mHomePager"
+        android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
