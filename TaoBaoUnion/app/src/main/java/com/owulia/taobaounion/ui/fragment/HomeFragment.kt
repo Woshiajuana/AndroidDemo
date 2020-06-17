@@ -35,7 +35,7 @@ class HomeFragment : BaseFragment(), IHomeCallback {
     override fun initPresenter() {
         super.initPresenter()
         mHomePresenter = HomePresenterImpl()
-        mHomePresenter?.registerCallback(this)
+        mHomePresenter?.registerViewCallback(this)
     }
 
     override fun loadData () {
@@ -69,6 +69,6 @@ class HomeFragment : BaseFragment(), IHomeCallback {
 
     override fun release() {
         super.release()
-        mHomePresenter?.unregisterCallback(this)
+        mHomePresenter?.unregisterViewCallback(this)
     }
 }

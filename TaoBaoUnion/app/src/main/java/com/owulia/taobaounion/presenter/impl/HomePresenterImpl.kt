@@ -48,11 +48,11 @@ class HomePresenterImpl : IHomePresenter {
         })
     }
 
-    override fun registerCallback(callback: IHomeCallback) {
+    override fun registerViewCallback(callback: IHomeCallback) {
         mCallback = callback
     }
 
-    override fun unregisterCallback(callback: IHomeCallback) {
+    override fun unregisterViewCallback(callback: IHomeCallback) {
         mCallback = null
     }
 }
