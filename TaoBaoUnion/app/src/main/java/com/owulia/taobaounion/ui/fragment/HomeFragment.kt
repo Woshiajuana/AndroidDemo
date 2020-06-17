@@ -42,7 +42,20 @@ class HomeFragment : BaseFragment(), IHomeCallback {
     }
 
     override fun onCategoriesLoaded(categories: Categories) {
+        setUpState(State.SUCCESS)
         homePagerAdapter?.setCategories(categories)
+    }
+
+    override fun onNetworkError() {
+        setUpState(State.ERROR)
+    }
+
+    override fun onLoading() {
+        setUpState(State.LOADING)
+    }
+
+    override fun onEmpty() {
+        setUpState(State.EMPTY)
     }
 
     override fun release() {

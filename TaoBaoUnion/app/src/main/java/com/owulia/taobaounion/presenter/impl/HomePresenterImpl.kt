@@ -17,6 +17,7 @@ class HomePresenterImpl : IHomePresenter {
 
     // 加载分类数据
     override fun getCategories() {
+        mCallback?.onLoading()
         val api = RetrofitManager.instant.retrofit.create(Api::class.java)
         val task = api.getCategories()
         task.enqueue(object : Callback<Categories> {
@@ -24,7 +25,6 @@ class HomePresenterImpl : IHomePresenter {
                 // 加载失败
                 LogUtil.e(this, "请求错误 => $t")
             }
-
             override fun onResponse(call: Call<Categories>, response: Response<Categories>) {
                 // 数据结果
                 val code = response.code()
@@ -32,11 +32,16 @@ class HomePresenterImpl : IHomePresenter {
                 if (code == HttpURLConnection.HTTP_OK) {
                     // 请求成功
                     val categories = response.body()
-                    LogUtil.d(this, "result categories is => ${categories.toString()}")
-                    categories?.let { mCallback?.onCategoriesLoaded(it) }
+                    if (categories == null || categories.data.isEmpty()) {
+                        mCallback?.onEmpty()
+                    } else {
+                        LogUtil.d(this, "result categories is => ${categories.toString()}")
+                        mCallback?.onCategoriesLoaded(categories)
+                    }
                 } else {
                     // 请求失败
                     LogUtil.i(this, "请求失败")
+                    mCallback?.onNetworkError()
                 }
             }
         })

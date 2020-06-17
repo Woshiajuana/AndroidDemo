@@ -8,4 +8,11 @@ interface IHomeCallback {
      *
      * */
     fun onCategoriesLoaded(categories: Categories)
+
+    fun onNetworkError()
+
+    fun onLoading()
+
+    fun onEmpty()
+
 }
