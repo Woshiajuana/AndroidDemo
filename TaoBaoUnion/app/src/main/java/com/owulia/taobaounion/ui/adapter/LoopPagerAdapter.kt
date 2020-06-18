@@ -3,6 +3,7 @@ package com.owulia.taobaounion.ui.adapter
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.viewpager.widget.PagerAdapter
 import com.bumptech.glide.Glide
 import com.owulia.taobaounion.model.domain.HomePagerContent
@@ -21,6 +22,10 @@ class LoopPagerAdapter : PagerAdapter () {
         val iv = ImageView(container.context)
         val itemData = data[position]
         val url = UrlUtil.getCoverPath(itemData.pict_url)
+        iv.apply {
+            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
+            scaleType = ImageView.ScaleType.CENTER_CROP
+        }
         Glide.with(container.context)
             .load(url)
             .into(iv)
