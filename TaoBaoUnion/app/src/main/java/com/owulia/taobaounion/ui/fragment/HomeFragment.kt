@@ -53,6 +53,7 @@ class HomeFragment : BaseFragment(), IHomeCallback {
     override fun onCategoriesLoaded(categories: Categories) {
         setUpState(State.SUCCESS)
         homePagerAdapter?.setCategories(categories)
+//        mHomePager.offscreenPageLimit = categories.data.size
     }
 
     override fun onNetworkError() {

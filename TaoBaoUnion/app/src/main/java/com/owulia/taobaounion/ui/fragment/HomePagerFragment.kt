@@ -1,8 +1,11 @@
 package com.owulia.taobaounion.ui.fragment
 
 import android.graphics.Rect
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,8 +18,10 @@ import com.owulia.taobaounion.ui.adapter.HomePagerContentAdapter
 import com.owulia.taobaounion.ui.adapter.LoopPagerAdapter
 import com.owulia.taobaounion.utils.Constants
 import com.owulia.taobaounion.utils.LogUtil
+import com.owulia.taobaounion.utils.SizeUtil
 import com.owulia.taobaounion.view.ICategoryPagerCallback
 import kotlinx.android.synthetic.main.fragment_home_pager.*
+import kotlinx.android.synthetic.main.include_home_pager_title_part.*
 
 /**
  * A simple [Fragment] subclass.
@@ -67,6 +72,7 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
             mLoopPagerAdapter = LoopPagerAdapter()
             adapter = mLoopPagerAdapter
         }
+
     }
 
     override fun initPresenter() {
@@ -77,8 +83,8 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
 
     override fun loadData() {
         super.loadData()
-        val title = arguments?.getString(Constants.KEY_HOME_PAGER_TITLE)
         mMaterialId = arguments?.getInt(Constants.KEY_HOME_PAGER_MATERIAL_ID)
+        mHomePagerTitle.text = arguments?.getString(Constants.KEY_HOME_PAGER_TITLE)
         // 加载数据
         LogUtil.d(this, "loadData materialId => $mMaterialId ")
         mCategoryPagerPresenterImpl?.getContentByCategoryId(mMaterialId!!)
@@ -116,6 +122,21 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
 
     override fun onLooperListLoaded(contents: List<HomePagerContent.Data>, categoryId: Int) {
         mLoopPagerAdapter?.setData(contents)
+        looperPoint.removeAllViews()
+        // 添加点
+        val drawableNormal = context?.getDrawable(R.drawable.shape_indicator_point) as GradientDrawable
+        val drawableSelected = context?.getDrawable(R.drawable.shape_indicator_point) as GradientDrawable
+        drawableNormal.setColor(ContextCompat.getColor(context!!, android.R.color.white))
+        contents.forEachIndexed { index, _ ->
+            val point = View(context).apply {
+                layoutParams = LinearLayout.LayoutParams(SizeUtil.dp2px(context, 8f), SizeUtil.dp2px(context, 8f)).apply {
+                    marginEnd = SizeUtil.dp2px(context, 5f)
+                    marginStart = SizeUtil.dp2px(context, 5f)
+                }
+                background = if (index ==1) drawableSelected else drawableNormal
+            }
+            looperPoint.addView(point)
+        }
     }
 
     override fun release() {
