@@ -21,6 +21,7 @@ import com.owulia.taobaounion.view.ICategoryPagerCallback
 class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
 
     private var mCategoryPagerPresenterImpl: CategoryPagerPresenterImpl? = null
+    private var mMaterialId : Int? = null
 
     companion object {
         val instant: (Categories.Data) -> HomePagerFragment = {
@@ -48,28 +49,31 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
     override fun loadData() {
         super.loadData()
         val title = arguments?.getString(Constants.KEY_HOME_PAGER_TITLE)
-        val materialId = arguments?.getInt(Constants.KEY_HOME_PAGER_MATERIAL_ID)
+        mMaterialId = arguments?.getInt(Constants.KEY_HOME_PAGER_MATERIAL_ID)
         // 加载数据
-        LogUtil.d(this, "loadData materialId => $materialId ")
-        mCategoryPagerPresenterImpl?.getContentByCategoryId(materialId!!)
+        LogUtil.d(this, "loadData materialId => $mMaterialId ")
+        mCategoryPagerPresenterImpl?.getContentByCategoryId(mMaterialId!!)
     }
 
     override fun onContentLoad(contents: List<HomePagerContent.Data>, categoryId: Int) {
         // 数据列表加载
-        // TODO 更新 UI
+        if (mMaterialId != categoryId) return
         setUpState(State.SUCCESS)
     }
 
     override fun onLoading(categoryId: Int) {
+        if (mMaterialId != categoryId) return
         setUpState(State.LOADING)
     }
 
     override fun onError(categoryId: Int) {
         // 网络错误
+        if (mMaterialId != categoryId) return
         setUpState(State.ERROR)
     }
 
     override fun onEmpty(categoryId: Int) {
+        if (mMaterialId != categoryId) return
         setUpState(State.EMPTY)
     }
 
