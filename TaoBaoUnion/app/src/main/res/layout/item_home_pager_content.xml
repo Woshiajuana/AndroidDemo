@@ -30,7 +30,7 @@
 
         <TextView
             android:textColor="@android:color/white"
-            android:text="省15元"
+            android:text="@string/text_goods_off_prise"
             android:padding="2dp"
             android:textSize="12sp"
             android:id="@+id/goodsOffPrise"
@@ -54,6 +54,7 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_width="wrap_content"
                 android:textSize="12sp"
+                android:id="@+id/goodsAfterPrice"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:text="￥23"

@@ -39,7 +39,10 @@ class HomePagerContentAdapter : RecyclerView.Adapter<HomePagerContentHolder>() {
 class HomePagerContentHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun setData(itemData: HomePagerContent.Data) {
-        itemView.goodsTitle.text = itemData.title
+        itemView.apply {
+            goodsTitle.text = itemData.title
+            goodsOffPrise.text = String.format(itemView.context.getString(R.string.text_goods_off_prise), itemData.coupon_amount)
+        }
         val url = UrlUtil.getCoverPath(itemData.pict_url)
         Glide.with(itemView)
             .load(url)
