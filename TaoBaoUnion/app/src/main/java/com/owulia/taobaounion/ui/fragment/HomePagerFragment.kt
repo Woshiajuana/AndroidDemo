@@ -23,6 +23,7 @@ import com.owulia.taobaounion.ui.adapter.LoopPagerAdapter
 import com.owulia.taobaounion.utils.Constants
 import com.owulia.taobaounion.utils.LogUtil
 import com.owulia.taobaounion.utils.SizeUtil
+import com.owulia.taobaounion.utils.ToastUtil
 import com.owulia.taobaounion.view.ICategoryPagerCallback
 import kotlinx.android.synthetic.main.fragment_home_pager.*
 import kotlinx.android.synthetic.main.include_home_pager_title_part.*
@@ -108,11 +109,15 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
 
         twinklingRefreshLayout.setOnRefreshListener(object : RefreshListenerAdapter() {
             override fun onLoadMore(refreshLayout: TwinklingRefreshLayout?) {
-//                super.onLoadMore(refreshLayout)
                 LogUtil.d(this, "加载更多")
                 mCategoryPagerPresenterImpl?.loaderMore(mMaterialId!!)
             }
+
+            override fun onRefresh(refreshLayout: TwinklingRefreshLayout?) {
+//                mCategoryPagerPresenterImpl?.loaderMore(mMaterialId!!)
+            }
         })
+
     }
 
     private fun updateLooperIndicator (targetPosition: Int) {
@@ -155,16 +160,20 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
     }
 
     override fun onLoadMoreError(categoryId: Int) {
+        twinklingRefreshLayout?.finishLoadmore()
+        ToastUtil.showToast("网络异常，请稍后重试")
     }
 
     override fun onLoadMoreEmpty(categoryId: Int) {
-        Toast.makeText(context, "没有更多的商品", Toast.LENGTH_SHORT).show()
+        twinklingRefreshLayout?.finishLoadmore()
+        ToastUtil.showToast("没有更多的商品")
     }
 
     override fun onLoadMoreLoaded(contents: List<HomePagerContent.Data>, categoryId: Int) {
         // 添加到适配器数据的底部
         mHomePagerContentAdapter?.addData(contents)
         twinklingRefreshLayout?.finishLoadmore()
+        ToastUtil.showToast("加载了${contents.size}条数据")
     }
 
     override fun getCategoryId(): Int? {

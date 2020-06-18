@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.owulia.taobaounion.R
 import com.owulia.taobaounion.model.domain.HomePagerContent
+import com.owulia.taobaounion.utils.LogUtil
 import com.owulia.taobaounion.utils.UrlUtil
 import kotlinx.android.synthetic.main.item_home_pager_content.view.*
 
@@ -54,7 +55,8 @@ class HomePagerContentHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
             goodsOriginalPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             goodsNumber.text = String.format(context.getString(R.string.text_goods_number), itemData.volume)
         }
-        val url = UrlUtil.getCoverPath(itemData.pict_url)
+        val size = itemView.goodsCover.layoutParams.width / 2
+        val url = UrlUtil.getCoverPath(itemData.pict_url, size)
         Glide.with(itemView)
             .load(url)
             .into(itemView.goodsCover)
