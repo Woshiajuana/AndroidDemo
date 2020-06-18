@@ -35,6 +35,12 @@ class HomePagerContentAdapter : RecyclerView.Adapter<HomePagerContentHolder>() {
         data.addAll(contents)
         notifyDataSetChanged()
     }
+
+    fun addData(contents: List<HomePagerContent.Data>) {
+        val start = data.size
+        data.addAll(contents)
+        notifyItemRangeChanged(start, contents.size)
+    }
 }
 
 class HomePagerContentHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

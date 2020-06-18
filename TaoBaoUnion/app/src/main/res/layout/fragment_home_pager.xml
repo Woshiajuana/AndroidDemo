@@ -7,47 +7,55 @@
     android:background="@color/colorPagerBg"
     tools:context=".ui.fragment.HomePagerFragment">
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+        android:id="@+id/twinklingRefreshLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-
-        <LinearLayout
-            android:orientation="vertical"
+        <androidx.core.widget.NestedScrollView
+            android:overScrollMode="never"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
 
-            <RelativeLayout
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="125dp">
-                <androidx.viewpager.widget.ViewPager
+                android:layout_height="match_parent">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="125dp">
+                    <androidx.viewpager.widget.ViewPager
+                        android:overScrollMode="never"
+                        android:id="@+id/mLoopPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:id="@+id/looperPoint"
+                        android:gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <include layout="@layout/include_home_pager_title_part"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mContentList"
                     android:overScrollMode="never"
-                    android:id="@+id/mLoopPager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:id="@+id/looperPoint"
-                    android:gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </LinearLayout>
-            </RelativeLayout>
 
-            <include layout="@layout/include_home_pager_title_part"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mContentList"
-                android:overScrollMode="never"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-        </LinearLayout>
+            </LinearLayout>
 
 
-    </androidx.core.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
+
+    </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
 
 </LinearLayout>

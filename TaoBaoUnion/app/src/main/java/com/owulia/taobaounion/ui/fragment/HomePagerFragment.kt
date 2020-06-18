@@ -4,10 +4,15 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
+import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+import com.lcodecore.tkrefreshlayout.footer.LoadingView
+import com.lcodecore.tkrefreshlayout.header.SinaRefreshView
 import com.owulia.taobaounion.R
 import com.owulia.taobaounion.base.BaseFragment
 import com.owulia.taobaounion.model.domain.Categories
@@ -72,6 +77,14 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
             adapter = mLoopPagerAdapter
         }
 
+        // 设置 refresh 相关
+        twinklingRefreshLayout.apply {
+            setEnableRefresh(false)
+            setEnableLoadmore(true)
+//            setHeaderView(SinaRefreshView(context))
+            setBottomView(LoadingView(context))
+        }
+
     }
 
     // 监听事件
@@ -91,7 +104,14 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
                 val targetPosition = position % mLoopPagerAdapter!!.data.size
                 updateLooperIndicator(targetPosition)
             }
+        })
 
+        twinklingRefreshLayout.setOnRefreshListener(object : RefreshListenerAdapter() {
+            override fun onLoadMore(refreshLayout: TwinklingRefreshLayout?) {
+//                super.onLoadMore(refreshLayout)
+                LogUtil.d(this, "加载更多")
+                mCategoryPagerPresenterImpl?.loaderMore(mMaterialId!!)
+            }
         })
     }
 
@@ -138,9 +158,13 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
     }
 
     override fun onLoadMoreEmpty(categoryId: Int) {
+        Toast.makeText(context, "没有更多的商品", Toast.LENGTH_SHORT).show()
     }
 
     override fun onLoadMoreLoaded(contents: List<HomePagerContent.Data>, categoryId: Int) {
+        // 添加到适配器数据的底部
+        mHomePagerContentAdapter?.addData(contents)
+        twinklingRefreshLayout?.finishLoadmore()
     }
 
     override fun getCategoryId(): Int? {

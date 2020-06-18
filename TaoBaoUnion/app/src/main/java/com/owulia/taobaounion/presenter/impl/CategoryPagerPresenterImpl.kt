@@ -27,16 +27,13 @@ class CategoryPagerPresenterImpl private constructor() : ICategoryPagerPresenter
                 it.onLoading()
         }
         LogUtil.d(this, "getContentByCategoryId 开始请求数据")
-        val api = RetrofitManager.instant.retrofit.create(Api::class.java)
         // 加载内容
         var targetPage = pagesInfo[categoryId]
         if (targetPage == null) {
             targetPage = DEFAULT_PAGE
             pagesInfo[categoryId] = targetPage
         }
-        val url = UrlUtil.createHomePagerUrl(categoryId, targetPage)
-        val task = api.getContentByCategoryId(url)
-        LogUtil.d(this, "url => $url")
+        val task = createTask(categoryId, targetPage)
         task.enqueue(object : Callback<HomePagerContent> {
             override fun onFailure(call: Call<HomePagerContent>, t: Throwable) {
                 // 加载失败
@@ -65,6 +62,17 @@ class CategoryPagerPresenterImpl private constructor() : ICategoryPagerPresenter
         })
     }
 
+    private fun createTask(
+        categoryId: Int,
+        targetPage: Int
+    ): Call<HomePagerContent> {
+        val api = RetrofitManager.instant.retrofit.create(Api::class.java)
+        val url = UrlUtil.createHomePagerUrl(categoryId, targetPage)
+        val task = api.getContentByCategoryId(url)
+        LogUtil.d(this, "url => $url")
+        return task
+    }
+
     private fun handleNetworkError (categoryId: Int) {
         callbacks.forEach {
             if (it.getCategoryId() == categoryId)
@@ -88,11 +96,67 @@ class CategoryPagerPresenterImpl private constructor() : ICategoryPagerPresenter
     }
 
     override fun loaderMore(categoryId: Int) {
-//        TODO("Not yet implemented")
+        // 加载更多内容
+        // 拿到当前页码
+        // 页码++
+        // 处理数据结果
+        var currPage = pagesInfo[categoryId]
+        if (currPage == null) currPage = 1
+        currPage++
+        val task = createTask(categoryId, currPage)
+        task.enqueue(object : Callback<HomePagerContent> {
+            override fun onFailure(call: Call<HomePagerContent>, t: Throwable) {
+                // 加载失败
+                LogUtil.e(this, "请求错误 => $t")
+                handleHomePagerContentMoreError(categoryId)
+            }
+
+            override fun onResponse(
+                call: Call<HomePagerContent>,
+                response: Response<HomePagerContent>
+            ) {
+                // 数据结果
+                val code = response.code()
+                LogUtil.d(this, "result code is => $code")
+                if (code == HttpURLConnection.HTTP_OK) {
+                    val pageContent = response.body()
+                    // 请求成功
+                    pagesInfo[categoryId] = currPage
+                    LogUtil.i(this, "请求成功 $pageContent")
+                    handleHomePagerContentMoreResult(pageContent, categoryId)
+                } else {
+                    // 请求失败
+                    LogUtil.i(this, "请求失败")
+                    handleHomePagerContentMoreError(categoryId)
+                }
+            }
+
+        })
+    }
+
+    private fun handleHomePagerContentMoreError(categoryId: Int) {
+        callbacks.forEach {
+            if (it.getCategoryId() == categoryId)
+                it.onLoadMoreError(categoryId)
+        }
+    }
+
+    private fun handleHomePagerContentMoreResult (pagerContent: HomePagerContent?, categoryId: Int) {
+        val data = pagerContent?.data
+        // 通知 UI 层通知数据
+        callbacks.forEach {
+            if (it.getCategoryId() == categoryId) {
+                if (pagerContent == null || data == null || data.isEmpty()) {
+                    it.onLoadMoreEmpty(categoryId)
+                } else {
+                    it.onLoadMoreLoaded(data, categoryId)
+                }
+            }
+        }
     }
 
     override fun reload(categoryId: Int) {
-//        TODO("Not yet implemented")
+        loaderMore(categoryId)
     }
 
     private val callbacks = ArrayList<ICategoryPagerCallback>()
