@@ -23,7 +23,8 @@ class CategoryPagerPresenterImpl private constructor() : ICategoryPagerPresenter
 
     override fun getContentByCategoryId(categoryId: Int) {
         callbacks.forEach {
-            it.onLoading(categoryId)
+            if (it.getCategoryId() == categoryId)
+                it.onLoading()
         }
         LogUtil.d(this, "getContentByCategoryId 开始请求数据")
         val api = RetrofitManager.instant.retrofit.create(Api::class.java)
@@ -66,18 +67,22 @@ class CategoryPagerPresenterImpl private constructor() : ICategoryPagerPresenter
 
     private fun handleNetworkError (categoryId: Int) {
         callbacks.forEach {
-            it.onError(categoryId)
+            if (it.getCategoryId() == categoryId)
+                it.onNetworkError()
         }
     }
 
     private fun handleHomePagerContentResult (pagerContent: HomePagerContent?, categoryId: Int) {
         // 通知 UI 层通知数据
         callbacks.forEach {
-            if (pagerContent == null || pagerContent.data.isEmpty()) {
-                it.onEmpty(categoryId)
-            } else {
-                it.onContentLoad(pagerContent.data, categoryId)
+            if (it.getCategoryId() == categoryId) {
+                if (pagerContent == null || pagerContent.data.isEmpty()) {
+                    it.onEmpty()
+                } else {
+                    it.onContentLoad(pagerContent.data, categoryId)
+                }
             }
+
         }
 
     }

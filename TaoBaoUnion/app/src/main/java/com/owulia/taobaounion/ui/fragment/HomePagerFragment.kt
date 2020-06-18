@@ -56,24 +56,18 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
     }
 
     override fun onContentLoad(contents: List<HomePagerContent.Data>, categoryId: Int) {
-        // 数据列表加载
-        if (mMaterialId != categoryId) return
         setUpState(State.SUCCESS)
     }
 
-    override fun onLoading(categoryId: Int) {
-        if (mMaterialId != categoryId) return
+    override fun onLoading() {
         setUpState(State.LOADING)
     }
 
-    override fun onError(categoryId: Int) {
-        // 网络错误
-        if (mMaterialId != categoryId) return
+    override fun onNetworkError() {
         setUpState(State.ERROR)
     }
 
-    override fun onEmpty(categoryId: Int) {
-        if (mMaterialId != categoryId) return
+    override fun onEmpty() {
         setUpState(State.EMPTY)
     }
 
@@ -84,6 +78,10 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
     }
 
     override fun onLoadMoreLoaded(contents: List<HomePagerContent.Data>, categoryId: Int) {
+    }
+
+    override fun getCategoryId(): Int? {
+        return mMaterialId
     }
 
     override fun onLooperListLoaded(contents: List<HomePagerContent.Data>, categoryId: Int) {
