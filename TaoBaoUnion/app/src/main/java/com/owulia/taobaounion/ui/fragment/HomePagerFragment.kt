@@ -1,14 +1,13 @@
 package com.owulia.taobaounion.ui.fragment
 
 import android.graphics.Rect
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.owulia.taobaounion.R
 import com.owulia.taobaounion.base.BaseFragment
 import com.owulia.taobaounion.model.domain.Categories
@@ -75,6 +74,34 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
 
     }
 
+    // 监听事件
+    override fun initListener() {
+        mLoopPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+
+            }
+            override fun onPageSelected(position: Int) {
+                if (mLoopPagerAdapter!!.data.size == 0) return
+                val targetPosition = position % mLoopPagerAdapter!!.data.size
+                updateLooperIndicator(targetPosition)
+            }
+
+        })
+    }
+
+    private fun updateLooperIndicator (targetPosition: Int) {
+        for (i in 0 until looperPoint.childCount) {
+            val child = looperPoint.getChildAt(i)
+            child.setBackgroundResource(if (i == targetPosition) R.drawable.shape_indicator_point else R.drawable.shape_indicator_point_normal)
+        }
+    }
+
     override fun initPresenter() {
         super.initPresenter()
         mCategoryPagerPresenterImpl = CategoryPagerPresenterImpl.instant
@@ -122,21 +149,19 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
 
     override fun onLooperListLoaded(contents: List<HomePagerContent.Data>, categoryId: Int) {
         mLoopPagerAdapter?.setData(contents)
+        val dx = (Int.MAX_VALUE / 2) % contents.size
+        mLoopPager.currentItem = Int.MAX_VALUE / 2 - dx
         looperPoint.removeAllViews()
-        // 添加点
-        val drawableNormal = context?.getDrawable(R.drawable.shape_indicator_point) as GradientDrawable
-        val drawableSelected = context?.getDrawable(R.drawable.shape_indicator_point) as GradientDrawable
-        drawableNormal.setColor(ContextCompat.getColor(context!!, android.R.color.white))
-        contents.forEachIndexed { index, _ ->
+        contents.forEach {  _ ->
             val point = View(context).apply {
                 layoutParams = LinearLayout.LayoutParams(SizeUtil.dp2px(context, 8f), SizeUtil.dp2px(context, 8f)).apply {
                     marginEnd = SizeUtil.dp2px(context, 5f)
                     marginStart = SizeUtil.dp2px(context, 5f)
                 }
-                background = if (index ==1) drawableSelected else drawableNormal
             }
             looperPoint.addView(point)
         }
+        updateLooperIndicator(0)
     }
 
     override fun release() {

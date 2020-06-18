@@ -11,7 +11,7 @@ import com.owulia.taobaounion.utils.UrlUtil
 
 class LoopPagerAdapter : PagerAdapter () {
 
-    private var data = ArrayList<HomePagerContent.Data>()
+    var data = ArrayList<HomePagerContent.Data>()
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
 //        super.destroyItem(container, position, `object`)
@@ -19,8 +19,9 @@ class LoopPagerAdapter : PagerAdapter () {
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        val realPosition = position % data.size
         val iv = ImageView(container.context)
-        val itemData = data[position]
+        val itemData = data[realPosition]
         val url = UrlUtil.getCoverPath(itemData.pict_url)
         iv.apply {
             layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
@@ -38,7 +39,7 @@ class LoopPagerAdapter : PagerAdapter () {
     }
 
     override fun getCount(): Int {
-        return data.size
+        return Int.MAX_VALUE
     }
 
     fun setData(contents: List<HomePagerContent.Data>) {

@@ -33,6 +33,7 @@ abstract class BaseFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initView(rootView)
+        initListener()
         initPresenter()
         loadData()
     }
@@ -83,6 +84,9 @@ abstract class BaseFragment : Fragment() {
     ): View {
         return inflater.inflate(getRootViewResId(), container, false)
     }
+
+    // 绑定事件
+    open fun initListener () {}
 
     // 点击重试
     open fun onRetry () {}
