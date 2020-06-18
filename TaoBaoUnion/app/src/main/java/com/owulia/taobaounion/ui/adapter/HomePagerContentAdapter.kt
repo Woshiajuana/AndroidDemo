@@ -1,5 +1,6 @@
 package com.owulia.taobaounion.ui.adapter
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +42,11 @@ class HomePagerContentHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     fun setData(itemData: HomePagerContent.Data) {
         itemView.apply {
             goodsTitle.text = itemData.title
-            goodsOffPrise.text = String.format(itemView.context.getString(R.string.text_goods_off_prise), itemData.coupon_amount)
+            goodsOffPrise.text = String.format(context.getString(R.string.text_goods_off_prise), itemData.coupon_amount)
+            goodsAfterPrice.text = String.format("%.2f", (itemData.zk_final_price.toFloat()) - itemData.coupon_amount)
+            goodsOriginalPrice.text =String.format(context.getString(R.string.text_goods_original_price), itemData.zk_final_price)
+            goodsOriginalPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            goodsNumber.text = String.format(context.getString(R.string.text_goods_number), itemData.volume)
         }
         val url = UrlUtil.getCoverPath(itemData.pict_url)
         Glide.with(itemView)

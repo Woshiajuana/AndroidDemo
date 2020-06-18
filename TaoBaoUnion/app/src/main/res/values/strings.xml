@@ -11,4 +11,6 @@
     <string name="text_edit_hint">搜你想搜的宝贝</string>
     <string name="text_network_tip_error">网络错误，请点击重试...</string>
     <string name="text_goods_off_prise">省%1$d元</string>
+    <string name="text_goods_original_price">￥%1$s</string>
+    <string name="text_goods_number">%d人已购买</string>
 </resources>

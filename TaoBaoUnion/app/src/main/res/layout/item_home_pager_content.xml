@@ -57,15 +57,17 @@
                 android:id="@+id/goodsAfterPrice"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="￥23"
+                android:id="@+id/goodsOriginalPrice"
+                android:text="@string/text_goods_original_price"
                 android:layout_marginStart="10dp"
                 android:textColor="@color/colorGrey"
                 android:layout_width="wrap_content"
                 android:textSize="12sp"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="1000人已购买"
+                android:text="@string/text_goods_number"
                 android:layout_marginStart="10dp"
+                android:id="@+id/goodsNumber"
                 android:textColor="@color/colorGrey"
                 android:layout_width="wrap_content"
                 android:textSize="12sp"
