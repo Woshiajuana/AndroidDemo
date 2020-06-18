@@ -1,19 +1,21 @@
 package com.owulia.taobaounion.ui.fragment
 
+import android.graphics.Rect
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.owulia.taobaounion.R
 import com.owulia.taobaounion.base.BaseFragment
 import com.owulia.taobaounion.model.domain.Categories
 import com.owulia.taobaounion.model.domain.HomePagerContent
 import com.owulia.taobaounion.presenter.impl.CategoryPagerPresenterImpl
+import com.owulia.taobaounion.ui.adapter.HomePagerContentAdapter
 import com.owulia.taobaounion.utils.Constants
 import com.owulia.taobaounion.utils.LogUtil
 import com.owulia.taobaounion.view.ICategoryPagerCallback
+import kotlinx.android.synthetic.main.fragment_home_pager.*
 
 /**
  * A simple [Fragment] subclass.
@@ -22,6 +24,7 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
 
     private var mCategoryPagerPresenterImpl: CategoryPagerPresenterImpl? = null
     private var mMaterialId : Int? = null
+    private var mHomePagerContentAdapter : HomePagerContentAdapter? = null
 
     companion object {
         val instant: (Categories.Data) -> HomePagerFragment = {
@@ -38,6 +41,25 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
 
     override fun initView(view: View?) {
         super.initView(view)
+        // 设置布局管理器
+        // 创建适配器
+        // 设置适配器
+        mContentList.apply {
+            mHomePagerContentAdapter = HomePagerContentAdapter()
+            layoutManager = LinearLayoutManager(context)
+            adapter = mHomePagerContentAdapter
+            addItemDecoration(object : RecyclerView.ItemDecoration () {
+                override fun getItemOffsets(
+                    outRect: Rect,
+                    view: View,
+                    parent: RecyclerView,
+                    state: RecyclerView.State
+                ) {
+                    outRect.top = 10
+                    outRect.bottom = 10
+                }
+            })
+        }
     }
 
     override fun initPresenter() {
@@ -56,6 +78,7 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
     }
 
     override fun onContentLoad(contents: List<HomePagerContent.Data>, categoryId: Int) {
+        mHomePagerContentAdapter?.setData(contents)
         setUpState(State.SUCCESS)
     }
 

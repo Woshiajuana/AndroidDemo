@@ -6,4 +6,6 @@
     <color name="colorGrey">#7b7b7b</color>
     <color name="colorTabSelect">#ffffff</color>
     <color name="colorTabNormal">#aaffffff</color>
+    <color name="colorTmall">#d0021b</color>
+    <color name="colorPagerBg">#eeeeee</color>
 </resources>
