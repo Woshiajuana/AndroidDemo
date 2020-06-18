@@ -12,6 +12,7 @@ import com.owulia.taobaounion.model.domain.Categories
 import com.owulia.taobaounion.model.domain.HomePagerContent
 import com.owulia.taobaounion.presenter.impl.CategoryPagerPresenterImpl
 import com.owulia.taobaounion.ui.adapter.HomePagerContentAdapter
+import com.owulia.taobaounion.ui.adapter.LoopPagerAdapter
 import com.owulia.taobaounion.utils.Constants
 import com.owulia.taobaounion.utils.LogUtil
 import com.owulia.taobaounion.view.ICategoryPagerCallback
@@ -25,6 +26,7 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
     private var mCategoryPagerPresenterImpl: CategoryPagerPresenterImpl? = null
     private var mMaterialId : Int? = null
     private var mHomePagerContentAdapter : HomePagerContentAdapter? = null
+    private var mLoopPagerAdapter : LoopPagerAdapter? = null
 
     companion object {
         val instant: (Categories.Data) -> HomePagerFragment = {
@@ -59,6 +61,11 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
                     outRect.bottom = 10
                 }
             })
+        }
+
+        mLoopPager.apply {
+            mLoopPagerAdapter = LoopPagerAdapter()
+            adapter = mLoopPagerAdapter
         }
     }
 
@@ -108,11 +115,11 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
     }
 
     override fun onLooperListLoaded(contents: List<HomePagerContent.Data>, categoryId: Int) {
+        mLoopPagerAdapter?.setData(contents)
     }
 
     override fun release() {
         super.release()
-        LogUtil.d(this, "releasereleasereleasereleaserelease")
         mCategoryPagerPresenterImpl?.unregisterViewCallback(this)
     }
 }

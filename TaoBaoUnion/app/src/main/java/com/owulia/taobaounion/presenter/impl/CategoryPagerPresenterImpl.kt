@@ -73,18 +73,18 @@ class CategoryPagerPresenterImpl private constructor() : ICategoryPagerPresenter
     }
 
     private fun handleHomePagerContentResult (pagerContent: HomePagerContent?, categoryId: Int) {
+       val data = pagerContent?.data
         // 通知 UI 层通知数据
         callbacks.forEach {
             if (it.getCategoryId() == categoryId) {
-                if (pagerContent == null || pagerContent.data.isEmpty()) {
+                if (pagerContent == null || data == null || data.isEmpty()) {
                     it.onEmpty()
                 } else {
-                    it.onContentLoad(pagerContent.data, categoryId)
+                    it.onLooperListLoaded(data.subList(data.size - 5, data.size), categoryId)
+                    it.onContentLoad(data, categoryId)
                 }
             }
-
         }
-
     }
 
     override fun loaderMore(categoryId: Int) {

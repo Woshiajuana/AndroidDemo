@@ -7,6 +7,11 @@
     android:background="@color/colorPagerBg"
     tools:context=".ui.fragment.HomePagerFragment">
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/mLoopPager"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mContentList"
         android:overScrollMode="never"
