@@ -61,6 +61,7 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
         mContentList.apply {
             mHomePagerContentAdapter = HomePagerContentAdapter().apply {
                 setOnItemListener{
+                    // 拿到 Picker
                     LogUtil.d(this, "点击了 =>  ${it.goodsTitle.text} ")
                     startActivity(Intent(context, TicketActivity::class.java))
                 }
