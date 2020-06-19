@@ -10,6 +10,7 @@
     tools:context=".ui.activity.TicketActivity">
 
     <RelativeLayout
+        android:id="@+id/backBtn"
         android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="40dp">
@@ -29,12 +30,14 @@
     </RelativeLayout>
 
     <ImageView
+        android:id="@+id/tickerCover"
         android:layout_marginTop="33dp"
         android:src="@mipmap/ic_launcher"
         android:layout_width="300dp"
         android:layout_height="300dp"/>
     
     <EditText
+        android:id="@+id/tickerCode"
         android:text="xsxaxaxaxaxa"
         android:focusable="false"
         android:textSize="14sp"
@@ -46,6 +49,7 @@
         android:layout_height="40dp"/>
 
     <TextView
+        android:id="@+id/tickerButton"
         android:text="@string/text_ticker_btn"
         android:gravity="center"
         android:textSize="14sp"

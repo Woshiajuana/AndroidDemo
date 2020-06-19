@@ -11,11 +11,21 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(getLayoutResId())
         initView()
         initListener()
+        initPresenter()
     }
 
     open fun initView() {}
 
     open fun initListener() {}
 
+    open fun initPresenter () {}
+
+    open fun release () {}
+
     abstract fun getLayoutResId(): Int
+
+    override fun onDestroy() {
+        super.onDestroy()
+        release()
+    }
 }
