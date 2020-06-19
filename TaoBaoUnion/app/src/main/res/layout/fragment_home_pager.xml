@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.owulia.taobaounion.ui.custom.TbNestedScrollView
+        <com.lcodecore.tkrefreshlayout.view.TbNestedScrollView
             android:overScrollMode="never"
             android:id="@+id/tbNestedScrollView"
             android:layout_width="match_parent"
@@ -63,7 +63,7 @@
             </LinearLayout>
 
 
-        </com.owulia.taobaounion.ui.custom.TbNestedScrollView>
+        </com.lcodecore.tkrefreshlayout.view.TbNestedScrollView>
 
     </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
 

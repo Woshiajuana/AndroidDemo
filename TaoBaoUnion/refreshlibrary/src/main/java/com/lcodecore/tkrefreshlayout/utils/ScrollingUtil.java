@@ -32,6 +32,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.lcodecore.tkrefreshlayout.view.TbNestedScrollView;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -95,8 +97,13 @@ public class ScrollingUtil {
         if (view instanceof AbsListView) return isAbsListViewToBottom((AbsListView) view);
         if (view instanceof RecyclerView) return isRecyclerViewToBottom((RecyclerView) view);
         if (view instanceof WebView) return isWebViewToBottom((WebView) view, mTouchSlop);
+        if (view instanceof TbNestedScrollView) return isViewTbNestedToBottom((TbNestedScrollView) view);
         if (view instanceof ViewGroup) return isViewGroupToBottom((ViewGroup) view);
         return false;
+    }
+
+    public static boolean isViewTbNestedToBottom(TbNestedScrollView view) {
+        return view.isInBottom();
     }
 
     public static boolean isAbsListViewToTop(AbsListView absListView) {
