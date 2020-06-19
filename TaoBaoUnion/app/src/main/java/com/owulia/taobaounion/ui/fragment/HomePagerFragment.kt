@@ -1,5 +1,6 @@
 package com.owulia.taobaounion.ui.fragment
 
+import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
@@ -17,6 +18,7 @@ import com.owulia.taobaounion.base.BaseFragment
 import com.owulia.taobaounion.model.domain.Categories
 import com.owulia.taobaounion.model.domain.HomePagerContent
 import com.owulia.taobaounion.presenter.impl.CategoryPagerPresenterImpl
+import com.owulia.taobaounion.ui.activity.TicketActivity
 import com.owulia.taobaounion.ui.adapter.HomePagerContentAdapter
 import com.owulia.taobaounion.ui.adapter.LoopPagerAdapter
 import com.owulia.taobaounion.utils.Constants
@@ -26,6 +28,7 @@ import com.owulia.taobaounion.utils.ToastUtil
 import com.owulia.taobaounion.view.ICategoryPagerCallback
 import kotlinx.android.synthetic.main.fragment_home_pager.*
 import kotlinx.android.synthetic.main.include_home_pager_title_part.*
+import kotlinx.android.synthetic.main.item_home_pager_content.view.*
 
 /**
  * A simple [Fragment] subclass.
@@ -56,7 +59,12 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
         // 创建适配器
         // 设置适配器
         mContentList.apply {
-            mHomePagerContentAdapter = HomePagerContentAdapter()
+            mHomePagerContentAdapter = HomePagerContentAdapter().apply {
+                setOnItemListener{
+                    LogUtil.d(this, "点击了 =>  ${it.goodsTitle.text} ")
+                    startActivity(Intent(context, TicketActivity::class.java))
+                }
+            }
             layoutManager = LinearLayoutManager(context)
             adapter = mHomePagerContentAdapter
             addItemDecoration(object : RecyclerView.ItemDecoration () {

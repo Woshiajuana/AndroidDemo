@@ -8,18 +8,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.owulia.taobaounion.R
 import com.owulia.taobaounion.model.domain.HomePagerContent
-import com.owulia.taobaounion.utils.LogUtil
 import com.owulia.taobaounion.utils.UrlUtil
 import kotlinx.android.synthetic.main.item_home_pager_content.view.*
 
 class HomePagerContentAdapter : RecyclerView.Adapter<HomePagerContentHolder>() {
 
     private val data = ArrayList<HomePagerContent.Data>()
+    private var onItemListener: ((View) -> Unit)? = null
 
+    fun setOnItemListener (listener: ((View) -> Unit)?) {
+        onItemListener = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomePagerContentHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_home_pager_content, parent, false)
-        LogUtil.d(this, "onCreateViewHolder")
         return HomePagerContentHolder(view)
     }
 
@@ -29,7 +31,9 @@ class HomePagerContentAdapter : RecyclerView.Adapter<HomePagerContentHolder>() {
 
     override fun onBindViewHolder(holder: HomePagerContentHolder, position: Int) {
         val itemData = data[position]
-        LogUtil.d(this, "onBindViewHolder => $position")
+        holder.itemView.setOnClickListener {
+            onItemListener?.let { it1 -> it1(it) }
+        }
         holder.setData(itemData)
     }
 
