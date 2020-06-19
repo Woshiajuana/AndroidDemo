@@ -44,9 +44,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private var lastOneFragment: BaseFragment? = null
+
     private fun switchFragment (targetFragment: BaseFragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.main_page_container, targetFragment)
+        if (!targetFragment.isAdded) {
+            fragmentTransaction.add(R.id.main_page_container, targetFragment)
+        } else {
+            fragmentTransaction.show(targetFragment)
+        }
+        if (lastOneFragment != null) {
+            fragmentTransaction.hide(lastOneFragment!!)
+        }
+        lastOneFragment = targetFragment
         fragmentTransaction.commit()
     }
 
