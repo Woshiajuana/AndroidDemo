@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +12,6 @@ import androidx.viewpager.widget.ViewPager
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
 import com.lcodecore.tkrefreshlayout.footer.LoadingView
-import com.lcodecore.tkrefreshlayout.header.SinaRefreshView
 import com.owulia.taobaounion.R
 import com.owulia.taobaounion.base.BaseFragment
 import com.owulia.taobaounion.model.domain.Categories
