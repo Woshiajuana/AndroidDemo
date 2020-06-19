@@ -14,9 +14,9 @@ import kotlinx.android.synthetic.main.item_home_pager_content.view.*
 class HomePagerContentAdapter : RecyclerView.Adapter<HomePagerContentHolder>() {
 
     private val data = ArrayList<HomePagerContent.Data>()
-    private var onItemListener: ((View) -> Unit)? = null
+    private var onItemListener: ((View, HomePagerContent.Data) -> Unit)? = null
 
-    fun setOnItemListener (listener: ((View) -> Unit)?) {
+    fun setOnItemListener (listener: ((View, HomePagerContent.Data) -> Unit)?) {
         onItemListener = listener
     }
 
@@ -32,7 +32,7 @@ class HomePagerContentAdapter : RecyclerView.Adapter<HomePagerContentHolder>() {
     override fun onBindViewHolder(holder: HomePagerContentHolder, position: Int) {
         val itemData = data[position]
         holder.itemView.setOnClickListener {
-            onItemListener?.let { it1 -> it1(it) }
+            onItemListener?.let { it1 -> it1(it, itemData) }
         }
         holder.setData(itemData)
     }

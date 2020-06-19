@@ -12,13 +12,13 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.net.HttpURLConnection
 
-class CategoryPagerPresenterImpl private constructor() : ICategoryPagerPresenter {
+class CategoryPagerPresenterImpl : ICategoryPagerPresenter {
 
     private val pagesInfo = HashMap<Int, Int>()
 
     companion object {
         const val DEFAULT_PAGE = 1
-        val instant by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { CategoryPagerPresenterImpl() }
+//        val instant by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { CategoryPagerPresenterImpl() }
     }
 
     override fun getContentByCategoryId(categoryId: Int) {

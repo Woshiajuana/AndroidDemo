@@ -21,10 +21,7 @@ import com.owulia.taobaounion.presenter.impl.CategoryPagerPresenterImpl
 import com.owulia.taobaounion.ui.activity.TicketActivity
 import com.owulia.taobaounion.ui.adapter.HomePagerContentAdapter
 import com.owulia.taobaounion.ui.adapter.LoopPagerAdapter
-import com.owulia.taobaounion.utils.Constants
-import com.owulia.taobaounion.utils.LogUtil
-import com.owulia.taobaounion.utils.SizeUtil
-import com.owulia.taobaounion.utils.ToastUtil
+import com.owulia.taobaounion.utils.*
 import com.owulia.taobaounion.view.ICategoryPagerCallback
 import kotlinx.android.synthetic.main.fragment_home_pager.*
 import kotlinx.android.synthetic.main.include_home_pager_title_part.*
@@ -60,9 +57,13 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
         // 设置适配器
         mContentList.apply {
             mHomePagerContentAdapter = HomePagerContentAdapter().apply {
-                setOnItemListener{
+                setOnItemListener{ _, data ->
                     // 拿到 Picker
-                    LogUtil.d(this, "点击了 =>  ${it.goodsTitle.text} ")
+                    val title = data.title
+                    val url = data.click_url
+                    val cover = data.pict_url
+                    val tickPresenterImpl = PresenterManager.instant.tickPresenterImpl
+                    tickPresenterImpl.getTicket(title, url, cover)
                     startActivity(Intent(context, TicketActivity::class.java))
                 }
             }
@@ -151,7 +152,7 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
 
     override fun initPresenter() {
         super.initPresenter()
-        mCategoryPagerPresenterImpl = CategoryPagerPresenterImpl.instant
+        mCategoryPagerPresenterImpl = PresenterManager.instant.categoryPagerPresenterImpl
         mCategoryPagerPresenterImpl?.registerViewCallback(this)
     }
 

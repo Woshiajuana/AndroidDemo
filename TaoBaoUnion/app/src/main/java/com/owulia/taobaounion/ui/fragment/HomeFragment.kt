@@ -9,6 +9,7 @@ import com.owulia.taobaounion.presenter.IHomePresenter
 import com.owulia.taobaounion.presenter.impl.HomePresenterImpl
 import com.owulia.taobaounion.ui.adapter.HomePagerAdapter
 import com.owulia.taobaounion.utils.LogUtil
+import com.owulia.taobaounion.utils.PresenterManager
 import com.owulia.taobaounion.view.IHomeCallback
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -34,7 +35,7 @@ class HomeFragment : BaseFragment(), IHomeCallback {
 
     override fun initPresenter() {
         super.initPresenter()
-        mHomePresenter = HomePresenterImpl()
+        mHomePresenter = PresenterManager.instant.homePresenterImpl
         mHomePresenter?.registerViewCallback(this)
     }
 
