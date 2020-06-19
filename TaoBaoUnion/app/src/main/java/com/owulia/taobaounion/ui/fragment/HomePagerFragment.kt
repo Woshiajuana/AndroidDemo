@@ -3,6 +3,7 @@ package com.owulia.taobaounion.ui.fragment
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -90,6 +91,18 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
 
     // 监听事件
     override fun initListener() {
+
+        mHomePagerParent.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener{
+            override fun onGlobalLayout() {
+                val height = mHomePagerParent.measuredHeight
+                LogUtil.d(this, "height => $height")
+                mContentList.layoutParams.height = height
+                if (height > 0) {
+                    mHomePagerParent.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                }
+            }
+        })
+
         mLoopPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }

@@ -22,7 +22,8 @@ class LoopPagerAdapter : PagerAdapter () {
         val realPosition = position % data.size
         val iv = ImageView(container.context)
         val itemData = data[realPosition]
-        val url = UrlUtil.getCoverPath(itemData.pict_url)
+        val size = container.measuredWidth / 2
+        val url = UrlUtil.getCoverPath(itemData.pict_url, size)
         iv.apply {
             layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
             scaleType = ImageView.ScaleType.CENTER_CROP

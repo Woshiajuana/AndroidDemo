@@ -19,6 +19,7 @@ class HomePagerContentAdapter : RecyclerView.Adapter<HomePagerContentHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomePagerContentHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_home_pager_content, parent, false)
+        LogUtil.d(this, "onCreateViewHolder")
         return HomePagerContentHolder(view)
     }
 
@@ -28,6 +29,7 @@ class HomePagerContentAdapter : RecyclerView.Adapter<HomePagerContentHolder>() {
 
     override fun onBindViewHolder(holder: HomePagerContentHolder, position: Int) {
         val itemData = data[position]
+        LogUtil.d(this, "onBindViewHolder => $position")
         holder.setData(itemData)
     }
 
