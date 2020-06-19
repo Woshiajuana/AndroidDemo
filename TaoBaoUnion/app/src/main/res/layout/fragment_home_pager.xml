@@ -13,8 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <androidx.core.widget.NestedScrollView
+        <com.owulia.taobaounion.ui.custom.TbNestedScrollView
             android:overScrollMode="never"
+            android:id="@+id/tbNestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -25,26 +26,32 @@
                 android:layout_height="match_parent">
 
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="125dp">
-                    <androidx.viewpager.widget.ViewPager
-                        android:overScrollMode="never"
-                        android:id="@+id/mLoopPager"
+                <LinearLayout
+                    android:id="@+id/mHomePagerHeader"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:id="@+id/looperPoint"
-                        android:gravity="center"
-                        android:layout_marginBottom="10dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    </LinearLayout>
-                </RelativeLayout>
+                        android:layout_height="125dp">
+                        <androidx.viewpager.widget.ViewPager
+                            android:overScrollMode="never"
+                            android:id="@+id/mLoopPager"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:id="@+id/looperPoint"
+                            android:gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </LinearLayout>
+                    </RelativeLayout>
+                    <include layout="@layout/include_home_pager_title_part"/>
+                </LinearLayout>
 
-                <include layout="@layout/include_home_pager_title_part"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/mContentList"
@@ -55,7 +62,7 @@
             </LinearLayout>
 
 
-        </androidx.core.widget.NestedScrollView>
+        </com.owulia.taobaounion.ui.custom.TbNestedScrollView>
 
     </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
 

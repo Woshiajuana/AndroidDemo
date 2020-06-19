@@ -94,10 +94,12 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
 
         mHomePagerParent.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener{
             override fun onGlobalLayout() {
+                val headerHeight = mHomePagerHeader.measuredHeight
+                tbNestedScrollView.mHeaderHeight = mHomePagerHeader.height
                 val height = mHomePagerParent.measuredHeight
                 LogUtil.d(this, "height => $height")
                 mContentList.layoutParams.height = height
-                if (height > 0) {
+                if (height > 0 && headerHeight > 0) {
                     mHomePagerParent.viewTreeObserver.removeOnGlobalLayoutListener(this)
                 }
             }
