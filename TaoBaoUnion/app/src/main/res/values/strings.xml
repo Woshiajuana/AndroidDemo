@@ -15,4 +15,5 @@
     <string name="text_goods_number">%d人已购买</string>
     <string name="text_ticker_title">淘宝口令</string>
     <string name="text_ticker_btn">领劵</string>
+    <string name="text_loading_tip">正在拼命加载中...</string>
 </resources>
