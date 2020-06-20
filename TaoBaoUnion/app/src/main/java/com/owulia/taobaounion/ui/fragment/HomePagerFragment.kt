@@ -3,6 +3,7 @@ package com.owulia.taobaounion.ui.fragment
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.LinearLayout
@@ -60,7 +61,10 @@ class HomePagerFragment : BaseFragment (), ICategoryPagerCallback {
                 setOnItemListener{ _, data ->
                     // 拿到 Picker
                     val title = data.title
-                    val url = data.click_url
+                    var url = data.coupon_click_url
+                    if (TextUtils.isEmpty(url)) {
+                        url = data.click_url
+                    }
                     val cover = data.pict_url
                     val tickPresenterImpl = PresenterManager.instant.tickPresenterImpl
                     tickPresenterImpl.getTicket(title, url, cover)
