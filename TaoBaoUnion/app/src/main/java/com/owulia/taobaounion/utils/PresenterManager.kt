@@ -2,6 +2,7 @@ package com.owulia.taobaounion.utils
 
 import com.owulia.taobaounion.presenter.impl.CategoryPagerPresenterImpl
 import com.owulia.taobaounion.presenter.impl.HomePresenterImpl
+import com.owulia.taobaounion.presenter.impl.SelectedPagePresenter
 import com.owulia.taobaounion.presenter.impl.TickPresenterImpl
 
 class PresenterManager private constructor() {
@@ -13,5 +14,6 @@ class PresenterManager private constructor() {
     val categoryPagerPresenterImpl = CategoryPagerPresenterImpl()
     val homePresenterImpl = HomePresenterImpl()
     val tickPresenterImpl = TickPresenterImpl()
+    val selectedPagePresenter = SelectedPagePresenter()
 
 }
