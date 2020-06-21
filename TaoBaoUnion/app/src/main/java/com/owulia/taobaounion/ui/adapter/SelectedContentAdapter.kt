@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.owulia.taobaounion.R
 import com.owulia.taobaounion.model.domain.SelectedPageContent
+import kotlinx.android.synthetic.main.item_selected_content.view.*
 
 class SelectedContentAdapter : RecyclerView.Adapter<SelectedContentViewHolder> (){
 
-    private var data = ArrayList<SelectedPageContent.Data>()
+    private var data = ArrayList<SelectedPageContent.Data.TbkUatmFavoritesItemGetResponse.Results.UatmTbkItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectedContentViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_selected_content, parent, false)
@@ -21,9 +22,13 @@ class SelectedContentAdapter : RecyclerView.Adapter<SelectedContentViewHolder> (
     }
 
     override fun onBindViewHolder(holder: SelectedContentViewHolder, position: Int) {
+        val item = data[position]
+        holder.itemView.apply {
+            vCategoryText.text = item.title
+        }
     }
 
-    fun setData (contents: SelectedPageContent.Data) {
+    fun setData (contents: List<SelectedPageContent.Data.TbkUatmFavoritesItemGetResponse.Results.UatmTbkItem>) {
         data.clear()
         data.addAll(contents)
         notifyDataSetChanged()

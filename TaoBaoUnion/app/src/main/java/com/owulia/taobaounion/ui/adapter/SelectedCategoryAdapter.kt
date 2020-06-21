@@ -34,7 +34,9 @@ class SelectedCategoryAdapter : RecyclerView.Adapter<SelectedCategoryViewHolder>
         }
         holder.itemView.setOnClickListener {
 //            if (onItemClickListener != null) onItemClickListener(item)
+            mCurrent = position
             onItemClickListener?.let { it(item) }
+            notifyDataSetChanged()
         }
     }
 
@@ -42,6 +44,7 @@ class SelectedCategoryAdapter : RecyclerView.Adapter<SelectedCategoryViewHolder>
         data.clear()
         data.addAll(categories)
         notifyDataSetChanged()
+        if (data.size > 0) onItemClickListener?.let { it(data[mCurrent]) }
     }
 }
 

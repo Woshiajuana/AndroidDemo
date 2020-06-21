@@ -52,6 +52,7 @@ class SelectedFragment : BaseFragment(), ISelectedPageCallback {
         super.initListener()
         mSelectedCategoryAdapter?.onItemClickListener = {
             LogUtil.d(this, " onItemClickListener => $it")
+            mSelectedPagePresenter?.getContentByCategory(it)
         }
     }
 
@@ -65,14 +66,13 @@ class SelectedFragment : BaseFragment(), ISelectedPageCallback {
 //        TODO("Not yet implemented")
         LogUtil.d(this, "onCategoriesLoaded $categories")
         mSelectedCategoryAdapter?.setData(categories.data)
-        val data = categories.data
-        mSelectedPagePresenter?.getContentByCategory(data[0])
     }
 
     override fun onContentLoaded(content: SelectedPageContent) {
 //        TODO("Not yet implemented")
         LogUtil.d(this, "onContentLoaded")
-        mSelectedContentAdapter?.setData(content.data)
+        mSelectedContentAdapter?.setData(content.data.tbk_uatm_favorites_item_get_response.results.uatm_tbk_item)
+        vContent.scrollToPosition(0) // 滚动到顶部
     }
 
     override fun onNetworkError() {
