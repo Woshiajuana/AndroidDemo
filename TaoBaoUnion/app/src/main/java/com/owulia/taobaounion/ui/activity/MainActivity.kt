@@ -24,7 +24,7 @@ class MainActivity : BaseActivity() {
         mSelectedFragment = SelectedFragment()
         mRedPackerFragment = RedPackerFragment()
         mSearchFragment = SearchFragment()
-        switchFragment (mHomeFragment)
+        switchFragment (mSelectedFragment)
     }
 
     override fun initListener () {

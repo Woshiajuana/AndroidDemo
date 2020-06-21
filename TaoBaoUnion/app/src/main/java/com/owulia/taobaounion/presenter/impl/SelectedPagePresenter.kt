@@ -55,8 +55,6 @@ class SelectedPagePresenter : ISelectedPagePresenter {
 
     override fun getContentByCategory(item: SelectedPageCategory.Data) {
         mCategory = item
-        mCallback?.onLoading()
-
         api.getSelectedPageContent(UrlUtil.getSelectedPageContentUrl(mCategory!!.favorites_id))
             .enqueue(object : Callback<SelectedPageContent> {
                 override fun onFailure(call: Call<SelectedPageContent>, t: Throwable) {
