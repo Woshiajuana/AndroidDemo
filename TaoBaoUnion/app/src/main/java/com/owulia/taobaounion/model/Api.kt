@@ -18,8 +18,8 @@ interface Api {
     @GET("recommend/categories")
     fun getSelectedPageCategories() : Call<SelectedPageCategory>
 
-    @GET("/recommend/categoryId")
-    fun getSelectedPageContent(@Query("categoryId") categoryId: Int) : Call<SelectedPageContent>
+    @GET
+    fun getSelectedPageContent(@Url url: String) : Call<SelectedPageContent>
 
 
 

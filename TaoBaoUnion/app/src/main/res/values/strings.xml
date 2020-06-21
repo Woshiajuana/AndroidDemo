@@ -16,4 +16,5 @@
     <string name="text_ticker_title">淘宝口令</string>
     <string name="text_ticker_btn">领劵</string>
     <string name="text_loading_tip">正在拼命加载中...</string>
+    <string name="text_selected_title">精选宝贝</string>
 </resources>

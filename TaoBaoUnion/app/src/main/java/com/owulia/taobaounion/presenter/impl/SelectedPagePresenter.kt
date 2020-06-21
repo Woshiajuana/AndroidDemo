@@ -6,6 +6,7 @@ import com.owulia.taobaounion.model.domain.SelectedPageContent
 import com.owulia.taobaounion.presenter.ISelectedPagePresenter
 import com.owulia.taobaounion.utils.LogUtil
 import com.owulia.taobaounion.utils.RetrofitManager
+import com.owulia.taobaounion.utils.UrlUtil
 import com.owulia.taobaounion.view.ISelectedPageCallback
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,6 +20,7 @@ class SelectedPagePresenter : ISelectedPagePresenter {
     private val api =  RetrofitManager.instant.retrofit.create(Api::class.java)
 
     override fun getCategories() {
+        mCallback?.onLoading()
         val task = api.getSelectedPageCategories()
         task.enqueue(object : Callback<SelectedPageCategory> {
             override fun onFailure(call: Call<SelectedPageCategory>, t: Throwable) {
@@ -53,7 +55,9 @@ class SelectedPagePresenter : ISelectedPagePresenter {
 
     override fun getContentByCategory(item: SelectedPageCategory.Data) {
         mCategory = item
-        api.getSelectedPageContent(mCategory!!.favorites_id)
+        mCallback?.onLoading()
+
+        api.getSelectedPageContent(UrlUtil.getSelectedPageContentUrl(mCategory!!.favorites_id))
             .enqueue(object : Callback<SelectedPageContent> {
                 override fun onFailure(call: Call<SelectedPageContent>, t: Throwable) {
                     mCallback?.onNetworkError()
