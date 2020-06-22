@@ -13,14 +13,14 @@ class WowJsonCacheUtils private constructor(
         private var mContext: Context? = null
         private var mName: String? = null
         private var mMode: Int? = null
+        private var instance: WowJsonCacheUtils? = null
         fun init (content: Context, name: String, mode: Int = Context.MODE_PRIVATE) {
             mContext = content
             mName = name
             mMode = mode
         }
-        private var instance: WowJsonCacheUtils? = null
         var INSTANCE = instance ?: synchronized(this) {
-            if (mContext == null) throw Exception("WowJsonCacheUtils need Application content. Should init ...")
+            if (mContext == null) throw Exception("WowJsonCacheUtils need Application context. You Should init ...")
             WowJsonCacheUtils(mContext!!, mName!!, mMode!!).also { instance = it }
         }
     }
