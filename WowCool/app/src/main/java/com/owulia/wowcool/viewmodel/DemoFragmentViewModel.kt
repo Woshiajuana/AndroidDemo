@@ -4,6 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.owulia.wowcool.bean.DemoItemBean
 
-class DemoViewModel : ViewModel () {
+class DemoFragmentViewModel : ViewModel () {
     var arrDemo: MutableLiveData<List<DemoItemBean>> = MutableLiveData<List<DemoItemBean>> ()
 }

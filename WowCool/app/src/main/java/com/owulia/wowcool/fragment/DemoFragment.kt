@@ -7,14 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.owulia.wowcool.R
 import com.owulia.wowcool.adapter.DemoAdapter
 import com.owulia.wowcool.bean.DemoItemBean
-import com.owulia.wowcool.viewmodel.DemoViewModel
+import com.owulia.wowcool.viewmodel.DemoFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_demo.*
 
 /**
@@ -52,7 +49,7 @@ class DemoFragment : Fragment() {
 
         Log.d(TAG, "onActivityCreated")
 
-        val demoViewModel by viewModels<DemoViewModel>()
+        val demoViewModel by viewModels<DemoFragmentViewModel>()
 
         demoViewModel.arrDemo.value =  mutableListOf (
             DemoItemBean(resources.getString(R.string.string_demo_tabbar_icon), resources.getString(R.string.string_demo_tabbar_text)),

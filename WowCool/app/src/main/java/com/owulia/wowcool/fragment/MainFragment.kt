@@ -1,14 +1,15 @@
 package com.owulia.wowcool.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import com.owulia.wowcool.R
-import com.owulia.wowcool.bean.DemoItemBean
+import com.owulia.wowcool.viewmodel.MainFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
@@ -16,21 +17,20 @@ import kotlinx.android.synthetic.main.fragment_main.*
  */
 class MainFragment : Fragment() {
 
-    private var arrDemoItem = mutableListOf<DemoItemBean>()
-
-    private var logTag = "MainFragmentT"
+    private var mMainFragmentViewModel: ViewModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d(logTag, "onCreateView")
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+//        mMainFragmentViewModel viewModels<MainFragmentViewModel>()
 
         wtMainTabBar.apply {
             setItemIcon(resources.getDimension(R.dimen.dimen_tab_bar_icon).toInt())
