@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
  */
 class MainFragment : Fragment() {
 
-    val mMainFragmentViewModel by viewModels<MainFragmentViewModel>()
+    private val mMainFragmentViewModel by viewModels<MainFragmentViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,10 +49,12 @@ class MainFragment : Fragment() {
                 getString(R.string.string_tab_bar_mine), MineFragment()
             )
             setDivider(true, 1)
-            setOnItemClickListener = { index, view ->
-                false
+            setOnItemClickListener = { index, _ ->
+                mMainFragmentViewModel.mNumCurrent.value = index
+                true
             }
             build(childFragmentManager)
+            switchItem(mMainFragmentViewModel.mNumCurrent.value?:0)
         }
 
     }
