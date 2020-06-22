@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import com.owulia.wowcool.R
-import com.owulia.wowcool.viewmodel.DemoFragmentViewModel
 import com.owulia.wowcool.viewmodel.MainFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -37,7 +35,7 @@ class MainFragment : Fragment() {
                 ContextCompat.getColor(context, R.color.colorTabBarActive)
             )
             addItem(
-                R.mipmap.ic_tab_bar_home_normal, R.mipmap.ic_tab_bar_home_active,
+                R.drawable.ic_tabbar_cool_normal, R.drawable.ic_tabbar_cool_active,
                 getString(R.string.string_tab_bar_home), HomeFragment()
             )
             addItem(
