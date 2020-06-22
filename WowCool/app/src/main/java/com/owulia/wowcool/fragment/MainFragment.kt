@@ -39,11 +39,11 @@ class MainFragment : Fragment() {
                 getString(R.string.string_tab_bar_home), HomeFragment()
             )
             addItem(
-                R.mipmap.ic_tab_bar_demo_normal, R.mipmap.ic_tab_bar_demo_active,
+                R.drawable.ic_tabbar_demo_normal, R.drawable.ic_tabbar_demo_active,
                 getString(R.string.string_tab_bar_demo), DemoFragment.instant
             )
             addItem(
-                R.mipmap.ic_tab_bar_mine_normal, R.mipmap.ic_tab_bar_mine_active,
+                R.drawable.ic_tabbar_mine_normal, R.drawable.ic_tabbar_mine_active,
                 getString(R.string.string_tab_bar_mine), MineFragment()
             )
             setDivider(true, 1)
