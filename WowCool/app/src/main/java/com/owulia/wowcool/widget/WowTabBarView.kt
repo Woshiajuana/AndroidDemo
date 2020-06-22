@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
@@ -16,7 +15,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 
@@ -28,6 +26,8 @@ class WowTabBarView @JvmOverloads constructor(
     private lateinit var vpTabBarInner: ViewPager
     private lateinit var llTabBarBottom: LinearLayout
     private lateinit var dvTabBarDivider: View
+    
+    var setOnItemClickListener: ((Int, View) -> Boolean)? = null
 
     // 定义
     private var arrTabBarItem = mutableListOf<WowTabBarItemView>()
@@ -45,8 +45,6 @@ class WowTabBarView @JvmOverloads constructor(
     private var tabBarItemTextColorNormal: Int? = null
     private var tabBarItemTextColorActive: Int? = null
     private var isUseDivider = true
-
-    private val TAG = "wowtabbarview"
 
     init {
         orientation = VERTICAL
@@ -106,27 +104,26 @@ class WowTabBarView @JvmOverloads constructor(
         onInstantiateFragment: ((Int, Fragment) -> Unit)? = null,
         onDestroyFragment: ((Int) -> Unit)? = null
     ) {
-        Log.d(TAG, "setViewPagerAdapter")
         vpTabBarInner.apply {
             offscreenPageLimit = arrTabBarItemIconNormal.size
             adapter = object : FragmentStatePagerAdapter(fragmentManager) {
                 override fun getItem(position: Int): Fragment {
-                    Log.d(TAG, "getItem position => ${position}")
                     return arrTabBarFragment[position]
                 }
+
                 override fun getCount(): Int {
                     return arrTabBarItemIconNormal.size
                 }
+
                 override fun instantiateItem(container: ViewGroup, position: Int): Any {
                     val fragment = super.instantiateItem(container, position) as Fragment
-                    Log.d(TAG, "instantiateItem position => ${fragment}")
                     if (onInstantiateFragment != null) {
                         onInstantiateFragment(position, fragment)
                     }
                     return fragment
                 }
+
                 override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-                    Log.d(TAG, "destroyItem position => ${position}")
                     if (onDestroyFragment != null) {
                         onDestroyFragment(position)
                     }
@@ -135,15 +132,13 @@ class WowTabBarView @JvmOverloads constructor(
             }
             addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
                 override fun onPageScrollStateChanged(state: Int) {
-                    Log.d(TAG, "onPageScrollStateChanged => ${state}")
                 }
+
                 override fun onPageScrolled(
                     position: Int,
                     positionOffset: Float,
                     positionOffsetPixels: Int
                 ) {
-//                    Log.d(TAG, "onPageScrollStateChanged => ${position}")
-
                     if (positionOffset > 0) {
                         val left = arrTabBarItem[position]
                         val right = arrTabBarItem[position + 1]
@@ -202,15 +197,18 @@ class WowTabBarView @JvmOverloads constructor(
         render()
         addedTabBarItem()
         setViewPagerAdapter(fragmentManager, onInstantiateFragment, onDestroyFragment)
-        addClickEvent()
+        addListener()
         switchItem(0)
         return this
     }
 
-    private fun addClickEvent() {
+    private fun addListener() {
         arrTabBarItem.forEachIndexed { index, item ->
-            item.setOnClickListener {
-                switchItem(index)
+            item.setOnClickListener { view->
+                val result = setOnItemClickListener?.let { it(index, view) } ?: true
+                if (result) {
+                    switchItem(index)
+                }
             }
         }
     }

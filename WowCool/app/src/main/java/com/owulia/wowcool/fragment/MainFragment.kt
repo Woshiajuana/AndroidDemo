@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import com.owulia.wowcool.R
+import com.owulia.wowcool.viewmodel.DemoFragmentViewModel
 import com.owulia.wowcool.viewmodel.MainFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -17,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
  */
 class MainFragment : Fragment() {
 
-    private var mMainFragmentViewModel: ViewModel? = null
+    val mMainFragmentViewModel by viewModels<MainFragmentViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,9 +30,6 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-//        mMainFragmentViewModel viewModels<MainFragmentViewModel>()
-
         wtMainTabBar.apply {
             setItemIcon(resources.getDimension(R.dimen.dimen_tab_bar_icon).toInt())
             setItemText(
@@ -51,6 +49,9 @@ class MainFragment : Fragment() {
                 getString(R.string.string_tab_bar_mine), MineFragment()
             )
             setDivider(true, 1)
+            setOnItemClickListener = { index, view ->
+                false
+            }
             build(childFragmentManager)
         }
 
