@@ -23,6 +23,9 @@ abstract class BaseFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        // 设置导航条
+        initStatusBar()
+        // 初始化 view
         initView(vRootView!!)
     }
 
@@ -44,6 +47,13 @@ abstract class BaseFragment : Fragment() {
      * @return rootView id
      * */
     abstract fun getViewResourceId() : Int
+
+    /**
+     *
+     * */
+    open fun initStatusBar () {
+
+    }
 
     /**
      * @param view [View]
