@@ -8,6 +8,9 @@ class TestUtils {
     }
 }
 
+enum class x{
+
+}
 
 class Singleton private constructor() {
     companion object {
