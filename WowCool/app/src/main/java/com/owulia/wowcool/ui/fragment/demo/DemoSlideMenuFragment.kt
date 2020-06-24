@@ -1,4 +1,4 @@
-package com.owulia.wowcool.fragment.demo
+package com.owulia.wowcool.ui.fragment.demo
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

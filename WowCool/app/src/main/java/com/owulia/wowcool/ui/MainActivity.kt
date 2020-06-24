@@ -1,9 +1,10 @@
-package com.owulia.wowcool
+package com.owulia.wowcool.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.owulia.wowcool.R
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.owulia.wowcool.adapter
+package com.owulia.wowcool.ui.adapter
 
 import android.util.Log
 import android.view.LayoutInflater

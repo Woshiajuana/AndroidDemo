@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.owulia.wowcool.widget.WowWEqualsHView
+<com.owulia.wowcool.ui.widget.WowWEqualsHView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@android:color/white"
     android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.owulia.wowcool.widget.WowIconFontView
+        <com.owulia.wowcool.ui.widget.WowIconFontView
             android:id="@+id/tvIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,4 +47,4 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"/>
 
-</com.owulia.wowcool.widget.WowWEqualsHView>
+</com.owulia.wowcool.ui.widget.WowWEqualsHView>

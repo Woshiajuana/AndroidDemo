@@ -1,4 +1,4 @@
-package com.owulia.wowcool.widget
+package com.owulia.wowcool.ui.widget
 
 import android.content.Context
 import android.graphics.Typeface

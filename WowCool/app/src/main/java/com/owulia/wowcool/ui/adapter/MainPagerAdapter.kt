@@ -1,9 +1,9 @@
-package com.owulia.wowcool.adapter
+package com.owulia.wowcool.ui.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.owulia.wowcool.fragment.DemoFragment
+import com.owulia.wowcool.ui.fragment.DemoFragment
 
 class MainPagerAdapter (fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
     override fun getItem(position: Int): Fragment {

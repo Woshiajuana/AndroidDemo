@@ -4,9 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.MainFragment">
+    tools:context=".ui.fragment.MainFragment">
 
-    <com.owulia.wowcool.widget.WowTabBarView
+    <com.owulia.wowcool.ui.widget.WowTabBarView
         android:id="@+id/wtMainTabBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

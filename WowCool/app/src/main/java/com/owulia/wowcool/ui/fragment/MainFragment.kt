@@ -1,4 +1,4 @@
-package com.owulia.wowcool.fragment
+package com.owulia.wowcool.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

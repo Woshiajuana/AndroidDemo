@@ -6,7 +6,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.owulia.wowcool.fragment.MainFragment"
+        android:name="com.owulia.wowcool.ui.fragment.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/demoSlideMenuFragment"
-        android:name="com.owulia.wowcool.fragment.demo.DemoSlideMenuFragment"
+        android:name="com.owulia.wowcool.ui.fragment.demo.DemoSlideMenuFragment"
         android:label="fragment_demo_slide_menu"
         tools:layout="@layout/fragment_demo_slide_menu" />
 </navigation>

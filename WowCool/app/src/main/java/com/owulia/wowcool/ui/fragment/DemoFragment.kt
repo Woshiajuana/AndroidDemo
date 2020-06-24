@@ -1,4 +1,4 @@
-package com.owulia.wowcool.fragment
+package com.owulia.wowcool.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.owulia.wowcool.R
-import com.owulia.wowcool.adapter.DemoAdapter
+import com.owulia.wowcool.ui.adapter.DemoAdapter
 import com.owulia.wowcool.bean.DemoItemBean
 import com.owulia.wowcool.viewmodel.DemoFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_demo.*
