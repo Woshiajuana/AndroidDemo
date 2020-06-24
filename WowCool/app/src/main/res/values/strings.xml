@@ -23,6 +23,7 @@
 
     <string name="string_demo_slide_menu_icon">&#xe619;</string>
     <string name="string_demo_slide_menu_text">WowSlideMenu</string>
+    <string name="string_hint_tip">这是用来测试占位的文字</string>
 
 
 </resources>

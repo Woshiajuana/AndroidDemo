@@ -8,12 +8,12 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.owulia.wowcool.R
 import com.owulia.wowcool.bean.DemoItemBean
-import kotlinx.android.synthetic.main.demo_card_cell.view.*
+import kotlinx.android.synthetic.main.item_demo_card_cell.view.*
 
 class DemoAdapter (private val list: MutableList<DemoItemBean>) : RecyclerView.Adapter<DemoAdapterHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DemoAdapterHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.demo_card_cell, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_demo_card_cell, parent, false)
         val holder = DemoAdapterHolder(view)
         Log.d("DEMOADAPTER", "111111111${holder.itemView}")
 
