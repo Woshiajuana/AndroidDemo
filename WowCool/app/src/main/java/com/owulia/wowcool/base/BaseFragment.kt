@@ -1,10 +1,12 @@
 package com.owulia.wowcool.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.owulia.wowcool.utils.WowToastUtils
 
 abstract class BaseFragment : Fragment() {
 
@@ -30,7 +32,16 @@ abstract class BaseFragment : Fragment() {
     }
 
     /**
-     * 返回 rootView id
+     * 工具类弹窗
+     * @param text [String] 弹窗文案
+     * @param context [Context] 上下文、非必填
+     * */
+    fun utilToast (text: String, context: Context? = null) {
+        WowToastUtils.show(text, context)
+    }
+
+    /**
+     * @return rootView id
      * */
     abstract fun getViewResourceId() : Int
 

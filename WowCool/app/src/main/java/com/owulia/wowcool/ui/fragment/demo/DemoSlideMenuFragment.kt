@@ -7,18 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.owulia.wowcool.R
+import com.owulia.wowcool.base.BaseFragment
 
 /**
  * A simple [Fragment] subclass.
  */
-class DemoSlideMenuFragment : Fragment() {
+class DemoSlideMenuFragment : BaseFragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_demo_slide_menu, container, false)
-    }
+    override fun getViewResourceId(): Int = R.layout.fragment_demo_slide_menu
 
 }

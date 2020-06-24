@@ -20,7 +20,7 @@ class WowToastUtils private constructor(
 
         @SuppressLint("ShowToast")
         fun show (text: String, context: Context? = null) {
-            val realContext = mContext?: context
+            val realContext = context?: mContext
             if (realContext != null) {
                 if (mToast == null) {
                     mToast =  Toast.makeText(realContext, text, Toast.LENGTH_SHORT)
