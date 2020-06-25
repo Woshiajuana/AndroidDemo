@@ -18,7 +18,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     abstract fun getViewResourceId() : Int
 
-
     /**
      * 初始化状态栏
      * */

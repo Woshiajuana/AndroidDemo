@@ -5,7 +5,7 @@ import android.util.Log
 object WowLogUtils {
 
     private var currentLev = 4
-    private const val COMMON = "LOG_UTIL"
+    private const val COMMON = "WOW_LOG_UTIL"
     private const val DEBUG_LEV = 4
     private const val INFO_LEV = 3
     private const val WARNING_LEV = 2
