@@ -1,24 +1,20 @@
 package com.owulia.wowcool.utils
 
 import android.app.Activity
+import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Build
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 
-class WowStatusBarUtils private constructor(private val activity: Activity) {
-
-    companion object {
-        val with: (Activity) -> WowStatusBarUtils = { WowStatusBarUtils(it) }
-    }
-
-    
+object WowStatusBarUtils {
 
     /**
      * 设置全屏，设置状态栏透明
      * */
-    fun setScreenFull() {
+    fun setScreenFull(activity: Activity) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
             return
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -45,10 +41,44 @@ class WowStatusBarUtils private constructor(private val activity: Activity) {
     }
 
     /**
+     * 设置状态栏补充
+     * @param parent [View] 父节点
+     * */
+    fun setStatusBarSeat(parent: View) {
+        val view = View(parent.context)
+    }
+
+    /**
+     * 获取状态栏高度
+     * */
+    fun getStatusBarHeight (context: Context): Int {
+        val resources: Resources = context.resources
+        val resourceId: Int = resources.getIdentifier("status_bar_height", "dimen", "android")
+        return resources.getDimensionPixelSize(resourceId)
+    }
+
+    /**
+     * 利用反射获取状态栏高度
+     * */
+    fun getStatusBarHeight (activity: Activity): Int {
+        var statusHeight = 0
+        var localClass: Class<*>? = null
+        try {
+            localClass = Class.forName("com.android.internal.R\$dimen")
+            val localObject = localClass.newInstance()
+            val h = localClass.getField("status_bar_height")[localObject].toString().toInt()
+            statusHeight = activity.resources.getDimensionPixelSize(h)
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+        return statusHeight
+    }
+
+    /**
      * 状态栏亮色模式，设置状态栏黑色文字、图标
      * @return 1:MIUUI 2:Flyme 3:android6.0
      * */
-    fun setStatusBarLightMode(): Int {
+    fun setStatusBarLightMode(activity: Activity): Int {
         var result = 0
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             return result
