@@ -6,6 +6,7 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.os.Build
 import android.view.View
+import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
 
@@ -44,8 +45,15 @@ object WowStatusBarUtils {
      * 设置状态栏补充
      * @param parent [View] 父节点
      * */
-    fun setStatusBarSeat(parent: View) {
-        val view = View(parent.context)
+    fun setStatusBarSeat(context: Context, parent: ViewGroup) : View {
+        val view = View(parent.context).apply {
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                getStatusBarHeight(context)
+            )
+        }
+        parent.addView(view)
+        return view
     }
 
     /**

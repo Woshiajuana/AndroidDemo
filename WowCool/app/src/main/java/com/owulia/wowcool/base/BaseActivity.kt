@@ -10,7 +10,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getViewResourceId())
-        // 设置导航条
+        // 设置状态栏
         initStatusBar()
     }
 
@@ -21,11 +21,8 @@ abstract class BaseActivity : AppCompatActivity() {
      * */
     open fun initStatusBar() {
         WowStatusBarUtils.apply {
-            setStatusBarLightMode(this@BaseActivity)
-            val height1 = getStatusBarHeight(this@BaseActivity)
-            WowLogUtils.d(this, "height1 => $height1")
-            val height2 = getStatusBarHeight(this@BaseActivity.baseContext)
-            WowLogUtils.d(this, "height2 => $height2")
+            setStatusBarLightMode(this@BaseActivity) // 设置状态栏黑色文字、图标
+            setStatusBarSeat(this@BaseActivity.baseContext, contex)
         }
     }
 }
