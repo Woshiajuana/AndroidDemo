@@ -28,11 +28,6 @@ class WowStatusBarUtils private constructor(private val activity: Activity) {
             decorView.systemUiVisibility = option
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.statusBarColor = Color.TRANSPARENT
-            //导航栏颜色也可以正常设置
-//                window.setNavigationBarColor(Color.TRANSPARENT);
-//            if (com.fn.otc.util.StatusBarUtils.hasNotchInScreen(activity)) {
-//                com.fn.otc.util.StatusBarUtils.setFullScreenWindowLayoutInDisplayCutout(window)
-//            }
         } else {
             val window = activity.window
             val attributes = window.attributes
