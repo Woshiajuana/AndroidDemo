@@ -24,6 +24,8 @@ abstract class BaseFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        // 设置状态栏
+        initStatusBarSeat()
         // 初始化 view
         initView(vRootView!!)
     }
@@ -31,6 +33,10 @@ abstract class BaseFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         release()
+    }
+
+    open fun initStatusBarSeat() {
+        WowStatusBarUtils.setStatusBarSeat(requireContext(), vRootView!! as ViewGroup)
     }
 
     /**

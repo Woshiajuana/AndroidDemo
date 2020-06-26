@@ -18,10 +18,6 @@ class MainActivity : BaseActivity() {
 
     override fun getViewResourceId(): Int = R.layout.activity_main
 
-    fun x () {
-        baseContext
-    }
-
 //    override fun onSupportNavigateUp(): Boolean {
 //        return super.onSupportNavigateUp() || findNavController(R.id.fragment).navigateUp();
 //    }
