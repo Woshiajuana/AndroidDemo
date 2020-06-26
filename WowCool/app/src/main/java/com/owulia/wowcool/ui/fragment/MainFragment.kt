@@ -18,6 +18,8 @@ class MainFragment : BaseFragment() {
 
     override fun getViewResourceId(): Int = R.layout.fragment_main
 
+    override fun initStatusBarSeat() {}
+
     override fun initView(view: View) {
         super.initView(view)
         wtMainTabBar.apply {
@@ -52,7 +54,6 @@ class MainFragment : BaseFragment() {
             build(childFragmentManager)
             switchItem(mMainFragmentViewModel.mNumCurrent.value?:0)
         }
-
     }
 
 

@@ -7,9 +7,8 @@
     tools:context=".ui.fragment.MainFragment">
 
     <com.owulia.wowcool.widget.WowTabBarView
-        android:layout_marginTop="100dp"
         android:id="@+id/wtMainTabBar"
         android:layout_width="match_parent"
-        android:layout_height="500dp"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
