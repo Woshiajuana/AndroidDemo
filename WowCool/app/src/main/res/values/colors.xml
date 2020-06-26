@@ -16,7 +16,7 @@
 
     <color name="colorDemoItemIcon">@color/colorMain</color>
     <color name="colorDemoItemText">#999999</color>
-
+    <color name="colorTitle">#333333</color>
 
 
 </resources>

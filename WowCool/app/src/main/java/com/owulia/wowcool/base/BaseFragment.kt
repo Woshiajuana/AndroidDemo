@@ -6,19 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.owulia.wowcool.R
 import com.owulia.wowcool.utils.WowStatusBarUtils
 import com.owulia.wowcool.utils.WowToastUtils
 
 abstract class BaseFragment : Fragment() {
 
-    private var vRootView: View? = null
+    private var vRootView: ViewGroup? = null
+    private var vWrapView: View? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        vRootView = inflater.inflate(getViewResourceId(), container, false)
+        vRootView = inflater.inflate(getRootViewResourceId(), container, false) as ViewGroup
+        vWrapView = inflater.inflate(getViewResourceId(), container, false)
+        vRootView?.addView(vWrapView)
         return vRootView
     }
 
@@ -47,6 +51,11 @@ abstract class BaseFragment : Fragment() {
     fun utilToast (text: String, context: Context? = null) {
         WowToastUtils.show(text, context)
     }
+
+    /**
+     * @return rootView id
+     * */
+    fun getRootViewResourceId() : Int = R.layout.fragment_base
 
     /**
      * @return rootView id
