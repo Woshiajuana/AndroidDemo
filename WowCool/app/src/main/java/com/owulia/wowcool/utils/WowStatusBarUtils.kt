@@ -52,7 +52,6 @@ object WowStatusBarUtils {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 height
             )
-            setBackgroundColor(Color.parseColor("#ff0000"))
         }
         parent?.addView(view, 0)
         return view

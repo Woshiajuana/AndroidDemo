@@ -14,11 +14,13 @@ import kotlinx.android.synthetic.main.fragment_main.*
  */
 class MainFragment : BaseFragment() {
 
+    override val isUseNavBar: Boolean = false
+
+    override val isUseStatusBarSeat: Boolean = false
+
     private val mMainFragmentViewModel by viewModels<MainFragmentViewModel>()
 
     override fun getViewResourceId(): Int = R.layout.fragment_main
-
-    override fun initStatusBarSeat() {}
 
     override fun initView(view: View) {
         super.initView(view)

@@ -17,7 +17,11 @@ abstract class BaseFragment : Fragment() {
     var vRootView: ViewGroup? = null
     var vWrapView: View? = null
     var vNavBar: NavBarView? = null
+    var vStatusBar: View? = null
 
+    // 是否使用状态栏占位符
+    open val isUseStatusBarSeat: Boolean = true
+    // 是否使用导航栏
     open val isUseNavBar: Boolean = true
 
     override fun onCreateView(
@@ -27,14 +31,13 @@ abstract class BaseFragment : Fragment() {
     ): View? {
         vRootView = inflater.inflate(getRootViewResourceId(), container, false) as ViewGroup
         vWrapView = inflater.inflate(getViewResourceId(), container, false)
+        // 设置状态栏
+        if (isUseStatusBarSeat) {
+            initStatusBarSeat()
+        }
+        // 设置导航栏
         if (isUseNavBar) {
-            vNavBar = NavBarView(requireContext()).apply {
-                layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    WowSizeUtils.px2dp(44f).toInt()
-                )
-            }
-            (vWrapView as ViewGroup).addView(vNavBar)
+            initNavBar()
         }
         vRootView?.addView(vWrapView)
         return vRootView
@@ -42,8 +45,6 @@ abstract class BaseFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        // 设置状态栏
-        initStatusBarSeat()
         // 初始化 view
         initView(vRootView!!)
     }
@@ -53,8 +54,19 @@ abstract class BaseFragment : Fragment() {
         release()
     }
 
+    open fun initNavBar () {
+        vNavBar = NavBarView(requireContext()).apply {
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                WowSizeUtils.px2dp(44f).toInt()
+            )
+        }
+        val index = if (isUseStatusBarSeat) 1 else 0
+        vRootView?.addView(vNavBar, index)
+    }
+
     open fun initStatusBarSeat() {
-        WowStatusBarUtils.setStatusBarSeat(requireContext(), vRootView!! as ViewGroup)
+        vStatusBar = WowStatusBarUtils.setStatusBarSeat(requireContext(), vRootView!! as ViewGroup)
     }
 
     /**

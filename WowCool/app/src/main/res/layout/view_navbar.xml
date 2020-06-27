@@ -1,52 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/vNavBarLeftBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp">
+        <ImageView
+            android:id="@+id/vNavBarLeftImage"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_arrow" />
+    </FrameLayout>
 
-        <FrameLayout
-            android:id="@+id/vNavBarLeftBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:background="?selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingStart="14dp"
-            android:paddingEnd="14dp">
-            <ImageView
-                android:id="@+id/vNavBarLeftImage"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_arrow" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/vNavBarRightBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="?selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_alignParentEnd="true"
-            android:paddingStart="14dp"
-            android:paddingEnd="14dp">
-            <ImageView
-                android:id="@+id/vNavBarRightImage"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_arrow" />
-        </FrameLayout>
-    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/vNavBarRightBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_alignParentEnd="true"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp">
+        <ImageView
+            android:id="@+id/vNavBarRightImage"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_arrow" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/vNavBarTitle"
+        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -54,4 +50,12 @@
         android:text="标题"
         android:textSize="16sp" />
 
-</FrameLayout>
+    <View
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorNavBarBorder"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+</RelativeLayout>
+
+
+
