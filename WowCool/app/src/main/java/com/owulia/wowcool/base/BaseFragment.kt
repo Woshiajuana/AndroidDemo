@@ -1,6 +1,7 @@
 package com.owulia.wowcool.base
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +24,13 @@ abstract class BaseFragment : Fragment() {
     open val isUseStatusBarSeat: Boolean = true
     // 是否使用导航栏
     open val isUseNavBar: Boolean = true
+
+    // 标题
+    open val mNavBarTitle: String = ""
+    // 左边返回按钮
+    open val mNavBarLeftImage: Int = R.drawable.ic_arrow
+    // 右边按钮
+    open val mNavBarRightImage: Int = -1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,13 +68,19 @@ abstract class BaseFragment : Fragment() {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 WowSizeUtils.px2dp(44f).toInt()
             )
+            setBackgroundColor(Color.parseColor("#ffffff"))
+            setTitle(mNavBarTitle)
+            setLeftImage(mNavBarLeftImage)
+            setRightBtnIsVisibility()
         }
         val index = if (isUseStatusBarSeat) 1 else 0
         vRootView?.addView(vNavBar, index)
     }
 
     open fun initStatusBarSeat() {
-        vStatusBar = WowStatusBarUtils.setStatusBarSeat(requireContext(), vRootView!! as ViewGroup)
+        vStatusBar = WowStatusBarUtils.setStatusBarSeat(requireContext(), vRootView!! as ViewGroup).apply {
+            setBackgroundColor(Color.parseColor("#ffffff"))
+        }
     }
 
     /**

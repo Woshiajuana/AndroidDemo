@@ -41,18 +41,20 @@ class NavBarView @JvmOverloads constructor(
 
     // 设置右边 icon
     fun setRightImage (resId: Int) : NavBarView {
-        vNavBarLeftImage.setImageResource(resId)
+        vNavBarRightImage.setImageResource(resId)
         return this
     }
 
     // 设置左边按钮
-    fun setLeftBtnIsVisibility (visibility: Int = View.VISIBLE) {
+    fun setLeftBtnIsVisibility (visibility: Int = View.VISIBLE) : NavBarView {
         vNavBarLeftBtn.visibility = visibility
+        return this
     }
 
     // 设置右边按钮
-    fun setRightBtnIsVisibility (visibility: Int = View.GONE) {
-        vNavBarLeftBtn.visibility = visibility
+    fun setRightBtnIsVisibility (visibility: Int = View.GONE) : NavBarView {
+        vNavBarRightBtn.visibility = visibility
+        return this
     }
 
 }
