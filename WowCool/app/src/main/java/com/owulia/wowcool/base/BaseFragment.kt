@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.owulia.wowcool.R
 import com.owulia.wowcool.ui.widget.NavBarView
@@ -71,7 +73,7 @@ abstract class BaseFragment : Fragment() {
             setBackgroundColor(Color.parseColor("#ffffff"))
             setTitle(mNavBarTitle)
             setLeftImage(mNavBarLeftImage)
-            setRightBtnIsVisibility()
+            setRightImage(mNavBarRightImage)
         }
         val index = if (isUseStatusBarSeat) 1 else 0
         vRootView?.addView(vNavBar, index)
@@ -80,6 +82,19 @@ abstract class BaseFragment : Fragment() {
     open fun initStatusBarSeat() {
         vStatusBar = WowStatusBarUtils.setStatusBarSeat(requireContext(), vRootView!! as ViewGroup).apply {
             setBackgroundColor(Color.parseColor("#ffffff"))
+        }
+    }
+
+    // 设置标题居左
+    open fun setNavBarTitleLeftAlign () {
+        vNavBar?.findViewById<TextView>(R.id.vNavBarTitle)?.apply {
+            (layoutParams as RelativeLayout.LayoutParams).apply {
+                if (mNavBarLeftImage == -1) {
+                    addRule(RelativeLayout.ALIGN_PARENT_LEFT)
+                } else {
+                    addRule(RelativeLayout.RIGHT_OF, R.id.vNavBarLeftBtn)
+                }
+            }
         }
     }
 

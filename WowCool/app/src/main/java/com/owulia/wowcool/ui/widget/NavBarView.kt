@@ -34,19 +34,27 @@ class NavBarView @JvmOverloads constructor(
     }
 
     // 设置左边 icon
-    fun setLeftImage (resId: Int = R.drawable.ic_arrow) : NavBarView {
-        vNavBarLeftImage.setImageResource(resId)
+    fun setLeftImage (resId: Int) : NavBarView {
+        if (resId == -1) {
+            setLeftBtnIsVisibility()
+        } else {
+            vNavBarLeftImage.setImageResource(resId)
+        }
         return this
     }
 
     // 设置右边 icon
     fun setRightImage (resId: Int) : NavBarView {
-        vNavBarRightImage.setImageResource(resId)
+        if (resId == -1) {
+            setRightBtnIsVisibility()
+        } else {
+            vNavBarRightImage.setImageResource(resId)
+        }
         return this
     }
 
     // 设置左边按钮
-    fun setLeftBtnIsVisibility (visibility: Int = View.VISIBLE) : NavBarView {
+    fun setLeftBtnIsVisibility (visibility: Int = View.GONE) : NavBarView {
         vNavBarLeftBtn.visibility = visibility
         return this
     }

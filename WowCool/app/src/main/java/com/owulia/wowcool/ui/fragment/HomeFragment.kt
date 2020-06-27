@@ -13,6 +13,14 @@ import com.owulia.wowcool.base.BaseFragment
  */
 class HomeFragment : BaseFragment() {
 
+    override val mNavBarTitle: String = "首页"
+//    override val mNavBarLeftImage: Int = -1
+
     override fun getViewResourceId(): Int = R.layout.fragment_home
+
+    override fun initView(view: View) {
+        super.initView(view)
+        setNavBarTitleLeftAlign()
+    }
 
 }
