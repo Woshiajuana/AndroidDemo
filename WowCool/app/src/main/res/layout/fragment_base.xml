@@ -6,10 +6,4 @@
     android:id="@+id/baseContainer"
     android:layout_height="match_parent">
 
-    <com.owulia.wowcool.ui.widget.NavBarView
-        android:id="@+id/vNavBar"
-        android:background="#ff00ff"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"/>
-
 </LinearLayout>

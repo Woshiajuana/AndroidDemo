@@ -7,13 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.owulia.wowcool.R
+import com.owulia.wowcool.ui.widget.NavBarView
+import com.owulia.wowcool.utils.WowSizeUtils
 import com.owulia.wowcool.utils.WowStatusBarUtils
 import com.owulia.wowcool.utils.WowToastUtils
 
 abstract class BaseFragment : Fragment() {
 
-    private var vRootView: ViewGroup? = null
-    private var vWrapView: View? = null
+    var vRootView: ViewGroup? = null
+    var vWrapView: View? = null
+    var vNavBar: NavBarView? = null
+
+    open val isUseNavBar: Boolean = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,6 +27,15 @@ abstract class BaseFragment : Fragment() {
     ): View? {
         vRootView = inflater.inflate(getRootViewResourceId(), container, false) as ViewGroup
         vWrapView = inflater.inflate(getViewResourceId(), container, false)
+        if (isUseNavBar) {
+            vNavBar = NavBarView(requireContext()).apply {
+                layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    WowSizeUtils.px2dp(44f).toInt()
+                )
+            }
+            (vWrapView as ViewGroup).addView(vNavBar)
+        }
         vRootView?.addView(vWrapView)
         return vRootView
     }
