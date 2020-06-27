@@ -28,7 +28,7 @@ abstract class BaseFragment : Fragment() {
     open val isUseNavBar: Boolean = true
 
     // 标题
-    open val mNavBarTitle: String = ""
+    open val mNavBarTitle: Int = -1
     // 左边返回按钮
     open val mNavBarLeftImage: Int = R.drawable.ic_arrow
     // 右边按钮
@@ -71,7 +71,7 @@ abstract class BaseFragment : Fragment() {
                 WowSizeUtils.px2dp(44f).toInt()
             )
             setBackgroundColor(Color.parseColor("#ffffff"))
-            setTitle(mNavBarTitle)
+            setTitle(if (mNavBarTitle == -1) "" else getString(mNavBarTitle))
             setLeftImage(mNavBarLeftImage)
             setRightImage(mNavBarRightImage)
         }

@@ -7,14 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.owulia.wowcool.R
 import com.owulia.wowcool.base.BaseFragment
+import com.owulia.wowcool.utils.ConstantsUtils
 
 /**
  * A simple [Fragment] subclass.
  */
 class HomeFragment : BaseFragment() {
 
-    override val mNavBarTitle: String = "首页"
-//    override val mNavBarLeftImage: Int = -1
+    override val mNavBarTitle: Int = R.string.string_tab_bar_home
+    override val mNavBarLeftImage: Int = ConstantsUtils.NAV_BAR_LEFT_IMAGE_NUM_NULL
 
     override fun getViewResourceId(): Int = R.layout.fragment_home
 
