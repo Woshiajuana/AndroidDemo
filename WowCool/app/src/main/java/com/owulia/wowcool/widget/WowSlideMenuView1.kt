@@ -10,7 +10,7 @@ import android.widget.Scroller
 import com.owulia.wowcool.utils.WowLogUtils
 import kotlin.math.abs
 
-class WowSlideMenuView @JvmOverloads constructor(
+class WowSlideMenuView1 @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ViewGroup(context, attrs, defStyleAttr) {
 
@@ -278,10 +278,10 @@ class WowSlideMenuView @JvmOverloads constructor(
     }
 }
 
-class WowSlideMenuWrap @JvmOverloads constructor(
+class WowSlideMenuWrap1 @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr)
 
-class WowSlideContentWrap @JvmOverloads constructor(
+class WowSlideContentWrap1 @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr)
