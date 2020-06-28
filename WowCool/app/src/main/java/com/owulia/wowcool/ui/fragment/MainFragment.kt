@@ -34,7 +34,7 @@ class MainFragment : BaseFragment() {
                 R.drawable.ic_tabbar_cool_normal,
                 R.drawable.ic_tabbar_cool_active,
                 getString(R.string.string_tab_bar_home),
-                HomeFragment()
+                HomeFragment.instant
             )
             addItem(
                 R.drawable.ic_tabbar_demo_normal,
@@ -46,7 +46,7 @@ class MainFragment : BaseFragment() {
                 R.drawable.ic_tabbar_mine_normal,
                 R.drawable.ic_tabbar_mine_active,
                 getString(R.string.string_tab_bar_mine),
-                MineFragment()
+                MineFragment.instant
             )
             setDivider(true, 1)
             setOnItemClickListener = { index, _ ->

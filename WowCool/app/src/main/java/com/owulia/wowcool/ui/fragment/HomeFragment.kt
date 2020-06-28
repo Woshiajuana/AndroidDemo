@@ -1,10 +1,7 @@
 package com.owulia.wowcool.ui.fragment
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.owulia.wowcool.R
 import com.owulia.wowcool.base.BaseFragment
 import com.owulia.wowcool.utils.ConstantsUtils
@@ -13,6 +10,10 @@ import com.owulia.wowcool.utils.ConstantsUtils
  * A simple [Fragment] subclass.
  */
 class HomeFragment : BaseFragment() {
+
+    companion object {
+        val instant: HomeFragment by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { HomeFragment() }
+    }
 
     override val mNavBarTitle: Int = R.string.string_tab_bar_home
     override val mNavBarLeftImage: Int = ConstantsUtils.NAV_BAR_LEFT_IMAGE_NUM_NULL

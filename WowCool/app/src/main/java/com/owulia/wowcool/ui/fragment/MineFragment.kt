@@ -11,6 +11,10 @@ import com.owulia.wowcool.utils.ConstantsUtils
  */
 class MineFragment : BaseFragment() {
 
+    companion object {
+        val instant: MineFragment by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { MineFragment() }
+    }
+
     override val mNavBarTitle: Int = R.string.string_tab_bar_mine
     override val mNavBarLeftImage: Int = ConstantsUtils.NAV_BAR_LEFT_IMAGE_NUM_NULL
 
