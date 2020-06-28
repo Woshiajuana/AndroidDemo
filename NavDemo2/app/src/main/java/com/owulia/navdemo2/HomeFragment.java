@@ -43,16 +43,8 @@ public class HomeFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText editText = getView().findViewById(R.id.editText);
-                String string = editText.getText().toString();
-                if (TextUtils.isEmpty(string)) {
-                    Toast.makeText(getActivity(), "请输入名字", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Bundle bundle = new Bundle();
-                bundle.putString("my_name", string);
                 NavController navController = Navigation.findNavController(view);
-                navController.navigate(R.id.action_homeFragment_to_detailFragment, bundle);
+                navController.navigate(R.id.action_homeFragment_to_detailFragment);
             }
         });
     }
