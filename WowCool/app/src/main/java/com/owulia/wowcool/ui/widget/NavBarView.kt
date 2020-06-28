@@ -12,18 +12,18 @@ class NavBarView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    var setLeftBtnClickListener: ((View) -> Unit)? = null
-    var setRightBtnClickListener: ((View) -> Unit)? = null
+    var setOnLeftBtnClickListener: ((View) -> Unit)? = null
+    var setOnRightBtnClickListener: ((View) -> Unit)? = null
 
     init {
         val view = LayoutInflater.from(context).inflate(R.layout.view_navbar, this, false)
         orientation = VERTICAL
         addView(view)
         vNavBarLeftBtn.setOnClickListener {
-            setLeftBtnClickListener?.let { it1 -> it1(it) }
+            setOnLeftBtnClickListener?.let { it1 -> it1(it) }
         }
         vNavBarRightBtn.setOnClickListener{
-            setRightBtnClickListener?.let { it1 -> it1(it) }
+            setOnRightBtnClickListener?.let { it1 -> it1(it) }
         }
     }
 

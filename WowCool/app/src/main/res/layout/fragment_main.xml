@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.MainFragment">
 
+
+
+    <TextView
+        android:text="哈哈哈"
+        android:layout_marginTop="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints" />
+
     <com.owulia.wowcool.widget.WowTabBarView
         android:id="@+id/wtMainTabBar"
         android:layout_width="match_parent"

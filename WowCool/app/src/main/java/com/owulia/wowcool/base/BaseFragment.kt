@@ -74,6 +74,9 @@ abstract class BaseFragment : Fragment() {
             setTitle(if (mNavBarTitle == -1) "" else getString(mNavBarTitle))
             setLeftImage(mNavBarLeftImage)
             setRightImage(mNavBarRightImage)
+            setOnLeftBtnClickListener = {
+                this@BaseFragment.activity?.onBackPressed()
+            }
         }
         val index = if (isUseStatusBarSeat) 1 else 0
         vRootView?.addView(vNavBar, index)
