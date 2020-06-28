@@ -1,6 +1,5 @@
 package com.owulia.wowcool.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,14 +13,7 @@ class DemoAdapter (private val list: MutableList<DemoItemBean>) : RecyclerView.A
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DemoAdapterHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_demo_card_cell, parent, false)
-        val holder = DemoAdapterHolder(view)
-        Log.d("DEMOADAPTER", "111111111${holder.itemView}")
-
-        holder.itemView.llContent.setOnClickListener{
-            Log.d("DEMOADAPTER", "111111111")
-            holder.itemView.findNavController().navigate(R.id.action_mainFragment_to_demoSlideMenuFragment)
-        }
-        return holder
+        return DemoAdapterHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -34,6 +26,12 @@ class DemoAdapter (private val list: MutableList<DemoItemBean>) : RecyclerView.A
         holder.itemView.tvText.text = demoItemBean.text
         if ((position + 1) % 3 == 0) {
             holder.itemView.brRight.visibility = View.GONE
+        }
+        demoItemBean.route?.let {
+            holder.itemView.setOnClickListener{ _ ->
+                
+                holder.itemView.findNavController().navigate(it)
+            }
         }
     }
 

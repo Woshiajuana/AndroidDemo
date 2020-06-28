@@ -2,17 +2,17 @@
 
 <com.owulia.wowcool.widget.WowWEqualsHView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
     android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/llContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
         android:gravity="center"
         android:orientation="vertical">
 

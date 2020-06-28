@@ -31,22 +31,6 @@ class DemoFragment : BaseFragment() {
     override fun initView(view: View) {
         super.initView(view)
         setNavBarTitleLeftAlign()
-        mDemoViewModel.arrDemo.value = mutableListOf (
-            DemoItemBean(
-                resources.getString(R.string.string_demo_tabbar_icon),
-                resources.getString(R.string.string_demo_tabbar_text)),
-            DemoItemBean(
-                resources.getString(R.string.string_demo_iconfont_icon),
-                resources.getString(R.string.string_demo_iconfont_text)),
-            DemoItemBean(
-                resources.getString(R.string.string_demo_wh_icon),
-                resources.getString(R.string.string_demo_wh_text)
-            ),
-            DemoItemBean(
-                resources.getString(R.string.string_demo_slide_menu_icon),
-                resources.getString(R.string.string_demo_slide_menu_text)
-            )
-        )
         rvDemoMain.apply {
             layoutManager = GridLayoutManager(context, 3)
             adapter = DemoAdapter(mDemoViewModel.arrDemo.value as MutableList<DemoItemBean>)
