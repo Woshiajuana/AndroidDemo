@@ -11,13 +11,13 @@
 
     <style name="AnimationActivity" parent="@android:style/Animation.Activity">
         <!--        新 Activity 动画-->
-        <item name="android:activityOpenEnterAnimation">@anim/amin_in_enter</item>
+        <item name="android:activityOpenEnterAnimation">@anim/anim_slide_in_right</item>
         <!--        员 Activity 动画-->
-        <item name="android:activityOpenExitAnimation">@anim/anim_in_exit</item>
+        <item name="android:activityOpenExitAnimation">@anim/anim_slide_in_left</item>
         <!--        退出时 退出的 Activity 执行的动画-->
-        <item name="android:activityCloseExitAnimation">@anim/anim_out_exit</item>
+        <item name="android:activityCloseExitAnimation">@anim/anim_slide_out_right</item>
         <!--        退出时进入的 Activity 执行的动画-->
-        <item name="android:activityCloseEnterAnimation">@anim/anim_out_enter</item>
+        <item name="android:activityCloseEnterAnimation">@anim/anim_slide_out_left</item>
     </style>
 
     <style name="AppTheme1" parent="Theme.AppCompat.Light.NoActionBar">

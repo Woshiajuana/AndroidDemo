@@ -12,10 +12,10 @@
         <action
             android:id="@+id/action_mainFragment_to_demoSlideMenuFragment"
             app:destination="@id/demoSlideMenuFragment"
-            app:enterAnim="@anim/amin_in_enter"
-            app:exitAnim="@anim/anim_in_exit"
-            app:popEnterAnim="@anim/anim_out_enter"
-            app:popExitAnim="@anim/anim_out_exit" />
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/demoSlideMenuFragment"
