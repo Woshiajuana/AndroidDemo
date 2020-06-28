@@ -9,6 +9,8 @@ import com.owulia.wowcool.base.BaseFragment
  */
 class DemoSlideMenuFragment : BaseFragment() {
 
+    override val mNavBarTitle: Int = R.string.string_demo_slide_menu_text
+
     override fun getViewResourceId(): Int = R.layout.fragment_demo_slide_menu
 
 }

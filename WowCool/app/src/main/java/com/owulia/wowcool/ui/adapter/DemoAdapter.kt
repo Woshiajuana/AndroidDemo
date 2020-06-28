@@ -29,7 +29,9 @@ class DemoAdapter (private val list: MutableList<DemoItemBean>) : RecyclerView.A
         }
         demoItemBean.route?.let {
             holder.itemView.setOnClickListener{ _ ->
-                
+//                val bundle = Bundle().apply {
+//                    putString()
+//                }
                 holder.itemView.findNavController().navigate(it)
             }
         }
