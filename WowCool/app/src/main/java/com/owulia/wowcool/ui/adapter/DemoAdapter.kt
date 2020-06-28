@@ -9,18 +9,18 @@ import com.owulia.wowcool.R
 import com.owulia.wowcool.bean.DemoItemBean
 import kotlinx.android.synthetic.main.item_demo_card_cell.view.*
 
-class DemoAdapter (private val list: MutableList<DemoItemBean>) : RecyclerView.Adapter<DemoAdapterHolder>() {
+class DemoAdapter (private val list: MutableList<DemoItemBean>) : RecyclerView.Adapter<DemoAdapterViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DemoAdapterHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DemoAdapterViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_demo_card_cell, parent, false)
-        return DemoAdapterHolder(view)
+        return DemoAdapterViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
 
-    override fun onBindViewHolder(holder: DemoAdapterHolder, position: Int) {
+    override fun onBindViewHolder(holder: DemoAdapterViewHolder, position: Int) {
         val demoItemBean = list[position]
         holder.itemView.tvIcon.text = demoItemBean.icon
         holder.itemView.tvText.text = demoItemBean.text
@@ -39,4 +39,4 @@ class DemoAdapter (private val list: MutableList<DemoItemBean>) : RecyclerView.A
 
 }
 
-class DemoAdapterHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+class DemoAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

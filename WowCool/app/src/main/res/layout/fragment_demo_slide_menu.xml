@@ -5,49 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.demo.DemoSlideMenuFragment">
 
-    <com.owulia.wowcool.widget.WowSlideMenuView
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/vRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <com.owulia.wowcool.widget.WowSlideContentWrap
-            android:background="#334455"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:text="测试"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </com.owulia.wowcool.widget.WowSlideContentWrap>
-        <com.owulia.wowcool.widget.WowSlideMenuWrap
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:background="#ff3344"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-                <TextView
-                    android:text="按钮1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout
-                android:background="#889900"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-                <TextView
-                    android:text="按钮2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout
-                android:background="#115544"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-                <TextView
-                    android:text="按钮3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-        </com.owulia.wowcool.widget.WowSlideMenuWrap>
-    </com.owulia.wowcool.widget.WowSlideMenuView>
+        android:layout_height="match_parent"/>
+
+    <include layout="@layout/item_demo_slide_menu_cell"/>
 
 </FrameLayout>
