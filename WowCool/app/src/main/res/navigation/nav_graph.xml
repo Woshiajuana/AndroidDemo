@@ -11,7 +11,11 @@
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_demoSlideMenuFragment"
-            app:destination="@id/demoSlideMenuFragment" />
+            app:destination="@id/demoSlideMenuFragment"
+            app:enterAnim="@anim/amin_in_enter"
+            app:exitAnim="@anim/anim_in_exit"
+            app:popEnterAnim="@anim/anim_out_enter"
+            app:popExitAnim="@anim/anim_out_exit" />
     </fragment>
     <fragment
         android:id="@+id/demoSlideMenuFragment"

@@ -6,6 +6,18 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+    </style>
+
+    <style name="AnimationActivity" parent="@android:style/Animation.Activity">
+        <!--        新 Activity 动画-->
+        <item name="android:activityOpenEnterAnimation">@anim/amin_in_enter</item>
+        <!--        员 Activity 动画-->
+        <item name="android:activityOpenExitAnimation">@anim/anim_in_exit</item>
+        <!--        退出时 退出的 Activity 执行的动画-->
+        <item name="android:activityCloseExitAnimation">@anim/anim_out_exit</item>
+        <!--        退出时进入的 Activity 执行的动画-->
+        <item name="android:activityCloseEnterAnimation">@anim/anim_out_enter</item>
     </style>
 
     <style name="AppTheme1" parent="Theme.AppCompat.Light.NoActionBar">
