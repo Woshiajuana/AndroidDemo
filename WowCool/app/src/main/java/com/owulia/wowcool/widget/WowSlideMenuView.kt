@@ -44,7 +44,8 @@ class WowSlideMenuView @JvmOverloads constructor(
                 }
             }
         }
-        return super.onInterceptTouchEvent(ev)
+//        return super.onInterceptTouchEvent(ev)
+        return true
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -80,8 +81,8 @@ class WowSlideMenuView @JvmOverloads constructor(
                 if (isOpen) {
                     // 当前状态打开
                     if (mCurrDirect == Direction.RIGHT) {
-                        // 向右滑动 如果小于 3/4 就关闭
-                        if (scrollX <= mMaxDX * 3 / 4) {
+                        // 向右滑动 如果小于 4/5 就关闭
+                        if (scrollX <= mMaxDX * 4 / 5) {
                             // 打开
                             close()
                         } else {
@@ -95,7 +96,7 @@ class WowSlideMenuView @JvmOverloads constructor(
                     // 当前关闭
                     if (mCurrDirect == Direction.LEFT) {
                         // 向左滑动
-                        if (scrollX > mMaxDX / 4) {
+                        if (scrollX > mMaxDX / 5) {
                             // 打开
                             open()
                         } else {
