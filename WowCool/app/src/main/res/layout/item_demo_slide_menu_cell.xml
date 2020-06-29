@@ -4,49 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="70dp">
-
-    <com.owulia.wowcool.widget.WowSlideContentWrap
-        android:background="@android:color/white"
+    <TextView
+        android:paddingStart="14dp"
+        android:textSize="16sp"
+        android:text="测试"
+        android:id="@+id/vTitle"
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="RtlSymmetry" />
+    <LinearLayout
+        android:id="@+id/vBtnTop"
+        android:background="@color/colorSlideMenuTop"
+        style="@style/style_slide_menu_btn">
         <TextView
-            android:paddingStart="14dp"
-            android:textSize="16sp"
-            android:text="测试"
-            android:id="@+id/vTitle"
-            android:gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:ignore="RtlSymmetry" />
-    </com.owulia.wowcool.widget.WowSlideContentWrap>
-
-    <com.owulia.wowcool.widget.WowSlideMenuWrap
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:id="@+id/vBtnTop"
-            android:background="@color/colorSlideMenuTop"
-            style="@style/style_slide_menu_btn">
-            <TextView
-                android:text="@string/string_slide_menu_top"
-                style="@style/style_slide_menu_btn_text"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/vBtnUpdate"
-            android:background="@color/colorSlideMenuUpdate"
-            style="@style/style_slide_menu_btn">
-            <TextView
-                android:text="@string/string_slide_menu_update"
-                style="@style/style_slide_menu_btn_text"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/vBtnDelete"
-            android:background="@color/colorSlideMenuDelete"
-            style="@style/style_slide_menu_btn">
-            <TextView
-                android:text="@string/string_slide_menu_delete"
-                style="@style/style_slide_menu_btn_text"/>
-        </LinearLayout>
-    </com.owulia.wowcool.widget.WowSlideMenuWrap>
+            android:text="@string/string_slide_menu_top"
+            style="@style/style_slide_menu_btn_text"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/vBtnUpdate"
+        android:background="@color/colorSlideMenuUpdate"
+        style="@style/style_slide_menu_btn">
+        <TextView
+            android:text="@string/string_slide_menu_update"
+            style="@style/style_slide_menu_btn_text"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/vBtnDelete"
+        android:background="@color/colorSlideMenuDelete"
+        style="@style/style_slide_menu_btn">
+        <TextView
+            android:text="@string/string_slide_menu_delete"
+            style="@style/style_slide_menu_btn_text"/>
+    </LinearLayout>
 
 </com.owulia.wowcool.widget.WowSlideMenuView>

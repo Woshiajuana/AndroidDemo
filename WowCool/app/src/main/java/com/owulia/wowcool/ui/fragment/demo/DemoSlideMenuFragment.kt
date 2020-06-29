@@ -7,7 +7,10 @@ import com.owulia.wowcool.R
 import com.owulia.wowcool.base.BaseFragment
 import com.owulia.wowcool.bean.DemoSlideMenuItem
 import com.owulia.wowcool.ui.adapter.DemoSlideMenuAdapter
+import com.owulia.wowcool.utils.WowLogUtils
+import com.owulia.wowcool.utils.WowToastUtils
 import kotlinx.android.synthetic.main.fragment_demo_slide_menu.*
+import kotlinx.android.synthetic.main.item_demo_slide_menu_cell.*
 
 /**
  * A simple [Fragment] subclass.
@@ -26,6 +29,26 @@ class DemoSlideMenuFragment : BaseFragment() {
             layoutManager = LinearLayoutManager(context)
             mAdapter = DemoSlideMenuAdapter()
             adapter = mAdapter
+        }
+        vTitle.apply {
+            setOnClickListener {
+                WowToastUtils.show("主体")
+                WowLogUtils.d(this, "主体")
+            }
+        }
+        vBtnTop.apply {
+            setOnClickListener {
+                WowToastUtils.show("置顶")
+                WowLogUtils.d(this, "置顶")
+            }
+        }
+        vBtnDelete.setOnClickListener {
+            WowToastUtils.show("删除")
+            WowLogUtils.d(this, "删除")
+        }
+        vBtnUpdate.setOnClickListener {
+            WowToastUtils.show("修改")
+            WowLogUtils.d(this, "修改")
         }
         val arrData = mutableListOf<DemoSlideMenuItem>(
             DemoSlideMenuItem("第一条数据"),

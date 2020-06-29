@@ -3,17 +3,14 @@ package com.owulia.wowcool.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
+import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Scroller
 import kotlin.math.abs
 
 class WowSlideMenuView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ViewGroup(context, attrs, defStyleAttr) {
-
-    private lateinit var mvContentWrap: WowSlideContentWrap
-    private lateinit var mvMenuWrap: WowSlideMenuWrap
 
     private var mDownX = 0f
     private var mMaxDX = 0 // 可移动最大边界
@@ -41,6 +38,12 @@ class WowSlideMenuView @JvmOverloads constructor(
         LEFT, RIGHT, NONE
     }
 
+    init {
+        // 设置可以点击
+        isClickable = true
+    }
+
+    // 分发事件
     override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
         when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
@@ -141,6 +144,8 @@ class WowSlideMenuView @JvmOverloads constructor(
                             isClickContent = true
                             return true
                         }
+                    } else {
+                        return true
                     }
                 } else {
                     // 非打开状态下，手指只要有横向移动 拦截事件
@@ -183,77 +188,60 @@ class WowSlideMenuView @JvmOverloads constructor(
     }
 
     // 这里可以拿到自己的孩子
-    override fun onFinishInflate() {
-        super.onFinishInflate()
-        if (childCount != 2) {
-            throw IndexOutOfBoundsException("need two child")
-        }
-        // 取出孩子
-        when (val childOne = getChildAt(0)) {
-            is WowSlideContentWrap ->  mvContentWrap = childOne
-            is WowSlideMenuWrap -> mvMenuWrap = childOne
-        }
-        when (val childTwo = getChildAt(1)) {
-            is WowSlideContentWrap ->  mvContentWrap = childTwo
-            is WowSlideMenuWrap -> mvMenuWrap = childTwo
-        }
-    }
+//    override fun onFinishInflate() {
+//        super.onFinishInflate()
+//    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-
+        if (childCount <= 0) return
         // 父控件的大小
         val heightSize = MeasureSpec.getSize(heightMeasureSpec)
         val widthSize = MeasureSpec.getSize(widthMeasureSpec)
 
+        // 第一个子元素认为是主体部分
         // 测量第一个内容部分
         // 宽度，跟父控件一样宽，高度有三种情况，如果指定大小，那么我们获取
         // 到它的大小，直接测了
         // 如果是包内容，at_most 如果是 match_parent，那就给它大小
+        val elContent = getChildAt(0)
         val contentHeightMeasureSpec =
-            when (val contentHeight = mvContentWrap.layoutParams.height) {
+            when (val contentHeight = elContent.layoutParams.height) {
                 LayoutParams.MATCH_PARENT -> MeasureSpec.makeMeasureSpec(heightSize, MeasureSpec.EXACTLY)
                 LayoutParams.WRAP_CONTENT -> MeasureSpec.makeMeasureSpec(heightSize, MeasureSpec.AT_MOST)
                 else -> MeasureSpec.makeMeasureSpec(contentHeight, MeasureSpec.EXACTLY)
             }
-        mvContentWrap.measure(widthMeasureSpec, contentHeightMeasureSpec)
-
-        // 拿到内容部分测量以后的高度
-        val contentMeasureHeight = mvContentWrap.measuredHeight
-        val menuWidth = mvMenuWrap.layoutParams.width
-        // 测量编辑部分的宽度: 3/4 高度跟内容高度一样
-        val menuWithMeasureSpec = MeasureSpec.makeMeasureSpec(menuWidth, MeasureSpec.AT_MOST)
-        mvMenuWrap.measure(menuWithMeasureSpec, MeasureSpec.makeMeasureSpec(contentMeasureHeight, MeasureSpec.EXACTLY))
-        mMaxDX = mvMenuWrap.measuredWidth
-
+        elContent.measure(widthMeasureSpec, contentHeightMeasureSpec)
+        // 拿到内容部分测量剩下子元素
+        val contentMeasureHeight = elContent.measuredHeight
+        mMaxDX = 0
+        for (index in 1 until childCount) {
+            val elMenu = getChildAt(index)
+            if (elMenu.visibility == View.VISIBLE) {
+                val menuWidth = elMenu.layoutParams.width
+                // 测量编辑部分的宽度: 3/4 高度跟内容高度一样
+                val menuWithMeasureSpec = MeasureSpec.makeMeasureSpec(menuWidth, MeasureSpec.AT_MOST)
+                elMenu.measure(menuWithMeasureSpec, MeasureSpec.makeMeasureSpec(contentMeasureHeight, MeasureSpec.EXACTLY))
+                mMaxDX += elMenu.measuredWidth
+            }
+        }
         // 测量自己
         // 宽度就是前面的总和，高度和内容一样
-        setMeasuredDimension(widthSize + mvMenuWrap.measuredWidth, contentMeasureHeight)
+        setMeasuredDimension(widthSize + mMaxDX, contentMeasureHeight)
 
     }
 
     override fun onLayout(p0: Boolean, p1: Int, p2: Int, p3: Int, p4: Int) {
-        // 拜访内容
-        val contentLeft = 0
-        val contentTop = 0
-        val contentRight = contentLeft + mvContentWrap.measuredWidth
-        val contentBottom = contentTop + mvContentWrap.measuredHeight
-        mvContentWrap.layout(contentLeft, contentTop, contentRight, contentBottom)
-
-        // 拜访操作内容
-        val menuLeft = contentRight
-        val menuTop = 0
-        val menuRight = menuLeft + mvMenuWrap.measuredWidth
-        val menuBottom = menuTop + mvMenuWrap.measuredHeight
-        mvMenuWrap.layout(menuLeft, menuTop, menuRight, menuBottom)
-
+        var left = 0
+        var top = 0
+        var right = 0
+        var bottom = 0
+        for (index in 0 until childCount) {
+            val el = getChildAt(index)
+            right = left + el.measuredWidth
+            bottom = top + el.measuredHeight
+            el.layout(left, top, right, bottom)
+            left += el.measuredWidth
+        }
     }
 }
-
-class WowSlideMenuWrap @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr)
-
-class WowSlideContentWrap @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr)
