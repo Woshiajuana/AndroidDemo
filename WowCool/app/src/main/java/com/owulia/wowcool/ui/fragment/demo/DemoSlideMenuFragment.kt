@@ -6,7 +6,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.owulia.wowcool.R
 import com.owulia.wowcool.base.BaseFragment
-import com.owulia.wowcool.bean.DemoSlideMenuItem
 import com.owulia.wowcool.ui.adapter.DemoSlideMenuAdapter
 import com.owulia.wowcool.viewmodel.DemoSlideMenuFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_demo_slide_menu.*

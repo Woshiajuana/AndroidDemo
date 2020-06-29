@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.owulia.wowcool.R
 import com.owulia.wowcool.bean.DemoSlideMenuItem
 import com.owulia.wowcool.utils.WowToastUtils
+import com.owulia.wowcool.widget.WowSlideMenuView
 import kotlinx.android.synthetic.main.item_demo_slide_menu_cell.view.*
 
 class DemoSlideMenuAdapter : RecyclerView.Adapter<DemoSlideMenuViewHolder>() {
@@ -34,10 +35,16 @@ class DemoSlideMenuAdapter : RecyclerView.Adapter<DemoSlideMenuViewHolder>() {
             vBtnTop.apply {
                 visibility = if (position == 0) View.GONE else View.VISIBLE
                 setOnClickListener {
+                    val oldFirst = list[0]
+                    list[0] = itemData
+                    list[position] = oldFirst
+                    (holder.itemView as WowSlideMenuView).close()
+                    notifyItemChanged(0)
+                    notifyItemChanged(position)
                     WowToastUtils.show("置顶")
                 }
             }
-            vBtnUpdate. setOnClickListener {
+            vBtnUpdate.setOnClickListener {
                 WowToastUtils.show("修改")
             }
             vBtnDelete.setOnClickListener {

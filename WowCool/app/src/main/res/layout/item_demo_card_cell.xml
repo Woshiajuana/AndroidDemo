@@ -38,13 +38,13 @@
         android:layout_gravity="bottom"
         android:background="@color/colorBorder"
         android:layout_width="wrap_content"
-        android:layout_height="1dp"/>
+        android:layout_height="1px"/>
 
     <View
         android:id="@+id/brRight"
         android:layout_gravity="end"
         android:background="@color/colorBorder"
-        android:layout_width="1dp"
+        android:layout_width="1px"
         android:layout_height="wrap_content"/>
 
 </com.owulia.wowcool.widget.WowWEqualsHView>
