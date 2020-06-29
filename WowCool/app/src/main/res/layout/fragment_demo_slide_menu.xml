@@ -7,8 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.demo.DemoSlideMenuFragment">
 
-    <include layout="@layout/item_demo_slide_menu_cell"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vRecyclerView"
         android:layout_width="match_parent"

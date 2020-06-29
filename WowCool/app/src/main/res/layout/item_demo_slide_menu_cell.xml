@@ -2,6 +2,7 @@
 <com.owulia.wowcool.widget.WowSlideMenuView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/layer_list_demo_slide_menu_cell"
     android:layout_width="match_parent"
     android:layout_height="70dp">
     <TextView
@@ -37,5 +38,4 @@
             android:text="@string/string_slide_menu_delete"
             style="@style/style_slide_menu_btn_text"/>
     </LinearLayout>
-
 </com.owulia.wowcool.widget.WowSlideMenuView>

@@ -6,9 +6,9 @@
     <color name="colorAccent">@color/colorMain</color>
 
 
-<!--    <color name="colorMain">#213141</color>-->
-    <color name="colorMain">#FF5722</color>
-    <color name="colorBorder">#ededed</color>
+    <color name="colorMain">#213141</color>
+<!--    <color name="colorMain">#FF5722</color>-->
+    <color name="colorBorder">#dddddd</color>
     <color name="colorBackground">#f2f2f2</color>
 
     <color name="colorTabBarActive">@color/colorMain</color>
@@ -17,7 +17,7 @@
     <color name="colorDemoItemIcon">@color/colorMain</color>
     <color name="colorDemoItemText">#999999</color>
     <color name="colorTitle">#333333</color>
-    <color name="colorNavBarBorder">#dddddd</color>
+    <color name="colorNavBarBorder">@color/colorBorder</color>
     <color name="colorSlideMenuDelete">#F44336</color>
     <color name="colorSlideMenuTop">#999999</color>
     <color name="colorSlideMenuUpdate">#FF9800</color>
