@@ -16,10 +16,46 @@
             app:exitAnim="@anim/anim_slide_out_left"
             app:popEnterAnim="@anim/anim_slide_in_left"
             app:popExitAnim="@anim/anim_slide_out_right" />
+        <action
+            android:id="@+id/action_mainFragment_to_demoWEqualsHFragment"
+            app:destination="@id/DemoWEqualsHFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_right" />
+        <action
+            android:id="@+id/action_mainFragment_to_demoIconFontFragment"
+            app:destination="@id/demoIconFontFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_right" />
+        <action
+            android:id="@+id/action_mainFragment_to_demoTabBarFragment"
+            app:destination="@id/demoTabBarFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/demoSlideMenuFragment"
         android:name="com.owulia.wowcool.ui.fragment.demo.DemoSlideMenuFragment"
         android:label="fragment_demo_slide_menu"
         tools:layout="@layout/fragment_demo_slide_menu" />
+    <fragment
+        android:id="@+id/DemoWEqualsHFragment"
+        android:name="com.owulia.wowcool.ui.fragment.demo.DemoWEqualsHFragment"
+        android:label="fragment_wow_w_equals_h"
+        tools:layout="@layout/fragment_demo_w_equals_h" />
+    <fragment
+        android:id="@+id/demoIconFontFragment"
+        android:name="com.owulia.wowcool.ui.fragment.demo.DemoIconFontFragment"
+        android:label="fragment_demo_icon_font"
+        tools:layout="@layout/fragment_demo_icon_font" />
+    <fragment
+        android:id="@+id/demoTabBarFragment"
+        android:name="com.owulia.wowcool.ui.fragment.demo.DemoTabBarFragment"
+        android:label="fragment_demo_tab_bar"
+        tools:layout="@layout/fragment_demo_tab_bar" />
 </navigation>

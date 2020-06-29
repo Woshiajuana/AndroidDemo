@@ -11,15 +11,18 @@ class DemoFragmentViewModel(application: Application) : AndroidViewModel(applica
         mutableListOf (
             DemoItemBean(
                 application.resources.getString(R.string.string_demo_tabbar_icon),
-                application.resources.getString(R.string.string_demo_tabbar_text)
+                application.resources.getString(R.string.string_demo_tabbar_text),
+                R.id.action_mainFragment_to_demoTabBarFragment
             ),
             DemoItemBean(
                 application.resources.getString(R.string.string_demo_iconfont_icon),
-                application.resources.getString(R.string.string_demo_iconfont_text)
+                application.resources.getString(R.string.string_demo_iconfont_text),
+                R.id.action_mainFragment_to_demoIconFontFragment
             ),
             DemoItemBean(
                 application.resources.getString(R.string.string_demo_wh_icon),
-                application.resources.getString(R.string.string_demo_wh_text)
+                application.resources.getString(R.string.string_demo_wh_text),
+                R.id.action_mainFragment_to_demoWEqualsHFragment
             ),
             DemoItemBean(
                 application.resources.getString(R.string.string_demo_slide_menu_icon),
