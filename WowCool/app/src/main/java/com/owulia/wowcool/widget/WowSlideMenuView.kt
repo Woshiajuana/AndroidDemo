@@ -1,13 +1,11 @@
 package com.owulia.wowcool.widget
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Scroller
-import com.owulia.wowcool.utils.WowLogUtils
 import kotlin.math.abs
 
 class WowSlideMenuView @JvmOverloads constructor(
@@ -30,6 +28,9 @@ class WowSlideMenuView @JvmOverloads constructor(
 
     // 是否有手指触摸
     private var isTouching = false
+
+    // 在打开状态下 是否点击了主体部分
+    private var isClickContent = false
 
     companion object {
         // 存储打开
@@ -55,10 +56,8 @@ class WowSlideMenuView @JvmOverloads constructor(
                     }
                     parent.requestDisallowInterceptTouchEvent(true)
                 }
-                WowLogUtils.d(this, "dispatchTouchEvent ACTION_DOWN => ")
             }
             MotionEvent.ACTION_MOVE -> {
-                WowLogUtils.d(this, "dispatchTouchEvent ACTION_MOVE => ")
                 val moveX = event.x
                 // 移动的差值
                 val dx = (moveX - mDownX).toInt()
@@ -66,7 +65,8 @@ class WowSlideMenuView @JvmOverloads constructor(
                 if (dx != 0) {
                     mCurrDirect = if (dx > 0) Direction.RIGHT else Direction.LEFT
                 }
-                if (abs(dx) > 10 || abs(scrollX) > 10) {//2016 09 29 修改此处，使屏蔽父布局滑动更加灵敏，
+                // 横向滑动超过10 或者 已经横向滚动超管10 认为用户要横向滚动，
+                if (abs(dx) > 10 || abs(scrollX) > 10) {
                     parent.requestDisallowInterceptTouchEvent(true);
                 }
                 val resDx = -dx + scrollX
@@ -86,11 +86,13 @@ class WowSlideMenuView @JvmOverloads constructor(
             MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
                 // 释放手指触摸标识
                 isTouching = false
-                WowLogUtils.d(this, "dispatchTouchEvent ACTION_UP => ")
                 // 两个关注点 是否打开、 方向
                 if (isOpen) {
-                    // 当前状态打开
-                    if (mCurrDirect == Direction.RIGHT) {
+                    // 判断是否点击了主体部分
+                    if (isClickContent) {
+                        close()
+                    } else if (mCurrDirect == Direction.RIGHT) {
+                        // 当前状态打开
                         // 向右滑动 如果小于 4/5 就关闭
                         if (scrollX <= mMaxDX * 4 / 5) {
                             // 打开
@@ -120,7 +122,6 @@ class WowSlideMenuView @JvmOverloads constructor(
             }
         }
         return super.dispatchTouchEvent(event)
-//        return false
     }
 
     // 拦截事件
@@ -128,58 +129,47 @@ class WowSlideMenuView @JvmOverloads constructor(
         when (ev?.action) {
             MotionEvent.ACTION_DOWN -> {
                 mInterceptDownX = ev.x
-                WowLogUtils.d(this, "onInterceptTouchEvent ACTION_DOWN => ")
             }
             MotionEvent.ACTION_MOVE -> {
-                WowLogUtils.d(this, "onInterceptTouchEvent ACTION_MOVE => ")
-                if (ev.x - mInterceptDownX != 0f) {
-                    return true
+                if (isOpen) {
+                    // 打开状态下
+                    // 先判断是否有横向移动
+                    if (ev.x - mInterceptDownX == 0f) {
+                        // 判断是否点击了主体部分
+                        if (ev.x < width - scrollX - scrollX) {
+                            // 点击了主体， 拦截事件
+                            isClickContent = true
+                            return true
+                        }
+                    }
+                } else {
+                    // 非打开状态下，手指只要有横向移动 拦截事件
+                    if (ev.x - mInterceptDownX != 0f) {
+                        return true
+                    }
                 }
             }
             MotionEvent.ACTION_UP -> {
-                WowLogUtils.d(this, "onInterceptTouchEvent ACTION_UP => ")
             }
         }
         return super.onInterceptTouchEvent(ev)
-//        return true
-    }
-
-    @SuppressLint("ClickableViewAccessibility")
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        when (event?.action) {
-            MotionEvent.ACTION_DOWN -> {
-                WowLogUtils.d(this, "onTouchEvent ACTION_DOWN => ")
-            }
-            MotionEvent.ACTION_MOVE -> {
-                WowLogUtils.d(this, "onTouchEvent ACTION_MOVE => ")
-            }
-            MotionEvent.ACTION_CANCEL -> {
-                WowLogUtils.d(this, "onTouchEvent ACTION_CANCEL => ")
-            }
-            MotionEvent.ACTION_UP -> {
-                WowLogUtils.d(this, "onTouchEvent ACTION_UP => ")
-            }
-        }
-//        return super.onTouchEvent(event)
-        return true
     }
 
     fun open () {
-        mStatusViewCache = this
-//        parent.requestDisallowInterceptTouchEvent(true)
-        isOpen = true
         val dx = mMaxDX - scrollX
         val duration = dx / (mMaxDX * 1f) * mDuration
+        mStatusViewCache = this
+        isOpen = true
         mScroller.startScroll(scrollX, 0, dx, 0, abs(duration.toInt()))
         invalidate()
     }
 
     fun close () {
-        mStatusViewCache = null
-//        parent.requestDisallowInterceptTouchEvent(false)
-        isOpen = false
         val dx = -scrollX
         val duration = dx / (mMaxDX * 1f) * mDuration
+        mStatusViewCache = null
+        isClickContent = false
+        isOpen = false
         mScroller.startScroll(scrollX, 0, dx, 0, abs(duration.toInt()))
         invalidate()
     }
