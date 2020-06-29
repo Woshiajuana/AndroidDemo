@@ -25,6 +25,7 @@ class DemoSlideMenuAdapter : RecyclerView.Adapter<DemoSlideMenuViewHolder>() {
 
     override fun onBindViewHolder(holder: DemoSlideMenuViewHolder, position: Int) {
         val itemData = list[position]
+        WowLogUtils.d(this, "item => ${holder.itemView}  => position => ${position}")
         holder.itemView.apply {
             vTitle.apply {
                 text = itemData.title
@@ -40,13 +41,17 @@ class DemoSlideMenuAdapter : RecyclerView.Adapter<DemoSlideMenuViewHolder>() {
                     WowLogUtils.d(this, "置顶")
                 }
             }
-            vBtnDelete.setOnClickListener {
-                WowToastUtils.show("删除")
-                WowLogUtils.d(this, "删除")
+            vBtnUpdate.apply {
+                setOnClickListener {
+                    WowToastUtils.show("修改")
+                    WowLogUtils.d(this, "修改")
+                }
             }
-            vBtnUpdate.setOnClickListener {
-                WowToastUtils.show("修改")
-                WowLogUtils.d(this, "修改")
+            vBtnDelete.apply {
+                setOnClickListener {
+                    WowToastUtils.show("删除")
+                    WowLogUtils.d(this, "删除")
+                }
             }
         }
     }

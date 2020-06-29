@@ -228,7 +228,6 @@ class WowSlideMenuView @JvmOverloads constructor(
         // 测量自己
         // 宽度就是前面的总和，高度和内容一样
         setMeasuredDimension(widthSize + mMaxDX, contentMeasureHeight)
-
     }
 
     override fun onLayout(p0: Boolean, p1: Int, p2: Int, p3: Int, p4: Int) {
@@ -238,10 +237,12 @@ class WowSlideMenuView @JvmOverloads constructor(
         var bottom = 0
         for (index in 0 until childCount) {
             val el = getChildAt(index)
-            right = left + el.measuredWidth
-            bottom = top + el.measuredHeight
-            el.layout(left, top, right, bottom)
-            left += el.measuredWidth
+            if (el.visibility == View.VISIBLE) {
+                right = left + el.measuredWidth
+                bottom = top + el.measuredHeight
+                el.layout(left, top, right, bottom)
+                left += el.measuredWidth
+            }
         }
     }
 }

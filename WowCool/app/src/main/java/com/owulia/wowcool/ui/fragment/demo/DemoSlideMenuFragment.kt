@@ -46,10 +46,10 @@ class DemoSlideMenuFragment : BaseFragment() {
             WowToastUtils.show("删除")
             WowLogUtils.d(this, "删除")
         }
-        vBtnUpdate.setOnClickListener {
-            WowToastUtils.show("修改")
-            WowLogUtils.d(this, "修改")
-        }
+//        vBtnUpdate.setOnClickListener {
+//            WowToastUtils.show("修改")
+//            WowLogUtils.d(this, "修改")
+//        }
         val arrData = mutableListOf<DemoSlideMenuItem>(
             DemoSlideMenuItem("第一条数据"),
             DemoSlideMenuItem("第二条数据"),
