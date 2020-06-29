@@ -20,8 +20,14 @@
         <item name="android:activityCloseEnterAnimation">@anim/anim_slide_out_left</item>
     </style>
 
-    <style name="AppTheme1" parent="Theme.AppCompat.Light.NoActionBar">
-
+    <!--启动页样式-->
+    <style name="WelcomeTheme" parent="Theme.AppCompat.Light.NoActionBar">
+<!--        <item name="android:windowNoTitle">true</item>-->
+<!--        <item name="android:windowFullscreen">true</item>-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+        <item name="android:windowBackground">@mipmap/welcome</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:ignore="NewApi">shortEdges</item>
     </style>
     
     <style name="style_slide_menu_btn">
