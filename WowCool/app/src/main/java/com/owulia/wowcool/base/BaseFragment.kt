@@ -3,6 +3,7 @@ package com.owulia.wowcool.base
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -95,6 +96,7 @@ abstract class BaseFragment : Fragment() {
     // 设置标题居左
     open fun setNavBarTitleLeftAlign () {
         vNavBar?.findViewById<TextView>(R.id.vNavBarTitle)?.apply {
+            gravity = Gravity.LEFT
             (layoutParams as RelativeLayout.LayoutParams).apply {
                 if (mNavBarLeftImage == -1) {
                     addRule(RelativeLayout.ALIGN_PARENT_LEFT)
@@ -111,7 +113,7 @@ abstract class BaseFragment : Fragment() {
     }
 
     // 获取 root 页面资源
-    fun getRootViewResourceId() : Int = R.layout.fragment_base
+    open fun getRootViewResourceId() : Int = R.layout.fragment_base
 
     // 获取挂载的页面资源
     abstract fun getViewResourceId() : Int
@@ -130,7 +132,7 @@ abstract class BaseFragment : Fragment() {
 
     // 跳转
     open fun routerPush(resId: Int, args: Bundle? = null, navOptions: NavOptions? = null) {
-        Navigation.findNavController(requireActivity(), getRootViewResourceId()).navigate(resId, args, navOptions)
+        Navigation.findNavController(requireActivity(), R.id.fragment).navigate(resId, args, navOptions)
     }
 
 }

@@ -5,6 +5,6 @@ import androidx.lifecycle.ViewModel
 
 class MainFragmentViewModel : ViewModel () {
 
-    val mNumCurrent: MutableLiveData<Int> = MutableLiveData(1)
+    val mNumCurrent: MutableLiveData<Int> = MutableLiveData(0)
 
 }

@@ -62,7 +62,7 @@ class WebViewFragment : BaseFragment() {
             webChromeClient = object : WebChromeClient() {
                 // 网页加载进度
                 override fun onProgressChanged(view: WebView?, newProgress: Int) {
-                    vProgressBar.apply {
+                    vProgressBar?.apply {
                         progress = newProgress
                         visibility = if (progress == 100) View.GONE else View.VISIBLE
                     }
