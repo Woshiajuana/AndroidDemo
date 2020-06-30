@@ -6,27 +6,16 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
-    </style>
-
-    <style name="AnimationActivity" parent="@android:style/Animation.Activity">
-        <!--        新 Activity 动画-->
-        <item name="android:activityOpenEnterAnimation">@anim/anim_slide_in_right</item>
-        <!--        员 Activity 动画-->
-        <item name="android:activityOpenExitAnimation">@anim/anim_slide_in_left</item>
-        <!--        退出时 退出的 Activity 执行的动画-->
-        <item name="android:activityCloseExitAnimation">@anim/anim_slide_out_right</item>
-        <!--        退出时进入的 Activity 执行的动画-->
-        <item name="android:activityCloseEnterAnimation">@anim/anim_slide_out_left</item>
     </style>
 
     <!--启动页样式-->
-    <style name="WelcomeTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="WelcomeTheme" parent="AppTheme">
 <!--        <item name="android:windowNoTitle">true</item>-->
 <!--        <item name="android:windowFullscreen">true</item>-->
 <!--        <item name="windowActionBar">false</item>-->
 <!--        <item name="windowNoTitle">true</item>-->
-        <item name="android:windowBackground">@mipmap/welcome</item>
+<!--        <item name="android:windowBackground">@mipmap/welcome3</item>-->
+        <item name="android:windowBackground">@drawable/shape_welcome_background</item>
         <item name="android:windowLayoutInDisplayCutoutMode" tools:ignore="NewApi">shortEdges</item>
     </style>
     
