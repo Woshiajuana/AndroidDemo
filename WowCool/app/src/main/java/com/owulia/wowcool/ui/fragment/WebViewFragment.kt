@@ -75,22 +75,19 @@ class WebViewFragment : BaseFragment() {
                     view: WebView?,
                     url: String?
                 ): Boolean {
-                    WowLogUtils.d(this, "shouldOverrideUrlLoading => ${url}")
                     if (url?.startsWith("http://") == true || url?.startsWith("https://") == true) {
                         view?.loadUrl(url);
-//                        vWebView.stopLoading();
                         return true
                     }
                     return false
                 }
                 // 开始加载
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                    WowLogUtils.d(this, "onPageStarted => ${url}")
                     super.onPageStarted(view, url, favicon)
                 }
                 // 加载完成
                 override fun onPageFinished(view: WebView?, url: String?) {
-                    WowLogUtils.d(this, "onPageFinished => ${url}")
+                    WowLogUtils.d(this, "url => $url")
                     super.onPageFinished(view, url)
                 }
             }
@@ -99,7 +96,10 @@ class WebViewFragment : BaseFragment() {
     }
 
     override fun onBackPressed(): Boolean {
-        WowLogUtils.d(this, "执行了返回呀")
+        if (vWebView.canGoBack()) {
+            vWebView.goBack()
+            return true
+        }
         return super.onBackPressed()
     }
 
