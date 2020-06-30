@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/homeFragment2">
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.owulia.wowcool.ui.fragment.MainFragment"
@@ -58,4 +58,9 @@
         android:name="com.owulia.wowcool.ui.fragment.demo.DemoTabBarFragment"
         android:label="fragment_demo_tab_bar"
         tools:layout="@layout/fragment_demo_tab_bar" />
+    <fragment
+        android:id="@+id/homeFragment2"
+        android:name="com.owulia.wowcool.ui.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
 </navigation>

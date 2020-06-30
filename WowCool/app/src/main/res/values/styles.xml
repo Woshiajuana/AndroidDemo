@@ -18,6 +18,36 @@
         <item name="android:windowBackground">@drawable/shape_welcome_background</item>
         <item name="android:windowLayoutInDisplayCutoutMode" tools:ignore="NewApi">shortEdges</item>
     </style>
+
+
+    <!--  边框  -->
+    <style name="style_border">
+        <item name="android:background">@color/colorBorder</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <!--  首页入口菜单  -->
+    <style name="style_home_menu_wrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingStart">@dimen/dimen_common_padding</item>
+        <item name="android:paddingEnd">@dimen/dimen_common_padding</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">?selectableItemBackground</item>
+    </style>
+
+    <!--  首页入口菜单 icon  -->
+    <style name="style_home_menu_icon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorMain</item>
+        <item name="android:layout_marginEnd">@dimen/dimen_common_padding</item>
+    </style>
     
     <style name="style_slide_menu_btn">
         <item name="android:paddingStart">24dp</item>

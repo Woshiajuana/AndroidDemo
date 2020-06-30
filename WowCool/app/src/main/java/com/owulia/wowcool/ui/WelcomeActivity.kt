@@ -10,11 +10,11 @@ class WelcomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        Handler().postDelayed({
+        Handler().postDelayed({
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.anim_fade_in, R.anim.anim_fade_out)
-//            finish()
-//        }, 0)
+            finish()
+        }, 1200)
     }
 }
