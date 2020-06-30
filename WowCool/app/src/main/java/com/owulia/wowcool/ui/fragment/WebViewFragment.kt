@@ -11,6 +11,7 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.owulia.wowcool.R
 import com.owulia.wowcool.base.BaseFragment
+import com.owulia.wowcool.utils.ConstantsUtils
 import com.owulia.wowcool.utils.WowLogUtils
 import kotlinx.android.synthetic.main.fragment_web_view.*
 
@@ -23,12 +24,19 @@ class WebViewFragment : BaseFragment() {
 
     override fun initView(view: View) {
         super.initView(view)
-        initWebView()
+        arguments?.apply {
+            getString(ConstantsUtils.WEB_VIEW_TITLE)?.let {
+                vNavBar?.setTitle(it)
+            }
+            getString(ConstantsUtils.WEB_VIEW_URL)?.let {
+                initWebView(it)
+            }
+        }
     }
 
     // 初始化 webview
     @SuppressLint("SetJavaScriptEnabled")
-    private fun initWebView () {
+    private fun initWebView (url: String) {
         vWebView.apply {
             settings.apply {
                 // 是否允许JavaScript脚本运行，默认为false。设置true时，会提醒可能造成XSS漏洞
@@ -87,11 +95,11 @@ class WebViewFragment : BaseFragment() {
                 }
                 // 加载完成
                 override fun onPageFinished(view: WebView?, url: String?) {
-                    WowLogUtils.d(this, "url => $url")
+//                    WowLogUtils.d(this, "url => $url")
                     super.onPageFinished(view, url)
                 }
             }
-            loadUrl("http://www.baidu.com")
+            loadUrl(url)
         }
     }
 

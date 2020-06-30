@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
 import com.owulia.wowcool.R
 import com.owulia.wowcool.ui.widget.NavBarView
 import com.owulia.wowcool.utils.WowSizeUtils
@@ -58,6 +60,7 @@ abstract class BaseFragment : Fragment() {
         // 初始化 view
         initView(vRootView!!)
         // 初始化 事件
+        initEvent()
     }
 
     override fun onDestroyView() {
@@ -102,36 +105,32 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    /**
-     * 工具类弹窗
-     * @param text [String] 弹窗文案
-     * @param context [Context] 上下文、非必填
-     * */
+    // 工具类弹窗
     fun utilToast (text: String, context: Context? = null) {
         WowToastUtils.show(text, context)
     }
 
-    /**
-     * @return rootView id
-     * */
+    // 获取 root 页面资源
     fun getRootViewResourceId() : Int = R.layout.fragment_base
 
-    /**
-     * @return rootView id
-     * */
+    // 获取挂载的页面资源
     abstract fun getViewResourceId() : Int
 
-    /**
-     * @param view [View]
-     * */
+    // 初始化 view
     open fun initView(view: View) {}
 
-    /**
-     * 释放资源
-     * */
+    // 初始化事件
+    open fun initEvent() {}
+
+    // 释放资源
     open fun release() {}
 
     // 物理返回键 拦截返回键返回true，不拦截返回false
     open fun onBackPressed(): Boolean = false
+
+    // 跳转
+    open fun routerPush(resId: Int, args: Bundle? = null, navOptions: NavOptions? = null) {
+        Navigation.findNavController(requireActivity(), getRootViewResourceId()).navigate(resId, args, navOptions)
+    }
 
 }

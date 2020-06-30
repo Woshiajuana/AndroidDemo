@@ -35,5 +35,7 @@
     <string name="string_document_text">Document</string>
     <string name="string_blog_text">Blog</string>
 
+    <string name="string_exit_tip">再按一次退出程序</string>
+
 
 </resources>

@@ -31,6 +31,7 @@
         <View style="@style/style_border"/>
 
         <LinearLayout
+            android:id="@+id/vWebsiteMenu"
             style="@style/style_home_menu_wrap">
             <com.owulia.wowcool.widget.WowIconFontView
                 style="@style/style_home_menu_icon"
@@ -51,6 +52,7 @@
             android:layout_marginStart="@dimen/dimen_common_padding" />
 
         <LinearLayout
+            android:id="@+id/vAuthorMenu"
             style="@style/style_home_menu_wrap">
             <com.owulia.wowcool.widget.WowIconFontView
                 style="@style/style_home_menu_icon"
@@ -71,6 +73,7 @@
             android:layout_marginStart="@dimen/dimen_common_padding" />
 
         <LinearLayout
+            android:id="@+id/vGitHubMenu"
             style="@style/style_home_menu_wrap">
             <com.owulia.wowcool.widget.WowIconFontView
                 style="@style/style_home_menu_icon"
