@@ -57,6 +57,7 @@ abstract class BaseFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         // 初始化 view
         initView(vRootView!!)
+        // 初始化 事件
     }
 
     override fun onDestroyView() {
@@ -129,5 +130,8 @@ abstract class BaseFragment : Fragment() {
      * 释放资源
      * */
     open fun release() {}
+
+    // 物理返回键 拦截返回键返回true，不拦截返回false
+    open fun onBackPressed(): Boolean = false
 
 }
