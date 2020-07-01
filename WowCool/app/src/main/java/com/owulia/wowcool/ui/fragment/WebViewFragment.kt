@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.fragment_web_view.*
  */
 class WebViewFragment : BaseFragment() {
 
+    override val mNavBarRightImage: Int = R.drawable.ic_more_horiz
+
     override fun getViewResourceId(): Int = R.layout.fragment_web_view
 
     // 记录url 是否有加载失败的情况
