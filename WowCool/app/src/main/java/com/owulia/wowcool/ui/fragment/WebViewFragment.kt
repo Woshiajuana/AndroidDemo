@@ -3,11 +3,9 @@ package com.owulia.wowcool.ui.fragment
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Build
+import android.provider.Settings
 import android.view.View
-import android.webkit.WebChromeClient
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import androidx.fragment.app.Fragment
 import com.owulia.wowcool.R
 import com.owulia.wowcool.base.BaseFragment
@@ -32,6 +30,15 @@ class WebViewFragment : BaseFragment() {
                 initWebView(it)
             }
         }
+        initWebView("https://ajuan.owulia.com")
+    }
+
+    override fun initEvent() {
+        super.initEvent()
+        vRefreshMark.setOnClickListener {
+            it.visibility = View.GONE
+            vWebView?.reload()
+        }
     }
 
     // 初始化 webview
@@ -51,6 +58,7 @@ class WebViewFragment : BaseFragment() {
                 loadWithOverviewMode = true
                 // 是否使用缓存
                 setAppCacheEnabled(false)
+                cacheMode = WebSettings.LOAD_NO_CACHE
                 // 开启本地DOM存储
                 domStorageEnabled = true
                 // 加载图片
@@ -74,20 +82,22 @@ class WebViewFragment : BaseFragment() {
                     var text = title?:""
                     if (title?.startsWith("http://") == true || title?.startsWith("https://") == true) {
                         text = ""
+                    } else if (text == "about:blank") {
+                        text = "网页无法打开"
                     }
                     vNavBar?.setTitle(text)
                 }
             }
             webViewClient = object : WebViewClient() {
-                override fun shouldOverrideUrlLoading(
+                override fun onReceivedError(
                     view: WebView?,
-                    url: String?
-                ): Boolean {
-                    if (url?.startsWith("http://") == true || url?.startsWith("https://") == true) {
-                        view?.loadUrl(url);
-                        return true
-                    }
-                    return false
+                    request: WebResourceRequest?,
+                    error: WebResourceError?
+                ) {
+                    vRefreshMark?.visibility = View.VISIBLE
+//                    super.onReceivedError(view, request, error)
+                    WowLogUtils.d(this, "加载错误 => ${error}")
+//                    view?.loadUrl("about:blank");// 避免出现默认的错误界面
                 }
                 // 开始加载
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
@@ -111,4 +121,8 @@ class WebViewFragment : BaseFragment() {
         return super.onBackPressed()
     }
 
+    override fun release() {
+        super.release()
+        vWebView?.destroy()
+    }
 }

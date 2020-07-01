@@ -22,6 +22,7 @@
     <color name="colorSlideMenuTop">#999999</color>
     <color name="colorSlideMenuUpdate">#FF9800</color>
     <color name="colorPrompt">#666666</color>
+    <color name="colorTip">#999999</color>
 
 
 </resources>

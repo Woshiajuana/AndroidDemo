@@ -31,11 +31,13 @@
     <string name="string_github_icon">&#xe601;</string>
     <string name="string_author_icon">&#xe60d;</string>
     <string name="string_website_icon">&#xe60e;</string>
+    <string name="string_refresh_icon">&#xe61a;</string>
     <string name="string_github_text">GitHub</string>
     <string name="string_document_text">Document</string>
     <string name="string_blog_text">Blog</string>
 
     <string name="string_exit_tip">再按一次退出程序</string>
+    <string name="string_webview_error_tip">页面加载失败，点击屏幕重试...</string>
 
 
 </resources>
