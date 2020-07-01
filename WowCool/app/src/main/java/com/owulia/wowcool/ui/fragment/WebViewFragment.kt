@@ -1,7 +1,6 @@
 package com.owulia.wowcool.ui.fragment
 
 import android.annotation.SuppressLint
-import android.graphics.Bitmap
 import android.os.Build
 import android.view.View
 import android.webkit.*
@@ -9,7 +8,6 @@ import androidx.fragment.app.Fragment
 import com.owulia.wowcool.R
 import com.owulia.wowcool.base.BaseFragment
 import com.owulia.wowcool.utils.ConstantsUtils
-import com.owulia.wowcool.utils.WowLogUtils
 import kotlinx.android.synthetic.main.fragment_web_view.*
 
 /**
@@ -32,7 +30,6 @@ class WebViewFragment : BaseFragment() {
                 initWebView(it)
             }
         }
-//        initWebView("https://ajuan.owulia.com")
     }
 
     override fun initEvent() {
@@ -86,54 +83,21 @@ class WebViewFragment : BaseFragment() {
                     if (title?.startsWith("http://") == true || title?.startsWith("https://") == true) {
                         text = ""
                     }
-                    // 安卓6.0以下根据标题去判断页面是否加载出错
-//                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-//                        if (title?.contains("404") == true
-//                            || title?.contains("500") == true
-//                            || title?.contains("Error") == true
-//                            || title?.contains("找不到网页") == true
-//                            || title?.contains("网页无法打开") == true) {
-//                            isError = true
-//                            vRefreshMark?.visibility = View.VISIBLE
-//                        }
-//                    }
                     vNavBar?.setTitle(text)
                 }
             }
             webViewClient = object : WebViewClient() {
-                // 加载错误 安卓6.0以上才有
-                override fun onReceivedHttpError(
-                    view: WebView?,
-                    request: WebResourceRequest?,
-                    errorResponse: WebResourceResponse?
-                ) {
-                    // 这个方法在 android 6.0才出现
-                    // 这个方法在 android 6.0才出现
-//                    val statusCode = errorResponse!!.statusCode
-//                    if (404 == statusCode || 500 == statusCode || 502 == statusCode || 503 == statusCode) {
-//                        isError = true
-//                        vRefreshMark?.visibility = View.VISIBLE
-//                    }
-                }
                 // 资源加载错误
                 override fun onReceivedError(
                     view: WebView?,
                     request: WebResourceRequest?,
                     error: WebResourceError?
                 ) {
-                    if (request?.isForMainFrame == true) {//是否是为 main frame创建
-//                        view.loadUrl("about:blank");// 避免出现默认的错误界面
-//                        view.loadUrl(mErrorUrl);// 加载自定义错误页面
-
-                    isError = true
-                    vRefreshMark?.visibility = View.VISIBLE
+                    // 是否是为 main frame创建
+                    if (request?.isForMainFrame == true) {
+                        isError = true
+                        vRefreshMark?.visibility = View.VISIBLE
                     }
-//                    val url = request?.url
-//                    WowLogUtils.d(this, "url => $url")
-                }
-                // 开始加载
-                override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                    super.onPageStarted(view, url, favicon)
                 }
                 // 加载完成
                 override fun onPageFinished(view: WebView?, url: String?) {
