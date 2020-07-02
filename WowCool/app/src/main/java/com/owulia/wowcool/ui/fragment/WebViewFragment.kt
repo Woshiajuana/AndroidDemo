@@ -1,6 +1,8 @@
 package com.owulia.wowcool.ui.fragment
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.view.View
 import android.webkit.*
@@ -9,9 +11,10 @@ import com.owulia.wowcool.R
 import com.owulia.wowcool.base.BaseFragment
 import com.owulia.wowcool.ui.widget.WowWebViewDialog
 import com.owulia.wowcool.utils.ConstantsUtils
+import com.owulia.wowcool.utils.WowClipDataUtils
 import kotlinx.android.synthetic.main.fragment_web_view.*
-import java.lang.Exception
 import java.net.URL
+
 
 /**
  * A simple [Fragment] subclass.
@@ -61,13 +64,17 @@ class WebViewFragment : BaseFragment() {
 
                         }
                         ConstantsUtils.KEY_WEB_VIEW_BROWSER -> {
-
+                            val uri = Uri.parse(this@WebViewFragment.vWebView.url)
+                            val intent = Intent(Intent.ACTION_VIEW, uri)
+                            startActivity(intent)
                         }
                         ConstantsUtils.KEY_WEB_VIEW_COLLECT -> {
 
                         }
                         ConstantsUtils.KEY_WEB_VIEW_COPY -> {
-
+                            val uri = this@WebViewFragment.vWebView.url
+                            WowClipDataUtils.copyText(context, uri)
+                            utilToast("复制到剪切板")
                         }
                         ConstantsUtils.KEY_WEB_VIEW_REFRESH -> {
                             this@WebViewFragment.vWebView?.reload()
