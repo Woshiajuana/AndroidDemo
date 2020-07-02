@@ -1,63 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#ff0000"
-    app:cardCornerRadius="10dp">
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:layout_alignParentBottom="true"
         android:background="@android:color/white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-
         <TextView
-            android:id="@+id/tv_tip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="25dp"
+            android:id="@+id/vDialogWebTitle"
+            android:background="@color/colorBackground"
             android:gravity="center"
-            android:lineSpacingExtra="5dp"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
-
-        <View style="@style/style_border" />
-
-        <LinearLayout
+            android:textSize="12sp"
+            android:textColor="@color/colorPrompt"
+            android:text="网页由 xxx 提供"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_left"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="取消"
-                android:textColor="@color/colorPrompt"
-                android:textSize="16sp" />
-
-            <View
-                android:id="@+id/view"
-                style="@style/style_border"
-                android:layout_width="1px"
-                android:layout_height="match_parent"/>
-
-            <TextView
-                android:id="@+id/tv_right"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="确认"
-                android:textColor="@color/colorPrompt"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
-
+            android:layout_height="50dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:orientation="horizontal"
+            android:id="@+id/vDialogWebExtend"
+            android:background="@color/colorBackground"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+        <View style="@style/style_border"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:orientation="horizontal"
+            android:id="@+id/vDialogWebOperate"
+            android:background="@color/colorBackground"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+        <View style="@style/style_border"/>
+        <TextView
+            android:id="@+id/vDialogWebCancel"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?selectableItemBackground"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="@string/string_web_view_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</RelativeLayout>
