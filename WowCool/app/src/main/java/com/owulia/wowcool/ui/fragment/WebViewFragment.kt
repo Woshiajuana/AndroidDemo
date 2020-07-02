@@ -9,6 +9,7 @@ import com.owulia.wowcool.R
 import com.owulia.wowcool.base.BaseFragment
 import com.owulia.wowcool.ui.widget.WowWebViewDialog
 import com.owulia.wowcool.utils.ConstantsUtils
+import com.owulia.wowcool.utils.WowLogUtils
 import kotlinx.android.synthetic.main.fragment_web_view.*
 
 /**
@@ -19,6 +20,8 @@ class WebViewFragment : BaseFragment() {
     override val mNavBarRightImage: Int = R.drawable.ic_more_horiz
 
     override fun getViewResourceId(): Int = R.layout.fragment_web_view
+
+    private var mWebViewDialog: WowWebViewDialog? = null
 
     // 记录url 是否有加载失败的情况
     private var isError = false
@@ -34,13 +37,28 @@ class WebViewFragment : BaseFragment() {
             }
         }
         initWebView("https://ajuan.owulia.com")
+        context?.let {
+            mWebViewDialog = WowWebViewDialog(it).apply {
+                setExtendData(listOf(
+                    WowWebViewDialog.OperateItemBean(R.drawable.ic_more_horiz, "分享给好友1"),
+                    WowWebViewDialog.OperateItemBean(R.drawable.ic_more_horiz, "分享给好友2"),
+                    WowWebViewDialog.OperateItemBean(R.drawable.ic_more_horiz, "分享给好友3")
+                ))
+                setOperateData(listOf(
+                    WowWebViewDialog.OperateItemBean(R.drawable.ic_more_horiz, "分享给好友4"),
+                    WowWebViewDialog.OperateItemBean(R.drawable.ic_more_horiz, "分享给好友5"),
+                    WowWebViewDialog.OperateItemBean(R.drawable.ic_more_horiz, "分享给好友6")
+                ))
+                setOnItemClickListener {
+                    WowLogUtils.d(this, "${it}")
+                }
+                show()
+            }
+        }
     }
 
     override fun initEvent() {
         super.initEvent()
-        context?.let {
-            WowWebViewDialog(it).show()
-        }
         vRefreshMark.setOnClickListener {
             it.visibility = View.GONE
             isError = false
@@ -48,7 +66,7 @@ class WebViewFragment : BaseFragment() {
         }
         vNavBar?.setOnRightBtnClickListener = {
             context?.let {
-                WowWebViewDialog(it).show()
+                mWebViewDialog?.show()
             }
         }
     }

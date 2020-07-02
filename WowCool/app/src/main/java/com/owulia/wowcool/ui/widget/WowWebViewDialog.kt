@@ -12,14 +12,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.owulia.wowcool.R
 import com.owulia.wowcool.utils.WowLinearSpacesItemDecorationHelper
+import com.owulia.wowcool.utils.WowLogUtils
 import kotlinx.android.synthetic.main.dialog_web_view.*
 import kotlinx.android.synthetic.main.item_dialog_web_view_cell.view.*
 
 class WowWebViewDialog(context: Context) : Dialog(context, R.style.WowDialog) {
 
     private var vRootView: View? = null
-    var mWebExtendAdapter: WowWebViewDialogAdapter? = null
-    var mWebOperateAdapter: WowWebViewDialogAdapter? = null
+    private var mWebExtendAdapter: WowWebViewDialogAdapter? = null
+    private var mWebOperateAdapter: WowWebViewDialogAdapter? = null
+    private var mExtendData = ArrayList<OperateItemBean>()
+    private var mOperateData = ArrayList<OperateItemBean>()
 
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +30,7 @@ class WowWebViewDialog(context: Context) : Dialog(context, R.style.WowDialog) {
         vRootView = LayoutInflater.from(context).inflate(R.layout.dialog_web_view, null)
         setContentView(vRootView!!)
         initView()
+        initEvent()
     }
 
     private fun initView () {
@@ -47,7 +51,6 @@ class WowWebViewDialog(context: Context) : Dialog(context, R.style.WowDialog) {
             }
             mWebExtendAdapter = WowWebViewDialogAdapter()
             adapter = mWebExtendAdapter
-            addItemDecoration(WowLinearSpacesItemDecorationHelper(leftSpace = 20, rightSpace = 20, childCount = 10))
         }
         vDialogWebOperate.apply {
             layoutManager = LinearLayoutManager(context).apply {
@@ -55,8 +58,34 @@ class WowWebViewDialog(context: Context) : Dialog(context, R.style.WowDialog) {
             }
             mWebOperateAdapter = WowWebViewDialogAdapter()
             adapter = mWebOperateAdapter
-            addItemDecoration(WowLinearSpacesItemDecorationHelper(leftSpace = 20, rightSpace = 20, childCount = 10))
         }
+        setExtendData(mExtendData)
+        setOperateData(mOperateData)
+    }
+
+    private fun initEvent () {
+        vDialogWebCancel.setOnClickListener {
+            dismiss()
+        }
+    }
+
+    fun setExtendData (data: List<OperateItemBean>) {
+        mExtendData.clear()
+        mExtendData.addAll(data)
+        vDialogWebExtend?.addItemDecoration(WowLinearSpacesItemDecorationHelper(leftSpace = 20, rightSpace = 20, childCount = data.size))
+        mWebExtendAdapter?.setData(mExtendData)
+    }
+
+    fun setOperateData (data: List<OperateItemBean>) {
+        mOperateData.clear()
+        mOperateData.addAll(data)
+        vDialogWebOperate?.addItemDecoration(WowLinearSpacesItemDecorationHelper(leftSpace = 20, rightSpace = 20, childCount = data.size))
+        mWebOperateAdapter?.setData(mOperateData)
+    }
+
+    fun setOnItemClickListener (listener: (OperateItemBean) -> Unit) {
+        mWebExtendAdapter?.setOnItemClickListener = listener
+        mWebOperateAdapter?.setOnItemClickListener = listener
     }
 
     data class OperateItemBean (val icon: Int, val text: String)
@@ -66,7 +95,7 @@ class WowWebViewDialogAdapter : RecyclerView.Adapter<WowWebViewDialogAdapter.Wow
     class WowWebViewDialogViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     val mArrData = ArrayList<WowWebViewDialog.OperateItemBean>()
-    var setOnItemClickListener: ((View) -> Unit)? = null
+    var setOnItemClickListener: ((WowWebViewDialog.OperateItemBean) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WowWebViewDialogViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_dialog_web_view_cell, parent, false)
@@ -74,13 +103,18 @@ class WowWebViewDialogAdapter : RecyclerView.Adapter<WowWebViewDialogAdapter.Wow
     }
 
     override fun getItemCount(): Int {
+        WowLogUtils.d(this, "getItemCount => ${mArrData.size}")
         return mArrData.size
     }
 
     override fun onBindViewHolder(holder: WowWebViewDialogViewHolder, position: Int) {
         val itemData = mArrData[position]
         holder.itemView.apply {
-            setOnClickListener(setOnItemClickListener)
+            setOnClickListener{view ->
+                setOnItemClickListener?.let {
+                    it(itemData)
+                }
+            }
             vItemText.text = itemData.text
             vItemIcon.setImageResource(itemData.icon)
         }
@@ -89,6 +123,7 @@ class WowWebViewDialogAdapter : RecyclerView.Adapter<WowWebViewDialogAdapter.Wow
     fun setData (data: List<WowWebViewDialog.OperateItemBean>) {
         mArrData.clear()
         mArrData.addAll(data)
+        WowLogUtils.d(this, "setData => ${mArrData.size}")
         notifyDataSetChanged()
     }
 }
