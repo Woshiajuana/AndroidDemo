@@ -49,7 +49,7 @@ class WebViewFragment : BaseFragment() {
                     WowWebViewDialog.OperateItemBean(R.drawable.ic_more_horiz, "分享给好友5"),
                     WowWebViewDialog.OperateItemBean(R.drawable.ic_more_horiz, "分享给好友6")
                 ))
-                setOnItemClickListener {
+                setOnItemClickListener = {
                     WowLogUtils.d(this, "${it}")
                 }
                 show()

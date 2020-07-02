@@ -23,6 +23,7 @@ class WowWebViewDialog(context: Context) : Dialog(context, R.style.WowDialog) {
     private var mWebOperateAdapter: WowWebViewDialogAdapter? = null
     private var mExtendData = ArrayList<OperateItemBean>()
     private var mOperateData = ArrayList<OperateItemBean>()
+    var setOnItemClickListener: ((OperateItemBean) -> Unit)? = null
 
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,43 +50,44 @@ class WowWebViewDialog(context: Context) : Dialog(context, R.style.WowDialog) {
             layoutManager = LinearLayoutManager(context).apply {
                 orientation = LinearLayoutManager.HORIZONTAL
             }
-            mWebExtendAdapter = WowWebViewDialogAdapter()
+            mWebExtendAdapter = WowWebViewDialogAdapter().apply {
+                setData(mExtendData)
+            }
             adapter = mWebExtendAdapter
+            addItemDecoration(WowLinearSpacesItemDecorationHelper(leftSpace = 20, rightSpace = 20, childCount = mExtendData.size))
         }
         vDialogWebOperate.apply {
             layoutManager = LinearLayoutManager(context).apply {
                 orientation = LinearLayoutManager.HORIZONTAL
             }
-            mWebOperateAdapter = WowWebViewDialogAdapter()
+            mWebOperateAdapter = WowWebViewDialogAdapter().apply {
+                setData(mOperateData)
+            }
             adapter = mWebOperateAdapter
+            addItemDecoration(WowLinearSpacesItemDecorationHelper(leftSpace = 20, rightSpace = 20, childCount = mOperateData.size))
         }
-        setExtendData(mExtendData)
-        setOperateData(mOperateData)
     }
 
     private fun initEvent () {
         vDialogWebCancel.setOnClickListener {
             dismiss()
         }
+        mWebExtendAdapter?.setOnItemClickListener = setOnItemClickListener
+        mWebOperateAdapter?.setOnItemClickListener = setOnItemClickListener
     }
 
     fun setExtendData (data: List<OperateItemBean>) {
         mExtendData.clear()
         mExtendData.addAll(data)
         vDialogWebExtend?.addItemDecoration(WowLinearSpacesItemDecorationHelper(leftSpace = 20, rightSpace = 20, childCount = data.size))
-        mWebExtendAdapter?.setData(mExtendData)
+        mWebExtendAdapter?.setData(data)
     }
 
     fun setOperateData (data: List<OperateItemBean>) {
         mOperateData.clear()
         mOperateData.addAll(data)
         vDialogWebOperate?.addItemDecoration(WowLinearSpacesItemDecorationHelper(leftSpace = 20, rightSpace = 20, childCount = data.size))
-        mWebOperateAdapter?.setData(mOperateData)
-    }
-
-    fun setOnItemClickListener (listener: (OperateItemBean) -> Unit) {
-        mWebExtendAdapter?.setOnItemClickListener = listener
-        mWebOperateAdapter?.setOnItemClickListener = listener
+        mWebOperateAdapter?.setData(data)
     }
 
     data class OperateItemBean (val icon: Int, val text: String)
@@ -103,7 +105,6 @@ class WowWebViewDialogAdapter : RecyclerView.Adapter<WowWebViewDialogAdapter.Wow
     }
 
     override fun getItemCount(): Int {
-        WowLogUtils.d(this, "getItemCount => ${mArrData.size}")
         return mArrData.size
     }
 
@@ -123,7 +124,6 @@ class WowWebViewDialogAdapter : RecyclerView.Adapter<WowWebViewDialogAdapter.Wow
     fun setData (data: List<WowWebViewDialog.OperateItemBean>) {
         mArrData.clear()
         mArrData.addAll(data)
-        WowLogUtils.d(this, "setData => ${mArrData.size}")
         notifyDataSetChanged()
     }
 }
