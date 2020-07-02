@@ -96,7 +96,7 @@ class WowWebViewDialog(context: Context) : Dialog(context, R.style.WowDialog) {
         mWebOperateAdapter?.setData(data)
     }
 
-    data class OperateItemBean (val icon: Int, val text: String)
+    data class OperateItemBean (val icon: Int, val text: String, val key: String? = null)
 }
 
 class WowWebViewDialogAdapter : RecyclerView.Adapter<WowWebViewDialogAdapter.WowWebViewDialogViewHolder>() {

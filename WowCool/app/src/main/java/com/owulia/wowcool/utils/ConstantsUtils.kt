@@ -14,4 +14,13 @@ object ConstantsUtils {
     const val URL_DOCUMENT = "https://ajuan.owulia.com"
     const val NAV_BAR_LEFT_IMAGE_NUM_NULL = -1
 
+    // 分享
+    const val KEY_WEB_VIEW_WECHAT = "key_web_view_wechat"
+    const val KEY_WEB_VIEW_FRIENDS = "key_web_view_friends"
+    const val KEY_WEB_VIEW_BROWSER = "key_web_view_browser"
+    const val KEY_WEB_VIEW_COLLECT = "key_web_view_collect"
+    const val KEY_WEB_VIEW_COPY = "key_web_view_copy"
+    const val KEY_WEB_VIEW_REFRESH = "key_web_view_refresh"
+    const val KEY_WEB_VIEW_SEARCH = "key_web_view_search"
+
 }

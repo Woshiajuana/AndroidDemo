@@ -9,7 +9,6 @@ import com.owulia.wowcool.R
 import com.owulia.wowcool.base.BaseFragment
 import com.owulia.wowcool.ui.widget.WowWebViewDialog
 import com.owulia.wowcool.utils.ConstantsUtils
-import com.owulia.wowcool.utils.WowLogUtils
 import kotlinx.android.synthetic.main.fragment_web_view.*
 import java.lang.Exception
 import java.net.URL
@@ -42,19 +41,42 @@ class WebViewFragment : BaseFragment() {
         context?.let {
             mWebViewDialog = WowWebViewDialog(it).apply {
                 setExtendData(listOf(
-                    WowWebViewDialog.OperateItemBean(R.drawable.ic_more_horiz, "分享给好友1"),
-                    WowWebViewDialog.OperateItemBean(R.drawable.ic_more_horiz, "分享给好友2"),
-                    WowWebViewDialog.OperateItemBean(R.drawable.ic_more_horiz, "分享给好友3")
+                    WowWebViewDialog.OperateItemBean(R.drawable.ic_web_view_wechat, "分享给好友", ConstantsUtils.KEY_WEB_VIEW_WECHAT),
+                    WowWebViewDialog.OperateItemBean(R.drawable.ic_web_view_friends, "分享到朋友圈", ConstantsUtils.KEY_WEB_VIEW_FRIENDS),
+                    WowWebViewDialog.OperateItemBean(R.drawable.ic_web_view_browser, "在浏览器打开", ConstantsUtils.KEY_WEB_VIEW_BROWSER),
+                    WowWebViewDialog.OperateItemBean(R.drawable.ic_web_view_collect, "收藏", ConstantsUtils.KEY_WEB_VIEW_COLLECT)
                 ))
                 setOperateData(listOf(
-                    WowWebViewDialog.OperateItemBean(R.drawable.ic_more_horiz, "分享给好友4"),
-                    WowWebViewDialog.OperateItemBean(R.drawable.ic_more_horiz, "分享给好友5"),
-                    WowWebViewDialog.OperateItemBean(R.drawable.ic_more_horiz, "分享给好友6")
+                    WowWebViewDialog.OperateItemBean(R.drawable.ic_web_view_copy, "复制链接", ConstantsUtils.KEY_WEB_VIEW_COPY),
+                    WowWebViewDialog.OperateItemBean(R.drawable.ic_web_view_refresh, "刷新", ConstantsUtils.KEY_WEB_VIEW_REFRESH),
+                    WowWebViewDialog.OperateItemBean(R.drawable.ic_web_view_search, "搜索页面内容", ConstantsUtils.KEY_WEB_VIEW_SEARCH)
                 ))
-                setOnItemClickListener = {
-                    WowLogUtils.d(this, "${it}")
+                setOnItemClickListener = { item ->
+                    dismiss()
+                    when (item.key) {
+                        ConstantsUtils.KEY_WEB_VIEW_WECHAT -> {
+
+                        }
+                        ConstantsUtils.KEY_WEB_VIEW_FRIENDS -> {
+
+                        }
+                        ConstantsUtils.KEY_WEB_VIEW_BROWSER -> {
+
+                        }
+                        ConstantsUtils.KEY_WEB_VIEW_COLLECT -> {
+
+                        }
+                        ConstantsUtils.KEY_WEB_VIEW_COPY -> {
+
+                        }
+                        ConstantsUtils.KEY_WEB_VIEW_REFRESH -> {
+                            this@WebViewFragment.vWebView?.reload()
+                        }
+                        ConstantsUtils.KEY_WEB_VIEW_SEARCH -> {
+
+                        }
+                    }
                 }
-                show()
             }
         }
     }
