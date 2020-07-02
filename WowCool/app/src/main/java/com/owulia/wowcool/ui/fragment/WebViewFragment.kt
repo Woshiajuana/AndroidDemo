@@ -38,6 +38,9 @@ class WebViewFragment : BaseFragment() {
 
     override fun initEvent() {
         super.initEvent()
+        context?.let {
+            WowWebViewDialog(it).show()
+        }
         vRefreshMark.setOnClickListener {
             it.visibility = View.GONE
             isError = false

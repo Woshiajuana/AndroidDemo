@@ -6,7 +6,12 @@ import android.content.Context
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.owulia.wowcool.R
+import kotlinx.android.synthetic.main.dialog_web_view.*
 
 class WowWebViewDialog(context: Context) : Dialog(context, R.style.WowDialog) {
 
@@ -22,9 +27,41 @@ class WowWebViewDialog(context: Context) : Dialog(context, R.style.WowDialog) {
             setGravity(Gravity.BOTTOM)
             setWindowAnimations(R.style.Dialog_Bottom_Animation)
         }
+        vDialogWebExtend.apply {
+            layoutManager = LinearLayoutManager(context).apply {
+                orientation = LinearLayoutManager.HORIZONTAL
+            }
+            adapter = WowWebViewDialogAdapter()
+            addItemDecoration(object : RecyclerView.ItemDecoration() {
+
+            })
+        }
+        vDialogWebOperate.apply {
+            layoutManager = LinearLayoutManager(context).apply {
+                orientation = LinearLayoutManager.HORIZONTAL
+            }
+            adapter = WowWebViewDialogAdapter()
+        }
     }
 
     private fun initView () {
 
+    }
+}
+
+class WowWebViewDialogAdapter : RecyclerView.Adapter<WowWebViewDialogAdapter.WowWebViewDialogViewHolder>() {
+    class WowWebViewDialogViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WowWebViewDialogViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_dialog_web_view_cell, parent, false)
+        return WowWebViewDialogViewHolder(view)
+    }
+
+    override fun getItemCount(): Int {
+        return 10
+    }
+
+    override fun onBindViewHolder(holder: WowWebViewDialogViewHolder, position: Int) {
+//        TODO("Not yet implemented")
     }
 }
