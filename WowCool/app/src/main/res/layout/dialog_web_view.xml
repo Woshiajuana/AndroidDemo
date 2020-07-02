@@ -1,48 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_alignParentBottom="true"
+    android:background="@android:color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_alignParentBottom="true"
-        android:background="@android:color/white"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/vDialogWebTitle"
+        android:background="@color/colorBackground"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:textColor="@color/colorPrompt"
+        android:text="网页由 xxx 提供"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/vDialogWebTitle"
-            android:background="@color/colorBackground"
-            android:gravity="center"
-            android:textSize="12sp"
-            android:textColor="@color/colorPrompt"
-            android:text="网页由 xxx 提供"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:orientation="horizontal"
-            android:id="@+id/vDialogWebExtend"
-            android:background="@color/colorBackground"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"/>
-        <View style="@style/style_border"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:orientation="horizontal"
-            android:id="@+id/vDialogWebOperate"
-            android:background="@color/colorBackground"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"/>
-        <View style="@style/style_border"/>
-        <TextView
-            android:id="@+id/vDialogWebCancel"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?selectableItemBackground"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:text="@string/string_web_view_cancel"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"/>
-    </LinearLayout>
+        android:layout_height="50dp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:orientation="horizontal"
+        android:id="@+id/vDialogWebExtend"
+        android:background="@color/colorBackground"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+    <View style="@style/style_border"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:orientation="horizontal"
+        android:id="@+id/vDialogWebOperate"
+        android:background="@color/colorBackground"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+    <View style="@style/style_border"/>
+    <TextView
+        android:id="@+id/vDialogWebCancel"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?selectableItemBackground"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:textColor="@color/colorPrompt"
+        android:text="@string/string_web_view_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+</LinearLayout>
 
-</RelativeLayout>

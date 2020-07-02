@@ -31,10 +31,7 @@ class HomeFragment : BaseFragment() {
     override fun initEvent() {
         super.initEvent()
         vWebsiteMenu.setOnClickListener {
-//            handleJump(R.string.string_blog_text, ConstantsUtils.URL_DOCUMENT)
-            context?.let {
-                WowWebViewDialog(it).show()
-            }
+            handleJump(R.string.string_blog_text, ConstantsUtils.URL_DOCUMENT)
         }
         vAuthorMenu.setOnClickListener {
             handleJump(R.string.string_blog_text, ConstantsUtils.URL_BLOG)

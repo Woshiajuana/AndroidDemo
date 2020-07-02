@@ -7,6 +7,7 @@ import android.webkit.*
 import androidx.fragment.app.Fragment
 import com.owulia.wowcool.R
 import com.owulia.wowcool.base.BaseFragment
+import com.owulia.wowcool.ui.widget.WowWebViewDialog
 import com.owulia.wowcool.utils.ConstantsUtils
 import kotlinx.android.synthetic.main.fragment_web_view.*
 
@@ -32,6 +33,7 @@ class WebViewFragment : BaseFragment() {
                 initWebView(it)
             }
         }
+        initWebView("https://ajuan.owulia.com")
     }
 
     override fun initEvent() {
@@ -40,6 +42,11 @@ class WebViewFragment : BaseFragment() {
             it.visibility = View.GONE
             isError = false
             vWebView?.reload()
+        }
+        vNavBar?.setOnRightBtnClickListener = {
+            context?.let {
+                WowWebViewDialog(it).show()
+            }
         }
     }
 
