@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.owulia.wowcool.R
 import com.owulia.wowcool.utils.WowLinearSpacesItemDecorationHelper
-import com.owulia.wowcool.utils.WowLogUtils
 import kotlinx.android.synthetic.main.dialog_web_view.*
 import kotlinx.android.synthetic.main.item_dialog_web_view_cell.view.*
 
@@ -23,6 +22,7 @@ class WowWebViewDialog(context: Context) : Dialog(context, R.style.WowDialog) {
     private var mWebOperateAdapter: WowWebViewDialogAdapter? = null
     private var mExtendData = ArrayList<OperateItemBean>()
     private var mOperateData = ArrayList<OperateItemBean>()
+    private var mTitleText = ""
     var setOnItemClickListener: ((OperateItemBean) -> Unit)? = null
 
     @SuppressLint("InflateParams")
@@ -45,6 +45,7 @@ class WowWebViewDialog(context: Context) : Dialog(context, R.style.WowDialog) {
             // 设置弹窗动画
             setWindowAnimations(R.style.Dialog_Bottom_Animation)
         }
+        vDialogWebTitle.text = mTitleText
         // 设置 适配器
         vDialogWebExtend.apply {
             layoutManager = LinearLayoutManager(context).apply {
@@ -76,6 +77,11 @@ class WowWebViewDialog(context: Context) : Dialog(context, R.style.WowDialog) {
         mWebOperateAdapter?.setOnItemClickListener = setOnItemClickListener
     }
 
+    fun setTitle (title: String) {
+        mTitleText = title
+        vDialogWebTitle?.text = title
+    }
+
     fun setExtendData (data: List<OperateItemBean>) {
         mExtendData.clear()
         mExtendData.addAll(data)
@@ -96,7 +102,7 @@ class WowWebViewDialog(context: Context) : Dialog(context, R.style.WowDialog) {
 class WowWebViewDialogAdapter : RecyclerView.Adapter<WowWebViewDialogAdapter.WowWebViewDialogViewHolder>() {
     class WowWebViewDialogViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    val mArrData = ArrayList<WowWebViewDialog.OperateItemBean>()
+    private val mArrData = ArrayList<WowWebViewDialog.OperateItemBean>()
     var setOnItemClickListener: ((WowWebViewDialog.OperateItemBean) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WowWebViewDialogViewHolder {

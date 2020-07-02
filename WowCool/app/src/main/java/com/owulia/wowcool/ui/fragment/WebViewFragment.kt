@@ -11,6 +11,8 @@ import com.owulia.wowcool.ui.widget.WowWebViewDialog
 import com.owulia.wowcool.utils.ConstantsUtils
 import com.owulia.wowcool.utils.WowLogUtils
 import kotlinx.android.synthetic.main.fragment_web_view.*
+import java.lang.Exception
+import java.net.URL
 
 /**
  * A simple [Fragment] subclass.
@@ -66,7 +68,15 @@ class WebViewFragment : BaseFragment() {
         }
         vNavBar?.setOnRightBtnClickListener = {
             context?.let {
-                mWebViewDialog?.show()
+                var uri = ""
+                try {
+                    uri = URL(vWebView.url).host
+                } catch (e: Exception) {
+                }
+                mWebViewDialog?.apply {
+                    setTitle(String.format(getString(R.string.string_dialog_title, uri)))
+                    show()
+                }
             }
         }
     }
