@@ -40,7 +40,6 @@ class WebViewFragment : BaseFragment() {
                 initWebView(it)
             }
         }
-        initWebView("https://ajuan.owulia.com")
         context?.let {
             mWebViewDialog = WowWebViewDialog(it).apply {
                 setExtendData(listOf(
