@@ -1,87 +1,72 @@
 package com.owulia.makekotlin
 
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import com.owulia.makekotlin.views.HomeFragment
-import com.owulia.makekotlin.views.MaterialFragment
-import com.owulia.makekotlin.views.MineFragment
-import kotlinx.android.synthetic.main.activity_main.*
+import org.apache.weex.IWXRenderListener
+import org.apache.weex.WXSDKInstance
+import org.apache.weex.common.WXRenderStrategy
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), IWXRenderListener {
+    var mWXSDKInstance: WXSDKInstance? = null
 
-//    private val TAG = "MainActivity"
-    private lateinit var homeFragment: Fragment
-    private lateinit var materialFragment: Fragment
-    private lateinit var mineFragment: Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            // 设置状态栏为透明
-            headerView.setPadding(0, getStatusBarHeight(), 0, 0)
-            headerView.layoutParams.height = headerView.layoutParams.height + getStatusBarHeight()
-        }
+        setContentView(R.layout.activity_main)
+        mWXSDKInstance = WXSDKInstance(this)
+        mWXSDKInstance!!.registerRenderListener(this)
+        val pageName = "WXSample"
+//        String bundleUrl = "http://dotwe.org/raw/dist/38e202c16bdfefbdb88a8754f975454c.bundle.wx1";
+        //        String bundleUrl = "http://dotwe.org/raw/dist/38e202c16bdfefbdb88a8754f975454c.bundle.wx1";
+        val bundleUrl =
+            "https://ossmk2.jfpays.com/www_make_v1/app/0.0.36/mk_about.js"
+        mWXSDKInstance!!.renderByUrl(pageName, bundleUrl, null, null, WXRenderStrategy.APPEND_ASYNC)
 
-        // 初始化底部导航栏
-        init()
+
     }
 
-    private fun init() {
-        homeFragment = HomeFragment()
-        materialFragment = MaterialFragment()
-        mineFragment = MineFragment()
-        tabBarHome.setOnClickListener {
-            handleSwitch(it, homeFragment)
-        }
-        tabBarMaterial.setOnClickListener {
-            handleSwitch(it, materialFragment)
-        }
-        tabBarMine.setOnClickListener {
-            handleSwitch(it, mineFragment)
-        }
-        handleSwitch(tabBarHome, homeFragment)
+    override fun onRefreshSuccess(instance: WXSDKInstance?, width: Int, height: Int) {
     }
 
-    private fun handleSwitch(view: View, fragment: Fragment) {
-        tabBarHomeImage.setImageResource(R.mipmap.tab_bar_home_normal)
-        tabBarMaterialImage.setImageResource(R.mipmap.tab_bar_material_normal)
-        tabBarMineImage.setImageResource(R.mipmap.tab_bar_mine_normal)
-        val normalColor = ContextCompat.getColor(this, R.color.tabBarTextColorNormal)
-        val activeColor = ContextCompat.getColor(this, R.color.tabBarTextColorActive)
-        tabBarHomeText.setTextColor(normalColor)
-        tabBarMaterialText.setTextColor(normalColor)
-        tabBarMineText.setTextColor(normalColor)
-        when (view.id) {
-            R.id.tabBarHome -> {
-                tabBarHomeImage.setImageResource(R.mipmap.tab_bar_home_active)
-                tabBarHomeText.setTextColor(activeColor)
-            }
-            R.id.tabBarMaterial -> {
-                tabBarMaterialImage.setImageResource(R.mipmap.tab_bar_material_active)
-                tabBarMaterialText.setTextColor(activeColor)
-            }
-            R.id.tabBarMine -> {
-                tabBarMineImage.setImageResource(R.mipmap.tab_bar_mine_active)
-                tabBarMineText.setTextColor(activeColor)
-            }
-        }
-        supportFragmentManager.beginTransaction().replace(R.id.frameLayout, fragment).commit()
+    override fun onException(instance: WXSDKInstance?, errCode: String?, msg: String?) {
     }
 
-    private fun getStatusBarHeight(): Int {
-        var result = 0
-        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
-        if (resourceId > 0) {
-            result = resources.getDimensionPixelSize(resourceId)
+    override fun onViewCreated(instance: WXSDKInstance?, view: View?) {
+        setContentView(view)
+    }
+
+    override fun onRenderSuccess(instance: WXSDKInstance?, width: Int, height: Int) {
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (mWXSDKInstance != null) {
+            mWXSDKInstance?.onActivityResume()
         }
-        return result
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (mWXSDKInstance != null) {
+            mWXSDKInstance?.onActivityPause()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (mWXSDKInstance != null) {
+            mWXSDKInstance?.onActivityStop()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (mWXSDKInstance != null) {
+            mWXSDKInstance?.onActivityDestroy()
+        }
     }
 
 }

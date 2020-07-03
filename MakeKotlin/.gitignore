@@ -12,3 +12,7 @@
 /captures
 .externalNativeBuild
 .cxx
+#/app/src/main/jniLibs
+
+*/jniLibs/
+/MakeKotlin/app/src/main/jniLibs/
