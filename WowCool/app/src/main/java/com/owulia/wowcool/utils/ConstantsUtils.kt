@@ -12,6 +12,7 @@ object ConstantsUtils {
     const val URL_GITHUB = "https://github.com/Woshiajuana"
     // document url
     const val URL_DOCUMENT = "https://ajuan.owulia.com"
+    const val URL_HELP = "http://49.233.210.236:40001/fqa.html?application=5f054387ae32af52a98e23d3"
     const val NAV_BAR_LEFT_IMAGE_NUM_NULL = -1
 
     // 分享

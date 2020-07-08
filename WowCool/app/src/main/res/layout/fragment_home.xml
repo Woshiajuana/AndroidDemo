@@ -89,6 +89,27 @@
                 android:src="@drawable/ic_chevron_right" />
         </LinearLayout>
 
+        <View
+            style="@style/style_border"
+            android:layout_marginStart="@dimen/dimen_common_padding" />
+
+        <LinearLayout
+            android:id="@+id/vHelpMenu"
+            style="@style/style_home_menu_wrap">
+            <com.owulia.wowcool.widget.WowIconFontView
+                style="@style/style_home_menu_icon"
+                android:text="@string/string_help_icon"/>
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/string_help_text" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chevron_right" />
+        </LinearLayout>
+
 
         <View style="@style/style_border"/>
     </LinearLayout>

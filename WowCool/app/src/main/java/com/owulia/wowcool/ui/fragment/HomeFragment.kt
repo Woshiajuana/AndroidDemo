@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.owulia.wowcool.R
 import com.owulia.wowcool.base.BaseFragment
-import com.owulia.wowcool.ui.widget.WowWebViewDialog
 import com.owulia.wowcool.utils.ConstantsUtils
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -38,6 +37,9 @@ class HomeFragment : BaseFragment() {
         }
         vGitHubMenu.setOnClickListener {
             handleJump(R.string.string_github_text, ConstantsUtils.URL_GITHUB)
+        }
+        vHelpMenu.setOnClickListener {
+            handleJump(R.string.string_help_text, ConstantsUtils.URL_HELP)
         }
     }
 

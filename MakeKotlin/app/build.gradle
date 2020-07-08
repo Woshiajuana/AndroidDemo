@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-apply from: 'https://raw.githubusercontent.com/apache/incubator-weex/a675c3e151f3fa9339157882c4f44d7452206952/android/sdk/buildSrc/download_jsc.gradle'
+//apply from: 'https://raw.githubusercontent.com/apache/incubator-weex/a675c3e151f3fa9339157882c4f44d7452206952/android/sdk/buildSrc/download_jsc.gradle'
 
 android {
     compileSdkVersion 29
