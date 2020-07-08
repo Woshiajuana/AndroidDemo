@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.owulia.wowcool.R
 import com.owulia.wowcool.base.BaseFragment
 import com.owulia.wowcool.ui.widget.WowWebViewDialog
+import com.owulia.wowcool.utils.AndroidBug5497Workaround
 import com.owulia.wowcool.utils.ConstantsUtils
 import com.owulia.wowcool.utils.WowClipDataUtils
 import kotlinx.android.synthetic.main.fragment_web_view.*
@@ -32,6 +33,7 @@ class WebViewFragment : BaseFragment() {
 
     override fun initView(view: View) {
         super.initView(view)
+        AndroidBug5497Workaround.assistActivity(activity)
         arguments?.apply {
             getString(ConstantsUtils.WEB_VIEW_TITLE)?.let {
                 vNavBar?.setTitle(it)

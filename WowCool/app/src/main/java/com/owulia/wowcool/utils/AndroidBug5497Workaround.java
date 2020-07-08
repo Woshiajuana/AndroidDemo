@@ -33,6 +33,7 @@ public class AndroidBug5497Workaround {
                 possiblyResizeChildOfContent(activity);
             }
         });
+//        mChildOfContent.getViewTreeObserver().removeOnGlobalLayoutListener();
         frameLayoutParams = (FrameLayout.LayoutParams) mChildOfContent.getLayoutParams();
     }
 
@@ -40,7 +41,8 @@ public class AndroidBug5497Workaround {
         int usableHeightNow = computeUsableHeight();
         if (usableHeightNow != usableHeightPrevious) {
 //            int usableHeightSansKeyboard = mChildOfContent.getRootView().getHeight();
-            int usableHeightSansKeyboard = activity.getWindowManager().getDefaultDisplay().getHeight();;
+//            int usableHeightSansKeyboard = activity.getWindowManager().getDefaultDisplay().getHeight();;
+            int usableHeightSansKeyboard = activity.findViewById(android.R.id.content).getMeasuredHeight();
             int heightDifference = usableHeightSansKeyboard - usableHeightNow;
             if (heightDifference > (usableHeightSansKeyboard/4)) {
                 // keyboard probably just became visible
