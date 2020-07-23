@@ -6,7 +6,6 @@ import androidx.core.view.ViewPropertyAnimatorListener
 import com.owulia.heimaplayer.R
 import com.owulia.heimaplayer.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_splash.*
-import org.jetbrains.anko.startActivity
 
 class SplashActivity : BaseActivity(), ViewPropertyAnimatorListener {
 
@@ -24,8 +23,7 @@ class SplashActivity : BaseActivity(), ViewPropertyAnimatorListener {
 
     override fun onAnimationEnd(view: View?) {
         // 动画结束
-        startActivity<MainActivity>()
-        finish()
+        startActivityAndFinish<MainActivity>()
     }
 
     override fun onAnimationCancel(view: View?) {

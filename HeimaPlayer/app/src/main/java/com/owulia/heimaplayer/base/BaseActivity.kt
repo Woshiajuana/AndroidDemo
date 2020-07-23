@@ -3,6 +3,7 @@ package com.owulia.heimaplayer.base
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 abstract class BaseActivity: AppCompatActivity(), AnkoLogger {
@@ -26,6 +27,11 @@ abstract class BaseActivity: AppCompatActivity(), AnkoLogger {
     // 弱提示
     open fun myToast (msg: String) {
         runOnUiThread { toast(msg) }
+    }
+
+    inline fun <reified T: BaseActivity> startActivityAndFinish() {
+        startActivity<T>()
+        finish()
     }
 
 }
