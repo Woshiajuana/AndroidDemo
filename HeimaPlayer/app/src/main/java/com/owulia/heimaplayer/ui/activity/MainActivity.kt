@@ -1,7 +1,8 @@
-package com.owulia.heimaplayer
+package com.owulia.heimaplayer.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.owulia.heimaplayer.R
 
 class MainActivity : AppCompatActivity() {
 
