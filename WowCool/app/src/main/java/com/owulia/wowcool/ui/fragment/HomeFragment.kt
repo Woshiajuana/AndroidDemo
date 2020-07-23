@@ -6,7 +6,11 @@ import androidx.fragment.app.Fragment
 import com.owulia.wowcool.R
 import com.owulia.wowcool.base.BaseFragment
 import com.owulia.wowcool.utils.ConstantsUtils
+import com.owulia.wowcool.utils.WowLogUtils
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 /**
  * A simple [Fragment] subclass.
@@ -25,6 +29,20 @@ class HomeFragment : BaseFragment() {
     override fun initView(view: View) {
         super.initView(view)
         setNavBarTitleLeftAlign()
+
+
+        WowLogUtils.d(this, "你好呀")
+
+//        runBlocking {
+//            launch {
+//
+//            }
+//        }
+
+        GlobalScope.launch {
+
+        }
+
     }
 
     override fun initEvent() {

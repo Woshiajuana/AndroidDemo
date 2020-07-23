@@ -1,6 +1,5 @@
 package com.owulia.wowcool.ui.fragment
 
-import android.text.Html
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.owulia.wowcool.R
@@ -24,8 +23,6 @@ class MineFragment : BaseFragment() {
     override fun initView(view: View) {
         super.initView(view)
         setNavBarTitleLeftAlign()
-
-
     }
 
 }
