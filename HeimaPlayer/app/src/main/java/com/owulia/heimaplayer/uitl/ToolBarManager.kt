@@ -8,7 +8,17 @@ interface ToolBarManager {
     val toolbar: Toolbar
 
     fun initMainToolBar () {
-        toolbar.title = "黑马影音"
-        toolbar.inflateMenu(R.menu.main)
+        toolbar.apply {
+            title = "黑马影音"
+            inflateMenu(R.menu.main)
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.setting -> {
+                        // 跳转到设置页面
+                    }
+                }
+                true
+            }
+        }
     }
 }
