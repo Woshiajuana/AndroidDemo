@@ -1,6 +1,8 @@
 package com.owulia.imoocmusicdemo.activitys
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +13,7 @@ import com.owulia.imoocmusicdemo.views.GridSpaceItemDecoration
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,6 +37,15 @@ class MainActivity : BaseActivity() {
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             layoutManager = LinearLayoutManager(context)
         }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        Log.d("onActivityResult:", "requestCode => $requestCode")
+        Log.d("onActivityResult:", "resultCode => $resultCode")
+        Log.d("onActivityResult:", "data => $data")
 
     }
 }

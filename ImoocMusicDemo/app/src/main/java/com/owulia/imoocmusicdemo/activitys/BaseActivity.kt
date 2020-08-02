@@ -26,7 +26,8 @@ open class BaseActivity : Activity() {
 
         mMineBtn.setOnClickListener {
             val intent = Intent(this, MineActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent, 1)
+//            startActivity(intent)
         }
     }
 

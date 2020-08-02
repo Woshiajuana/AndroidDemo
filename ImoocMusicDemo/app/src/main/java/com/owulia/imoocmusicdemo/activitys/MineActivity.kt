@@ -20,7 +20,8 @@ class MineActivity : BaseActivity() {
     }
 
     fun onExit (view: View) {
-        UserUtil.logout(this)
+        setResult(2)
+//        UserUtil.logout(this)
     }
 
     fun onChangePassword (view: View) {
