@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
+import okhttp3.*
 import java.io.*
 import java.lang.Exception
 import java.lang.StringBuilder
@@ -24,13 +25,36 @@ class MainActivity : AppCompatActivity() {
 //        }
 
         vButton.setOnClickListener{
-            val width = vImage.measuredWidth
-            val height = vImage.measuredHeight
-            thread {
-                loadImageData(width, height)
-            }
+//            val width = vImage.measuredWidth
+//            val height = vImage.measuredHeight
+//            thread {
+//                loadImageData(width, height)
+//            }
+            asyncGet()
         }
 
+    }
+
+    fun asyncGet () {
+        // 请求 api
+        val url = "https://api.sunofbeach.net/shop/api/discovery/categories"
+        // 创建 client
+        val okHttpClient = OkHttpClient()
+        // 创建请求内容
+        val request = Request.Builder()
+            .url(url)
+            .get()
+            .build()
+        // 调用创建任务
+        val call = okHttpClient.newCall(request)
+        call.enqueue(object : Callback{
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d("asyncGet:", "e => $e")
+            }
+            override fun onResponse(call: Call, response: Response) {
+                Log.d("asyncGet:", "response => $response")
+            }
+        })
     }
 
     private fun loadImageData(with: Int, height: Int) {
