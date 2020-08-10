@@ -1,7 +1,8 @@
-package com.owulia.makekotlin
+package com.owulia.makekotlin.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.owulia.makekotlin.R
 
 class MainActivity : AppCompatActivity() {
 
