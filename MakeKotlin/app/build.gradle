@@ -2,11 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-//apply from: 'https://raw.githubusercontent.com/apache/incubator-weex/a675c3e151f3fa9339157882c4f44d7452206952/android/sdk/buildSrc/download_jsc.gradle'
-
 android {
     compileSdkVersion 29
-
+    buildToolsVersion "29.0.2"
 
     defaultConfig {
         applicationId "com.owulia.makekotlin"
@@ -30,31 +28,10 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.3.1'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-    // 以下两个 weex_sdk 版本二选一
-    implementation 'org.apache.weex:sdk:0.28.0'
-//    implementation 'org.apache.weex:sdk_legacy:0.28.0'
-
-    // fastjson
-    implementation 'com.alibaba:fastjson:1.1.46.android'
-
-    //support library dependencies
-    implementation 'com.android.support:recyclerview-v7:23.1.1'
-    implementation 'com.android.support:support-v4:23.1.1'
-//    implementation 'com.android.support:appcompat-v7:23.1.1'
-
-
-    // 图片加载框架
-    implementation 'com.squareup.picasso:picasso:2.5.2'
-
-    implementation 'com.taobao.android.weex_inspection:urlconnection_interceptor:1.0.0'
-    implementation 'com.taobao.android.weex_inspection:protocol:1.1.4.1'
-    implementation "com.android.support:support-annotations:28.0.0"
 }

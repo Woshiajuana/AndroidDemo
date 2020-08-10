@@ -1,87 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity">
 
-<!--    <View-->
-<!--        android:id="@+id/statusBar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"/>-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/headerView"
-        android:gravity="center"
-        android:background="#ff0000"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <TextView
-            android:text="码可"
-            android:textColor="#ffffff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:background="?android:attr/listDivider" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="49.9dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/tabBarHome"
-            style="@style/tab_bar_item">
-            <ImageView
-                android:id="@+id/tabBarHomeImage"
-                style="@style/tab_bar_item_image"
-                android:src="@mipmap/tab_bar_home_normal"/>
-            <TextView
-                android:id="@+id/tabBarHomeText"
-                style="@style/tab_bar_item_text"
-                android:text="@string/tab_bar_home" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/tabBarMaterial"
-            style="@style/tab_bar_item">
-            <ImageView
-                android:id="@+id/tabBarMaterialImage"
-                style="@style/tab_bar_item_image"
-                android:src="@mipmap/tab_bar_material_normal"/>
-            <TextView
-                android:id="@+id/tabBarMaterialText"
-                style="@style/tab_bar_item_text"
-                android:text="@string/tab_bar_material" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/tabBarMine"
-            style="@style/tab_bar_item">
-            <ImageView
-                android:id="@+id/tabBarMineImage"
-                style="@style/tab_bar_item_image"
-                android:src="@mipmap/tab_bar_mine_normal"/>
-            <TextView
-                android:id="@+id/tabBarMineText"
-                style="@style/tab_bar_item_text"
-                android:text="@string/tab_bar_mine" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
