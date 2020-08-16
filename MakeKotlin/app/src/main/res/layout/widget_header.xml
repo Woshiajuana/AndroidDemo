@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/vNavBarLeftBtn"
+        android:id="@+id/vNavBarLeftImgBtn"
         android:layout_alignParentStart="true"
         android:src="@drawable/ic_arrow_back_1"
         android:paddingStart="10dp"
@@ -40,7 +40,7 @@
         tools:ignore="RtlSymmetry" />
 
     <ImageView
-        android:id="@+id/vNavBarRightBtn"
+        android:id="@+id/vNavBarRightImgBtn"
         android:layout_alignParentEnd="true"
         android:src="@mipmap/ic_message"
         android:paddingStart="10dp"

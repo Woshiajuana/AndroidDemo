@@ -1,5 +1,8 @@
 package com.owulia.makekotlin.base
 
-class BaseActivity {
+import androidx.appcompat.app.AppCompatActivity
+
+class BaseActivity : AppCompatActivity() {
+    
 
 }
