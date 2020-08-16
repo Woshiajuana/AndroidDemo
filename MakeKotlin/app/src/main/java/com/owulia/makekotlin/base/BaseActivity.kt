@@ -30,6 +30,11 @@ abstract class BaseActivity : AppCompatActivity() {
     var vLoadingView: ViewGroup? = null
 
     /**
+     * 无数据 view
+     * */
+    var vNullView: ViewGroup? = null
+
+    /**
      * 导航栏 view
      * */
     var vNavBar: NavBarView? = null
