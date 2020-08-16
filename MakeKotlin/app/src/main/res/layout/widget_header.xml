@@ -3,10 +3,44 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="44dp">
+    android:layout_height="match_parent">
 
     <ImageView
-        android:layout_marginEnd="10dp"
+        android:id="@+id/vNavBarLeftBtn"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/ic_arrow_back_1"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/vNavBarTitle"
+        android:text="标题"
+        android:textSize="17sp"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_centerInParent="true"
+        android:layout_width="220dp"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/vNavBarRightTextBtn"
+        android:text="返回"
+        android:drawablePadding="4dp"
+        android:layout_alignParentEnd="true"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        tools:ignore="RtlSymmetry" />
+
+    <ImageView
+        android:id="@+id/vNavBarRightBtn"
         android:layout_alignParentEnd="true"
         android:src="@mipmap/ic_message"
         android:paddingStart="10dp"
@@ -14,10 +48,5 @@
         android:layout_width="44dp"
         android:layout_height="match_parent"
         tools:ignore="RtlSymmetry" />
-
-    <TextView
-        android:text="返回"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"/>
 
 </RelativeLayout>
