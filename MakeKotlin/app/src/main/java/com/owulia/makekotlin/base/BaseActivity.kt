@@ -1,6 +1,8 @@
 package com.owulia.makekotlin.base
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +24,7 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 加载成功 view
      * */
-    var vSuccessView: ViewGroup? = null
+    var vContentView: ViewGroup? = null
 
     /**
      * 加载中 view
@@ -69,9 +71,43 @@ abstract class BaseActivity : AppCompatActivity() {
      * */
     open val mNavBarRightImg: Int = -1
 
+    @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        vRootView = LayoutInflater.from(this).inflate(getRootViewResourceId(), null, false) as ViewGroup
+        vErrorView = LayoutInflater.from(this).inflate(getErrorViewResourceId(), null, false) as ViewGroup
+        vLoadingView = LayoutInflater.from(this).inflate(getLoadingViewResourceId(), null, false) as ViewGroup
+        vNullView = LayoutInflater.from(this).inflate(getNullViewResourceId(), null, false) as ViewGroup
+        vContentView = LayoutInflater.from(this).inflate(getContentViewResourceId(), null, false) as ViewGroup
 
     }
+
+    /**
+     * 获取 base View id
+     * */
+    open fun getRootViewResourceId () = R.layout.fragment_base
+
+    /**
+     * 获取 error View id
+     * */
+    open fun getErrorViewResourceId () = R.layout.fragment_error
+
+    /**
+     * 获取 loading View id
+     * */
+    open fun getLoadingViewResourceId () = R.layout.fragment_loading
+
+    /**
+     * 获取 null View id
+     * */
+    open fun getNullViewResourceId () = R.layout.fragment_null
+
+    /**
+     * 获取主题内容 View id
+     * */
+    abstract fun getContentViewResourceId () : Int
+
+
+
 
 }
