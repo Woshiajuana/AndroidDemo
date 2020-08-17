@@ -11,6 +11,7 @@ import com.owulia.makekotlin.R
 import com.owulia.makekotlin.utils.WowSizeUtils
 import com.owulia.makekotlin.utils.WowStatusBarUtils
 import com.owulia.makekotlin.widget.NavBarView
+import kotlinx.android.synthetic.main.fragment_base.*
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -37,7 +38,18 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 无数据 view
      * */
-    var vNullView: ViewGroup? = null
+    var vEmptyView: ViewGroup? = null
+
+    /**
+     * 渲染状态
+     * */
+    enum class RenderState {
+        NONE,
+        LOADING,
+        ERROR,
+        EMPTY,
+        SUCCESS,
+    }
 
     /**
      * 导航栏 view
@@ -74,6 +86,11 @@ abstract class BaseActivity : AppCompatActivity() {
      * */
     open val mNavBarRightImg: Int = -1
 
+    /**
+     * presenter
+     * */
+//    open var presenter : P? = null
+
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,10 +99,21 @@ abstract class BaseActivity : AppCompatActivity() {
          * 初始化 ViewGroup
          * */
         vRootView = LayoutInflater.from(this).inflate(getRootViewResourceId(), null, false) as ViewGroup
+        setContentView(vRootView)
         vErrorView = LayoutInflater.from(this).inflate(getErrorViewResourceId(), null, false) as ViewGroup
         vLoadingView = LayoutInflater.from(this).inflate(getLoadingViewResourceId(), null, false) as ViewGroup
-        vNullView = LayoutInflater.from(this).inflate(getNullViewResourceId(), null, false) as ViewGroup
+        vEmptyView = LayoutInflater.from(this).inflate(getEmptyViewResourceId(), null, false) as ViewGroup
         vContentView = LayoutInflater.from(this).inflate(getContentViewResourceId(), null, false) as ViewGroup
+
+        /**
+         * 载入基础 viewGroup
+         * */
+        renderView()
+
+        /**
+         * 渲染 viewGroup
+         * */
+        render()
 
         /**
          * 设置状态栏占位
@@ -100,6 +128,38 @@ abstract class BaseActivity : AppCompatActivity() {
         if (isUseNavBar) {
             initNavBar()
         }
+
+        /**
+         * 初始化 view
+         * */
+        initView()
+
+        /**
+         * 初始化事件
+         * */
+        initListener()
+    }
+
+    /**
+     * 载入基础 viewGroup
+     * */
+    open fun renderView () {
+        vContainer.apply {
+            addView(vLoadingView)
+            addView(vErrorView)
+            addView(vEmptyView)
+            addView(vContentView)
+        }
+    }
+
+    /**
+     * 渲染
+     * */
+    open fun render (state: RenderState = RenderState.NONE) {
+        vContentView?.visibility = if (state == RenderState.SUCCESS) View.VISIBLE else View.GONE
+        vLoadingView?.visibility = if (state == RenderState.LOADING) View.VISIBLE else View.GONE
+        vErrorView?.visibility = if (state == RenderState.ERROR) View.VISIBLE else View.GONE
+        vEmptyView?.visibility = if (state == RenderState.EMPTY) View.VISIBLE else View.GONE
     }
 
     /**
@@ -119,6 +179,8 @@ abstract class BaseActivity : AppCompatActivity() {
                 finish()
             }
         }
+        val index = if (isUseStatusBarSeat) 1 else 0
+        vRootView?.addView(vNavBar, index)
     }
 
     /**
@@ -129,6 +191,16 @@ abstract class BaseActivity : AppCompatActivity() {
             setBackgroundColor(Color.parseColor("#007FD6"))
         }
     }
+
+    /**
+     * 初始化 view
+     * */
+    open fun initView () {}
+
+    /**
+     * 初始化事件
+     * */
+    open fun initListener () {}
 
     /**
      * 获取 base View id
@@ -148,7 +220,7 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 获取 null View id
      * */
-    open fun getNullViewResourceId () = R.layout.fragment_null
+    open fun getEmptyViewResourceId () = R.layout.fragment_empty
 
     /**
      * 获取主题内容 View id
