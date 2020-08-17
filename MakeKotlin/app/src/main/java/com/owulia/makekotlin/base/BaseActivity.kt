@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.owulia.makekotlin.R
+import com.owulia.makekotlin.utils.WowSizeUtils
 import com.owulia.makekotlin.utils.WowStatusBarUtils
 import com.owulia.makekotlin.widget.NavBarView
 
@@ -106,7 +107,17 @@ abstract class BaseActivity : AppCompatActivity() {
      * */
     open fun initNavBar () {
         vNavBar = NavBarView(this).apply {
-
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                WowSizeUtils.px2dp(44f).toInt()
+            )
+            setBackgroundColor(Color.parseColor("#ffffff"))
+            setTitle(if (mNavBarTitle == -1) "" else getString(mNavBarTitle))
+            setLeftImgBtn(mNavBarLeftImg)
+            setRightImgBtn(mNavBarRightImg)
+            setOnLeftBtnClickListener = {
+                finish()
+            }
         }
     }
 

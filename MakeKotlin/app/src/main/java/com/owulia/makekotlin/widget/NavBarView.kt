@@ -2,9 +2,11 @@ package com.owulia.makekotlin.widget
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.RelativeLayout
 import com.owulia.makekotlin.R
 import kotlinx.android.synthetic.main.widget_header.view.*
 
@@ -43,7 +45,21 @@ class NavBarView @JvmOverloads constructor(
      * */
     fun setLeftImgBtn (resId: Int) {
         if (resId == -1) {
+            setLeftImgBtnVisibility()
+        } else {
+            vNavBarLeftImgBtn.setImageResource(resId)
+        }
+    }
 
+    /**
+     * 设置右边 icon
+     * @param resId
+     * */
+    fun setRightImgBtn (resId: Int) {
+        if (resId == -1) {
+            setRightBtnImgVisibility()
+        } else {
+            vNavBarRightImgBtn.setImageResource(resId)
         }
     }
 
@@ -61,6 +77,22 @@ class NavBarView @JvmOverloads constructor(
      * */
     fun setRightBtnImgVisibility (visibility: Int = View.GONE) {
         vNavBarRightImgBtn.visibility = visibility
+    }
+
+    /**
+     * 设置标题居左
+     * */
+    fun setNavBarTitleLeftAlign () {
+        vNavBarTitle.apply {
+            gravity = Gravity.START
+            (layoutParams as RelativeLayout.LayoutParams).apply {
+                if (vNavBarLeftImgBtn.visibility == View.GONE) {
+                    addRule(RelativeLayout.ALIGN_PARENT_LEFT)
+                } else {
+                    addRule(RelativeLayout.RIGHT_OF, R.id.vNavBarLeftImgBtn)
+                }
+            }
+        }
     }
 
 }
