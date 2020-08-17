@@ -1,12 +1,14 @@
 package com.owulia.makekotlin.base
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.owulia.makekotlin.R
+import com.owulia.makekotlin.utils.WowStatusBarUtils
 import com.owulia.makekotlin.widget.NavBarView
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -74,12 +76,47 @@ abstract class BaseActivity : AppCompatActivity() {
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        /**
+         * 初始化 ViewGroup
+         * */
         vRootView = LayoutInflater.from(this).inflate(getRootViewResourceId(), null, false) as ViewGroup
         vErrorView = LayoutInflater.from(this).inflate(getErrorViewResourceId(), null, false) as ViewGroup
         vLoadingView = LayoutInflater.from(this).inflate(getLoadingViewResourceId(), null, false) as ViewGroup
         vNullView = LayoutInflater.from(this).inflate(getNullViewResourceId(), null, false) as ViewGroup
         vContentView = LayoutInflater.from(this).inflate(getContentViewResourceId(), null, false) as ViewGroup
 
+        /**
+         * 设置状态栏占位
+         * */
+        if (isUseStatusBarSeat) {
+            initStatusBarSeat()
+        }
+
+        /**
+         * 设置导航栏
+         * */
+        if (isUseNavBar) {
+            initNavBar()
+        }
+    }
+
+    /**
+     * 设置导航栏
+     * */
+    open fun initNavBar () {
+        vNavBar = NavBarView(this).apply {
+
+        }
+    }
+
+    /**
+     * 设置状态栏占位
+     * */
+    open fun initStatusBarSeat () {
+        vStatusBar = WowStatusBarUtils.setStatusBarSeat(this, vRootView).apply {
+            setBackgroundColor(Color.parseColor("#007FD6"))
+        }
     }
 
     /**
@@ -106,8 +143,5 @@ abstract class BaseActivity : AppCompatActivity() {
      * 获取主题内容 View id
      * */
     abstract fun getContentViewResourceId () : Int
-
-
-
 
 }

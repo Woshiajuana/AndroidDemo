@@ -47,7 +47,6 @@ class NavBarView @JvmOverloads constructor(
         }
     }
 
-
     /**
      * 设置左边按钮
      * @param visibility
@@ -56,10 +55,12 @@ class NavBarView @JvmOverloads constructor(
         vNavBarLeftImgBtn.visibility = visibility
     }
 
-    // 设置右边按钮
+    /**
+     * 设置右边按钮
+     * @param visibility
+     * */
     fun setRightBtnImgVisibility (visibility: Int = View.GONE) {
         vNavBarRightImgBtn.visibility = visibility
     }
-
 
 }
