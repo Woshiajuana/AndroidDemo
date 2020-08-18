@@ -19,7 +19,7 @@ class MainActivity : BaseActivity() {
             setItemIcon(resources.getDimension(R.dimen.dimen_tab_bar_icon).toInt())
             setItemText(
                 ContextCompat.getColor(context, R.color.colorTabBarNormal),
-                ContextCompat.getColor(context, R.color.colorTabBarActive)
+                ContextCompat.getColor(context, R.color.colorAccent)
             )
             addItem(
                 R.mipmap.ic_home_normal,
@@ -28,22 +28,18 @@ class MainActivity : BaseActivity() {
                 HomeFragment.instant
             )
             addItem(
-                R.mipmap.ic_home_normal,
-                R.mipmap.ic_home_active,
+                R.mipmap.ic_yl_normal,
+                R.mipmap.ic_yl_active,
                 getString(R.string.string_tab_bar_yl),
                 HomeFragment.instant
             )
             addItem(
-                R.mipmap.ic_home_normal,
-                R.mipmap.ic_home_active,
+                R.mipmap.ic_mine_normal,
+                R.mipmap.ic_mine_active,
                 getString(R.string.string_tab_bar_mine),
-                HomeFragment.instant
+                HomeFragment()
             )
             setDivider(true, 1)
-//            setOnItemClickListener = { index, _ ->
-//                mMainFragmentViewModel.mNumCurrent.value = index
-//                true
-//            }
             build(supportFragmentManager)
             switchItem(0)
         }

@@ -163,7 +163,7 @@ abstract class BaseFragment : Fragment() {
      * 载入基础 viewGroup
      * */
     open fun renderView() {
-        vContainer.apply {
+        vRootView?.findViewById<ViewGroup>(R.id.vContainer)?.apply {
             addView(vLoadingView)
             addView(vErrorView)
             addView(vEmptyView)

@@ -7,12 +7,12 @@ import com.owulia.makekotlin.base.BaseFragment
 /**
  * A simple [Fragment] subclass.
  */
-class HomeFragment : BaseFragment() {
+class MaterialFragment : BaseFragment() {
 
     companion object {
-        val instant: HomeFragment by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { HomeFragment() }
+        val instant: MaterialFragment by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { MaterialFragment() }
     }
 
-    override fun getContentViewResourceId(): Int = R.layout.fragment_home
+    override fun getContentViewResourceId(): Int = R.layout.fragment_material
 
 }
