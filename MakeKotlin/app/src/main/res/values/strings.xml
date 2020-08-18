@@ -3,6 +3,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="string_tab_bar_home">首页</string>
+    <string name="string_tab_bar_yl">有料</string>
+    <string name="string_tab_bar_mine">我的</string>
+
     <string name="text_error_tip">网络繁忙，点我重试</string>
     <string name="text_loading_tip">拼命加载中...</string>
     <string name="text_null_tip">这里毛都没一根...</string>

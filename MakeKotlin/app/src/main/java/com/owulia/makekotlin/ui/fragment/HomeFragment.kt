@@ -13,6 +13,10 @@ import com.owulia.makekotlin.R
  */
 class HomeFragment : Fragment() {
 
+    companion object {
+        val instant: HomeFragment by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { HomeFragment() }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="dimen_tab_bar_icon">20dp</dimen>
+
+    <dimen name="dimen_demo_icon_size">28sp</dimen>
+    <dimen name="dimen_demo_text_size">12sp</dimen>
+    <dimen name="dimen_demo_margin">10dp</dimen>
+    <dimen name="dimen_common_padding">16dp</dimen>
+
+</resources>
