@@ -2,11 +2,13 @@ package com.owulia.makekotlin.base
 
 import android.annotation.SuppressLint
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.utils.WowSizeUtils
 import com.owulia.makekotlin.utils.WowStatusBarUtils
@@ -98,12 +100,17 @@ abstract class BaseActivity : AppCompatActivity() {
         /**
          * 初始化 ViewGroup
          * */
-        vRootView = LayoutInflater.from(this).inflate(getRootViewResourceId(), null, false) as ViewGroup
+        vRootView =
+            LayoutInflater.from(this).inflate(getRootViewResourceId(), null, false) as ViewGroup
         setContentView(vRootView)
-        vErrorView = LayoutInflater.from(this).inflate(getErrorViewResourceId(), null, false) as ViewGroup
-        vLoadingView = LayoutInflater.from(this).inflate(getLoadingViewResourceId(), null, false) as ViewGroup
-        vEmptyView = LayoutInflater.from(this).inflate(getEmptyViewResourceId(), null, false) as ViewGroup
-        vContentView = LayoutInflater.from(this).inflate(getContentViewResourceId(), null, false) as ViewGroup
+        vErrorView =
+            LayoutInflater.from(this).inflate(getErrorViewResourceId(), null, false) as ViewGroup
+        vLoadingView =
+            LayoutInflater.from(this).inflate(getLoadingViewResourceId(), null, false) as ViewGroup
+        vEmptyView =
+            LayoutInflater.from(this).inflate(getEmptyViewResourceId(), null, false) as ViewGroup
+        vContentView =
+            LayoutInflater.from(this).inflate(getContentViewResourceId(), null, false) as ViewGroup
 
         /**
          * 载入基础 viewGroup
@@ -143,7 +150,7 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 载入基础 viewGroup
      * */
-    open fun renderView () {
+    open fun renderView() {
         vContainer.apply {
             addView(vLoadingView)
             addView(vErrorView)
@@ -155,7 +162,7 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 渲染
      * */
-    open fun render (state: RenderState = RenderState.NONE) {
+    open fun render(state: RenderState = RenderState.NONE) {
         vContentView?.visibility = if (state == RenderState.SUCCESS) View.VISIBLE else View.GONE
         vLoadingView?.visibility = if (state == RenderState.LOADING) View.VISIBLE else View.GONE
         vErrorView?.visibility = if (state == RenderState.ERROR) View.VISIBLE else View.GONE
@@ -165,7 +172,7 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 设置导航栏
      * */
-    open fun initNavBar () {
+    open fun initNavBar() {
         vNavBar = NavBarView(this).apply {
             layoutParams = ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -184,47 +191,72 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     /**
-     * 设置状态栏占位
+     * 设置状态栏占位，沉浸式状态栏
      * */
-    open fun initStatusBarSeat () {
-        vStatusBar = WowStatusBarUtils.setStatusBarSeat(this, vRootView).apply {
-            setBackgroundColor(Color.parseColor("#007FD6"))
+    open fun initStatusBarSeat() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+            /**
+             * 设置全屏，状态栏悬浮
+             * */
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+
+            window.statusBarColor = Color.TRANSPARENT
+
+            /**
+             * 占位 view
+             * */
+            vStatusBar = View(this).apply {
+                layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    WowStatusBarUtils.getStatusBarHeight(this@BaseActivity)
+                )
+            }
+            vRootView?.addView(vStatusBar, 0)
         }
+    }
+
+    /**
+     * 状态栏亮色模式，设置状态栏黑色文字、图标
+     * */
+    fun setStatusBarLightMode () {
+        WowStatusBarUtils.setStatusBarLightMode(this)
     }
 
     /**
      * 初始化 view
      * */
-    open fun initView () {}
+    open fun initView() {}
 
     /**
      * 初始化事件
      * */
-    open fun initListener () {}
+    open fun initListener() {}
 
     /**
      * 获取 base View id
      * */
-    open fun getRootViewResourceId () = R.layout.fragment_base
+    open fun getRootViewResourceId() = R.layout.fragment_base
 
     /**
      * 获取 error View id
      * */
-    open fun getErrorViewResourceId () = R.layout.fragment_error
+    open fun getErrorViewResourceId() = R.layout.fragment_error
 
     /**
      * 获取 loading View id
      * */
-    open fun getLoadingViewResourceId () = R.layout.fragment_loading
+    open fun getLoadingViewResourceId() = R.layout.fragment_loading
 
     /**
      * 获取 null View id
      * */
-    open fun getEmptyViewResourceId () = R.layout.fragment_empty
+    open fun getEmptyViewResourceId() = R.layout.fragment_empty
 
     /**
      * 获取主题内容 View id
      * */
-    abstract fun getContentViewResourceId () : Int
+    abstract fun getContentViewResourceId(): Int
 
 }

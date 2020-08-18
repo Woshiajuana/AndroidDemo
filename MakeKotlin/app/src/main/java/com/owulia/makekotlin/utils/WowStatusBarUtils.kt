@@ -42,22 +42,6 @@ object WowStatusBarUtils {
     }
 
     /**
-     * 设置状态栏补充
-     * @param parent [View] 父节点
-     * */
-    fun setStatusBarSeat(context: Context, parent: ViewGroup?) : View {
-        val height = getStatusBarHeight(context)
-        val view = View(context).apply {
-            layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                height
-            )
-        }
-        parent?.addView(view, 0)
-        return view
-    }
-
-    /**
      * 获取状态栏高度
      * */
     fun getStatusBarHeight (context: Context): Int {
