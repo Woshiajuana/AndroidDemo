@@ -11,7 +11,7 @@
         android:src="@drawable/ic_arrow_back_1"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:layout_width="50dp"
+        android:layout_width="44dp"
         android:layout_height="match_parent"
         tools:ignore="RtlSymmetry" />
 

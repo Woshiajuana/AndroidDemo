@@ -69,6 +69,11 @@ abstract class BaseActivity : AppCompatActivity() {
     open val isUseStatusBarSeat: Boolean = true
 
     /**
+     * 状态栏是否亮色模式
+     * */
+    open val isStatusBarLightMode = true
+
+    /**
      * 是否使用导航栏
      * */
     open val isUseNavBar: Boolean = true
@@ -127,6 +132,13 @@ abstract class BaseActivity : AppCompatActivity() {
          * */
         if (isUseStatusBarSeat) {
             initStatusBarSeat()
+        }
+
+        /**
+         * 设置状态栏亮色模式
+         * */
+        if (isStatusBarLightMode) {
+            setStatusBarLightMode()
         }
 
         /**
@@ -194,7 +206,7 @@ abstract class BaseActivity : AppCompatActivity() {
      * 设置状态栏占位，沉浸式状态栏
      * */
     open fun initStatusBarSeat() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
             /**
              * 设置全屏，状态栏悬浮
@@ -202,12 +214,11 @@ abstract class BaseActivity : AppCompatActivity() {
             window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
 
-            window.statusBarColor = Color.TRANSPARENT
-
             /**
              * 占位 view
              * */
             vStatusBar = View(this).apply {
+                setBackgroundColor(ContextCompat.getColor(this@BaseActivity, android.R.color.white))
                 layoutParams = ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     WowStatusBarUtils.getStatusBarHeight(this@BaseActivity)
