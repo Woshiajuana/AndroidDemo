@@ -86,10 +86,10 @@ class NavBarView @JvmOverloads constructor(
         vNavBarTitle.apply {
             gravity = Gravity.START
             (layoutParams as RelativeLayout.LayoutParams).apply {
-                if (vNavBarLeftImgBtn.visibility == View.GONE) {
-                    addRule(RelativeLayout.ALIGN_PARENT_LEFT)
-                } else {
+                if (vNavBarLeftImgBtn?.visibility == View.VISIBLE) {
                     addRule(RelativeLayout.RIGHT_OF, R.id.vNavBarLeftImgBtn)
+                } else {
+                    addRule(RelativeLayout.ALIGN_PARENT_LEFT)
                 }
             }
         }

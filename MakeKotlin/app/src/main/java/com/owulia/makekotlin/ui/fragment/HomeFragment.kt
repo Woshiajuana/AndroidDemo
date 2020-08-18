@@ -13,6 +13,15 @@ class HomeFragment : BaseFragment() {
         val instant: HomeFragment by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { HomeFragment() }
     }
 
+    override val mNavBarLeftImg: Int = -1
+
+    override val mNavBarTitle: Int = R.string.string_tab_bar_home
+
     override fun getContentViewResourceId(): Int = R.layout.fragment_home
+
+    override fun initView() {
+        super.initView()
+        vNavBar?.setNavBarTitleLeftAlign()
+    }
 
 }

@@ -4,11 +4,15 @@ import androidx.core.content.ContextCompat
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BaseActivity
 import com.owulia.makekotlin.ui.fragment.HomeFragment
+import com.owulia.makekotlin.ui.fragment.MaterialFragment
+import com.owulia.makekotlin.ui.fragment.MineFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
-    override val mNavBarTitle: Int = R.string.text_error_tip
+    override val isUseNavBar: Boolean = false
+
+    override val isUseStatusBarSeat: Boolean = false
 
     override fun getContentViewResourceId(): Int = R.layout.activity_main
 
@@ -31,13 +35,13 @@ class MainActivity : BaseActivity() {
                 R.mipmap.ic_yl_normal,
                 R.mipmap.ic_yl_active,
                 getString(R.string.string_tab_bar_yl),
-                HomeFragment.instant
+                MaterialFragment.instant
             )
             addItem(
                 R.mipmap.ic_mine_normal,
                 R.mipmap.ic_mine_active,
                 getString(R.string.string_tab_bar_mine),
-                HomeFragment()
+                MineFragment.instant
             )
             setDivider(true, 1)
             build(supportFragmentManager)
