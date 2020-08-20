@@ -13,6 +13,18 @@ class MaterialFragment : BaseFragment() {
         val instant: MaterialFragment by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { MaterialFragment() }
     }
 
+    override val mNavBarLeftImg: Int = -1
+
+    override val mNavBarTitle: Int = R.string.string_tab_bar_yl
+
+    override val mNavBarRightImg: Int = R.mipmap.ic_message
+
     override fun getContentViewResourceId(): Int = R.layout.fragment_material
+
+    override fun initView() {
+        super.initView()
+        vNavBar?.setNavBarTitleLeftAlign()
+        render(RenderState.SUCCESS)
+    }
 
 }

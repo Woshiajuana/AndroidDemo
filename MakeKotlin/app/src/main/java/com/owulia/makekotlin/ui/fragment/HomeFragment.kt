@@ -24,6 +24,7 @@ class HomeFragment : BaseFragment() {
     override fun initView() {
         super.initView()
         vNavBar?.setNavBarTitleLeftAlign()
+        render(RenderState.SUCCESS)
     }
 
 }
