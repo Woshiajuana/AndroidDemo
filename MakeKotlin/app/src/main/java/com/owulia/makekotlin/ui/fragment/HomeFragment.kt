@@ -17,6 +17,8 @@ class HomeFragment : BaseFragment() {
 
     override val mNavBarTitle: Int = R.string.string_tab_bar_home
 
+    override val mNavBarRightImg: Int = R.mipmap.ic_message
+
     override fun getContentViewResourceId(): Int = R.layout.fragment_home
 
     override fun initView() {

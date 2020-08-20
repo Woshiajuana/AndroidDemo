@@ -34,7 +34,7 @@ class WowTabBarView @JvmOverloads constructor(
     private var arrTabBarItemIconNormal = mutableListOf<Int>()
     private var arrTabBarItemIconActive = mutableListOf<Int>()
     private var arrTabBarItemText = mutableListOf<String>()
-    public var arrTabBarFragment = mutableListOf<Fragment>()
+    private var arrTabBarFragment = mutableListOf<Fragment>()
 
     // 设置
     private var tabBarBottomHeight = px2dp(50f).toInt()
