@@ -7,27 +7,35 @@
     android:layout_height="match_parent">
 
     <androidx.viewpager.widget.ViewPager
-        android:background="#00ff00"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </androidx.viewpager.widget.ViewPager>
 
     <LinearLayout
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="12dp"
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <View
             android:background="@drawable/shape_indicator_selected"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
             android:layout_width="20dp"
-            android:layout_height="20dp"/>
+            android:layout_height="8dp"/>
         <View
-            android:background="@drawable/shape_indicator_selected"
-            android:layout_width="20dp"
-            android:layout_height="20dp"/>
+            android:background="@drawable/shape_indicator_unselected"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_width="8dp"
+            android:layout_height="8dp"/>
         <View
-            android:background="@drawable/shape_indicator_unselect"
-            android:layout_width="20dp"
-            android:layout_height="20dp"/>
+            android:background="@drawable/shape_indicator_unselected"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_width="8dp"
+            android:layout_height="8dp"/>
     </LinearLayout>
 
 </RelativeLayout>
