@@ -88,6 +88,11 @@ abstract class BaseFragment : Fragment() {
     open val mNavBarLeftImg: Int = R.drawable.ic_arrow_back_1
 
     /**
+     * 右边文字按钮
+     * */
+    open val mNavBarRightText: Int = -1
+
+    /**
      * 右边按钮
      * */
     open val mNavBarRightImg: Int = -1
@@ -192,6 +197,7 @@ abstract class BaseFragment : Fragment() {
             )
             setBackgroundColor(Color.parseColor("#ffffff"))
             setTitle(if (mNavBarTitle == -1) "" else getString(mNavBarTitle))
+            setRightTextBtn(if (mNavBarRightText == -1) "" else getString(mNavBarRightText))
             setLeftImgBtn(mNavBarLeftImg)
             setRightImgBtn(mNavBarRightImg)
             setOnLeftBtnClickListener = {

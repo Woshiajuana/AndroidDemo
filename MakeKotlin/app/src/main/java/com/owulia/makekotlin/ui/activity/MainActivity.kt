@@ -23,7 +23,7 @@ class MainActivity : BaseActivity() {
             setItemIcon(resources.getDimension(R.dimen.dimen_tab_bar_icon).toInt())
             setItemText(
                 ContextCompat.getColor(context, R.color.colorTabBarNormal),
-                ContextCompat.getColor(context, R.color.colorAccent)
+                ContextCompat.getColor(context, R.color.colorTabBarActive)
             )
             addItem(
                 R.mipmap.ic_home_normal,
