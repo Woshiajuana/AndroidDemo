@@ -64,6 +64,18 @@ class NavBarView @JvmOverloads constructor(
     }
 
     /**
+     *
+     * 设置右边文字按钮
+     * */
+    fun setRightTextBtn (text: String) {
+        if (text == "") {
+            vNavBarRightTextBtn.visibility = View.GONE
+        } else {
+            vNavBarRightTextBtn.text = text
+        }
+    }
+
+    /**
      * 设置左边按钮
      * @param visibility
      * */
@@ -84,7 +96,7 @@ class NavBarView @JvmOverloads constructor(
      * */
     fun setNavBarTitleLeftAlign () {
         vNavBarTitle.apply {
-            gravity = Gravity.START
+            gravity = Gravity.CENTER_VERTICAL
             (layoutParams as RelativeLayout.LayoutParams).apply {
                 if (vNavBarLeftImgBtn?.visibility == View.VISIBLE) {
                     addRule(RelativeLayout.RIGHT_OF, R.id.vNavBarLeftImgBtn)
