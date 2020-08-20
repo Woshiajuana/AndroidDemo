@@ -14,6 +14,9 @@
     <color name="colorTabBarActive">@color/colorMain</color>
     <color name="colorTabBarNormal">#999999</color>
 
+    <color name="colorIndicatorActive">@color/colorMain</color>
+    <color name="colorIndicatorNormal">#999999</color>
+
     <color name="colorTitle">#333333</color>
     <color name="colorNavBarBorder">@color/colorBorder</color>
     <color name="colorSlideMenuDelete">#F44336</color>

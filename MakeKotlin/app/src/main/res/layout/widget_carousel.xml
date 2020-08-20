@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.viewpager.widget.ViewPager
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#ff0000"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-</androidx.viewpager.widget.ViewPager>
+
+    <androidx.viewpager.widget.ViewPager
+        android:background="#00ff00"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </androidx.viewpager.widget.ViewPager>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <View
+            android:background="@drawable/shape_indicator_selected"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+        <View
+            android:background="@drawable/shape_indicator_selected"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+        <View
+            android:background="@drawable/shape_indicator_unselect"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+    </LinearLayout>
+
+</RelativeLayout>
