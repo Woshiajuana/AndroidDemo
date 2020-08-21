@@ -26,7 +26,11 @@ class WowCarousel @JvmOverloads constructor(
      * */
     fun setAdapter (adapter: CarouselPagerAdapter) {
         mAdapter = adapter
-        vCarouselBox.adapter = mAdapter
+        vCarouselBox.apply {
+            this.adapter = mAdapter
+            currentItem = Int.MAX_VALUE / 2
+            currentItem
+        }
     }
 
     /**
@@ -36,8 +40,12 @@ class WowCarousel @JvmOverloads constructor(
 
         abstract fun getInstantiateItem (position: Int) : View
 
+        abstract fun getSize () : Int
+
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
-            return getInstantiateItem(position)
+            val view = getInstantiateItem(position % getSize());
+            container.addView(view)
+            return view
         }
 
         override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {

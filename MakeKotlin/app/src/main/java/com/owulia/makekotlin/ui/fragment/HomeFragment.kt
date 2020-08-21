@@ -1,6 +1,7 @@
 package com.owulia.makekotlin.ui.fragment
 
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BaseFragment
@@ -30,8 +31,11 @@ class HomeFragment : BaseFragment() {
         render(RenderState.SUCCESS)
         vCarousel.setAdapter(object : WowCarousel.CarouselPagerAdapter() {
             override fun getInstantiateItem(position: Int): View {
-                return View(context)
+                return TextView(context).apply {
+                    text = "当前位置 <=> $position"
+                }
             }
+            override fun getSize(): Int = 3
         })
     }
 
