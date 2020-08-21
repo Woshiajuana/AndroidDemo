@@ -22,6 +22,22 @@ class WowCarousel @JvmOverloads constructor(
             adapter = MyPagerAdapter()
         }
     }
+
+    /**
+     * 设置适配器
+     * @param adapter [PagerAdapter]
+     * */
+    fun setAdapter (adapter: PagerAdapter) {
+        vCarouselBox.adapter = adapter
+    }
+
+    /**
+     * 设置数据
+     * @param data [Array]
+     * */
+    fun setData (data: Array<Any>) {
+
+    }
 }
 
 class MyPagerAdapter : PagerAdapter() {
