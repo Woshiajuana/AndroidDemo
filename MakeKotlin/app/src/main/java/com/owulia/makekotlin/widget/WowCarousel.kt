@@ -15,49 +15,40 @@ class WowCarousel @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
+    private var mAdapter : CarouselPagerAdapter? = null
+
     init {
         LayoutInflater.from(context).inflate(R.layout.widget_carousel, this, true)
-
-        vCarouselBox.apply {
-            adapter = MyPagerAdapter()
-        }
     }
 
     /**
      * 设置适配器
      * @param adapter [PagerAdapter]
      * */
-    fun setAdapter (adapter: PagerAdapter) {
-        vCarouselBox.adapter = adapter
+    fun setAdapter (adapter: CarouselPagerAdapter) {
+        mAdapter = adapter
+        vCarouselBox.adapter = mAdapter
     }
 
     /**
-     * 设置数据
-     * @param data [Array]
+     * 内部适配器
      * */
-    fun setData (data: Array<Any>) {
+    class CarouselPagerAdapter : PagerAdapter () {
 
-    }
-}
-
-class MyPagerAdapter : PagerAdapter() {
-
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val vText = TextView(container.context).apply {
-            text = position.toString()
+        override fun instantiateItem(container: ViewGroup, position: Int): Any {
+            return getInstantiateItem(position)
         }
-        container.addView(vText)
-        return vText
-    }
 
-    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        container.removeView(`object` as View)
-    }
+        override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+            container.removeView(`object` as View)
+        }
 
-    override fun isViewFromObject(view: View, `object`: Any): Boolean {
-        return view == `object`
-    }
-    override fun getCount(): Int {
-        return 3
+        override fun isViewFromObject(view: View, `object`: Any): Boolean {
+            return view == `object`
+        }
+
+        override fun getCount(): Int {
+            return 3
+        }
     }
 }
