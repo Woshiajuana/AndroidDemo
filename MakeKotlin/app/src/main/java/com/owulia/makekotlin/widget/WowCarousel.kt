@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
 import com.owulia.makekotlin.R
 import kotlinx.android.synthetic.main.widget_carousel.view.*
@@ -33,7 +32,9 @@ class WowCarousel @JvmOverloads constructor(
     /**
      * 内部适配器
      * */
-    class CarouselPagerAdapter : PagerAdapter () {
+    abstract class CarouselPagerAdapter : PagerAdapter () {
+
+        abstract fun getInstantiateItem (position: Int) : View
 
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
             return getInstantiateItem(position)
@@ -48,7 +49,7 @@ class WowCarousel @JvmOverloads constructor(
         }
 
         override fun getCount(): Int {
-            return 3
+            return Int.MAX_VALUE
         }
     }
 }
