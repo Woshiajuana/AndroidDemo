@@ -1,7 +1,7 @@
 package com.owulia.makekotlin.ui.fragment
 
 import android.view.View
-import android.widget.TextView
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BaseFragment
@@ -25,17 +25,26 @@ class HomeFragment : BaseFragment() {
 
     override fun getContentViewResourceId(): Int = R.layout.fragment_home
 
+    val mArrBanner = listOf(
+        R.mipmap.text_banner_1,
+        R.mipmap.text_banner_2,
+        R.mipmap.text_banner_3,
+        R.mipmap.text_banner_4
+    )
+
     override fun initView() {
         super.initView()
         vNavBar?.setNavBarTitleLeftAlign()
         render(RenderState.SUCCESS)
-        vCarousel.setAdapter(object : WowCarousel.CarouselPagerAdapter() {
+        vCarousel.start(object : WowCarousel.CarouselPagerAdapter() {
             override fun getInstantiateItem(position: Int): View {
-                return TextView(context).apply {
-                    text = "当前位置 <=> $position"
+                return ImageView(context).apply {
+                    scaleType = ImageView.ScaleType.CENTER_CROP
+                    setImageResource(mArrBanner[position])
                 }
             }
-            override fun getSize(): Int = 3
+
+            override fun getSize(): Int = mArrBanner.size
         })
     }
 
