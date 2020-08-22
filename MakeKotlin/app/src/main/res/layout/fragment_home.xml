@@ -17,13 +17,4 @@
         android:background="#f2f2f2"
         android:layout_height="140dp"/>
 
-    <com.owulia.makekotlin.widget.WowRoundImageView
-        android:src="@mipmap/text_banner_1"
-        android:layout_width="300dp"
-        android:layout_height="300dp"/>
-
-    <ImageView
-        android:scaleType="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 </LinearLayout>
