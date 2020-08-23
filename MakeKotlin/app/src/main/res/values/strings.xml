@@ -12,4 +12,7 @@
     <string name="text_loading_tip">拼命加载中...</string>
     <string name="text_null_tip">这里毛都没一根...</string>
     <string name="string_plus">快+PLUS</string>
+    <string name="string_invitation">邀请码友</string>
+    <string name="string_fixed_code">固定码</string>
+    <string name="string_scan">扫码收银</string>
 </resources>

@@ -86,28 +86,28 @@
         <LinearLayout
             style="@style/style_home_entry_item">
             <ImageView
-                android:src="@mipmap/ic_h_entry_kplus"
+                android:src="@mipmap/ic_h_entry_yqmy"
                 style="@style/style_home_entry_item_img"/>
             <TextView
-                android:text="@string/string_plus"
+                android:text="@string/string_invitation"
                 style="@style/style_home_entry_item_text"/>
         </LinearLayout>
         <LinearLayout
             style="@style/style_home_entry_item">
             <ImageView
-                android:src="@mipmap/ic_h_entry_kplus"
+                android:src="@mipmap/ic_h_entry_gdm"
                 style="@style/style_home_entry_item_img"/>
             <TextView
-                android:text="@string/string_plus"
+                android:text="@string/string_fixed_code"
                 style="@style/style_home_entry_item_text"/>
         </LinearLayout>
         <LinearLayout
             style="@style/style_home_entry_item">
             <ImageView
-                android:src="@mipmap/ic_h_entry_kplus"
+                android:src="@mipmap/ic_h_entry_smsy"
                 style="@style/style_home_entry_item_img"/>
             <TextView
-                android:text="@string/string_plus"
+                android:text="@string/string_scan"
                 style="@style/style_home_entry_item_text"/>
         </LinearLayout>
 
