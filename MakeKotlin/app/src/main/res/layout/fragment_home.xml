@@ -75,22 +75,40 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="100dp">
+            style="@style/style_home_entry_item">
             <ImageView
                 android:src="@mipmap/ic_h_entry_kplus"
-                android:layout_width="55dp"
-                android:layout_height="55dp"/>
+                style="@style/style_home_entry_item_img"/>
             <TextView
-                android:text="快+PLUS"
-                android:layout_marginTop="8dp"
-                android:textColor="@color/colorText3"
-                android:textSize="12sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:text="@string/string_plus"
+                style="@style/style_home_entry_item_text"/>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/style_home_entry_item">
+            <ImageView
+                android:src="@mipmap/ic_h_entry_kplus"
+                style="@style/style_home_entry_item_img"/>
+            <TextView
+                android:text="@string/string_plus"
+                style="@style/style_home_entry_item_text"/>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/style_home_entry_item">
+            <ImageView
+                android:src="@mipmap/ic_h_entry_kplus"
+                style="@style/style_home_entry_item_img"/>
+            <TextView
+                android:text="@string/string_plus"
+                style="@style/style_home_entry_item_text"/>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/style_home_entry_item">
+            <ImageView
+                android:src="@mipmap/ic_h_entry_kplus"
+                style="@style/style_home_entry_item_img"/>
+            <TextView
+                android:text="@string/string_plus"
+                style="@style/style_home_entry_item_text"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -11,4 +11,5 @@
     <string name="text_error_tip">网络繁忙，点我重试</string>
     <string name="text_loading_tip">拼命加载中...</string>
     <string name="text_null_tip">这里毛都没一根...</string>
+    <string name="string_plus">快+PLUS</string>
 </resources>
