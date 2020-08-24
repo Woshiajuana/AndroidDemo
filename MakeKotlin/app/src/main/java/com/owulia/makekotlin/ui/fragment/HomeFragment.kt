@@ -4,13 +4,16 @@ import android.graphics.*
 import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.owulia.makekotlin.R
+import com.owulia.makekotlin.adapter.NewsAdapter
 import com.owulia.makekotlin.base.BaseFragment
 import com.owulia.makekotlin.utils.WowSizeUtils
 import com.owulia.makekotlin.widget.WowCarousel
+import com.owulia.makekotlin.widget.WowLinearSpacesItemDecorationHelper
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
@@ -41,6 +44,8 @@ class HomeFragment : BaseFragment() {
         super.initView()
         vNavBar?.setNavBarTitleLeftAlign()
         render(RenderState.SUCCESS)
+
+        // 轮播
         vCarousel.start(object : WowCarousel.CarouselPagerAdapter() {
             override fun getInstantiateItem(position: Int): View {
                 return ImageView(context).apply {
@@ -55,9 +60,17 @@ class HomeFragment : BaseFragment() {
                         .into(this)
                 }
             }
-
             override fun getSize(): Int = mArrBanner.size
         })
+
+        // 码可资讯
+        vNewsContainer.apply {
+            layoutManager = LinearLayoutManager(context)
+            isNestedScrollingEnabled = false
+            adapter = NewsAdapter()
+            addItemDecoration(WowLinearSpacesItemDecorationHelper(topSpace = 20, bottomSpace = 20))
+        }
+
     }
 
 }
