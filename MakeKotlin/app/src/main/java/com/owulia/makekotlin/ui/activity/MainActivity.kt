@@ -6,6 +6,7 @@ import com.owulia.makekotlin.base.BaseActivity
 import com.owulia.makekotlin.ui.fragment.HomeFragment
 import com.owulia.makekotlin.ui.fragment.MaterialFragment
 import com.owulia.makekotlin.ui.fragment.MineFragment
+import com.owulia.makekotlin.utils.WowLogUtils
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -45,6 +46,9 @@ class MainActivity : BaseActivity() {
             )
             setDivider(true, 1)
             build(supportFragmentManager)
+            setOnPageChangeListener = { _, fragment ->
+                fragment?.onStart()
+            }
             switchItem(1)
         }
     }

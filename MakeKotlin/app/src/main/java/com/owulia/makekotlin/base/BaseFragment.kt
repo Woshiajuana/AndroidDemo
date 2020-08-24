@@ -9,10 +9,10 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.owulia.makekotlin.R
+import com.owulia.makekotlin.utils.WowLogUtils
 import com.owulia.makekotlin.utils.WowSizeUtils
 import com.owulia.makekotlin.utils.WowStatusBarUtils
 import com.owulia.makekotlin.widget.NavBarView
-import kotlinx.android.synthetic.main.fragment_base.*
 
 abstract class BaseFragment : Fragment() {
 
@@ -134,13 +134,6 @@ abstract class BaseFragment : Fragment() {
         }
 
         /**
-         * 设置状态栏亮色模式
-         * */
-        if (isStatusBarLightMode) {
-            setStatusBarLightMode()
-        }
-
-        /**
          * 设置导航栏
          * */
         if (isUseNavBar) {
@@ -148,6 +141,20 @@ abstract class BaseFragment : Fragment() {
         }
 
         return vRootView
+    }
+
+    override fun onStart() {
+        super.onStart()
+        /**
+         * 设置状态栏亮色模式
+         * */
+        if (isStatusBarLightMode) {
+            setStatusBarLightMode()
+            WowLogUtils.d(this, "setStatusBarLightMode => ")
+        } else {
+            setStatusBarDarkMode()
+            WowLogUtils.d(this, "setStatusBarDarkMode => ")
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -238,7 +245,18 @@ abstract class BaseFragment : Fragment() {
      * 状态栏亮色模式，设置状态栏黑色文字、图标
      * */
     fun setStatusBarLightMode () {
-        WowStatusBarUtils.setStatusBarLightMode(requireActivity())
+        if (isAdded) {
+            WowStatusBarUtils.setStatusBarLightMode(requireActivity())
+        }
+    }
+
+    /**
+     * 状态暗色模式
+     * */
+    fun setStatusBarDarkMode () {
+        if (isAdded) {
+            WowStatusBarUtils.setStatusBarDarkMode(requireActivity())
+        }
     }
 
     /**

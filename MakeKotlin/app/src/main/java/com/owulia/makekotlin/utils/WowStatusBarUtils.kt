@@ -6,7 +6,6 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.os.Build
 import android.view.View
-import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
 
@@ -91,6 +90,16 @@ object WowStatusBarUtils {
         }
 
         return result
+    }
+
+    /**
+     * 状态栏暗色模式，设置状态栏黑色文字、图标
+     * */
+    fun setStatusBarDarkMode(activity: Activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            activity.window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        }
     }
 
     /**

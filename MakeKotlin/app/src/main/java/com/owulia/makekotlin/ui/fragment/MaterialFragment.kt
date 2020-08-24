@@ -1,5 +1,6 @@
 package com.owulia.makekotlin.ui.fragment
 
+import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.owulia.makekotlin.R
@@ -15,6 +16,8 @@ class MaterialFragment : BaseFragment() {
     }
 
     override val mNavBarLeftImg: Int = -1
+
+    override val isStatusBarLightMode: Boolean = false
 
     override val mNavBarTitle: Int = R.string.string_tab_bar_yl
 

@@ -28,6 +28,7 @@ class WowTabBarView @JvmOverloads constructor(
     private lateinit var dvTabBarDivider: View
     
     var setOnItemClickListener: ((Int, View?) -> Boolean)? = null
+    var setOnPageChangeListener: ((Int, Fragment?) -> Unit)? = null
 
     // 定义
     private var arrTabBarItem = mutableListOf<WowTabBarItemView>()
@@ -148,7 +149,7 @@ class WowTabBarView @JvmOverloads constructor(
                 }
 
                 override fun onPageSelected(position: Int) {
-                    setOnItemClickListener?.let { it(position, null) }
+                    setOnPageChangeListener?.let { it(position, arrTabBarFragment[position]) }
                 }
             })
         }

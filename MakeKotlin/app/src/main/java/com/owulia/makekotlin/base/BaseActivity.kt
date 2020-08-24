@@ -140,13 +140,6 @@ abstract class BaseActivity : AppCompatActivity() {
         }
 
         /**
-         * 设置状态栏亮色模式
-         * */
-        if (isStatusBarLightMode) {
-            setStatusBarLightMode()
-        }
-
-        /**
          * 设置导航栏
          * */
         if (isUseNavBar) {
@@ -162,6 +155,18 @@ abstract class BaseActivity : AppCompatActivity() {
          * 初始化事件
          * */
         initListener()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        /**
+         * 设置状态栏亮色模式
+         * */
+        if (isStatusBarLightMode) {
+            setStatusBarLightMode()
+        } else {
+            setStatusBarDarkMode()
+        }
     }
 
     /**
@@ -239,6 +244,13 @@ abstract class BaseActivity : AppCompatActivity() {
      * */
     fun setStatusBarLightMode () {
         WowStatusBarUtils.setStatusBarLightMode(this)
+    }
+
+    /**
+     * 状态暗色模式
+     * */
+    fun setStatusBarDarkMode () {
+        WowStatusBarUtils.setStatusBarDarkMode(this)
     }
 
     /**
