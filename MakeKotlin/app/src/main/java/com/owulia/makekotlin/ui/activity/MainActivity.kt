@@ -49,7 +49,7 @@ class MainActivity : BaseActivity() {
             setOnPageChangeListener = { _, fragment ->
                 fragment?.onStart()
             }
-            switchItem(1)
+            switchItem(2)
         }
     }
 

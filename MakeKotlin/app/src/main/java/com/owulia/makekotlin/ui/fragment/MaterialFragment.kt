@@ -3,8 +3,11 @@ package com.owulia.makekotlin.ui.fragment
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import com.owulia.makekotlin.R
+import com.owulia.makekotlin.adapter.MaterialMenuAdapter
 import com.owulia.makekotlin.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_material.*
 
 /**
  * A simple [Fragment] subclass.
@@ -36,6 +39,12 @@ class MaterialFragment : BaseFragment() {
             setBackgroundColor(ContextCompat.getColor(context, R.color.colorMain))
         }
         render(RenderState.SUCCESS)
+
+        vMenuBox.apply {
+            layoutManager = GridLayoutManager(context, 4)
+            isNestedScrollingEnabled = false
+            adapter = MaterialMenuAdapter()
+        }
     }
 
 }
