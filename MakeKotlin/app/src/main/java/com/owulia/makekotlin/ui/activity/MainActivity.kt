@@ -45,7 +45,7 @@ class MainActivity : BaseActivity() {
             )
             setDivider(true, 1)
             build(supportFragmentManager)
-            switchItem(0)
+            switchItem(1)
         }
     }
 

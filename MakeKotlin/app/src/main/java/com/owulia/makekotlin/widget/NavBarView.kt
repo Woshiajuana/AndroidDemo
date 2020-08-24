@@ -32,6 +32,11 @@ class NavBarView @JvmOverloads constructor(
     }
 
     /**
+     * 获取标题
+     * */
+    fun getVTitle () = vNavBarTitle
+
+    /**
      * 设置标题
      * @param title
      * */
