@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingEnd="17dp"
+    android:paddingStart="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/vNewsImg"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/text_banner_1"
+        android:layout_width="168dp"
+        android:layout_height="72dp"/>
+
+    <TextView
+        android:id="@+id/vNewsTitle"
+        android:textSize="14sp"
+        android:textColor="@color/colorText3"
+        android:layout_marginStart="12dp"
+        android:layout_toEndOf="@id/vNewsImg"
+        android:text="疫情下复工很多疫情下复工很多支付人都后悔了支付人都后悔了"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="2020，不安分的年份。开春本…"
+        android:lineSpacingExtra="20sp"
+        android:id="@+id/vNewsSubTitle"
+        android:textSize="12sp"
+        android:layout_marginStart="12dp"
+        android:layout_toEndOf="@id/vNewsImg"
+        android:layout_below="@id/vNewsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
