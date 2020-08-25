@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BaseFragment
+import com.owulia.makekotlin.model.MenuCellModel
 
 /**
  * A simple [Fragment] subclass.
@@ -17,6 +18,7 @@ class MineFragment : BaseFragment() {
 
     override val mNavBarLeftImg: Int = -1
 
+
     override val isStatusBarLightMode: Boolean = false
 
     override val mNavBarTitle: Int = R.string.string_tab_bar_mine
@@ -24,6 +26,10 @@ class MineFragment : BaseFragment() {
     override val mNavBarRightImg: Int = R.mipmap.ic_white_message
 
     override fun getContentViewResourceId(): Int = R.layout.fragment_mine
+
+    val mArrMenu = arrayListOf<MenuCellModel>(
+        MenuCellModel()
+    )
 
     override fun initView() {
         super.initView()
@@ -36,5 +42,11 @@ class MineFragment : BaseFragment() {
             setBackgroundColor(ContextCompat.getColor(context, R.color.colorMain))
         }
         render(RenderState.SUCCESS)
+
+        initMenuView()
+    }
+
+    private fun initMenuView () {
+
     }
 }
