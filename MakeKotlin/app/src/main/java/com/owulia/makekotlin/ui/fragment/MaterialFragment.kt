@@ -61,14 +61,6 @@ class MaterialFragment : BaseFragment() {
             isNestedScrollingEnabled = false
             adapter = MaterialMenuAdapter(mArrMenu)
         }
-        initMenuView()
-    }
-
-    /**
-     * 初始化菜单
-     * */
-    private fun initMenuView () {
-
     }
 
 }
