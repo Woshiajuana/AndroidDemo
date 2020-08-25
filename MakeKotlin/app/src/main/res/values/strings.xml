@@ -15,4 +15,27 @@
     <string name="string_invitation">邀请码友</string>
     <string name="string_fixed_code">固定码</string>
     <string name="string_scan">扫码收银</string>
+    
+    <string name="string_material_menu_ls">流水</string>
+    <string name="string_material_menu_yqmy">邀请码友</string>
+    <string name="string_material_menu_rmyq">人脉友圈</string>
+    <string name="string_material_menu_kplus">快+PLUS</string>
+    <string name="string_material_menu_gdm">固定码</string>
+    <string name="string_material_menu_umi">U米</string>
+    <string name="string_material_menu_shgl">商户管理</string>
+    <string name="string_material_menu_shtz">商户拓展</string>
+    <string name="string_material_menu_xykcp">信用卡测评</string>
+    <string name="string_material_menu_tjbk">推荐办卡</string>
+    <string name="string_material_menu_jfdh">积分兑换</string>
+    <string name="string_material_menu_kjdh">卡劵兑换</string>
+    <string name="string_material_menu_sc">商城</string>
+    <string name="string_material_menu_cxwy">出行无忧</string>
+
+    <string name="string_mine_menu_smrz">实名认证</string>
+    <string name="string_mine_menu_xykgl">信用卡管理</string>
+    <string name="string_mine_menu_czzn">操作指南</string>
+    <string name="string_mine_menu_zskf">专属客服</string>
+    <string name="string_mine_menu_gymk">关于码可</string>
+    <string name="string_mine_menu_tysz">通用设置</string>
+
 </resources>

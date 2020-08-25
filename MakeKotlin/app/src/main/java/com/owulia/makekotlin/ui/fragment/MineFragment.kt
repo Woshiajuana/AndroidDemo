@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BaseFragment
 import com.owulia.makekotlin.model.MenuCellModel
+import com.owulia.makekotlin.widget.MenuCellView
+import kotlinx.android.synthetic.main.fragment_mine.*
 
 /**
  * A simple [Fragment] subclass.
@@ -27,8 +29,16 @@ class MineFragment : BaseFragment() {
 
     override fun getContentViewResourceId(): Int = R.layout.fragment_mine
 
-    val mArrMenu = arrayListOf<MenuCellModel>(
-        MenuCellModel()
+    /**
+     * 菜单数据
+     * */
+    private val mArrMenu = arrayListOf<MenuCellModel>(
+        MenuCellModel( labelText = R.string.string_mine_menu_smrz, prefixImg = R.mipmap.ic_mine_menu_smrz, setOnClickListener = {}),
+        MenuCellModel( labelText = R.string.string_mine_menu_xykgl, prefixImg = R.mipmap.ic_mine_menu_xykgl, setOnClickListener = {}),
+        MenuCellModel( labelText = R.string.string_mine_menu_czzn, prefixImg = R.mipmap.ic_mine_menu_czzn, setOnClickListener = {}),
+        MenuCellModel( labelText = R.string.string_mine_menu_zskf, prefixImg = R.mipmap.ic_mine_menu_zskf, setOnClickListener = {}),
+        MenuCellModel( labelText = R.string.string_mine_menu_gymk, prefixImg = R.mipmap.ic_mine_menu_gymk, setOnClickListener = {}),
+        MenuCellModel( labelText = R.string.string_mine_menu_tysz, prefixImg = R.mipmap.ic_mine_menu_tysz, setOnClickListener = {})
     )
 
     override fun initView() {
@@ -46,7 +56,16 @@ class MineFragment : BaseFragment() {
         initMenuView()
     }
 
+    /**
+     * 添加菜单
+     * */
     private fun initMenuView () {
-
+        mArrMenu.forEachIndexed{ index, menuCellModel ->
+            if (index < 2) {
+                vMenuGroup.addView(MenuCellView(context!!, menuCellModel))
+            } else {
+                vMenuGroup1.addView(MenuCellView(context!!, menuCellModel))
+            }
+        }
     }
 }

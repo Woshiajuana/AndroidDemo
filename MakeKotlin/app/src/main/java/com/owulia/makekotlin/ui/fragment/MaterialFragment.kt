@@ -1,12 +1,12 @@
 package com.owulia.makekotlin.ui.fragment
 
-import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.adapter.MaterialMenuAdapter
 import com.owulia.makekotlin.base.BaseFragment
+import com.owulia.makekotlin.model.MaterIalMenuModel
 import kotlinx.android.synthetic.main.fragment_material.*
 
 /**
@@ -28,6 +28,10 @@ class MaterialFragment : BaseFragment() {
 
     override fun getContentViewResourceId(): Int = R.layout.fragment_material
 
+    private val mArrMenu = arrayListOf<MaterIalMenuModel>(
+        MaterIalMenuModel()
+    )
+
     override fun initView() {
         super.initView()
         vNavBar?.apply {
@@ -39,12 +43,19 @@ class MaterialFragment : BaseFragment() {
             setBackgroundColor(ContextCompat.getColor(context, R.color.colorMain))
         }
         render(RenderState.SUCCESS)
-
         vMenuBox.apply {
             layoutManager = GridLayoutManager(context, 4)
             isNestedScrollingEnabled = false
             adapter = MaterialMenuAdapter()
         }
+        initMenuView()
+    }
+
+    /**
+     * 初始化菜单
+     * */
+    private fun initMenuView () {
+
     }
 
 }

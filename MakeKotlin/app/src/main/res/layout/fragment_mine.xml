@@ -8,6 +8,7 @@
     <LinearLayout
         android:background="@color/colorBackground"
         android:orientation="vertical"
+        android:paddingBottom="45dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".ui.fragment.MineFragment">
@@ -184,6 +185,7 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/vMenuGroup"
             android:background="@drawable/shape_rectangle_white_radius4"
             android:orientation="vertical"
             android:paddingTop="12dp"
@@ -192,12 +194,10 @@
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-        </LinearLayout>
+            android:layout_height="wrap_content"/>
 
         <LinearLayout
+            android:id="@+id/vMenuGroup1"
             android:background="@drawable/shape_rectangle_white_radius4"
             android:orientation="vertical"
             android:paddingTop="12dp"
@@ -206,9 +206,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </LinearLayout>
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 
