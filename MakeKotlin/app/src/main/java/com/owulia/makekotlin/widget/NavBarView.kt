@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import com.owulia.makekotlin.R
-import kotlinx.android.synthetic.main.widget_header.view.*
+import kotlinx.android.synthetic.main.widget_nav_bar.view.*
 
 class NavBarView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -19,7 +19,7 @@ class NavBarView @JvmOverloads constructor(
     var setOnRightTextBtnClickListener: ((View) -> Unit)? = null
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.widget_header, this, true)
+        LayoutInflater.from(context).inflate(R.layout.widget_nav_bar, this, true)
         vNavBarLeftImgBtn.setOnClickListener{
             setOnLeftBtnClickListener?.let { it1 -> it1(it) }
         }
