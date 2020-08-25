@@ -4,13 +4,17 @@
     android:orientation="vertical"
     android:gravity="center"
     android:layout_width="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?selectableItemBackground"
     android:layout_height="85dp">
     <ImageView
+        android:id="@+id/vIcon"
         android:src="@mipmap/ic_m_menu_kjdh"
         android:layout_width="32dp"
         android:layout_height="32dp"/>
     <TextView
-        android:text="邀请码友"
+        android:id="@+id/vText"
         android:textColor="@color/colorText3"
         android:textSize="12sp"
         android:layout_marginTop="8dp"

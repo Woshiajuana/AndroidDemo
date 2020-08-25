@@ -5,8 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.owulia.makekotlin.R
+import com.owulia.makekotlin.model.MaterialMenuModel
+import kotlinx.android.synthetic.main.item_material_menu.view.*
 
-class MaterialMenuAdapter : RecyclerView.Adapter<MaterialMenuAdapterViewHolder>() {
+class MaterialMenuAdapter(
+    private val mArrMenu: Array<MaterialMenuModel>
+) : RecyclerView.Adapter<MaterialMenuAdapterViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -17,10 +21,18 @@ class MaterialMenuAdapter : RecyclerView.Adapter<MaterialMenuAdapterViewHolder>(
     }
 
     override fun getItemCount(): Int {
-        return 14
+        return mArrMenu.size
     }
 
     override fun onBindViewHolder(holder: MaterialMenuAdapterViewHolder, position: Int) {
+        val materialMenuModel = mArrMenu[position]
+        holder.itemView.apply {
+            materialMenuModel.text?.let { vText.setText(it) }
+            materialMenuModel.icon?.let { vIcon.setImageResource(it) }
+            materialMenuModel.setOnClickListener?.let {
+                setOnClickListener { it(this) }
+            }
+        }
     }
 
 }

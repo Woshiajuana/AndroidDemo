@@ -32,7 +32,7 @@ class MineFragment : BaseFragment() {
     /**
      * 菜单数据
      * */
-    private val mArrMenu = arrayListOf<MenuCellModel>(
+    private val mArrMenu = arrayOf(
         MenuCellModel( labelText = R.string.string_mine_menu_smrz, prefixImg = R.mipmap.ic_mine_menu_smrz, setOnClickListener = {}),
         MenuCellModel( labelText = R.string.string_mine_menu_xykgl, prefixImg = R.mipmap.ic_mine_menu_xykgl, setOnClickListener = {}),
         MenuCellModel( labelText = R.string.string_mine_menu_czzn, prefixImg = R.mipmap.ic_mine_menu_czzn, setOnClickListener = {}),
