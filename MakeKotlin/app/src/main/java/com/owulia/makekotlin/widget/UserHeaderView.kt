@@ -1,13 +1,15 @@
 package com.owulia.makekotlin.widget
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.owulia.makekotlin.R
-import com.owulia.makekotlin.utils.WowLogUtils
 import com.owulia.makekotlin.utils.WowSizeUtils
+import kotlinx.android.synthetic.main.widget_user_header.view.*
 
 class UserHeaderView @JvmOverloads constructor(
     context: Context, private val attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -23,13 +25,16 @@ class UserHeaderView @JvmOverloads constructor(
         attrs.let {
             val typedArray = context.obtainStyledAttributes(it, R.styleable.UserHeaderView)
 
-            val icon = typedArray.getResourceId(R.styleable.UserHeaderView_icon, -1)
-            val title = typedArray.getTextArray(R.styleable.UserHeaderView_title)
-            val subtitle = typedArray.getTextArray(R.styleable.UserHeaderView_subtitle)
+            val icon = typedArray.getResourceId(R.styleable.UserHeaderView_icon, R.mipmap.ic_u_logo)
+            val title = typedArray.getText(R.styleable.UserHeaderView_title)
+            val subtitle = typedArray.getText(R.styleable.UserHeaderView_subtitle)
 
-            WowLogUtils.d(this, "icon => $icon")
-            WowLogUtils.d(this, "title => $title")
-            WowLogUtils.d(this, "subtitle => $subtitle")
+            val options = RequestOptions().circleCrop().transform(
+                RoundedCorners(WowSizeUtils.px2dp(600f).toInt())
+            )
+            Glide.with(this).load(icon).apply(options).into(vHeaderImg)
+            vHeaderTitle.text = title?: ""
+            vHeaderSubtitle.text = subtitle?: ""
 
             typedArray.recycle()
         }

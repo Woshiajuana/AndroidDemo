@@ -9,36 +9,28 @@
     android:gravity="center_vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
     <ImageView
         android:id="@+id/vHeaderImg"
+        android:scaleType="centerCrop"
         android:src="@mipmap/ic_u_logo"
         android:layout_marginEnd="10dp"
         android:layout_width="60dp"
         android:layout_height="60dp"/>
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/vHeaderTitle"
             android:textStyle="bold"
             android:textColor="@color/colorText3"
             android:textSize="24sp"
-            android:text="登录&amp;注册"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
+            android:id="@+id/vHeaderSubtitle"
             android:textSize="18sp"
             android:textColor="@color/colorText9"
-            android:text="欢迎来到码可"
-            android:layout_marginTop="6dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:textSize="18sp"
-            android:textColor="@color/colorText9"
-            android:text="欢迎来到码可"
             android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
