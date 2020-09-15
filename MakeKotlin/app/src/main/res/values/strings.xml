@@ -42,5 +42,8 @@
     <string name="string_user_account_login">登录</string>
     <string name="string_account_hint">请输入手机号</string>
     <string name="string_image_tip">图片</string>
+    <string name="string_welcome_tip">欢迎回来！</string>
+    <string name="string_password_hint">请输入登录密码</string>
+    <string name="string_password_forget">忘记密码?</string>
 
 </resources>
