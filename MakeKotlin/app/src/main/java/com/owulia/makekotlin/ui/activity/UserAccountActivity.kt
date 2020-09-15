@@ -1,13 +1,16 @@
 package com.owulia.makekotlin.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import com.owulia.makekotlin.R
+import com.owulia.makekotlin.base.BaseActivity
 
-class UserAccountActivity : AppCompatActivity() {
+class UserAccountActivity : BaseActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_account)
+    override fun getContentViewResourceId(): Int = R.layout.activity_user_account
+
+    override val isUseNavBar: Boolean = false
+
+    override fun initView() {
+        super.initView()
+        render(RenderState.SUCCESS)
     }
 }

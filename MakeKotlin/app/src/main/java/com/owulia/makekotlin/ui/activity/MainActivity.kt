@@ -6,7 +6,6 @@ import com.owulia.makekotlin.base.BaseActivity
 import com.owulia.makekotlin.ui.fragment.HomeFragment
 import com.owulia.makekotlin.ui.fragment.MaterialFragment
 import com.owulia.makekotlin.ui.fragment.MineFragment
-import com.owulia.makekotlin.utils.WowLogUtils
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {

@@ -7,9 +7,10 @@
     tools:context=".ui.activity.UserAccountActivity">
 
     <com.owulia.makekotlin.widget.UserHeaderView
-        app:icon="@mipmap/text_banner_1"
-        app:title="标题"
-        app:subtitle="@string/string_material_menu_cxwy"
+        android:layout_marginTop="80dp"
+        app:icon="@mipmap/ic_account_logo"
+        app:title="@string/string_user_account_title"
+        app:subtitle="@string/string_user_account_subtitle"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

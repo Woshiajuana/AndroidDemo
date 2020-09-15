@@ -37,5 +37,7 @@
     <string name="string_mine_menu_zskf">专属客服</string>
     <string name="string_mine_menu_gymk">关于码可</string>
     <string name="string_mine_menu_tysz">通用设置</string>
+    <string name="string_user_account_title"><![CDATA[登录&注册]]></string>
+    <string name="string_user_account_subtitle">欢迎来到码可</string>
 
 </resources>
