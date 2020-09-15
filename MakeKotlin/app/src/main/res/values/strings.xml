@@ -39,5 +39,8 @@
     <string name="string_mine_menu_tysz">通用设置</string>
     <string name="string_user_account_title"><![CDATA[登录&注册]]></string>
     <string name="string_user_account_subtitle">欢迎来到码可</string>
+    <string name="string_user_account_login">登录</string>
+    <string name="string_account_hint">请输入手机号</string>
+    <string name="string_image_tip">图片</string>
 
 </resources>
