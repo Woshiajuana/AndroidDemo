@@ -3,6 +3,7 @@ package com.owulia.makekotlin.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.LinearLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -25,14 +26,18 @@ class UserHeaderView @JvmOverloads constructor(
         attrs.let {
             val typedArray = context.obtainStyledAttributes(it, R.styleable.UserHeaderView)
 
-            val icon = typedArray.getResourceId(R.styleable.UserHeaderView_icon, R.mipmap.ic_u_logo)
+            val icon = typedArray.getResourceId(R.styleable.UserHeaderView_icon, -1)
             val title = typedArray.getText(R.styleable.UserHeaderView_title)
             val subtitle = typedArray.getText(R.styleable.UserHeaderView_subtitle)
 
             val options = RequestOptions().circleCrop().transform(
                 RoundedCorners(WowSizeUtils.px2dp(600f).toInt())
             )
-            Glide.with(this).load(icon).apply(options).into(vHeaderImg)
+            if (icon == -1) {
+                vHeaderImg.visibility = View.GONE
+            } else {
+                Glide.with(this).load(icon).apply(options).into(vHeaderImg)
+            }
             vHeaderTitle.text = title?: ""
             vHeaderSubtitle.text = subtitle?: ""
 

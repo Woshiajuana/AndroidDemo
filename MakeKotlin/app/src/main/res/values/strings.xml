@@ -45,5 +45,11 @@
     <string name="string_welcome_tip">欢迎回来！</string>
     <string name="string_password_hint">请输入登录密码</string>
     <string name="string_password_forget">忘记密码?</string>
+    <string name="string_register_title">注册</string>
+    <string name="string_register_subtitle">请阅读协议并设置登录密码</string>
+    <string name="string_register_password_hint">请设置登录密码</string>
+    <string name="string_register_pwd_tip">密码至少包含6~18位字母、数字组合，区分大小写</string>
+    <string name="string_code_hint">请输入验证码</string>
+    <string name="string_code_btn">获取验证码</string>
 
 </resources>

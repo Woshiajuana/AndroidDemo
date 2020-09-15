@@ -39,13 +39,7 @@
             android:textSize="18sp"
             android:layout_weight="1"
             android:layout_height="42dp"/>
-        <ImageView
-            android:contentDescription="@string/string_image_tip"
-            android:src="@drawable/ic_close_999"
-            android:scaleX="0.6"
-            android:scaleY="0.6"
-            android:layout_width="42dp"
-            android:layout_height="42dp"/>
+        <include layout="@layout/widget_input_clear_btn"/>
         <ImageView
             android:contentDescription="@string/string_image_tip"
             android:src="@drawable/ic_arrow_down_999"
