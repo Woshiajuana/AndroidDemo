@@ -55,5 +55,6 @@
     <string name="string_service_agreement">《服务协议》</string>
     <string name="string_agreement_tip">我已阅读并同意</string>
     <string name="string_sure_password_hint">请确认登录密码</string>
+    <string name="string_guide_start_tip">开启码可</string>
 
 </resources>
