@@ -51,5 +51,9 @@
     <string name="string_register_pwd_tip">密码至少包含6~18位字母、数字组合，区分大小写</string>
     <string name="string_code_hint">请输入验证码</string>
     <string name="string_code_btn">获取验证码</string>
+    <string name="string_privacy_agreement">《隐私条款》</string>
+    <string name="string_service_agreement">《服务协议》</string>
+    <string name="string_agreement_tip">我已阅读并同意</string>
+    <string name="string_sure_password_hint">请确认登录密码</string>
 
 </resources>
