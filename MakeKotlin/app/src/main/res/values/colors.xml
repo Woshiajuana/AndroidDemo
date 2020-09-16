@@ -32,4 +32,8 @@
     <color name="colorSlideMenuUpdate">#FF9800</color>
     <color name="colorPrompt">#666666</color>
     <color name="colorTip">#999999</color>
+
+    <color name="colorGuideOne">#3CC5C7</color>
+    <color name="colorGuideTwo">#35BFEA</color>
+    <color name="colorGuideThree">#029BDD</color>
 </resources>
