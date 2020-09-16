@@ -4,16 +4,25 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class GuidePageModel(
+    val isLast: Boolean = false,
+    val index: Int,
+    val bgColor: Int,
     val bannerIcon: Int,
     val textIcon: Int
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readByte() != 0.toByte(),
+        parcel.readInt(),
+        parcel.readInt(),
         parcel.readInt(),
         parcel.readInt()
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeByte(if (isLast) 1 else 0)
+        parcel.writeInt(index)
+        parcel.writeInt(bgColor)
         parcel.writeInt(bannerIcon)
         parcel.writeInt(textIcon)
     }

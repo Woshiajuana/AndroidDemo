@@ -15,9 +15,25 @@ class GuidePageActivity : BaseActivity() {
     override val isStatusBarLightMode: Boolean = false
 
     private val mArrGuidePageModel = arrayOf(
-        GuidePageModel( bannerIcon = R.mipmap.ic_guide_one, textIcon = R.mipmap.ic_guide_text_one),
-        GuidePageModel( bannerIcon = R.mipmap.ic_guide_two, textIcon = R.mipmap.ic_guide_text_two),
-        GuidePageModel( bannerIcon = R.mipmap.ic_guide_three, textIcon = R.mipmap.ic_guide_text_three)
+        GuidePageModel(
+            index = 0,
+            bgColor = R.color.colorGuideOne,
+            bannerIcon = R.mipmap.ic_guide_one,
+            textIcon = R.mipmap.ic_guide_text_one
+        ),
+        GuidePageModel(
+            index = 1,
+            bgColor = R.color.colorGuideTwo,
+            bannerIcon = R.mipmap.ic_guide_two,
+            textIcon = R.mipmap.ic_guide_text_two
+        ),
+        GuidePageModel(
+            index = 2,
+            isLast = true,
+            bgColor = R.color.colorGuideThree,
+            bannerIcon = R.mipmap.ic_guide_three,
+            textIcon = R.mipmap.ic_guide_text_three
+        )
     )
 
     override fun getContentViewResourceId(): Int = R.layout.activity_guide_page
