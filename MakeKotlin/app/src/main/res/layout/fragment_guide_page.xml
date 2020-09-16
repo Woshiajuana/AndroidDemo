@@ -14,7 +14,7 @@
         android:layout_weight="3"
         android:adjustViewBounds="true">
         <ImageView
-            android:id="@+id/iv_image"
+            android:id="@+id/vImageIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_guide_two"
@@ -27,6 +27,7 @@
         android:layout_weight="1"
         android:adjustViewBounds="true">
         <ImageView
+            android:id="@+id/vImageText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_guide_text_two"

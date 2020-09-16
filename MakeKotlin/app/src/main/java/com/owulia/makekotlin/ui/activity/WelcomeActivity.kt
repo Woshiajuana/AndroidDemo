@@ -11,7 +11,7 @@ class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Handler().postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, GuidePageActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.anim_fade_in, R.anim.anim_fade_out)
             finish()

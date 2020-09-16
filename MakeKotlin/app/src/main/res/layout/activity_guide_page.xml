@@ -8,6 +8,7 @@
     tools:context=".ui.activity.GuidePageActivity">
 
     <androidx.viewpager.widget.ViewPager
+        android:overScrollMode="never"
         android:id="@+id/vViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

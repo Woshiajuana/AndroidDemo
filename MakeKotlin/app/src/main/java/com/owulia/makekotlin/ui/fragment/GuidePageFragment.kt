@@ -2,23 +2,38 @@ package com.owulia.makekotlin.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 
 import com.owulia.makekotlin.R
+import com.owulia.makekotlin.base.BaseFragment
+import com.owulia.makekotlin.model.GuidePageModel
+import com.owulia.makekotlin.utils.Constants
 
 /**
  * A simple [Fragment] subclass.
  */
-class GuidePageFragment : Fragment() {
+class GuidePageFragment : BaseFragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_guide_page, container, false)
+    override val isUseNavBar: Boolean = false
+
+    override val isUseStatusBarSeat: Boolean = false
+
+    override val isStatusBarLightMode: Boolean = false
+
+    companion object {
+        fun getInstant (guidePageModel: GuidePageModel): GuidePageFragment {
+            val guidePageFragment = GuidePageFragment()
+            val bundle = Bundle()
+            bundle.putParcelable(Constants.KEY_GUIDE_PAGE_MODEL, guidePageModel)
+            guidePageFragment.arguments = bundle
+            return guidePageFragment
+        }
+    }
+
+    override fun getContentViewResourceId(): Int = R.layout.fragment_guide_page
+
+    override fun initView() {
+        super.initView()
+        render(RenderState.SUCCESS)
     }
 
 }
