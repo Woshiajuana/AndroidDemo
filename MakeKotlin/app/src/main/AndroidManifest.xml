@@ -10,21 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.GuidePageActivity">
+        </activity>
+        <activity
+            android:name=".ui.activity.WelcomeActivity"
+            android:theme="@style/WelcomeTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.activity.WelcomeActivity"
-            android:theme="@style/WelcomeTheme">
-        </activity>
         <activity android:name=".ui.activity.UserForgetActivity" />
         <activity android:name=".ui.activity.UserRegisterActivity" />
         <activity android:name=".ui.activity.UserLoginActivity" />
         <activity android:name=".ui.activity.UserAccountActivity" />
-        <activity android:name=".ui.activity.MainActivity" />
+        <activity android:name=".ui.activity.MainActivity" >
+        </activity>
     </application>
 
 </manifest>

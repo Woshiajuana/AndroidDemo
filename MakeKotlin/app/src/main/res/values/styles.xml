@@ -19,6 +19,16 @@
         <item name="android:windowLayoutInDisplayCutoutMode" tools:ignore="NewApi">shortEdges</item>
     </style>
 
+    <!--对话框样式-->
+    <style name="WowDialog" parent="Theme.AppCompat.Dialog">
+        <!--背景透明-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--没有标题-->
+        <item name="android:windowNoTitle">true</item>
+        <!--背景昏暗-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
     <style name="style_home_entry_item">
         <item name="android:layout_weight">1</item>
         <item name="android:layout_width">0dp</item>
