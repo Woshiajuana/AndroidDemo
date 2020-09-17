@@ -29,6 +29,12 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+<!--    弹窗动画样式-->
+    <style name="Dialog.Center.Zoom.In" parent="Animation.AppCompat.Dialog">
+        <item name="android:windowEnterAnimation">@anim/anim_zoom_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_zoom_out</item>
+    </style>
+
     <style name="style_home_entry_item">
         <item name="android:layout_weight">1</item>
         <item name="android:layout_width">0dp</item>
