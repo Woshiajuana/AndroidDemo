@@ -10,8 +10,9 @@ class Constants {
         const val JSON_CACHE_KEY_COMMON = "json_cache_key_common"
 
         /**
-         *
+         * 是否第一次进入 app
          * */
+        const val JSON_CACHE_KEY_FIRST_OPEN = "json_cache_key_first_open"
 
         /**
          * 引导页 fragment 参数 key
