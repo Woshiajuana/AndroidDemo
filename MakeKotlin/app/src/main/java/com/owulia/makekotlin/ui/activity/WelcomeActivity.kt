@@ -24,7 +24,21 @@ class WelcomeActivity : AppCompatActivity() {
              * 如果是第一次 弹窗协议
              * */
             WowConfirmDialog(this).apply {
-                setCanceledOnTouchOutside(false)
+                setCancelable(false) // 禁止物理键返回
+                setCanceledOnTouchOutside(false) // 禁止点击黑色蒙层
+                setCancelOnClickListener = {
+                    /**
+                     * 点击了取消 直接退出 app
+                     * */
+                    finish()
+                    false
+                }
+                setSureOnClickListener = {
+                    /**
+                     * 点击了同意
+                     * */
+                    false
+                }
                 show()
             }
         }

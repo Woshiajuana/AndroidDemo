@@ -10,8 +10,8 @@ import kotlinx.android.synthetic.main.widget_confirm_dialog.*
 
 class WowConfirmDialog(context: Context) : Dialog(context, R.style.WowDialog) {
 
-    val setSureOnClickListener: ((View) -> Boolean?)? = null
-    val setCancelOnClickListener: ((View) -> Boolean?)? = null
+    var setSureOnClickListener: ((View) -> Boolean?)? = null
+    var setCancelOnClickListener: ((View) -> Boolean?)? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
