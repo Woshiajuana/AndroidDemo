@@ -4,6 +4,8 @@ import com.owulia.makekotlin.R
 import com.owulia.makekotlin.adapter.GuideViewPagerAdapter
 import com.owulia.makekotlin.base.BaseActivity
 import com.owulia.makekotlin.model.GuidePageModel
+import com.owulia.makekotlin.utils.Constants
+import com.owulia.makekotlin.utils.WowJsonCacheUtils
 import kotlinx.android.synthetic.main.activity_guide_page.*
 
 class GuidePageActivity : BaseActivity() {
@@ -42,9 +44,11 @@ class GuidePageActivity : BaseActivity() {
         super.initView()
         render(RenderState.SUCCESS)
 
-        setStatusBarLightMode()
+        initFirstOpen()
 
-        setStatusBarDarkMode()
+//        setStatusBarLightMode()
+
+//        setStatusBarDarkMode()
 
         vViewPager.apply {
             val guideViewPagerAdapter = GuideViewPagerAdapter(supportFragmentManager, mArrGuidePageModel).apply {
@@ -53,6 +57,13 @@ class GuidePageActivity : BaseActivity() {
             adapter = guideViewPagerAdapter
         }
 
+    }
+
+    /**
+     * 载入数据 用户已经打开过 app
+     */
+    private fun initFirstOpen () {
+        WowJsonCacheUtils.getInstance().set(Constants.JSON_CACHE_KEY_FIRST_OPEN, true)
     }
 
 }

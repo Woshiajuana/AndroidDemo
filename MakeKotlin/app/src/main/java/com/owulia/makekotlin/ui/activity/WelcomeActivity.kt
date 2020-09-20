@@ -1,5 +1,6 @@
 package com.owulia.makekotlin.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
@@ -24,54 +25,45 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         /**
-         * 判断用户是否第一次打开 APP
+         * 判断用户是否登录
          * */
-        val isFirstOpen = WowJsonCacheUtils.getInstance().get(Constants.JSON_CACHE_KEY_FIRST_OPEN, Boolean::class.java, true) as Boolean
+        val isUserLogin = WowJsonCacheUtils.getInstance().get(Constants.JSON_CACHE_KEY_USER, UserModel::class.java, null) != null
 
-        if (isFirstOpen) {
+        if (isUserLogin) {
 
             /**
-             * 如果是第一次 弹窗协议
+             * 用户已登录，进入到首页
              * */
-
-            renderAgreementPopup()
+            overridePendingTransition(R.anim.anim_fade_in, R.anim.anim_fade_out)
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
 
         } else {
 
             /**
-             * 判断用户是否登录
+             * 用户未登录
+             *
+             * 首先判断用户是否第一次打开 APP
              * */
-            val isUserLogin = WowJsonCacheUtils.getInstance().get(Constants.JSON_CACHE_KEY_USER, UserModel::class.java, null) == null
+            val isFirstOpen = WowJsonCacheUtils.getInstance().get(Constants.JSON_CACHE_KEY_FIRST_OPEN, Boolean::class.java, true) as Boolean
 
-            if (isUserLogin) {
+            if (isFirstOpen) {
 
                 /**
-                 * 用户已登录
+                 * 如果是第一次 弹窗协议
                  * */
+                renderAgreementPopup()
 
             } else {
 
                 /**
-                 * 用户未登录
+                 * 不是第一次，则进登录页面
                  * */
-                
+                overridePendingTransition(R.anim.anim_fade_in, R.anim.anim_fade_out)
+                startActivity(Intent(this, UserAccountActivity::class.java))
+                finish()
             }
-
         }
-
-
-
-//        Handler().postDelayed({
-//            val intent = Intent(this, GuidePageActivity::class.java)
-//            startActivity(intent)
-//            overridePendingTransition(R.anim.anim_fade_in, R.anim.anim_fade_out)
-//            finish()
-
-//            WowConfirmDialog(this).apply {
-//                setCanceledOnTouchOutside(false)
-//                show()
-//            }
-//        }, 1200)
     }
 
     /**
@@ -143,8 +135,12 @@ class WelcomeActivity : AppCompatActivity() {
             }
             setSureOnClickListener = {
                 /**
-                 * 点击了同意
+                 * 点击了同意 进入到引导页面
                  * */
+                hide()
+                overridePendingTransition(R.anim.anim_fade_in, R.anim.anim_fade_out)
+                startActivity(Intent(this@WelcomeActivity, GuidePageActivity::class.java))
+                finish()
                 false
             }
         }
