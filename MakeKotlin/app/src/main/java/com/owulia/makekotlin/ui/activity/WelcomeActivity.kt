@@ -16,6 +16,7 @@ import com.owulia.makekotlin.R
 import com.owulia.makekotlin.model.UserModel
 import com.owulia.makekotlin.utils.Constants
 import com.owulia.makekotlin.utils.WowJsonCacheUtils
+import com.owulia.makekotlin.widget.WebViewActivity
 import com.owulia.makekotlin.widget.WowConfirmDialog
 import com.owulia.makekotlin.widget.WowToastUtils
 import kotlinx.android.synthetic.main.widget_confirm_dialog.*
@@ -90,6 +91,10 @@ class WelcomeActivity : AppCompatActivity() {
                     setSpan(object : ClickableSpan() {
                         override fun onClick(widget: View) {
                             WowToastUtils.show("点了用户协议")
+//                            val intent = Intent(this@WelcomeActivity, WebViewActivity::class.java)
+//                            intent.putParcelableArrayListExtra(Constants.KEY_WEB_VIEW_)
+
+                            startActivity(intent)
                         }
                     }, 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                     setSpan(object : UnderlineSpan() {
