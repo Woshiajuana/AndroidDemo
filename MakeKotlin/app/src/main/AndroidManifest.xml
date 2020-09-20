@@ -10,8 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.GuidePageActivity">
-        </activity>
+        <activity android:name=".widget.WebViewActivity"></activity>
+        <activity android:name=".ui.activity.GuidePageActivity"></activity>
         <activity
             android:name=".ui.activity.WelcomeActivity"
             android:theme="@style/WelcomeTheme">
@@ -25,8 +25,7 @@
         <activity android:name=".ui.activity.UserRegisterActivity" />
         <activity android:name=".ui.activity.UserLoginActivity" />
         <activity android:name=".ui.activity.UserAccountActivity" />
-        <activity android:name=".ui.activity.MainActivity" >
-        </activity>
+        <activity android:name=".ui.activity.MainActivity"></activity>
     </application>
 
 </manifest>

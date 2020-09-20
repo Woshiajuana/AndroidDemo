@@ -18,6 +18,7 @@ import com.owulia.makekotlin.utils.Constants
 import com.owulia.makekotlin.utils.WowJsonCacheUtils
 import com.owulia.makekotlin.widget.WowConfirmDialog
 import com.owulia.makekotlin.widget.WowToastUtils
+import kotlinx.android.synthetic.main.widget_confirm_dialog.*
 
 class WelcomeActivity : AppCompatActivity() {
 
@@ -47,7 +48,7 @@ class WelcomeActivity : AppCompatActivity() {
              * */
             val isFirstOpen = WowJsonCacheUtils.getInstance().get(Constants.JSON_CACHE_KEY_FIRST_OPEN, Boolean::class.java, true) as Boolean
 
-            if (isFirstOpen) {
+            if (!isFirstOpen) {
 
                 /**
                  * 如果是第一次 弹窗协议
@@ -74,16 +75,16 @@ class WelcomeActivity : AppCompatActivity() {
             setCancelable(false) // 禁止物理键返回
             setCanceledOnTouchOutside(false) // 禁止点击黑色蒙层
             show()
-            getTitleView().apply {
+            vTitle.apply {
                 setText(R.string.string_agreement_title)
             }
-            getCancelButtonView().apply {
+            vCancelButton.apply {
                 setText(R.string.string_agreement_cancel)
             }
-            getSureButtonView().apply {
+            vSureButton.apply {
                 setText(R.string.string_agreement_sure)
             }
-            getMessageView().apply {
+            vMessage.apply {
                 val str1 = SpannableString("我们非常注重您的个人信息和隐私保护，为了更好的保证您的个人权益，请您认证阅读")
                 val str2 = SpannableString("《用户协议》").apply {
                     setSpan(object : ClickableSpan() {

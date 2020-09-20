@@ -46,10 +46,6 @@ class GuidePageActivity : BaseActivity() {
 
         initFirstOpen()
 
-//        setStatusBarLightMode()
-
-//        setStatusBarDarkMode()
-
         vViewPager.apply {
             val guideViewPagerAdapter = GuideViewPagerAdapter(supportFragmentManager, mArrGuidePageModel).apply {
                 offscreenPageLimit = 3
@@ -63,7 +59,7 @@ class GuidePageActivity : BaseActivity() {
      * 载入数据 用户已经打开过 app
      */
     private fun initFirstOpen () {
-        WowJsonCacheUtils.getInstance().set(Constants.JSON_CACHE_KEY_FIRST_OPEN, true)
+        WowJsonCacheUtils.getInstance().set(Constants.JSON_CACHE_KEY_FIRST_OPEN, false)
     }
 
 }
