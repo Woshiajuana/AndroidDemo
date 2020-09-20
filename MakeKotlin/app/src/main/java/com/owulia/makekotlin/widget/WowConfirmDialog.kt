@@ -62,6 +62,26 @@ class WowConfirmDialog(context: Context) : Dialog(context, R.style.WowDialog) {
     }
 
     /**
+     * 获取 title view
+     * */
+    fun getTitleView () = vTitle
+
+    /**
+     * 获取 内容 view
+     * */
+    fun getMessageView () = vMessage
+
+    /**
+     * 获取 取消 view
+     * */
+    fun getCancelButtonView () = vCancelButton
+
+    /**
+     * 获取 sure view
+     * */
+    fun getSureButtonView () = vSureButton
+
+    /**
      * 设置标题
      * */
     fun setTitle (text: String): WowConfirmDialog {
@@ -73,7 +93,7 @@ class WowConfirmDialog(context: Context) : Dialog(context, R.style.WowDialog) {
      * 设置内容
      * */
     fun setMessage (text: String): WowConfirmDialog {
-        vContent.text = text
+        vMessage.text = text
         return this
     }
 
