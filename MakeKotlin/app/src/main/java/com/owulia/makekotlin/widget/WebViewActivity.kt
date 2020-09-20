@@ -1,13 +1,16 @@
 package com.owulia.makekotlin.widget
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import com.owulia.makekotlin.R
+import com.owulia.makekotlin.base.BaseActivity
 
-class WebViewActivity : AppCompatActivity() {
+class WebViewActivity : BaseActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_web_view)
+    override fun getContentViewResourceId(): Int = R.layout.activity_web_view
+
+    override fun initView() {
+        super.initView()
+
+
     }
+
 }

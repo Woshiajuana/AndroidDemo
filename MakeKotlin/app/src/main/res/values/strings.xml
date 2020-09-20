@@ -59,5 +59,10 @@
     <string name="string_agreement_title">码可用户协议和隐私政策</string>
     <string name="string_agreement_cancel">不同意</string>
     <string name="string_agreement_sure">同意</string>
+    <string name="string_agreement_popup_str1">我们非常注重您的个人信息和隐私保护，为了更好的保证您的个人权益，请您认证阅读</string>
+    <string name="string_agreement_popup_service">《用户协议》</string>
+    <string name="string_agreement_popup_str2">和</string>
+    <string name="string_agreement_popup_privacy">《隐私政策》</string>
+    <string name="string_agreement_popup_str3">的全部内容，同意并接收全部条款后开始使用我们的产品和服务。\n点击同意视为接受全部条款，开始体验码可的产品和服务吧</string>
 
 </resources>

@@ -19,7 +19,6 @@ import com.owulia.makekotlin.utils.Constants
 import com.owulia.makekotlin.utils.WowJsonCacheUtils
 import com.owulia.makekotlin.widget.WebViewActivity
 import com.owulia.makekotlin.widget.WowConfirmDialog
-import com.owulia.makekotlin.widget.WowToastUtils
 import kotlinx.android.synthetic.main.widget_confirm_dialog.*
 
 class WelcomeActivity : AppCompatActivity() {
@@ -87,12 +86,15 @@ class WelcomeActivity : AppCompatActivity() {
                 setText(R.string.string_agreement_sure)
             }
             vMessage.apply {
-                val str1 = SpannableString("我们非常注重您的个人信息和隐私保护，为了更好的保证您的个人权益，请您认证阅读")
-                val str2 = SpannableString("《用户协议》").apply {
+                val str1 = SpannableString(context.getString(R.string.string_agreement_popup_str1))
+                val str2 = SpannableString(context.getString(R.string.string_agreement_popup_service)).apply {
                     setSpan(object : ClickableSpan() {
                         override fun onClick(widget: View) {
                             val intent = Intent(this@WelcomeActivity, WebViewActivity::class.java)
-                            intent.putExtra(Constants.KEY_WEB_VIEW_OPTION_MODEL, WebViewOptionModel(link = "https://www.baidu.com"))
+                            intent.putExtra(Constants.KEY_WEB_VIEW_OPTION_MODEL, WebViewOptionModel(
+                                link = "https://www.baidu.com",
+                                title = context.getString(R.string.string_agreement_popup_service)
+                            ))
                             startActivity(intent)
                         }
                     }, 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -105,12 +107,15 @@ class WelcomeActivity : AppCompatActivity() {
                     }, 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                     movementMethod = LinkMovementMethod.getInstance()
                 }
-                val str3 = SpannableString("和")
-                val str4 = SpannableString("《隐私政策》").apply {
+                val str3 = SpannableString(context.getString(R.string.string_agreement_popup_str2))
+                val str4 = SpannableString(context.getString(R.string.string_agreement_popup_privacy)).apply {
                     setSpan(object : ClickableSpan() {
                         override fun onClick(widget: View) {
                             val intent = Intent(this@WelcomeActivity, WebViewActivity::class.java)
-                            intent.putExtra(Constants.KEY_WEB_VIEW_OPTION_MODEL, WebViewOptionModel(link = "https://www.baidu.com"))
+                            intent.putExtra(Constants.KEY_WEB_VIEW_OPTION_MODEL, WebViewOptionModel(
+                                link = "https://www.baidu.com",
+                                title = context.getString(R.string.string_agreement_popup_privacy)
+                            ))
                             startActivity(intent)
                         }
                     }, 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -124,7 +129,7 @@ class WelcomeActivity : AppCompatActivity() {
                     movementMethod = LinkMovementMethod.getInstance()
                 }
                 val str5 =
-                    SpannableString("的全部内容，同意并接收全部条款后开始使用我们的产品和服务。\n点击同意视为接受全部条款，开始体验码可的产品和服务吧")
+                    SpannableString(context.getString(R.string.string_agreement_popup_str3))
                 val message = SpannableStringBuilder()
                 message.append(str1)
                 message.append(str2)
