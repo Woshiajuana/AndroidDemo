@@ -1,21 +1,22 @@
 package com.owulia.makekotlin.ui.activity
 
-import android.content.Intent
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.Spanned
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
-import android.text.style.ForegroundColorSpan
+import android.text.style.UnderlineSpan
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.owulia.makekotlin.R
+import com.owulia.makekotlin.model.UserModel
 import com.owulia.makekotlin.utils.Constants
 import com.owulia.makekotlin.utils.WowJsonCacheUtils
 import com.owulia.makekotlin.widget.WowConfirmDialog
-import kotlinx.android.synthetic.main.widget_confirm_dialog.*
+import com.owulia.makekotlin.widget.WowToastUtils
 
 class WelcomeActivity : AppCompatActivity() {
 
@@ -28,50 +29,34 @@ class WelcomeActivity : AppCompatActivity() {
         val isFirstOpen = WowJsonCacheUtils.getInstance().get(Constants.JSON_CACHE_KEY_FIRST_OPEN, Boolean::class.java, true) as Boolean
 
         if (isFirstOpen) {
+
             /**
              * 如果是第一次 弹窗协议
              * */
-            WowConfirmDialog(this).apply {
-                setCancelable(false) // 禁止物理键返回
-                setCanceledOnTouchOutside(false) // 禁止点击黑色蒙层
-                getTitleView().apply {
-                    text = context.getString(R.string.string_agreement_title)
-                }
-                getCancelButtonView().apply {
-                    text = context.getString(R.string.string_agreement_cancel)
-                }
-                getSureButtonView().apply { 
-                    text = context.getString(R.string.string_agreement_sure)
-                }
-                getMessageView().apply {
-                    val str1 = SpannableString("我们非常注重您的个人信息和隐私保护，为了更好的保证您的个人权益，请您认证阅读")
-                    val str2 = SpannableString("《用户协议》").apply {
-                        setSpan(ForegroundColorSpan(ContextCompat.getColor(context, R.color.colorMain)), 0, 5, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                        setSpan({
-                            
-                        }, 0, 5, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                    }
-                    val str3 = SpannableString("和")
-                    val str4 = SpannableString("《隐私政策》")
-                    val str5 = SpannableString("的全部内容，同意并接收全部条款后开始使用我们的产品和服务。")
-                    val str6 = SpannableString("点击同意视为接受全部条款，开始体验码可的产品和服务吧")
-                    val message = SpannableStringBuilder();
-                }
-                setCancelOnClickListener = {
-                    /**
-                     * 点击了取消 直接退出 app
-                     * */
-                    finish()
-                    false
-                }
-                setSureOnClickListener = {
-                    /**
-                     * 点击了同意
-                     * */
-                    false
-                }
-                show()
+
+            renderAgreementPopup()
+
+        } else {
+
+            /**
+             * 判断用户是否登录
+             * */
+            val isUserLogin = WowJsonCacheUtils.getInstance().get(Constants.JSON_CACHE_KEY_USER, UserModel::class.java, null) == null
+
+            if (isUserLogin) {
+
+                /**
+                 * 用户已登录
+                 * */
+
+            } else {
+
+                /**
+                 * 用户未登录
+                 * */
+                
             }
+
         }
 
 
@@ -87,5 +72,81 @@ class WelcomeActivity : AppCompatActivity() {
 //                show()
 //            }
 //        }, 1200)
+    }
+
+    /**
+     * 弹窗协议
+     * */
+    private fun renderAgreementPopup() {
+        WowConfirmDialog(this).apply {
+            setCancelable(false) // 禁止物理键返回
+            setCanceledOnTouchOutside(false) // 禁止点击黑色蒙层
+            show()
+            getTitleView().apply {
+                setText(R.string.string_agreement_title)
+            }
+            getCancelButtonView().apply {
+                setText(R.string.string_agreement_cancel)
+            }
+            getSureButtonView().apply {
+                setText(R.string.string_agreement_sure)
+            }
+            getMessageView().apply {
+                val str1 = SpannableString("我们非常注重您的个人信息和隐私保护，为了更好的保证您的个人权益，请您认证阅读")
+                val str2 = SpannableString("《用户协议》").apply {
+                    setSpan(object : ClickableSpan() {
+                        override fun onClick(widget: View) {
+                            WowToastUtils.show("点了用户协议")
+                        }
+                    }, 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    setSpan(object : UnderlineSpan() {
+                        override fun updateDrawState(ds: TextPaint) {
+                            super.updateDrawState(ds)
+                            ds.color = ContextCompat.getColor(context, R.color.colorMain)
+                            ds.isUnderlineText = false
+                        }
+                    }, 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    movementMethod = LinkMovementMethod.getInstance()
+                }
+                val str3 = SpannableString("和")
+                val str4 = SpannableString("《隐私政策》").apply {
+                    setSpan(object : ClickableSpan() {
+                        override fun onClick(widget: View) {
+                            WowToastUtils.show("点了隐私政策")
+                        }
+                    }, 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    setSpan(object : UnderlineSpan() {
+                        override fun updateDrawState(ds: TextPaint) {
+                            super.updateDrawState(ds)
+                            ds.color = ContextCompat.getColor(context, R.color.colorMain)
+                            ds.isUnderlineText = false
+                        }
+                    }, 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    movementMethod = LinkMovementMethod.getInstance()
+                }
+                val str5 =
+                    SpannableString("的全部内容，同意并接收全部条款后开始使用我们的产品和服务。\n点击同意视为接受全部条款，开始体验码可的产品和服务吧")
+                val message = SpannableStringBuilder()
+                message.append(str1)
+                message.append(str2)
+                message.append(str3)
+                message.append(str4)
+                message.append(str5)
+                text = message
+            }
+            setCancelOnClickListener = {
+                /**
+                 * 点击了取消 直接退出 app
+                 * */
+                finish()
+                false
+            }
+            setSureOnClickListener = {
+                /**
+                 * 点击了同意
+                 * */
+                false
+            }
+        }
     }
 }

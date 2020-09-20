@@ -5,6 +5,11 @@ class Constants {
     companion object {
 
         /**
+         * 用户信息 key
+         * */
+        const val JSON_CACHE_KEY_USER = "json_cache_key_user"
+
+        /**
          * json  缓存 总 key
          * */
         const val JSON_CACHE_KEY_COMMON = "json_cache_key_common"
