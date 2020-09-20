@@ -5,6 +5,11 @@ class Constants {
     companion object {
 
         /**
+         * webview 参数配置 key
+         * */
+        const val KEY_WEB_VIEW_OPTION_MODEL = "key_web_view_option_model"
+
+        /**
          * 用户信息 key
          * */
         const val JSON_CACHE_KEY_USER = "json_cache_key_user"

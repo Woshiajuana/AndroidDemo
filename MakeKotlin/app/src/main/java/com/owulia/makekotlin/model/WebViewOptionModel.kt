@@ -5,7 +5,7 @@ import android.os.Parcelable
 
 data class WebViewOptionModel(
     val link: String,
-    val title: String?
+    val title: String? = null
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,

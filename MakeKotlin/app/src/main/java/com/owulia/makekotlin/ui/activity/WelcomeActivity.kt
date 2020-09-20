@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.model.UserModel
+import com.owulia.makekotlin.model.WebViewOptionModel
 import com.owulia.makekotlin.utils.Constants
 import com.owulia.makekotlin.utils.WowJsonCacheUtils
 import com.owulia.makekotlin.widget.WebViewActivity
@@ -90,10 +91,8 @@ class WelcomeActivity : AppCompatActivity() {
                 val str2 = SpannableString("《用户协议》").apply {
                     setSpan(object : ClickableSpan() {
                         override fun onClick(widget: View) {
-                            WowToastUtils.show("点了用户协议")
-//                            val intent = Intent(this@WelcomeActivity, WebViewActivity::class.java)
-//                            intent.putParcelableArrayListExtra(Constants.KEY_WEB_VIEW_)
-
+                            val intent = Intent(this@WelcomeActivity, WebViewActivity::class.java)
+                            intent.putExtra(Constants.KEY_WEB_VIEW_OPTION_MODEL, WebViewOptionModel(link = "https://www.baidu.com"))
                             startActivity(intent)
                         }
                     }, 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -110,7 +109,9 @@ class WelcomeActivity : AppCompatActivity() {
                 val str4 = SpannableString("《隐私政策》").apply {
                     setSpan(object : ClickableSpan() {
                         override fun onClick(widget: View) {
-                            WowToastUtils.show("点了隐私政策")
+                            val intent = Intent(this@WelcomeActivity, WebViewActivity::class.java)
+                            intent.putExtra(Constants.KEY_WEB_VIEW_OPTION_MODEL, WebViewOptionModel(link = "https://www.baidu.com"))
+                            startActivity(intent)
                         }
                     }, 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                     setSpan(object : UnderlineSpan() {
