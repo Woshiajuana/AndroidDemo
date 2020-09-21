@@ -17,7 +17,6 @@ import com.owulia.makekotlin.model.UserModel
 import com.owulia.makekotlin.model.WebViewOptionModel
 import com.owulia.makekotlin.utils.Constants
 import com.owulia.makekotlin.utils.WowJsonCacheUtils
-import com.owulia.makekotlin.widget.WebViewActivity
 import com.owulia.makekotlin.widget.WowConfirmDialog
 import kotlinx.android.synthetic.main.widget_confirm_dialog.*
 

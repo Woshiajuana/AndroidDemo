@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.utils.WowSizeUtils
 import com.owulia.makekotlin.utils.WowStatusBarUtils
-import com.owulia.makekotlin.widget.NavBarView
+import com.owulia.makekotlin.ui.widget.NavBarView
 import kotlinx.android.synthetic.main.fragment_base.*
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -287,5 +287,15 @@ abstract class BaseActivity : AppCompatActivity() {
      * 获取主题内容 View id
      * */
     abstract fun getContentViewResourceId(): Int
+
+    override fun onDestroy() {
+        super.onDestroy()
+        release()
+    }
+
+    /**
+     * 释放资源
+     * */
+    open fun release() {}
 
 }

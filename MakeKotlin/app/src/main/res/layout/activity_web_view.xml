@@ -5,9 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".widget.WebViewActivity">
+    tools:context=".ui.activity.WebViewActivity">
+
     <WebView
         android:id="@+id/vWebView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:progress="10"
+        android:id="@+id/vProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
+
 </FrameLayout>

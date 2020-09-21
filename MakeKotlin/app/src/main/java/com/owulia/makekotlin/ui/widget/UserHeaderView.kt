@@ -1,4 +1,4 @@
-package com.owulia.makekotlin.widget
+package com.owulia.makekotlin.ui.widget
 
 import android.content.Context
 import android.util.AttributeSet

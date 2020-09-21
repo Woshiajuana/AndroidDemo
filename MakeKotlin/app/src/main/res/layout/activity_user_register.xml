@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.UserAccountActivity">
 
-    <com.owulia.makekotlin.widget.UserHeaderView
+    <com.owulia.makekotlin.ui.widget.UserHeaderView
         android:id="@+id/vUserHeader"
         android:layout_marginTop="40dp"
         app:title="@string/string_register_title"

@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BaseFragment
 import com.owulia.makekotlin.model.MenuCellModel
-import com.owulia.makekotlin.widget.MenuCellView
+import com.owulia.makekotlin.ui.widget.MenuCellView
 import kotlinx.android.synthetic.main.fragment_mine.*
 
 /**
@@ -62,9 +62,19 @@ class MineFragment : BaseFragment() {
     private fun initMenuView () {
         mArrMenu.forEachIndexed{ index, menuCellModel ->
             if (index < 2) {
-                vMenuGroup.addView(MenuCellView(context!!, menuCellModel))
+                vMenuGroup.addView(
+                    MenuCellView(
+                        context!!,
+                        menuCellModel
+                    )
+                )
             } else {
-                vMenuGroup1.addView(MenuCellView(context!!, menuCellModel))
+                vMenuGroup1.addView(
+                    MenuCellView(
+                        context!!,
+                        menuCellModel
+                    )
+                )
             }
         }
     }

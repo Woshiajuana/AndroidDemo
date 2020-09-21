@@ -12,7 +12,7 @@ import com.owulia.makekotlin.R
 import com.owulia.makekotlin.utils.WowLogUtils
 import com.owulia.makekotlin.utils.WowSizeUtils
 import com.owulia.makekotlin.utils.WowStatusBarUtils
-import com.owulia.makekotlin.widget.NavBarView
+import com.owulia.makekotlin.ui.widget.NavBarView
 
 abstract class BaseFragment : Fragment() {
 

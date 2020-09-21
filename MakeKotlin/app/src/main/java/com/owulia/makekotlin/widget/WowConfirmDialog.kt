@@ -37,7 +37,7 @@ class WowConfirmDialog(context: Context) : Dialog(context, R.style.WowDialog) {
             /**
              * 设置弹窗动画
              * */
-            setWindowAnimations(R.style.Dialog_Center_Zoom_In)
+//            setWindowAnimations(R.style.Dialog_Center_Zoom_In)
         }
 
     }
