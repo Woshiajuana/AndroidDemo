@@ -10,6 +10,7 @@ import com.owulia.makekotlin.model.WebViewOptionModel
 import com.owulia.makekotlin.utils.Constants
 import com.owulia.makekotlin.widget.WowToastUtils
 import kotlinx.android.synthetic.main.activity_web_view.*
+import kotlinx.android.synthetic.main.fragment_error.*
 
 class WebViewActivity : BaseActivity() {
 
@@ -96,13 +97,16 @@ class WebViewActivity : BaseActivity() {
                     request: WebResourceRequest?,
                     error: WebResourceError?
                 ) {
-                    render(RenderState.ERROR)
-                    WowToastUtils.show("出现错误")
-                    // 是否是为 main frame创建
-//                    if (request?.isForMainFrame == true) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        // 是否是为 main frame创建
+                        if (request?.isForMainFrame == true) {
+                            render(RenderState.ERROR)
+                            isError = true
+                        }
+                    } else {
+                        render(RenderState.ERROR)
                         isError = true
-//                        vRefreshMark?.visibility = View.VISIBLE
-//                    }
+                    }
                 }
                 // 加载完成
                 override fun onPageFinished(view: WebView?, url: String?) {
@@ -121,7 +125,26 @@ class WebViewActivity : BaseActivity() {
 
     override fun initListener() {
         super.initListener()
+        // 加载失败重新
+        vRetryButton.setOnClickListener {
+            render(RenderState.SUCCESS)
+            isError = false
+            vWebView?.reload()
+        }
+        vNavBar?.setOnLeftBtnClickListener
+    }
 
+    override fun onBackPressed() {
+        if (vWebView?.canGoBack() == true) {
+            vWebView?.goBack()
+            return
+        }
+        super.onBackPressed()
+    }
+
+    override fun release() {
+        super.release()
+        vWebView?.destroy()
     }
 
 }

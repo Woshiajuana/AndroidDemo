@@ -206,7 +206,8 @@ abstract class BaseActivity : AppCompatActivity() {
             setLeftImgBtn(mNavBarLeftImg)
             setRightImgBtn(mNavBarRightImg)
             setOnLeftBtnClickListener = {
-                finish()
+//                finish()
+                onBackPressed()
             }
         }
         val index = if (isUseStatusBarSeat) 1 else 0

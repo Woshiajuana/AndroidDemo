@@ -7,8 +7,10 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/vRetryButton"
         android:orientation="vertical"
         android:gravity="center"
+        android:layout_marginBottom="80dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <ImageView
@@ -16,6 +18,7 @@
             android:layout_width="68dp"
             android:layout_height="68dp" />
         <TextView
+            android:id="@+id/vRetryPrompt"
             android:layout_marginTop="10dp"
             android:text="@string/text_error_tip"
             android:layout_width="wrap_content"
