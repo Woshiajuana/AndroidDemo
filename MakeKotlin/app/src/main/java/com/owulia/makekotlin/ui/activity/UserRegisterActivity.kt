@@ -26,27 +26,34 @@ class UserRegisterActivity : BaseActivity() {
         initAgreement()
     }
 
+    override fun initListener() {
+        super.initListener()
+        /**
+         * 协议同意 或 取消
+         * */
+        vAgreementRadioButton.setOnClickListener {
+            it.isClickable = !it.isClickable
+        }
+    }
+
     /**
      * 渲染协议部分
      * */
-    fun initAgreement () {
-        val str1 = SpannableString(getString(R.string.string_agreement_tip))
-        str1.apply {
+    private fun initAgreement () {
+        val strAgreement = SpannableString(getString(R.string.string_agreement_tip))
+        strAgreement.apply {
             setSpan(object : ClickableSpan() {
                 override fun onClick(widget: View) {
                     vAgreementRadioButton.isChecked = !vAgreementRadioButton.isChecked
                 }
-            }, 0, str1.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }, 0, 7, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             setSpan(object : UnderlineSpan() {
                 override fun updateDrawState(ds: TextPaint) {
-                    super.updateDrawState(ds)
                     ds.color = ContextCompat.getColor(this@UserRegisterActivity, R.color.colorText9)
                     ds.isUnderlineText = false
                 }
-            }, 0, str1.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        }
-        val str2 = SpannableString(getString(R.string.string_service_agreement))
-        str2.apply {
+            }, 0, 7, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
             setSpan(object : ClickableSpan() {
                 override fun onClick(widget: View) {
                     val intent = Intent(this@UserRegisterActivity, WebViewActivity::class.java)
@@ -58,17 +65,14 @@ class UserRegisterActivity : BaseActivity() {
                     )
                     startActivity(intent)
                 }
-            }, 0, str2.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }, 7, 13, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             setSpan(object : UnderlineSpan() {
                 override fun updateDrawState(ds: TextPaint) {
-                    super.updateDrawState(ds)
                     ds.color = ContextCompat.getColor(this@UserRegisterActivity, R.color.colorMain)
                     ds.isUnderlineText = false
                 }
-            }, 0, str2.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        }
-        val str3 = SpannableString(getString(R.string.string_privacy_agreement))
-        str3.apply {
+            }, 7, 13, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
             setSpan(object : ClickableSpan() {
                 override fun onClick(widget: View) {
                     val intent = Intent(this@UserRegisterActivity, WebViewActivity::class.java)
@@ -78,19 +82,14 @@ class UserRegisterActivity : BaseActivity() {
                     ))
                     startActivity(intent)
                 }
-            }, 0, str3.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }, 14, strAgreement.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             setSpan(object : UnderlineSpan() {
                 override fun updateDrawState(ds: TextPaint) {
-                    super.updateDrawState(ds)
                     ds.color = ContextCompat.getColor(this@UserRegisterActivity, R.color.colorMain)
                     ds.isUnderlineText = false
                 }
-            }, 0, str3.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }, 14, strAgreement.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
-        val strAgreement = SpannableStringBuilder()
-        strAgreement.append(str1)
-        strAgreement.append(str2)
-        strAgreement.append(str3)
         vAgreement.apply {
             text = strAgreement
             movementMethod = LinkMovementMethod.getInstance()
