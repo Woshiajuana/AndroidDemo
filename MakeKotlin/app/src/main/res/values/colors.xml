@@ -13,6 +13,7 @@
     <color name="colorText3">#333333</color>
     <color name="colorText6">#666666</color>
     <color name="colorText9">#999999</color>
+    <color name="colorTextStrong">#2d45ff</color>
 
     <color name="colorWhite">#ffffff</color>
     <color name="colorWhiteCC">#ccffffff</color>

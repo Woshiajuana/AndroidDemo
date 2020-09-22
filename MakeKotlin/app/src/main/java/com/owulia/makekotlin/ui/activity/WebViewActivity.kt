@@ -8,7 +8,6 @@ import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BaseActivity
 import com.owulia.makekotlin.model.WebViewOptionModel
 import com.owulia.makekotlin.utils.Constants
-import com.owulia.makekotlin.widget.WowToastUtils
 import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.fragment_error.*
 
@@ -32,7 +31,8 @@ class WebViewActivity : BaseActivity() {
         render(RenderState.SUCCESS)
 
         intent?.apply {
-            val webViewOptionModel = getParcelableExtra<WebViewOptionModel>(Constants.KEY_WEB_VIEW_OPTION_MODEL)
+            val webViewOptionModel =
+                getParcelableExtra<WebViewOptionModel>(Constants.KEY_WEB_VIEW_OPTION_MODEL)
             webViewOptionModel?.apply {
                 title?.let { vNavBar?.setTitle(it) }
                 mUrl = link
@@ -47,7 +47,7 @@ class WebViewActivity : BaseActivity() {
      * 初始化 webview
      * */
     @SuppressLint("SetJavaScriptEnabled")
-    private fun initWebView () {
+    private fun initWebView() {
         vWebView.apply {
             settings.apply {
                 // 是否允许JavaScript脚本运行，默认为false。设置true时，会提醒可能造成XSS漏洞
@@ -71,7 +71,7 @@ class WebViewActivity : BaseActivity() {
                     mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
                 }
             }
-            webChromeClient = object : WebChromeClient () {
+            webChromeClient = object : WebChromeClient() {
                 // 网页加载进度
                 override fun onProgressChanged(view: WebView?, newProgress: Int) {
                     vProgressBar?.apply {
@@ -80,10 +80,11 @@ class WebViewActivity : BaseActivity() {
                     }
                     super.onProgressChanged(view, newProgress)
                 }
+
                 // 获取到网页标题
                 override fun onReceivedTitle(view: WebView?, title: String?) {
                     super.onReceivedTitle(view, title)
-                    var text = title?: ""
+                    var text = title ?: ""
                     if (title?.startsWith("http://") == true || title?.startsWith("https://") == true) {
                         text = ""
                     }
@@ -108,6 +109,7 @@ class WebViewActivity : BaseActivity() {
                         isError = true
                     }
                 }
+
                 // 加载完成
                 override fun onPageFinished(view: WebView?, url: String?) {
                     if (isError) {
@@ -118,7 +120,6 @@ class WebViewActivity : BaseActivity() {
                     super.onPageFinished(view, url)
                 }
             }
-            WowToastUtils.show(mUrl)
             loadUrl(mUrl)
         }
     }

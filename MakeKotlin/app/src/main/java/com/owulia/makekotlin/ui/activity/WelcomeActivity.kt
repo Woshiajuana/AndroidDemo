@@ -85,50 +85,50 @@ class WelcomeActivity : AppCompatActivity() {
                 setText(R.string.string_agreement_sure)
             }
             vMessage.apply {
-                val str1 = SpannableString(context.getString(R.string.string_agreement_popup_str1))
-                val str2 = SpannableString(context.getString(R.string.string_agreement_popup_service)).apply {
+                val str1 = SpannableString(getString(R.string.string_agreement_popup_str1))
+                val str2 = SpannableString(getString(R.string.string_service_agreement))
+                str2.apply {
                     setSpan(object : ClickableSpan() {
                         override fun onClick(widget: View) {
                             val intent = Intent(this@WelcomeActivity, WebViewActivity::class.java)
                             intent.putExtra(Constants.KEY_WEB_VIEW_OPTION_MODEL, WebViewOptionModel(
-                                link = "https://www.baidu.com",
-                                title = context.getString(R.string.string_agreement_popup_service)
+                                link = getString(R.string.string_link_agreement_service),
+                                title = getString(R.string.string_service_agreement)
                             ))
                             startActivity(intent)
                         }
-                    }, 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    }, 0, str2.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                     setSpan(object : UnderlineSpan() {
                         override fun updateDrawState(ds: TextPaint) {
                             super.updateDrawState(ds)
                             ds.color = ContextCompat.getColor(context, R.color.colorMain)
                             ds.isUnderlineText = false
                         }
-                    }, 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                    movementMethod = LinkMovementMethod.getInstance()
+                    }, 0, str2.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 }
-                val str3 = SpannableString(context.getString(R.string.string_agreement_popup_str2))
-                val str4 = SpannableString(context.getString(R.string.string_agreement_popup_privacy)).apply {
+                val str3 = SpannableString(getString(R.string.string_agreement_popup_str2))
+                val str4 = SpannableString(getString(R.string.string_privacy_agreement))
+                str4.apply {
                     setSpan(object : ClickableSpan() {
                         override fun onClick(widget: View) {
                             val intent = Intent(this@WelcomeActivity, WebViewActivity::class.java)
                             intent.putExtra(Constants.KEY_WEB_VIEW_OPTION_MODEL, WebViewOptionModel(
-                                link = "https://www.baidu.com",
-                                title = context.getString(R.string.string_agreement_popup_privacy)
+                                link = getString(R.string.string_link_agreement_privacy),
+                                title = getString(R.string.string_privacy_agreement)
                             ))
                             startActivity(intent)
                         }
-                    }, 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    }, 0, str4.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                     setSpan(object : UnderlineSpan() {
                         override fun updateDrawState(ds: TextPaint) {
                             super.updateDrawState(ds)
                             ds.color = ContextCompat.getColor(context, R.color.colorMain)
                             ds.isUnderlineText = false
                         }
-                    }, 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                    movementMethod = LinkMovementMethod.getInstance()
+                    }, 0, str4.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 }
                 val str5 =
-                    SpannableString(context.getString(R.string.string_agreement_popup_str3))
+                    SpannableString(getString(R.string.string_agreement_popup_str3))
                 val message = SpannableStringBuilder()
                 message.append(str1)
                 message.append(str2)
@@ -136,6 +136,8 @@ class WelcomeActivity : AppCompatActivity() {
                 message.append(str4)
                 message.append(str5)
                 text = message
+                movementMethod = LinkMovementMethod.getInstance()
+                highlightColor = ContextCompat.getColor(this@WelcomeActivity, android.R.color.transparent)
             }
             setCancelOnClickListener = {
                 /**

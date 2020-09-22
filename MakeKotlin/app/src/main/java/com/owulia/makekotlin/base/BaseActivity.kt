@@ -10,9 +10,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.owulia.makekotlin.R
+import com.owulia.makekotlin.ui.widget.NavBarView
 import com.owulia.makekotlin.utils.WowSizeUtils
 import com.owulia.makekotlin.utils.WowStatusBarUtils
-import com.owulia.makekotlin.ui.widget.NavBarView
 import kotlinx.android.synthetic.main.fragment_base.*
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -243,14 +243,14 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 状态栏亮色模式，设置状态栏黑色文字、图标
      * */
-    fun setStatusBarLightMode () {
+    fun setStatusBarLightMode() {
         WowStatusBarUtils.setStatusBarLightMode(this)
     }
 
     /**
      * 状态暗色模式
      * */
-    fun setStatusBarDarkMode () {
+    fun setStatusBarDarkMode() {
         WowStatusBarUtils.setStatusBarDarkMode(this)
     }
 
