@@ -1,11 +1,6 @@
 package com.owulia.makekotlin.base
 
-interface IBasePresenter<V : IBaseView> {
-
-    /**
-     * 挂载 view
-     * */
-    fun attachView (view: V)
+interface IBasePresenter {
 
     /**
      * 卸载 view
