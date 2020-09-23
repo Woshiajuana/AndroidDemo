@@ -10,6 +10,7 @@ abstract class BaseMvpActivity<P : IBasePresenter> : BaseActivity () , IBaseView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mvpPre = bindPresenter()
+        mvpPre?.attachView(this)
     }
 
     abstract fun bindPresenter () : P
@@ -21,6 +22,7 @@ abstract class BaseMvpActivity<P : IBasePresenter> : BaseActivity () , IBaseView
     override fun onDestroy() {
         super.onDestroy()
         mvpPre?.detachView()
+        mvpPre = null
     }
 
 }

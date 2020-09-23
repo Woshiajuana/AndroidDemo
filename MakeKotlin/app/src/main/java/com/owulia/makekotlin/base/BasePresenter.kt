@@ -3,14 +3,14 @@ package com.owulia.makekotlin.base
 import java.lang.ref.Reference
 import java.lang.ref.WeakReference
 
-class BasePresenter <V : IBaseView> : IBasePresenter  {
+class BasePresenter : IBasePresenter  {
 
-    var mvpRef: Reference<V>? = null
+    var mvpRef: Reference<IBaseView>? = null
 
     /**
      * 挂载 View
      * */
-    fun attachView(view: V) {
+    override fun attachView(view: IBaseView) {
         mvpRef = WeakReference(view)
     }
 
