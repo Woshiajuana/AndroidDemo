@@ -26,16 +26,6 @@ class UserRegisterActivity : BaseActivity() {
         initAgreement()
     }
 
-    override fun initListener() {
-        super.initListener()
-        /**
-         * 协议同意 或 取消
-         * */
-        vAgreementRadioButton.setOnClickListener {
-            it.isClickable = !it.isClickable
-        }
-    }
-
     /**
      * 渲染协议部分
      * */
@@ -44,7 +34,7 @@ class UserRegisterActivity : BaseActivity() {
         strAgreement.apply {
             setSpan(object : ClickableSpan() {
                 override fun onClick(widget: View) {
-                    vAgreementRadioButton.isChecked = !vAgreementRadioButton.isChecked
+                    vAgreementButton.isChecked = !vAgreementButton.isChecked
                 }
             }, 0, 7, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             setSpan(object : UnderlineSpan() {
