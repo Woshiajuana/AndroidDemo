@@ -19,6 +19,10 @@ class UserAccountContacts {
          * */
         fun callbackGoToRegister (account: String)
 
+        /**
+         * 历史数据回调
+         * */
+        fun callbackHistoryAccount (data: ArrayList<String>)
     }
 
     interface IPresenter : IBasePresenter {
@@ -32,7 +36,7 @@ class UserAccountContacts {
         /**
          * 获取历史账号数据
          * */
-        fun getHistoryAccount () : ArrayList<String>
+        fun getHistoryAccount ()
 
     }
 

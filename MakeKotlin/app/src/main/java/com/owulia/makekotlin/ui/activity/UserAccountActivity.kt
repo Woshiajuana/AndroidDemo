@@ -26,15 +26,15 @@ class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>(), UserAccount
 
     override fun bindPresenter(): UserAccountPresenter = UserAccountPresenter()
 
-    private var userHistoryAccountAdapter: UserHistoryAccountAdapter? = null
+    private var mUserHistoryAccountAdapter: UserHistoryAccountAdapter? = null
 
     override fun initView() {
         super.initView()
         render(RenderState.SUCCESS)
 
         vHistoryAccountBox.apply {
-            userHistoryAccountAdapter = UserHistoryAccountAdapter()
-            adapter = userHistoryAccountAdapter
+            mUserHistoryAccountAdapter = UserHistoryAccountAdapter()
+            adapter = mUserHistoryAccountAdapter
             layoutManager = LinearLayoutManager(context)
         }
     }
@@ -43,7 +43,7 @@ class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>(), UserAccount
         super.initListener()
 
         // 触发
-        userHistoryAccountAdapter?.apply {
+        mUserHistoryAccountAdapter?.apply {
 //            setDeleteOnClickListener = {
 //            }
             // 触发赋值历史数据
@@ -82,9 +82,12 @@ class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>(), UserAccount
         vHistoryOpen.setOnClickListener { it as ImageView
             vHistoryAccountBox.apply {
                 if (visibility == View.VISIBLE) {
+                    // 关闭
                     visibility = View.GONE
                     it.setImageResource(R.drawable.ic_arrow_down_999)
                 } else {
+                    // 打开
+                    mvpPresenter?.getHistoryAccount()
                     visibility = View.VISIBLE
                     it.setImageResource(R.drawable.ic_arrow_up_999)
                 }
@@ -103,6 +106,10 @@ class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>(), UserAccount
         val intent = Intent(this, UserRegisterActivity::class.java)
         intent.putExtra(Constants.KEY_ACCOUNT, account)
         startActivity(intent)
+    }
+
+    override fun callbackHistoryAccount(data: ArrayList<String>) {
+        mUserHistoryAccountAdapter?.setData(data)
     }
 
 }
