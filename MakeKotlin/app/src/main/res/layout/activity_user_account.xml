@@ -29,8 +29,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
+            android:id="@+id/vAccountInput"
             android:autofillHints="string/string_account_hint"
-            android:inputType="text"
+            android:inputType="phone"
+            android:maxLength="@integer/integer_phone_max_length"
             android:hint="@string/string_account_hint"
             android:background="@null"
             android:textColor="@color/colorText3"
@@ -41,6 +43,7 @@
             android:layout_height="42dp"/>
         <include layout="@layout/widget_input_clear_btn"/>
         <ImageView
+            android:id="@+id/vHistoryOpen"
             android:contentDescription="@string/string_image_tip"
             android:src="@drawable/ic_arrow_down_999"
             android:scaleX="0.7"
@@ -50,6 +53,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
         android:paddingEnd="20dp"
         android:paddingStart="40dp"
         android:layout_below="@+id/vUserInputBox"

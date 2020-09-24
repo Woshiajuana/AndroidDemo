@@ -1,14 +1,25 @@
 package com.owulia.makekotlin.ui.activity
 
+import android.content.Intent
+import android.text.Editable
+import android.text.TextUtils
+import android.text.TextWatcher
+import android.view.View
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.adapter.UserHistoryAccountAdapter
 import com.owulia.makekotlin.base.BaseMvpActivity
+import com.owulia.makekotlin.contacts.UserAccountContacts
 import com.owulia.makekotlin.presenter.UserAccountPresenter
+import com.owulia.makekotlin.utils.Constants
+import com.owulia.makekotlin.utils.WowLogUtils
+import com.owulia.makekotlin.widget.WowToastUtils
 import kotlinx.android.synthetic.main.activity_user_account.*
 import kotlinx.android.synthetic.main.widget_button.*
+import kotlinx.android.synthetic.main.widget_input_clear_btn.*
 
-class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>() {
+class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>(), UserAccountContacts.IView {
 
     override fun getContentViewResourceId(): Int = R.layout.activity_user_account
 
@@ -29,9 +40,61 @@ class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>() {
     override fun initListener() {
         super.initListener()
 
+        /**
+         * 登录
+         * */
         vSubmitButton.setOnClickListener{
-
+            WowToastUtils.show(vAccountInput.text.toString())
+//            mvpPresenter?.checkAccount(vAccountInput.text.toString())
         }
+
+        /**
+         * input 输入监听
+         * */
+        vAccountInput.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (TextUtils.isEmpty(s.toString())) {
+                    vInputClear.visibility = View.GONE
+                } else {
+                    vInputClear.visibility = View.VISIBLE
+                }
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
+
+        /**
+         * 清空 input 内容
+         * */
+        vInputClear.setOnClickListener {
+            vAccountInput.setText("")
+        }
+
+        /**
+         * 打开关闭登录历史
+         * */
+        vHistoryOpen.setOnClickListener {
+            vHistoryAccountBox.apply {
+                visibility = if (visibility == View.VISIBLE) View.GONE else View.VISIBLE
+            }
+        }
+
+    }
+
+
+
+    override fun callbackGoToLogin(account: String) {
+        val intent = Intent(this, UserLoginActivity::class.java)
+        intent.putExtra(Constants.KEY_ACCOUNT, account)
+        startActivity(intent)
+    }
+
+    override fun callbackGoToRegister(account: String) {
+        val intent = Intent(this, UserRegisterActivity::class.java)
+        intent.putExtra(Constants.KEY_ACCOUNT, account)
+        startActivity(intent)
     }
 
 }
