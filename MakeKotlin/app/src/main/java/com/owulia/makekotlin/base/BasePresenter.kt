@@ -3,31 +3,25 @@ package com.owulia.makekotlin.base
 import java.lang.ref.Reference
 import java.lang.ref.WeakReference
 
-open class BasePresenter : IBasePresenter  {
+open class BasePresenter<V : IBaseView> : IBasePresenter  {
 
-    var mvpReference: Reference<IBaseView>? = null
+    private var mvpReference: Reference<V>? = null
 
-    var mvpView = {
-        if (isViewAttach()) {
-            mvpReference?.get()
-        } else {
-            null
-        }
-    }
+    val mvpView: V? by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { mvpReference?.get()  }
 
     /**
      * 挂载 View
      * */
     override fun attachView(view: IBaseView) {
-        mvpReference = WeakReference(view)
+        mvpReference = WeakReference(view as V)
     }
 
     /**
      * 判断 IBaseView 的生命周期是否结束
      * */
-    fun isViewAttach () : Boolean {
-        return mvpReference != null && mvpReference?.get() != null
-    }
+//    fun isViewAttach () : Boolean {
+//        return mvpReference != null && mvpReference?.get() != null
+//    }
 
     /**
      * 卸载 View

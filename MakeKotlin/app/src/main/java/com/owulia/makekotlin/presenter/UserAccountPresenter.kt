@@ -3,8 +3,9 @@ package com.owulia.makekotlin.presenter
 import com.owulia.makekotlin.base.BasePresenter
 import com.owulia.makekotlin.contacts.UserAccountContacts
 import com.owulia.makekotlin.model.UserAccountModel
+import com.owulia.makekotlin.utils.WowToastUtils
 
-class UserAccountPresenter : BasePresenter(), UserAccountContacts.IPresenter {
+class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAccountContacts.IPresenter {
 
     private val mvpModel: UserAccountModel = UserAccountModel()
 
@@ -14,6 +15,8 @@ class UserAccountPresenter : BasePresenter(), UserAccountContacts.IPresenter {
 
     override fun getHistoryAccount() {
         val arrData = mvpModel.getHistoryAccount()
+        WowToastUtils.show("1 ${mvpView == null}")
+        mvpView?.callbackHistoryAccount(arrData)
     }
 
 }
