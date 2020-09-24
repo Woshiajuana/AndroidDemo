@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import com.owulia.makekotlin.R
-import com.owulia.makekotlin.model.MenuCellModel
+import com.owulia.makekotlin.bean.MenuCellBean
 import kotlinx.android.synthetic.main.item_mine_menu.view.*
 
 class MenuCellView @JvmOverloads constructor(
     context: Context,
-    menuCellModel: MenuCellModel? = null,
+    menuCellModel: MenuCellBean? = null,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {

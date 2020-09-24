@@ -1,9 +1,9 @@
-package com.owulia.makekotlin.model
+package com.owulia.makekotlin.bean
 
 import android.view.View
 import com.owulia.makekotlin.R
 
-data class MenuCellModel(
+data class MenuCellBean(
     val labelText: Int? = null,
     val valueText: Int? = null,
     val prefixImg: Int? = null,

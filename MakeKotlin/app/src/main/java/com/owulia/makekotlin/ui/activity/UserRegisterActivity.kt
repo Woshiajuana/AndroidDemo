@@ -2,7 +2,6 @@ package com.owulia.makekotlin.ui.activity
 
 import android.content.Intent
 import android.text.SpannableString
-import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
@@ -12,7 +11,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BaseActivity
-import com.owulia.makekotlin.model.WebViewOptionModel
+import com.owulia.makekotlin.bean.WebViewOptionBean
 import com.owulia.makekotlin.utils.Constants
 import kotlinx.android.synthetic.main.activity_user_register.*
 
@@ -48,7 +47,8 @@ class UserRegisterActivity : BaseActivity() {
                 override fun onClick(widget: View) {
                     val intent = Intent(this@UserRegisterActivity, WebViewActivity::class.java)
                     intent.putExtra(
-                        Constants.KEY_WEB_VIEW_OPTION_MODEL, WebViewOptionModel(
+                        Constants.KEY_WEB_VIEW_OPTION_MODEL,
+                        WebViewOptionBean(
                             link = getString(R.string.string_link_agreement_service),
                             title = getString(R.string.string_service_agreement)
                         )
@@ -66,10 +66,12 @@ class UserRegisterActivity : BaseActivity() {
             setSpan(object : ClickableSpan() {
                 override fun onClick(widget: View) {
                     val intent = Intent(this@UserRegisterActivity, WebViewActivity::class.java)
-                    intent.putExtra(Constants.KEY_WEB_VIEW_OPTION_MODEL, WebViewOptionModel(
-                        link = getString(R.string.string_link_agreement_privacy),
-                        title = getString(R.string.string_privacy_agreement)
-                    ))
+                    intent.putExtra(Constants.KEY_WEB_VIEW_OPTION_MODEL,
+                        WebViewOptionBean(
+                            link = getString(R.string.string_link_agreement_privacy),
+                            title = getString(R.string.string_privacy_agreement)
+                        )
+                    )
                     startActivity(intent)
                 }
             }, 14, strAgreement.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)

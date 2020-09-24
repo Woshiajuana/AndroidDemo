@@ -1,9 +1,9 @@
-package com.owulia.makekotlin.model
+package com.owulia.makekotlin.bean
 
 import android.os.Parcel
 import android.os.Parcelable
 
-data class GuidePageModel(
+data class GuidePageBean(
     val isLast: Boolean = false,
     val index: Int,
     val bgColor: Int,
@@ -31,12 +31,12 @@ data class GuidePageModel(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<GuidePageModel> {
-        override fun createFromParcel(parcel: Parcel): GuidePageModel {
-            return GuidePageModel(parcel)
+    companion object CREATOR : Parcelable.Creator<GuidePageBean> {
+        override fun createFromParcel(parcel: Parcel): GuidePageBean {
+            return GuidePageBean(parcel)
         }
 
-        override fun newArray(size: Int): Array<GuidePageModel?> {
+        override fun newArray(size: Int): Array<GuidePageBean?> {
             return arrayOfNulls(size)
         }
     }

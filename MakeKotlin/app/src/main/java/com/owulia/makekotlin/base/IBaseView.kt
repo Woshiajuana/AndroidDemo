@@ -9,4 +9,19 @@ interface IBaseView {
      * */
     fun getSelfActivity () : Activity
 
+    /**
+     * loading show
+     * */
+    fun loadingShow ()
+
+    /**
+     * loading hide
+     * */
+    fun loadingHide ()
+
+    /**
+     * 统一错误提示
+     * */
+    fun toast (msg: String)
+
 }

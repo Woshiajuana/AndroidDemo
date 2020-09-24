@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.adapter.MaterialMenuAdapter
 import com.owulia.makekotlin.base.BaseFragment
-import com.owulia.makekotlin.model.MaterialMenuModel
+import com.owulia.makekotlin.bean.MaterialMenuBean
 import kotlinx.android.synthetic.main.fragment_material.*
 
 /**
@@ -29,20 +29,62 @@ class MaterialFragment : BaseFragment() {
     override fun getContentViewResourceId(): Int = R.layout.fragment_material
 
     private val mArrMenu = arrayOf(
-        MaterialMenuModel(icon = R.mipmap.ic_m_menu_ls, text = R.string.string_material_menu_ls),
-        MaterialMenuModel(icon = R.mipmap.ic_m_menu_yqmy, text = R.string.string_material_menu_yqmy),
-        MaterialMenuModel(icon = R.mipmap.ic_m_menu_rmyq, text = R.string.string_material_menu_rmyq),
-        MaterialMenuModel(icon = R.mipmap.ic_m_menu_kplus, text = R.string.string_material_menu_kplus),
-        MaterialMenuModel(icon = R.mipmap.ic_m_menu_gdm, text = R.string.string_material_menu_gdm),
-        MaterialMenuModel(icon = R.mipmap.ic_m_menu_umi, text = R.string.string_material_menu_umi),
-        MaterialMenuModel(icon = R.mipmap.ic_m_menu_shgl, text = R.string.string_material_menu_shgl),
-        MaterialMenuModel(icon = R.mipmap.ic_m_menu_shtz, text = R.string.string_material_menu_shtz),
-        MaterialMenuModel(icon = R.mipmap.ic_m_menu_xykcp, text = R.string.string_material_menu_xykcp),
-        MaterialMenuModel(icon = R.mipmap.ic_m_menu_tjbk, text = R.string.string_material_menu_tjbk),
-        MaterialMenuModel(icon = R.mipmap.ic_m_menu_jfdh, text = R.string.string_material_menu_jfdh),
-        MaterialMenuModel(icon = R.mipmap.ic_m_menu_kjdh, text = R.string.string_material_menu_kjdh),
-        MaterialMenuModel(icon = R.mipmap.ic_m_menu_sc, text = R.string.string_material_menu_sc),
-        MaterialMenuModel(icon = R.mipmap.ic_m_menu_cxwy, text = R.string.string_material_menu_cxwy)
+        MaterialMenuBean(
+            icon = R.mipmap.ic_m_menu_ls,
+            text = R.string.string_material_menu_ls
+        ),
+        MaterialMenuBean(
+            icon = R.mipmap.ic_m_menu_yqmy,
+            text = R.string.string_material_menu_yqmy
+        ),
+        MaterialMenuBean(
+            icon = R.mipmap.ic_m_menu_rmyq,
+            text = R.string.string_material_menu_rmyq
+        ),
+        MaterialMenuBean(
+            icon = R.mipmap.ic_m_menu_kplus,
+            text = R.string.string_material_menu_kplus
+        ),
+        MaterialMenuBean(
+            icon = R.mipmap.ic_m_menu_gdm,
+            text = R.string.string_material_menu_gdm
+        ),
+        MaterialMenuBean(
+            icon = R.mipmap.ic_m_menu_umi,
+            text = R.string.string_material_menu_umi
+        ),
+        MaterialMenuBean(
+            icon = R.mipmap.ic_m_menu_shgl,
+            text = R.string.string_material_menu_shgl
+        ),
+        MaterialMenuBean(
+            icon = R.mipmap.ic_m_menu_shtz,
+            text = R.string.string_material_menu_shtz
+        ),
+        MaterialMenuBean(
+            icon = R.mipmap.ic_m_menu_xykcp,
+            text = R.string.string_material_menu_xykcp
+        ),
+        MaterialMenuBean(
+            icon = R.mipmap.ic_m_menu_tjbk,
+            text = R.string.string_material_menu_tjbk
+        ),
+        MaterialMenuBean(
+            icon = R.mipmap.ic_m_menu_jfdh,
+            text = R.string.string_material_menu_jfdh
+        ),
+        MaterialMenuBean(
+            icon = R.mipmap.ic_m_menu_kjdh,
+            text = R.string.string_material_menu_kjdh
+        ),
+        MaterialMenuBean(
+            icon = R.mipmap.ic_m_menu_sc,
+            text = R.string.string_material_menu_sc
+        ),
+        MaterialMenuBean(
+            icon = R.mipmap.ic_m_menu_cxwy,
+            text = R.string.string_material_menu_cxwy
+        )
     )
 
     override fun initView() {

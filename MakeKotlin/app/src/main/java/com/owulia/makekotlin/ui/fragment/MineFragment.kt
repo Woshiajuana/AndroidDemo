@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BaseFragment
-import com.owulia.makekotlin.model.MenuCellModel
+import com.owulia.makekotlin.bean.MenuCellBean
 import com.owulia.makekotlin.ui.widget.MenuCellView
 import kotlinx.android.synthetic.main.fragment_mine.*
 
@@ -33,12 +33,30 @@ class MineFragment : BaseFragment() {
      * 菜单数据
      * */
     private val mArrMenu = arrayOf(
-        MenuCellModel( labelText = R.string.string_mine_menu_smrz, prefixImg = R.mipmap.ic_mine_menu_smrz, setOnClickListener = {}),
-        MenuCellModel( labelText = R.string.string_mine_menu_xykgl, prefixImg = R.mipmap.ic_mine_menu_xykgl, setOnClickListener = {}),
-        MenuCellModel( labelText = R.string.string_mine_menu_czzn, prefixImg = R.mipmap.ic_mine_menu_czzn, setOnClickListener = {}),
-        MenuCellModel( labelText = R.string.string_mine_menu_zskf, prefixImg = R.mipmap.ic_mine_menu_zskf, setOnClickListener = {}),
-        MenuCellModel( labelText = R.string.string_mine_menu_gymk, prefixImg = R.mipmap.ic_mine_menu_gymk, setOnClickListener = {}),
-        MenuCellModel( labelText = R.string.string_mine_menu_tysz, prefixImg = R.mipmap.ic_mine_menu_tysz, setOnClickListener = {})
+        MenuCellBean(
+            labelText = R.string.string_mine_menu_smrz,
+            prefixImg = R.mipmap.ic_mine_menu_smrz,
+            setOnClickListener = {}),
+        MenuCellBean(
+            labelText = R.string.string_mine_menu_xykgl,
+            prefixImg = R.mipmap.ic_mine_menu_xykgl,
+            setOnClickListener = {}),
+        MenuCellBean(
+            labelText = R.string.string_mine_menu_czzn,
+            prefixImg = R.mipmap.ic_mine_menu_czzn,
+            setOnClickListener = {}),
+        MenuCellBean(
+            labelText = R.string.string_mine_menu_zskf,
+            prefixImg = R.mipmap.ic_mine_menu_zskf,
+            setOnClickListener = {}),
+        MenuCellBean(
+            labelText = R.string.string_mine_menu_gymk,
+            prefixImg = R.mipmap.ic_mine_menu_gymk,
+            setOnClickListener = {}),
+        MenuCellBean(
+            labelText = R.string.string_mine_menu_tysz,
+            prefixImg = R.mipmap.ic_mine_menu_tysz,
+            setOnClickListener = {})
     )
 
     override fun initView() {

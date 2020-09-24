@@ -13,8 +13,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.owulia.makekotlin.R
-import com.owulia.makekotlin.model.UserModel
-import com.owulia.makekotlin.model.WebViewOptionModel
+import com.owulia.makekotlin.bean.UserBean
+import com.owulia.makekotlin.bean.WebViewOptionBean
 import com.owulia.makekotlin.utils.Constants
 import com.owulia.makekotlin.utils.WowJsonCacheUtils
 import com.owulia.makekotlin.widget.WowConfirmDialog
@@ -28,7 +28,7 @@ class WelcomeActivity : AppCompatActivity() {
         /**
          * 判断用户是否登录
          * */
-        val isUserLogin = WowJsonCacheUtils.getInstance().get(Constants.JSON_CACHE_KEY_USER, UserModel::class.java, null) != null
+        val isUserLogin = WowJsonCacheUtils.getInstance().get(Constants.JSON_CACHE_KEY_USER, UserBean::class.java, null) != null
 
         if (isUserLogin) {
 
@@ -91,10 +91,12 @@ class WelcomeActivity : AppCompatActivity() {
                     setSpan(object : ClickableSpan() {
                         override fun onClick(widget: View) {
                             val intent = Intent(this@WelcomeActivity, WebViewActivity::class.java)
-                            intent.putExtra(Constants.KEY_WEB_VIEW_OPTION_MODEL, WebViewOptionModel(
-                                link = getString(R.string.string_link_agreement_service),
-                                title = getString(R.string.string_service_agreement)
-                            ))
+                            intent.putExtra(Constants.KEY_WEB_VIEW_OPTION_MODEL,
+                                WebViewOptionBean(
+                                    link = getString(R.string.string_link_agreement_service),
+                                    title = getString(R.string.string_service_agreement)
+                                )
+                            )
                             startActivity(intent)
                         }
                     }, 0, str2.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -112,10 +114,12 @@ class WelcomeActivity : AppCompatActivity() {
                     setSpan(object : ClickableSpan() {
                         override fun onClick(widget: View) {
                             val intent = Intent(this@WelcomeActivity, WebViewActivity::class.java)
-                            intent.putExtra(Constants.KEY_WEB_VIEW_OPTION_MODEL, WebViewOptionModel(
-                                link = getString(R.string.string_link_agreement_privacy),
-                                title = getString(R.string.string_privacy_agreement)
-                            ))
+                            intent.putExtra(Constants.KEY_WEB_VIEW_OPTION_MODEL,
+                                WebViewOptionBean(
+                                    link = getString(R.string.string_link_agreement_privacy),
+                                    title = getString(R.string.string_privacy_agreement)
+                                )
+                            )
                             startActivity(intent)
                         }
                     }, 0, str4.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)

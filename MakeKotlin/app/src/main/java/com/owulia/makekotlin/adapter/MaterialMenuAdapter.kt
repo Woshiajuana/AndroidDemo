@@ -5,11 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.owulia.makekotlin.R
-import com.owulia.makekotlin.model.MaterialMenuModel
+import com.owulia.makekotlin.bean.MaterialMenuBean
 import kotlinx.android.synthetic.main.item_material_menu.view.*
 
 class MaterialMenuAdapter(
-    private val mArrMenu: Array<MaterialMenuModel>
+    private val mArrMenu: Array<MaterialMenuBean>
 ) : RecyclerView.Adapter<MaterialMenuAdapterViewHolder>() {
 
     override fun onCreateViewHolder(

@@ -6,7 +6,7 @@ import android.view.View
 import android.webkit.*
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BaseActivity
-import com.owulia.makekotlin.model.WebViewOptionModel
+import com.owulia.makekotlin.bean.WebViewOptionBean
 import com.owulia.makekotlin.utils.Constants
 import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.fragment_error.*
@@ -32,7 +32,7 @@ class WebViewActivity : BaseActivity() {
 
         intent?.apply {
             val webViewOptionModel =
-                getParcelableExtra<WebViewOptionModel>(Constants.KEY_WEB_VIEW_OPTION_MODEL)
+                getParcelableExtra<WebViewOptionBean>(Constants.KEY_WEB_VIEW_OPTION_MODEL)
             webViewOptionModel?.apply {
                 title?.let { vNavBar?.setTitle(it) }
                 mUrl = link

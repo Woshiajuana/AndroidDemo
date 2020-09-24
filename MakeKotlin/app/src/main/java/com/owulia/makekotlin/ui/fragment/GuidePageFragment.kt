@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BaseFragment
-import com.owulia.makekotlin.model.GuidePageModel
+import com.owulia.makekotlin.bean.GuidePageBean
 import com.owulia.makekotlin.ui.activity.UserAccountActivity
 import com.owulia.makekotlin.utils.Constants
 import kotlinx.android.synthetic.main.fragment_guide_page.*
@@ -24,7 +24,7 @@ class GuidePageFragment : BaseFragment() {
     override val isStatusBarLightMode: Boolean = false
 
     companion object {
-        fun getInstant (guidePageModel: GuidePageModel): GuidePageFragment {
+        fun getInstant (guidePageModel: GuidePageBean): GuidePageFragment {
             val guidePageFragment = GuidePageFragment()
             val bundle = Bundle()
             bundle.putParcelable(Constants.KEY_GUIDE_PAGE_MODEL, guidePageModel)
@@ -40,7 +40,7 @@ class GuidePageFragment : BaseFragment() {
         render(RenderState.SUCCESS)
 
         arguments?.apply {
-            val guidePageModel = getParcelable<GuidePageModel>(Constants.KEY_GUIDE_PAGE_MODEL)
+            val guidePageModel = getParcelable<GuidePageBean>(Constants.KEY_GUIDE_PAGE_MODEL)
             guidePageModel?.apply {
                 vImageIcon.setImageResource(bannerIcon)
                 vImageText.setImageResource(textIcon)

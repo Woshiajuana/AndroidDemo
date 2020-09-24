@@ -3,7 +3,7 @@ package com.owulia.makekotlin.base
 import android.app.Activity
 import android.os.Bundle
 
-abstract class BaseMvpActivity<P : IBasePresenter> : BaseActivity () , IBaseView {
+abstract class BaseMvpActivity<P : IBasePresenter> : BaseActivity (), IBaseView {
 
     var mvpPre: P? = null
 

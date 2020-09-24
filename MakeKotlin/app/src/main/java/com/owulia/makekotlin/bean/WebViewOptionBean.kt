@@ -1,9 +1,9 @@
-package com.owulia.makekotlin.model
+package com.owulia.makekotlin.bean
 
 import android.os.Parcel
 import android.os.Parcelable
 
-data class WebViewOptionModel(
+data class WebViewOptionBean(
     val link: String,
     val title: String? = null
 ) : Parcelable {
@@ -22,12 +22,12 @@ data class WebViewOptionModel(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<WebViewOptionModel> {
-        override fun createFromParcel(parcel: Parcel): WebViewOptionModel {
-            return WebViewOptionModel(parcel)
+    companion object CREATOR : Parcelable.Creator<WebViewOptionBean> {
+        override fun createFromParcel(parcel: Parcel): WebViewOptionBean {
+            return WebViewOptionBean(parcel)
         }
 
-        override fun newArray(size: Int): Array<WebViewOptionModel?> {
+        override fun newArray(size: Int): Array<WebViewOptionBean?> {
             return arrayOfNulls(size)
         }
     }
