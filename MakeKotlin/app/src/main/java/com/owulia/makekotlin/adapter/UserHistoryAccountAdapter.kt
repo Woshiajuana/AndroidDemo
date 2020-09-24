@@ -5,8 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.owulia.makekotlin.R
+import kotlinx.android.synthetic.main.item_history_account.view.*
 
 class UserHistoryAccountAdapter : RecyclerView.Adapter<UserHistoryAccountAdapterViewHolder> () {
+
+    private var mArrData = ArrayList<String>()
+    var setDeleteOnClickListener: ((Int) -> Boolean)? = null
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -16,11 +21,28 @@ class UserHistoryAccountAdapter : RecyclerView.Adapter<UserHistoryAccountAdapter
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return mArrData.size
     }
 
     override fun onBindViewHolder(holder: UserHistoryAccountAdapterViewHolder, position: Int) {
+        val account = mArrData[position]
+        holder.itemView.apply {
+            vTextAccount.text = account
+            vImgDelete.setOnClickListener {
+                setDeleteOnClickListener?.let {
+                    if (it(position)) {
+                        mArrData.removeAt(position)
+                        notifyItemChanged(position)
+                    }
+                }
+            }
+        }
+    }
 
+    fun setData (data: ArrayList<String>) {
+        mArrData.clear()
+        mArrData.addAll(data)
+        notifyDataSetChanged()
     }
 
 }

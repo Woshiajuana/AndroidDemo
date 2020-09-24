@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.View
+import android.widget.ImageView
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.owulia.makekotlin.R
@@ -27,12 +28,15 @@ class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>(), UserAccount
 
     override fun bindPresenter(): UserAccountPresenter = UserAccountPresenter()
 
+    private var userHistoryAccountAdapter: UserHistoryAccountAdapter? = null
+
     override fun initView() {
         super.initView()
         render(RenderState.SUCCESS)
 
         vHistoryAccountBox.apply {
-            adapter = UserHistoryAccountAdapter()
+            userHistoryAccountAdapter = UserHistoryAccountAdapter()
+            adapter = userHistoryAccountAdapter
             layoutManager = LinearLayoutManager(context)
         }
     }
@@ -40,17 +44,20 @@ class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>(), UserAccount
     override fun initListener() {
         super.initListener()
 
-        /**
-         * 登录
-         * */
+        // 触发
+        userHistoryAccountAdapter?.apply {
+//            setDeleteOnClickListener = {
+//
+//            }
+        }
+
+        // 登录
         vSubmitButton.setOnClickListener{
             WowToastUtils.show(vAccountInput.text.toString())
 //            mvpPresenter?.checkAccount(vAccountInput.text.toString())
         }
 
-        /**
-         * input 输入监听
-         * */
+        // input 输入监听
         vAccountInput.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (TextUtils.isEmpty(s.toString())) {
@@ -65,25 +72,25 @@ class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>(), UserAccount
             }
         })
 
-        /**
-         * 清空 input 内容
-         * */
+        // 清空 input 内容
         vInputClear.setOnClickListener {
             vAccountInput.setText("")
         }
 
-        /**
-         * 打开关闭登录历史
-         * */
-        vHistoryOpen.setOnClickListener {
+        // 打开关闭登录历史
+        vHistoryOpen.setOnClickListener { it as ImageView
             vHistoryAccountBox.apply {
-                visibility = if (visibility == View.VISIBLE) View.GONE else View.VISIBLE
+                if (visibility == View.VISIBLE) {
+                    visibility = View.GONE
+                    it.setImageResource(R.drawable.ic_arrow_down_999)
+                } else {
+                    visibility = View.VISIBLE
+                    it.setImageResource(R.drawable.ic_arrow_up_999)
+                }
             }
         }
 
     }
-
-
 
     override fun callbackGoToLogin(account: String) {
         val intent = Intent(this, UserLoginActivity::class.java)

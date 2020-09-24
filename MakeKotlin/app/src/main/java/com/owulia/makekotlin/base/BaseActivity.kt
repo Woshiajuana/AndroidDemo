@@ -147,6 +147,11 @@ abstract class BaseActivity : AppCompatActivity() {
         }
 
         /**
+         * 初始化 presenter
+         * */
+        initPresenter()
+
+        /**
          * 初始化 view
          * */
         initView()
@@ -168,6 +173,11 @@ abstract class BaseActivity : AppCompatActivity() {
             setStatusBarDarkMode()
         }
     }
+
+    /**
+     * 初始化 presenter
+     * */
+    open fun initPresenter () {}
 
     /**
      * 载入基础 viewGroup

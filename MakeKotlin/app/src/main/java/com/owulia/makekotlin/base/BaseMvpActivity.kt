@@ -1,7 +1,6 @@
 package com.owulia.makekotlin.base
 
 import android.app.Activity
-import android.os.Bundle
 import com.owulia.makekotlin.widget.WowLoadingDialog
 import com.owulia.makekotlin.widget.WowToastUtils
 
@@ -14,8 +13,8 @@ abstract class BaseMvpActivity<P : IBasePresenter> : BaseActivity (), IBaseView 
      * */
     val vDialogLoading: WowLoadingDialog by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { WowLoadingDialog(this) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun initPresenter() {
+        super.initPresenter()
         mvpPresenter = bindPresenter()
         mvpPresenter?.attachView(this)
     }

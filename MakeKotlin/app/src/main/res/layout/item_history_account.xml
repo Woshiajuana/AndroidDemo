@@ -12,7 +12,6 @@
 
     <TextView
         android:id="@+id/vTextAccount"
-        android:text="186 **** 6657"
         android:textSize="18sp"
         android:textColor="@color/colorText3"
         android:layout_width="0dp"
@@ -20,7 +19,7 @@
         android:layout_height="wrap_content"/>
 
     <ImageView
-        android:id="@+id/vImgClear"
+        android:id="@+id/vImgDelete"
         android:contentDescription="@string/string_image_tip"
         android:src="@drawable/ic_close_999"
         android:scaleX="0.6"
