@@ -7,4 +7,9 @@
         <attr name="subtitle" format="string|reference"/>
     </declare-styleable>
 
+    <declare-styleable name="WowMaxHeightOrMaxCountRecyclerView">
+        <attr name="maxHeight" format="dimension"/>
+        <attr name="maxCount" format="integer"/>
+    </declare-styleable>
+
 </resources>

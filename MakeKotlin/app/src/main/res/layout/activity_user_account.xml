@@ -52,14 +52,15 @@
             android:layout_height="42dp"/>
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.owulia.makekotlin.widget.WowMaxHeightOrMaxCountRecyclerView
         android:visibility="gone"
         android:paddingEnd="20dp"
         android:paddingStart="40dp"
+        app:maxHeight="150dp"
         android:layout_below="@+id/vUserInputBox"
         android:id="@+id/vHistoryAccountBox"
         android:layout_width="match_parent"
-        android:layout_height="150dp"/>
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:layout_below="@+id/vHistoryAccountBox"

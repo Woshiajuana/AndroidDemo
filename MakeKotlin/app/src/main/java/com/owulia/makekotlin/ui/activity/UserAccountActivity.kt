@@ -45,8 +45,11 @@ class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>(), UserAccount
         // 触发
         userHistoryAccountAdapter?.apply {
 //            setDeleteOnClickListener = {
-//
 //            }
+            // 触发赋值历史数据
+            setItemOnClickListener = {
+                vAccountInput.setText(it)
+            }
         }
 
         // 登录

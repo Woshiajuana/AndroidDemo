@@ -11,6 +11,7 @@ class UserHistoryAccountAdapter : RecyclerView.Adapter<UserHistoryAccountAdapter
 
     private var mArrData = ArrayList<String>()
     var setDeleteOnClickListener: ((Int) -> Boolean)? = null
+    var setItemOnClickListener: ((String) -> Unit)? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -27,7 +28,12 @@ class UserHistoryAccountAdapter : RecyclerView.Adapter<UserHistoryAccountAdapter
     override fun onBindViewHolder(holder: UserHistoryAccountAdapterViewHolder, position: Int) {
         val account = mArrData[position]
         holder.itemView.apply {
-            vTextAccount.text = account
+            vTextAccount.apply {
+                text = account
+                setOnClickListener {
+                    setItemOnClickListener?.let { it(account) }
+                }
+            }
             vImgDelete.setOnClickListener {
                 setDeleteOnClickListener?.let {
                     if (it(position)) {

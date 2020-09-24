@@ -29,6 +29,11 @@ class UserAccountContacts {
          * */
         fun checkAccount (account: String)
 
+        /**
+         * 获取历史账号数据
+         * */
+        fun getHistoryAccount () : ArrayList<String>
+
     }
 
     interface IModel {
@@ -38,6 +43,11 @@ class UserAccountContacts {
          * @param account [String] 账号
          * */
         fun checkAccount(account: String)
+
+        /**
+         * 从缓存中获取历史账号数据
+         * */
+        fun getHistoryAccount () : ArrayList<String>
 
     }
 }

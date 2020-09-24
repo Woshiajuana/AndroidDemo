@@ -9,4 +9,8 @@ class UserAccountPresenter : BasePresenter (), UserAccountContacts.IPresenter {
 
     }
 
+    override fun getHistoryAccount(): ArrayList<String> {
+        TODO("Not yet implemented")
+    }
+
 }

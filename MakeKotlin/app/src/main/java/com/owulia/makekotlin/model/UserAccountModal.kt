@@ -8,4 +8,8 @@ class UserAccountModal : UserAccountContacts.IModel {
 
     }
 
+    override fun getHistoryAccount(): ArrayList<String> {
+        TODO("Not yet implemented")
+    }
+
 }
