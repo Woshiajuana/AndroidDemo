@@ -11,20 +11,6 @@ import java.lang.Exception
 
 class WowLoadingDialog(context: Context) : Dialog(context, R.style.Dialog_Theme_Loading) {
 
-    companion object {
-        private var mContext: Context? = null
-        private var mInstance: WowLoadingDialog? = null
-        fun init (context: Context) {
-            mContext = context
-        }
-        fun getInstance () = mInstance ?: synchronized(this) {
-            if (mContext === null) {
-                throw Exception("WowJsonCacheUtils need Application context. You Should init ...")
-            }
-            WowLoadingDialog(mContext!!).also { mInstance = it }
-        }
-    }
-
     var mRotateAnimation: RotateAnimation? = null
 
     init {

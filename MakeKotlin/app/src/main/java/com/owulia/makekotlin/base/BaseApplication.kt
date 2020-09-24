@@ -3,7 +3,6 @@ package com.owulia.makekotlin.base
 import android.app.Application
 import com.owulia.makekotlin.utils.Constants
 import com.owulia.makekotlin.utils.WowJsonCacheUtils
-import com.owulia.makekotlin.widget.WowLoadingDialog
 import com.owulia.makekotlin.widget.WowToastUtils
 
 class BaseApplication : Application() {
@@ -19,6 +18,5 @@ class BaseApplication : Application() {
     fun build (application: Application) {
         WowJsonCacheUtils.init(application, Constants.JSON_CACHE_KEY_COMMON)
         WowToastUtils.init(application)
-        WowLoadingDialog.init(application)
     }
 }
