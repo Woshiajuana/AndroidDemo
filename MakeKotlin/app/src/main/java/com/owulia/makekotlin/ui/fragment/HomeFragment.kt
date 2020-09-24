@@ -1,6 +1,5 @@
 package com.owulia.makekotlin.ui.fragment
 
-import android.graphics.*
 import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
@@ -12,8 +11,8 @@ import com.owulia.makekotlin.R
 import com.owulia.makekotlin.adapter.NewsAdapter
 import com.owulia.makekotlin.base.BaseFragment
 import com.owulia.makekotlin.utils.WowSizeUtils
-import com.owulia.makekotlin.widget.WowCarousel
-import com.owulia.makekotlin.widget.WowLinearSpacesItemDecorationHelper
+import com.owulia.makekotlin.widget.WowCarouselView
+import com.owulia.makekotlin.utils.WowLinearSpacesItemDecorationHelper
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
@@ -46,7 +45,7 @@ class HomeFragment : BaseFragment() {
         render(RenderState.SUCCESS)
 
         // 轮播
-        vCarousel.start(object : WowCarousel.CarouselPagerAdapter() {
+        vCarousel.start(object : WowCarouselView.CarouselPagerAdapter() {
             override fun getInstantiateItem(position: Int): View {
                 return ImageView(context).apply {
                     scaleType = ImageView.ScaleType.FIT_XY
@@ -68,7 +67,12 @@ class HomeFragment : BaseFragment() {
             layoutManager = LinearLayoutManager(context)
             isNestedScrollingEnabled = false
             adapter = NewsAdapter()
-            addItemDecoration(WowLinearSpacesItemDecorationHelper(topSpace = 20, bottomSpace = 20))
+            addItemDecoration(
+                WowLinearSpacesItemDecorationHelper(
+                    topSpace = 20,
+                    bottomSpace = 20
+                )
+            )
         }
 
     }

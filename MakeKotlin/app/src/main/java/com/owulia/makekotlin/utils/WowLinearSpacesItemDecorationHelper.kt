@@ -1,4 +1,4 @@
-package com.owulia.makekotlin.widget
+package com.owulia.makekotlin.utils
 
 import android.graphics.Rect
 import android.view.View

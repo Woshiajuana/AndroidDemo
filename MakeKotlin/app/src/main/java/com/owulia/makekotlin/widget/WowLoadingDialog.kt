@@ -6,6 +6,7 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import com.owulia.makekotlin.R
+import com.owulia.makekotlin.utils.WowToastUtils
 import kotlinx.android.synthetic.main.widget_loading_dialog.*
 
 class WowLoadingDialog(context: Context) : Dialog(context, R.style.Dialog_Theme_Loading) {

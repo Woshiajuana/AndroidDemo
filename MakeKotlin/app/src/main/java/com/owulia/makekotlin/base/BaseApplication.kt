@@ -3,7 +3,7 @@ package com.owulia.makekotlin.base
 import android.app.Application
 import com.owulia.makekotlin.utils.Constants
 import com.owulia.makekotlin.utils.WowJsonCacheUtils
-import com.owulia.makekotlin.widget.WowToastUtils
+import com.owulia.makekotlin.utils.WowToastUtils
 
 class BaseApplication : Application() {
 

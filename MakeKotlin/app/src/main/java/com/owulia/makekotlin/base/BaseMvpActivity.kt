@@ -2,7 +2,7 @@ package com.owulia.makekotlin.base
 
 import android.app.Activity
 import com.owulia.makekotlin.widget.WowLoadingDialog
-import com.owulia.makekotlin.widget.WowToastUtils
+import com.owulia.makekotlin.utils.WowToastUtils
 
 abstract class BaseMvpActivity<P : IBasePresenter> : BaseActivity (), IBaseView {
 

@@ -12,7 +12,7 @@ import com.owulia.makekotlin.R
 import com.owulia.makekotlin.utils.WowSizeUtils
 import kotlinx.android.synthetic.main.widget_carousel.view.*
 
-class WowCarousel @JvmOverloads constructor(
+class WowCarouselView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
