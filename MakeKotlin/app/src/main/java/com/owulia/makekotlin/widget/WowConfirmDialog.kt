@@ -8,7 +8,7 @@ import android.view.View
 import com.owulia.makekotlin.R
 import kotlinx.android.synthetic.main.widget_confirm_dialog.*
 
-class WowConfirmDialog(context: Context) : Dialog(context, R.style.WowDialog) {
+class WowConfirmDialog(context: Context) : Dialog(context, R.style.Dialog_Theme_Confirm) {
 
     var setSureOnClickListener: ((View) -> Boolean?)? = null
     var setCancelOnClickListener: ((View) -> Boolean?)? = null

@@ -15,12 +15,12 @@
         <!--        <item name="android:windowFullscreen">true</item>-->
         <!--        <item name="windowActionBar">false</item>-->
         <!--        <item name="windowNoTitle">true</item>-->
-                <item name="android:windowBackground">@mipmap/ic_welcome</item>
+        <item name="android:windowBackground">@mipmap/ic_welcome</item>
         <item name="android:windowLayoutInDisplayCutoutMode" tools:ignore="NewApi">shortEdges</item>
     </style>
 
     <!--对话框样式-->
-    <style name="WowDialog" parent="Theme.AppCompat.Dialog">
+    <style name="Dialog.Theme.Confirm" parent="Theme.AppCompat.Dialog">
         <!--背景透明-->
         <item name="android:windowBackground">@android:color/transparent</item>
         <!--没有标题-->
@@ -29,8 +29,28 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
-<!--    弹窗动画样式-->
-    <style name="Dialog.Center.Zoom.In" parent="Animation.AppCompat.Dialog">
+    <!--  loading 样式  -->
+    <style name="Dialog.Theme.Loading" parent="Theme.AppCompat.Dialog">
+        <!-- 是否有边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!--是否在悬浮Activity之上  -->
+        <item name="android:windowIsFloating">true</item>
+        <!--标题  -->
+        <item name="android:windowNoTitle">true</item>
+        <!--阴影  -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--透明背景-->
+        <item name="android:background">@android:color/transparent</item>
+        <!--窗口背景透明-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--弹窗背景是否变暗-->
+        <item name="android:backgroundDimEnabled">false</item>
+        <!--动画-->
+<!--        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>-->
+    </style>
+
+    <!-- 弹窗动画样式-->
+    <style name="Dialog.Anim.Center.Zoom.In" parent="Animation.AppCompat.Dialog">
         <item name="android:windowEnterAnimation">@anim/anim_zoom_in</item>
         <item name="android:windowExitAnimation">@anim/anim_zoom_out</item>
     </style>

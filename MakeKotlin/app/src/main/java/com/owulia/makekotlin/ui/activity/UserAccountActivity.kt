@@ -4,7 +4,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.adapter.UserHistoryAccountAdapter
 import com.owulia.makekotlin.base.BaseActivity
+import com.owulia.makekotlin.widget.WowLoadingDialog
 import kotlinx.android.synthetic.main.activity_user_account.*
+import kotlinx.android.synthetic.main.widget_button.*
 
 class UserAccountActivity : BaseActivity() {
 
@@ -19,6 +21,14 @@ class UserAccountActivity : BaseActivity() {
         vHistoryAccountBox.apply {
             adapter = UserHistoryAccountAdapter()
             layoutManager = LinearLayoutManager(context)
+        }
+    }
+
+    override fun initListener() {
+        super.initListener()
+
+        vSubmitButton.setOnClickListener{
+            WowLoadingDialog.getInstance().show()
         }
     }
 }
