@@ -17,7 +17,7 @@ interface IBaseView {
     /**
      * loading hide
      * */
-    fun loadingHide ()
+    fun loadingDismiss ()
 
     /**
      * 统一错误提示

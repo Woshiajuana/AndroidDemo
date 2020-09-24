@@ -2,15 +2,22 @@ package com.owulia.makekotlin.base
 
 import android.app.Activity
 import android.os.Bundle
+import com.owulia.makekotlin.widget.WowLoadingDialog
+import com.owulia.makekotlin.widget.WowToastUtils
 
 abstract class BaseMvpActivity<P : IBasePresenter> : BaseActivity (), IBaseView {
 
-    var mvpPre: P? = null
+    var mvpPresenter: P? = null
+
+    /**
+     * loading 弹窗
+     * */
+    val vDialogLoading: WowLoadingDialog by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { WowLoadingDialog(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mvpPre = bindPresenter()
-        mvpPre?.attachView(this)
+        mvpPresenter = bindPresenter()
+        mvpPresenter?.attachView(this)
     }
 
     abstract fun bindPresenter () : P
@@ -19,10 +26,22 @@ abstract class BaseMvpActivity<P : IBasePresenter> : BaseActivity (), IBaseView 
         return this
     }
 
+    override fun loadingShow() {
+        vDialogLoading.show()
+    }
+
+    override fun loadingDismiss() {
+        vDialogLoading.dismiss()
+    }
+
+    override fun toast(msg: String) {
+        WowToastUtils.show(msg)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        mvpPre?.detachView()
-        mvpPre = null
+        mvpPresenter?.detachView()
+        mvpPresenter = null
     }
 
 }
