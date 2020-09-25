@@ -38,6 +38,11 @@ class UserAccountContacts {
          * */
         fun getHistoryAccount ()
 
+        /**
+         * 删除历史账号数据
+         * */
+        fun delHistoryAccount (position: Int)
+
     }
 
     interface IModel {
@@ -52,6 +57,11 @@ class UserAccountContacts {
          * 从缓存中获取历史账号数据
          * */
         fun getHistoryAccount () : ArrayList<String>
+
+        /**
+         * 删除历史账号数据
+         * */
+        fun delHistoryAccount (position: Int)
 
     }
 }

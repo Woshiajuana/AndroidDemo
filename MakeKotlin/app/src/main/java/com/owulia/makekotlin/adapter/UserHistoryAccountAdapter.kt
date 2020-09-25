@@ -38,7 +38,7 @@ class UserHistoryAccountAdapter : RecyclerView.Adapter<UserHistoryAccountAdapter
                 setDeleteOnClickListener?.let {
                     if (it(position)) {
                         mArrData.removeAt(position)
-                        notifyItemChanged(position)
+                        notifyDataSetChanged()
                     }
                 }
             }

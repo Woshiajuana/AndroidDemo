@@ -44,11 +44,14 @@ class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>(), UserAccount
 
         // 触发
         mUserHistoryAccountAdapter?.apply {
-//            setDeleteOnClickListener = {
-//            }
+            setDeleteOnClickListener = {
+                mvpPresenter?.delHistoryAccount(it)
+                true
+            }
             // 触发赋值历史数据
             setItemOnClickListener = {
                 vAccountInput.setText(it)
+                vHistoryOpen.performClick()
             }
         }
 

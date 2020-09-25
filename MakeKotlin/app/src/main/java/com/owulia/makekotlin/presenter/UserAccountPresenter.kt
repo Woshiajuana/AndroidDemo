@@ -17,4 +17,8 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAcc
         mvpView?.callbackHistoryAccount(arrData)
     }
 
+    override fun delHistoryAccount(position: Int) {
+        mvpModel.delHistoryAccount(position)
+    }
+
 }
