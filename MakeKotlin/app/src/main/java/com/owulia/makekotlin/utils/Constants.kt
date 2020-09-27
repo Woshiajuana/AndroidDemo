@@ -9,6 +9,13 @@ class Constants {
          * */
         const val BASE_URL = "https://gw.jfpays.com/"
 
+        // 注册账号检查服务
+        const val DO_CHECK_ACCOUNT = "upcs/user/before/loginNo/check"
+
+
+
+
+
         /**
          * 账号 key
          * */
