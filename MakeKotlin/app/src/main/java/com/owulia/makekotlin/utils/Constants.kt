@@ -5,6 +5,11 @@ class Constants {
     companion object {
 
         /**
+         * 请求接口地址
+         * */
+        const val BASE_URL = "https://gw.jfpays.com/"
+
+        /**
          * 账号 key
          * */
         const val KEY_ACCOUNT = "key_account"
