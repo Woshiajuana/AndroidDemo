@@ -9,7 +9,7 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAcc
     private val mvpModel: UserAccountModel = UserAccountModel()
 
     override fun checkAccount(account: String) {
-
+        mvpModel.checkAccount(account)
     }
 
     override fun getHistoryAccount() {

@@ -20,7 +20,7 @@ class UserAccountModel : UserAccountContacts.IModel {
     )
 
     override fun checkAccount(account: String) {
-
+        
     }
 
     override fun getHistoryAccount(): ArrayList<String> {
