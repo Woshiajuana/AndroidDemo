@@ -1,6 +1,9 @@
 package com.owulia.makekotlin.model
 
 import com.owulia.makekotlin.contacts.UserAccountContacts
+import com.owulia.makekotlin.utils.RetrofitManager
+import okhttp3.ResponseBody
+import retrofit2.Call
 
 class UserAccountModel : UserAccountContacts.IModel {
 
@@ -19,8 +22,10 @@ class UserAccountModel : UserAccountContacts.IModel {
         "13111111122"
     )
 
-    override fun checkAccount(account: String) {
-        
+    override fun checkAccount(account: String) : Call<ResponseBody> {
+        val params = HashMap<String, String>()
+        params["account"] = account
+        return RetrofitManager.instant.getApi().doCheckAccount1(params)
     }
 
     override fun getHistoryAccount(): ArrayList<String> {

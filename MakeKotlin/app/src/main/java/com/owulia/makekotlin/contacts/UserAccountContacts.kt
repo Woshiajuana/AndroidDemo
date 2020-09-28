@@ -2,6 +2,8 @@ package com.owulia.makekotlin.contacts
 
 import com.owulia.makekotlin.base.IBasePresenter
 import com.owulia.makekotlin.base.IBaseView
+import okhttp3.ResponseBody
+import retrofit2.Call
 
 class UserAccountContacts {
 
@@ -51,7 +53,7 @@ class UserAccountContacts {
          * 检测账号是否注册
          * @param account [String] 账号
          * */
-        fun checkAccount(account: String)
+        fun checkAccount(account: String) : Call<ResponseBody>
 
         /**
          * 从缓存中获取历史账号数据
