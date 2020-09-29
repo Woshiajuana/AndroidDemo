@@ -17,7 +17,8 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAcc
 
     override fun checkAccount(account: String) {
         mvpView?.loadingShow()
-        mvpView?.toast(WowCommonUtils.formatDate())
+//        mvpView?.toast(WowCommonUtils.formatDate())
+//        mvpView?.toast(WowCommonUtils.randomString())
         mvpModel.checkAccount(account)
             .enqueue(object : Callback<ResponseBody> {
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
