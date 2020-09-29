@@ -48,12 +48,10 @@ class WowLoadingDialog(context: Context) : Dialog(context, R.style.Dialog_Theme_
 
     override fun show() {
         super.show()
-        WowToastUtils.show("show")
         vLoadingIcon.startAnimation(mRotateAnimation)
     }
 
     override fun dismiss() {
-        WowToastUtils.show("dismiss")
         mRotateAnimation?.cancel()
         super.dismiss()
     }

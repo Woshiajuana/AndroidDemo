@@ -57,7 +57,6 @@ class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>(), UserAccount
 
         // 登录
         vSubmitButton.setOnClickListener{
-            WowToastUtils.show(vAccountInput.text.toString())
             mvpPresenter?.checkAccount(vAccountInput.text.toString())
         }
 

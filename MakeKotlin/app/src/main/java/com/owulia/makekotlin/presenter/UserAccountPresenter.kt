@@ -3,6 +3,7 @@ package com.owulia.makekotlin.presenter
 import com.owulia.makekotlin.base.BasePresenter
 import com.owulia.makekotlin.contacts.UserAccountContacts
 import com.owulia.makekotlin.model.UserAccountModel
+import com.owulia.makekotlin.utils.WowCommonUtils
 import com.owulia.makekotlin.utils.WowLogUtils
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -16,6 +17,7 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAcc
 
     override fun checkAccount(account: String) {
         mvpView?.loadingShow()
+        mvpView?.toast(WowCommonUtils.formatDate())
         mvpModel.checkAccount(account)
             .enqueue(object : Callback<ResponseBody> {
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
