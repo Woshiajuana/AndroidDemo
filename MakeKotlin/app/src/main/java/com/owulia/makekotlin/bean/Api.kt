@@ -5,6 +5,7 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.FieldMap
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface Api {
@@ -20,6 +21,7 @@ interface Api {
      * 注册账号检查服务
      * */
     @FormUrlEncoded
+    @Headers("Content-Type: application/json", "Accept: application/json")
     @POST(Constants.DO_CHECK_ACCOUNT)
     fun doCheckAccount1 (@FieldMap params: Map<String, String>) : Call<ResponseBody>
 }
