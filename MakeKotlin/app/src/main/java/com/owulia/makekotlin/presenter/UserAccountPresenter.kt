@@ -35,7 +35,7 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAcc
                     if (code == HttpURLConnection.HTTP_OK) {
                         WowLogUtils.d(this, "请求成功 => ${response.body()}")
                     } else {
-                        WowLogUtils.d(this, "请求失败 => ${response.body()}")
+                        WowLogUtils.d(this, "请求失败 => ${response}")
                     }
                 }
             })
