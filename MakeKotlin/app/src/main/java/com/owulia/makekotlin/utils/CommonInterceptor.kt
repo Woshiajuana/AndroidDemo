@@ -64,7 +64,8 @@ class CommonInterceptor : Interceptor {
             for (i in 0 until newBody.size()) {
                 params[newBody.name(i)] = newBody.value(i)
             }
-
+            val strSignTemp = signatureTempGenerate(params, Constants.ENCRYPT_KEY)
+//            val signature = Dige
         }
         return request
     }
@@ -100,27 +101,6 @@ class CommonInterceptor : Interceptor {
          * 排序后的字符串
          * */
         return stringBuffer.append("key=").append(key).toString()
-    }
-
-    fun createSign(
-        parameters: Map<String, Any>?,
-        key: String?
-    ): String? {
-        val signMap: SortedMap<String, Any> =
-            TreeMap(parameters)
-        val sb = StringBuffer()
-        val es: Set<*> = signMap.entries
-        for (e in es) {
-            val entry = e as Map.Entry<*, *>
-            val k = entry.key as String
-            val v = entry.value
-            //空值不传递，不参与签名组串
-            if (null != v && "" != v) {
-                sb.append(k).append("=").append(v).append("&")
-            }
-        }
-        //排序后的字符串
-        return sb.append("key=").append(key).toString()
     }
 
 }

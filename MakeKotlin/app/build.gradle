@@ -46,9 +46,12 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
+    // Http
     implementation 'com.squareup.retrofit2:retrofit:2.6.3'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.+'
 
+    // 工具
+    implementation 'cn.hutool:hutool-all:4.5.16'
 
 }
