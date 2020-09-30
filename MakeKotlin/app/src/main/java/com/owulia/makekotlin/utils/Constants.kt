@@ -4,6 +4,10 @@ class Constants {
 
     companion object {
 
+        const val TENANT_ID = "0"
+
+        const val ENCRYPT_KEY = "shrewshrewshrews"
+
         /**
          * 请求接口地址
          * */
