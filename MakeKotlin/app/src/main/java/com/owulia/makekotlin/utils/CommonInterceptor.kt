@@ -4,6 +4,7 @@ import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
+import java.util.*
 
 class CommonInterceptor : Interceptor {
 
@@ -54,11 +55,72 @@ class CommonInterceptor : Interceptor {
                 .add("reqDate", WowCommonUtils.formatDate(pattern = "yyyyMMdd"))
                 .add("reqTime", WowCommonUtils.formatDate(pattern = "yyyyMMddHHmmss"))
                 .add("tenantId", Constants.TENANT_ID)
+
+            /**
+             * 添加签名
+             * */
+            val params = HashMap<String, Any>()
+            val newBody = builder.build()
+            for (i in 0 until newBody.size()) {
+                params[newBody.name(i)] = newBody.value(i)
+            }
+
         }
+        return request
     }
 
     private fun rebuildGetRequest (request: Request) : Request {
         TODO("111")
+    }
+
+
+
+    /**
+     * 获取签名字符串
+     * */
+    private fun signatureTempGenerate (
+        params: Map<String, Any>,
+        key: String
+    ) : String {
+        val signMap: SortedMap<String, Any> = TreeMap(params)
+        val stringBuffer = StringBuffer()
+        val es = signMap.entries
+        for (e in es) {
+            val entry = e as Map.Entry<*, *>
+            val k = entry.key as String
+            val v = entry.value
+            /**
+             * 空值不传递，不参与签名组串
+             * */
+            if (null != v && "" != v) {
+                stringBuffer.append(k).append("=").append(v).append("&")
+            }
+        }
+        /**
+         * 排序后的字符串
+         * */
+        return stringBuffer.append("key=").append(key).toString()
+    }
+
+    fun createSign(
+        parameters: Map<String, Any>?,
+        key: String?
+    ): String? {
+        val signMap: SortedMap<String, Any> =
+            TreeMap(parameters)
+        val sb = StringBuffer()
+        val es: Set<*> = signMap.entries
+        for (e in es) {
+            val entry = e as Map.Entry<*, *>
+            val k = entry.key as String
+            val v = entry.value
+            //空值不传递，不参与签名组串
+            if (null != v && "" != v) {
+                sb.append(k).append("=").append(v).append("&")
+            }
+        }
+        //排序后的字符串
+        return sb.append("key=").append(key).toString()
     }
 
 }
