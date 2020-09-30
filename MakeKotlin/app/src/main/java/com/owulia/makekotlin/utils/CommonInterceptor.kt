@@ -1,9 +1,9 @@
 package com.owulia.makekotlin.utils
 
-import okhttp3.FormBody
-import okhttp3.Interceptor
-import okhttp3.Request
-import okhttp3.Response
+import cn.hutool.crypto.digest.DigestUtil
+import com.google.gson.GsonBuilder
+import okhttp3.*
+import java.nio.charset.StandardCharsets
 import java.util.*
 
 class CommonInterceptor : Interceptor {
@@ -18,7 +18,7 @@ class CommonInterceptor : Interceptor {
         return response
     }
 
-    private fun rebuildRequest (request: Request) : Request {
+    private fun rebuildRequest(request: Request): Request {
         return when (request.method()) {
             REQUEST_METHOD_GET -> {
                 rebuildGetRequest(request)
@@ -32,7 +32,7 @@ class CommonInterceptor : Interceptor {
         }
     }
 
-    private fun rebuildPostRequest (request: Request) : Request {
+    private fun rebuildPostRequest(request: Request): Request {
         /**
          * request.body() is FormBody 为true的条件为：
          * 在ApiService 中将POST请求中设置
@@ -65,24 +65,33 @@ class CommonInterceptor : Interceptor {
                 params[newBody.name(i)] = newBody.value(i)
             }
             val strSignTemp = signatureTempGenerate(params, Constants.ENCRYPT_KEY)
-//            val signature = Dige
+            val signature = DigestUtil.sha256Hex(strSignTemp.toByteArray(StandardCharsets.UTF_8))
+            params[signature] = signature
+            val mediaType = MediaType.parse("application/json;charset=utf-8")
+            val requestBody = RequestBody.create(
+                mediaType,
+                GsonBuilder().disableHtmlEscaping().create().toJson(params)
+            )
+            return request.newBuilder()
+                .addHeader("Authorization", "Basic c2hyZXc6c2hyZXc=")
+                .addHeader("TENANT_ID", Constants.TENANT_ID)
+                .post(requestBody).build()
         }
         return request
     }
 
-    private fun rebuildGetRequest (request: Request) : Request {
-        TODO("111")
+    private fun rebuildGetRequest(request: Request): Request {
+        return request
     }
-
 
 
     /**
      * 获取签名字符串
      * */
-    private fun signatureTempGenerate (
+    private fun signatureTempGenerate(
         params: Map<String, Any>,
         key: String
-    ) : String {
+    ): String {
         val signMap: SortedMap<String, Any> = TreeMap(params)
         val stringBuffer = StringBuffer()
         val es = signMap.entries
