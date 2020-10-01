@@ -40,6 +40,7 @@ class CommonInterceptor : Interceptor {
          * 2，方法注解为@FormUrlEncoded
          */
         val body = request.body()
+        WowLogUtils.d(this, "${body is FormBody}")
         if (body is FormBody) {
             val builder = FormBody.Builder()
             /**
@@ -77,7 +78,8 @@ class CommonInterceptor : Interceptor {
                 .addHeader("TENANT_ID", Constants.TENANT_ID)
                 .post(requestBody).build()
         }
-        return request
+        return request.newBuilder().addHeader("Authorization", "Basic c2hyZXc6c2hyZXc=")
+            .addHeader("TENANT_ID", Constants.TENANT_ID).build()
     }
 
     private fun rebuildGetRequest(request: Request): Request {

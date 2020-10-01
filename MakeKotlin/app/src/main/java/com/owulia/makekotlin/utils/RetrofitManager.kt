@@ -16,8 +16,8 @@ class RetrofitManager private constructor() {
     private val commonInterceptor = CommonInterceptor()
 
     private val client = OkHttpClient.Builder()
-        .addInterceptor(loggingInterceptor)
         .addInterceptor(commonInterceptor)
+        .addInterceptor(loggingInterceptor)
         .callTimeout(120, TimeUnit.SECONDS)
         .readTimeout(120, TimeUnit.SECONDS)
         .writeTimeout(120, TimeUnit.SECONDS)
