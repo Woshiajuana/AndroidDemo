@@ -3,8 +3,12 @@ package com.owulia.makekotlin.utils
 import cn.hutool.crypto.digest.DigestUtil
 import com.google.gson.GsonBuilder
 import okhttp3.*
+import okio.Buffer
+import org.json.JSONObject
+import java.io.IOException
 import java.nio.charset.StandardCharsets
 import java.util.*
+
 
 class CommonInterceptor : Interceptor {
 
@@ -40,7 +44,7 @@ class CommonInterceptor : Interceptor {
          * 2，方法注解为@FormUrlEncoded
          */
         val body = request.body()
-        WowLogUtils.d(this, "${body is FormBody}")
+        WowLogUtils.d(this, "body is FormBody => ${body is FormBody}")
         if (body is FormBody) {
             val builder = FormBody.Builder()
             /**
@@ -48,7 +52,7 @@ class CommonInterceptor : Interceptor {
              * 否则会出现NullPointerException
              * */
             for (i in 0 until body.size()) {
-                body.value(i)?.let {
+                body.value(i).let {
                     builder.add(body.name(i), it)
                 }
             }
@@ -67,7 +71,7 @@ class CommonInterceptor : Interceptor {
             }
             val strSignTemp = signatureTempGenerate(params, Constants.ENCRYPT_KEY)
             val signature = DigestUtil.sha256Hex(strSignTemp.toByteArray(StandardCharsets.UTF_8))
-            params[signature] = signature
+            params["signature"] = signature
             val mediaType = MediaType.parse("application/json;charset=utf-8")
             val requestBody = RequestBody.create(
                 mediaType,
@@ -80,6 +84,16 @@ class CommonInterceptor : Interceptor {
         }
         return request.newBuilder().addHeader("Authorization", "Basic c2hyZXc6c2hyZXc=")
             .addHeader("TENANT_ID", Constants.TENANT_ID).build()
+    }
+
+    /**
+     * 获取常规的 post 请求参数
+     * */
+    @Throws(IOException::class)
+    private fun getParamContent(body: RequestBody): String? {
+        val buffer = Buffer()
+        body.writeTo(buffer)
+        return buffer.readUtf8()
     }
 
     private fun rebuildGetRequest(request: Request): Request {
