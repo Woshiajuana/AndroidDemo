@@ -16,8 +16,20 @@ class Constants {
         // 注册账号检查服务
         const val DO_CHECK_ACCOUNT = "upcs/user/before/loginNo/check"
 
+        // 登录接口
+        const val DO_USER_LOGIN = "auth/oauth/token"
 
+        // 用户注册
+        const val DO_USER_REGISTER = "upcs/user/before/regist"
 
+        // 用户忘记密码
+        const val DO_USER_RESET_PASSWORD = "upcs/user/before/modify/password"
+
+        // 发送短信
+        const val DO_SEND_SMS = "upcs/sms/before/send"
+
+        // 用户信息
+        const val REQ_USER_INFO = "upcs/user/info/query"
 
 
         /**

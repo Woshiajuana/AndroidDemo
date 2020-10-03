@@ -27,7 +27,7 @@ class UserAccountModel : UserAccountContacts.IModel {
         val params = HashMap<String, String>()
         params["loginNo"] = account
         params["loginType"] = "PWD"
-        return RetrofitManager.instant.getApi().doCheckAccount1(params)
+        return RetrofitManager.instant.getApi().doCheckAccount(params)
     }
 
     override fun getHistoryAccount(): ArrayList<String> {
