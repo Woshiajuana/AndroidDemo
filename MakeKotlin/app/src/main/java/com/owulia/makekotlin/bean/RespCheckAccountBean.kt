@@ -1,6 +1,6 @@
 package com.owulia.makekotlin.bean
 
-data class CheckAccountRespBean (
+data class RespCheckAccountBean (
     val charset: String?,
     val headPortrait: String?,
     val isRegister: String?,

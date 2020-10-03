@@ -2,9 +2,7 @@ package com.owulia.makekotlin.bean
 
 import com.owulia.makekotlin.utils.Constants
 import retrofit2.Call
-import retrofit2.http.FieldMap
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface Api {
 
@@ -13,12 +11,13 @@ interface Api {
      * */
     @FormUrlEncoded
     @POST(Constants.DO_CHECK_ACCOUNT)
-    fun doCheckAccount (@FieldMap params: Map<String, String>) : Call<RespBean<CheckAccountRespBean>>
+    fun doCheckAccount (@FieldMap params: Map<String, String>) : Call<RespBean<RespCheckAccountBean>>
 
     /**
      * 登录接口
      * */
-    fun doUserLogin ()
+    @GET(Constants.DO_USER_LOGIN)
+    fun doUserLogin (@QueryMap params: Map<String, String>)
 
     /**
      * 用户注册账号
