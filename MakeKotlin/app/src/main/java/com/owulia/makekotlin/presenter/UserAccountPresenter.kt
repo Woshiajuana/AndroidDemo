@@ -1,13 +1,11 @@
 package com.owulia.makekotlin.presenter
 
 import com.owulia.makekotlin.base.BasePresenter
-import com.owulia.makekotlin.bean.BaseRespBean
+import com.owulia.makekotlin.bean.RespBean
 import com.owulia.makekotlin.bean.CheckAccountRespBean
 import com.owulia.makekotlin.contacts.UserAccountContacts
 import com.owulia.makekotlin.model.UserAccountModel
-import com.owulia.makekotlin.utils.WowCommonUtils
 import com.owulia.makekotlin.utils.WowLogUtils
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,14 +20,14 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAcc
 //        mvpView?.toast(WowCommonUtils.formatDate())
 //        mvpView?.toast(WowCommonUtils.randomString())
         mvpModel.checkAccount(account)
-            .enqueue(object : Callback<BaseRespBean<CheckAccountRespBean>> {
-                override fun onFailure(call: Call<BaseRespBean<CheckAccountRespBean>>, t: Throwable) {
+            .enqueue(object : Callback<RespBean<CheckAccountRespBean>> {
+                override fun onFailure(call: Call<RespBean<CheckAccountRespBean>>, t: Throwable) {
                     WowLogUtils.d(this, "请求错误 => $t")
                     mvpView?.loadingDismiss()
                 }
                 override fun onResponse(
-                    call: Call<BaseRespBean<CheckAccountRespBean>>,
-                    response: Response<BaseRespBean<CheckAccountRespBean>>
+                    call: Call<RespBean<CheckAccountRespBean>>,
+                    response: Response<RespBean<CheckAccountRespBean>>
                 ) {
                     mvpView?.loadingDismiss()
                     val code = response.code()
