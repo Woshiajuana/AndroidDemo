@@ -1,5 +1,7 @@
 package com.owulia.makekotlin.model
 
+import com.owulia.makekotlin.bean.BaseRespBean
+import com.owulia.makekotlin.bean.CheckAccountRespBean
 import com.owulia.makekotlin.contacts.UserAccountContacts
 import com.owulia.makekotlin.utils.RetrofitManager
 import okhttp3.ResponseBody
@@ -22,7 +24,7 @@ class UserAccountModel : UserAccountContacts.IModel {
         "13111111122"
     )
 
-    override fun checkAccount(account: String) : Call<ResponseBody> {
+    override fun checkAccount(account: String) : Call<BaseRespBean<CheckAccountRespBean>> {
         val params = HashMap<String, String>()
         params["loginNo"] = account
         params["loginType"] = "PWD"

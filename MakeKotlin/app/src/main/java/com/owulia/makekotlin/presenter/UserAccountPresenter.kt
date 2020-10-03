@@ -1,6 +1,8 @@
 package com.owulia.makekotlin.presenter
 
 import com.owulia.makekotlin.base.BasePresenter
+import com.owulia.makekotlin.bean.BaseRespBean
+import com.owulia.makekotlin.bean.CheckAccountRespBean
 import com.owulia.makekotlin.contacts.UserAccountContacts
 import com.owulia.makekotlin.model.UserAccountModel
 import com.owulia.makekotlin.utils.WowCommonUtils
@@ -20,14 +22,14 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAcc
 //        mvpView?.toast(WowCommonUtils.formatDate())
 //        mvpView?.toast(WowCommonUtils.randomString())
         mvpModel.checkAccount(account)
-            .enqueue(object : Callback<ResponseBody> {
-                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+            .enqueue(object : Callback<BaseRespBean<CheckAccountRespBean>> {
+                override fun onFailure(call: Call<BaseRespBean<CheckAccountRespBean>>, t: Throwable) {
                     WowLogUtils.d(this, "请求错误 => $t")
                     mvpView?.loadingDismiss()
                 }
                 override fun onResponse(
-                    call: Call<ResponseBody>,
-                    response: Response<ResponseBody>
+                    call: Call<BaseRespBean<CheckAccountRespBean>>,
+                    response: Response<BaseRespBean<CheckAccountRespBean>>
                 ) {
                     mvpView?.loadingDismiss()
                     val code = response.code()
