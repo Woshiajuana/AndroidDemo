@@ -24,4 +24,9 @@ interface IBaseView {
      * */
     fun toast (msg: String)
 
+    /**
+     * 统一错误提示
+     * */
+    fun toast (msg: Int)
+
 }

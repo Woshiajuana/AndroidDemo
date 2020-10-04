@@ -1,5 +1,6 @@
 package com.owulia.makekotlin.presenter
 
+import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BasePresenter
 import com.owulia.makekotlin.bean.RespBean
 import com.owulia.makekotlin.bean.RespCheckAccountBean
@@ -36,12 +37,12 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAcc
                         val body = response.body()
                         if (body?.code == Constants.CODE_SUCCESS) {
                             if (body.data?.isRegister == "Y") {
-                                
+                                mvpView?.callbackGoToLogin(account)
                             } else {
-
+                                mvpView?.callbackGoToRegister(account)
                             }
                         } else {
-                            mvpView?.toast("请求失败，请稍后再试")
+                            mvpView?.toast(R.string.string_http_code_tip)
                         }
                     } else {
                         mvpView?.toast(response.message()?: "请求失败，请稍后再试")

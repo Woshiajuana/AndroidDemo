@@ -64,5 +64,6 @@
     <string name="string_agreement_popup_str3">的全部内容，同意并接收全部条款后开始使用我们的产品和服务。\n点击同意视为接受全部条款，开始体验码可的产品和服务吧</string>
     <string name="string_link_agreement_service">http://ossmk2.jfpays.com/www_make_v1/h5/agreement_service.html</string>
     <string name="string_link_agreement_privacy">http://ossmk2.jfpays.com/www_make_v1/h5/agreement_privacy.html</string>
+    <string name="string_http_code_tip">请求失败，请稍后再试</string>
 
 </resources>

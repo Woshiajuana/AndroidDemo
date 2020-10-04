@@ -37,6 +37,10 @@ abstract class BaseMvpActivity<P : IBasePresenter> : BaseActivity (), IBaseView 
         WowToastUtils.show(msg)
     }
 
+    override fun toast(msg: Int) {
+        WowToastUtils.show(getString(msg))
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         mvpPresenter?.detachView()
