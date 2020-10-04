@@ -19,8 +19,9 @@ class UserAccountContacts {
         /**
          * 未注册跳转到注册页面
          * @param account [String] 账号
+         * @param avatar [String] 头像
          * */
-        fun callbackGoToRegister (account: String)
+        fun callbackGoToRegister (account: String, avatar: String)
 
         /**
          * 历史数据回调

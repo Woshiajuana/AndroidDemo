@@ -39,6 +39,7 @@ class Constants {
          * 账号 key
          * */
         const val KEY_ACCOUNT = "key_account"
+        const val KEY_AVATAR = "key_avatar"
 
         /**
          * webview 参数配置 key
