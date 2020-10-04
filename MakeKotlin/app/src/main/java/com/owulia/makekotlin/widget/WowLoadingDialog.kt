@@ -6,7 +6,6 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import com.owulia.makekotlin.R
-import com.owulia.makekotlin.utils.WowToastUtils
 import kotlinx.android.synthetic.main.widget_loading_dialog.*
 
 class WowLoadingDialog(context: Context) : Dialog(context, R.style.Dialog_Theme_Loading) {
@@ -22,8 +21,8 @@ class WowLoadingDialog(context: Context) : Dialog(context, R.style.Dialog_Theme_
      * 装载 View
      * */
     private fun initView () {
-//        val view = LayoutInflater.from(context).inflate(R.layout.widget_loading_dialog, null)
         setContentView(R.layout.widget_loading_dialog)
+        setCanceledOnTouchOutside(false) // 禁止点击黑色蒙层
     }
 
     /**

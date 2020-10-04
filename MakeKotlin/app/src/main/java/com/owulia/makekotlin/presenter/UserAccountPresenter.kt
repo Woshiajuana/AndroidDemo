@@ -5,6 +5,7 @@ import com.owulia.makekotlin.bean.RespBean
 import com.owulia.makekotlin.bean.RespCheckAccountBean
 import com.owulia.makekotlin.contacts.UserAccountContacts
 import com.owulia.makekotlin.model.UserAccountModel
+import com.owulia.makekotlin.utils.Constants
 import com.owulia.makekotlin.utils.WowLogUtils
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,8 +18,6 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAcc
 
     override fun checkAccount(account: String) {
         mvpView?.loadingShow()
-//        mvpView?.toast(WowCommonUtils.formatDate())
-//        mvpView?.toast(WowCommonUtils.randomString())
         mvpModel.checkAccount(account)
             .enqueue(object : Callback<RespBean<RespCheckAccountBean>> {
                 override fun onFailure(call: Call<RespBean<RespCheckAccountBean>>, t: Throwable) {
@@ -34,7 +33,18 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAcc
                     WowLogUtils.d(this, "code => $code")
                     if (code == HttpURLConnection.HTTP_OK) {
                         WowLogUtils.d(this, "请求成功 => ${response.body()}")
+                        val body = response.body()
+                        if (body?.code == Constants.CODE_SUCCESS) {
+                            if (body.data?.isRegister == "Y") {
+                                
+                            } else {
+
+                            }
+                        } else {
+                            mvpView?.toast("请求失败，请稍后再试")
+                        }
                     } else {
+                        mvpView?.toast(response.message()?: "请求失败，请稍后再试")
                         WowLogUtils.d(this, "请求失败 => ${response}")
                     }
                 }

@@ -13,7 +13,6 @@ import com.owulia.makekotlin.base.BaseMvpActivity
 import com.owulia.makekotlin.contacts.UserAccountContacts
 import com.owulia.makekotlin.presenter.UserAccountPresenter
 import com.owulia.makekotlin.utils.Constants
-import com.owulia.makekotlin.utils.WowToastUtils
 import kotlinx.android.synthetic.main.activity_user_account.*
 import kotlinx.android.synthetic.main.widget_button.*
 import kotlinx.android.synthetic.main.widget_input_clear_btn.*

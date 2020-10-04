@@ -4,6 +4,9 @@ class Constants {
 
     companion object {
 
+        // 接口 code
+        const val CODE_SUCCESS = 0
+
         const val TENANT_ID = "0"
 
         const val ENCRYPT_KEY = "shrewshrewshrews"
