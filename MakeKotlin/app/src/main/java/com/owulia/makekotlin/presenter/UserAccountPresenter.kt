@@ -39,7 +39,7 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAcc
                             if (body.data?.isRegister == "Y") {
                                 mvpView?.callbackGoToLogin(account)
                             } else {
-                                mvpView?.callbackGoToRegister(account)
+                                mvpView?.callbackGoToRegister(account, body.data?.headPortrait)
                             }
                         } else {
                             mvpView?.toast(R.string.string_http_code_tip)

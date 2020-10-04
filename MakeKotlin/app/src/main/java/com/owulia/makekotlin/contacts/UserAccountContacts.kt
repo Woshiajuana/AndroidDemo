@@ -21,7 +21,7 @@ class UserAccountContacts {
          * @param account [String] 账号
          * @param avatar [String] 头像
          * */
-        fun callbackGoToRegister (account: String, avatar: String)
+        fun callbackGoToRegister (account: String, avatar: String?)
 
         /**
          * 历史数据回调

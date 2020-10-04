@@ -103,7 +103,7 @@ class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>(), UserAccount
         startActivity(intent)
     }
 
-    override fun callbackGoToRegister(account: String, avatar: String) {
+    override fun callbackGoToRegister(account: String, avatar: String?) {
         val intent = Intent(this, UserRegisterActivity::class.java)
         intent.putExtra(Constants.KEY_ACCOUNT, account)
         intent.putExtra(Constants.KEY_AVATAR, avatar)

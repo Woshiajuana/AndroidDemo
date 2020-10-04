@@ -12,8 +12,8 @@ class UserLoginActivity : BaseActivity() {
 
     override fun getContentViewResourceId(): Int = R.layout.activity_user_login
 
-    private var mAccount = ""
-    private var mAvatar = ""
+    private var mAccount: String? = null
+    private var mAvatar: String? = null
 
     override fun initView() {
         super.initView()
@@ -21,8 +21,12 @@ class UserLoginActivity : BaseActivity() {
         initParams()
 
         vUserHeader.apply {
-            vHeaderTitle.text = WowCommonUtils.formatPhone(mAccount)
-            Glide.with(this).load(mAvatar).into(vHeaderImg)
+            mAccount?.let {
+                vHeaderTitle.text = WowCommonUtils.formatPhone(it)
+            }
+            mAvatar?.let{
+                Glide.with(this).load(it).into(vHeaderImg)
+            }
         }
     }
 
