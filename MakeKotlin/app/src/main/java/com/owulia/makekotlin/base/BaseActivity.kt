@@ -98,11 +98,6 @@ abstract class BaseActivity : AppCompatActivity() {
      * */
     open val mNavBarRightImg: Int = -1
 
-    /**
-     * presenter
-     * */
-//    open var presenter : P? = null
-
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -216,7 +211,6 @@ abstract class BaseActivity : AppCompatActivity() {
             setLeftImgBtn(mNavBarLeftImg)
             setRightImgBtn(mNavBarRightImg)
             setOnLeftBtnClickListener = {
-//                finish()
                 onBackPressed()
             }
         }

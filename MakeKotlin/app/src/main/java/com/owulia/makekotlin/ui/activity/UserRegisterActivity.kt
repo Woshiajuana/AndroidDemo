@@ -13,6 +13,7 @@ import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BaseActivity
 import com.owulia.makekotlin.bean.WebViewOptionBean
 import com.owulia.makekotlin.utils.Constants
+import com.owulia.makekotlin.utils.WowToastUtils
 import kotlinx.android.synthetic.main.activity_user_register.*
 
 class UserRegisterActivity : BaseActivity() {
@@ -23,6 +24,7 @@ class UserRegisterActivity : BaseActivity() {
         super.initView()
         render(RenderState.SUCCESS)
         initAgreement()
+        initParams()
     }
 
     /**
@@ -87,6 +89,14 @@ class UserRegisterActivity : BaseActivity() {
             movementMethod = LinkMovementMethod.getInstance()
             highlightColor = ContextCompat.getColor(this@UserRegisterActivity, android.R.color.transparent)
         }
+    }
+
+    /**
+     * 参数获取
+     * */
+    private fun initParams () {
+        val account = intent.getStringExtra(Constants.KEY_ACCOUNT)
+        WowToastUtils.show(account?: "")
     }
 
 }
