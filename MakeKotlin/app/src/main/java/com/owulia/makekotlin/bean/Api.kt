@@ -22,21 +22,29 @@ interface Api {
     /**
      * 用户注册账号
      * */
-    fun doUserRegister ()
+    @FormUrlEncoded
+    @POST(Constants.DO_USER_REGISTER)
+    fun doUserRegister () : Call<RespBean<*>>
 
     /**
      * 用户忘记密码
      * */
-    fun doUserResetPassword ()
+    @FormUrlEncoded
+    @POST(Constants.DO_USER_RESET_PASSWORD)
+    fun doUserResetPassword () : Call<RespBean<*>>
 
     /**
      * 发送短信
      * */
-    fun doSendSms ()
+    @FormUrlEncoded
+    @POST(Constants.DO_SEND_SMS)
+    fun doSendSms () : Call<RespBean<*>>
 
     /**
      * 用户信息
      * */
-    fun reqUserInfo ()
+    @FormUrlEncoded
+    @POST(Constants.REQ_USER_INFO)
+    fun reqUserInfo () : Call<RespBean<*>>
 
 }
