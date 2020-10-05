@@ -55,7 +55,7 @@ class UserAccountContacts {
          * 检测账号是否注册
          * @param account [String] 账号
          * */
-        fun checkAccount(account: String) : Call<RespBean<RespCheckAccountBean>>
+        fun checkAccount (account: String) : Call<RespBean<RespCheckAccountBean>>
 
         /**
          * 从缓存中获取历史账号数据

@@ -11,40 +11,40 @@ interface Api {
      * */
     @FormUrlEncoded
     @POST(Constants.DO_CHECK_ACCOUNT)
-    fun doCheckAccount (@FieldMap params: Map<String, String>) : Call<RespBean<RespCheckAccountBean>>
+    fun doCheckAccount (@FieldMap params: Map<String, Any>) : Call<RespBean<RespCheckAccountBean>>
 
     /**
      * 登录接口
      * */
     @GET(Constants.DO_USER_LOGIN)
-    fun doUserLogin (@QueryMap params: Map<String, String>)
+    fun doUserLogin (@QueryMap params: Map<String, Any>)
 
     /**
      * 用户注册账号
      * */
     @FormUrlEncoded
     @POST(Constants.DO_USER_REGISTER)
-    fun doUserRegister () : Call<RespBean<*>>
+    fun doUserRegister (@FieldMap params: Map<String, Any>) : Call<RespBean<*>>
 
     /**
      * 用户忘记密码
      * */
     @FormUrlEncoded
     @POST(Constants.DO_USER_RESET_PASSWORD)
-    fun doUserResetPassword () : Call<RespBean<*>>
+    fun doUserResetPassword (@FieldMap params: Map<String, Any>) : Call<RespBean<*>>
 
     /**
      * 发送短信
      * */
     @FormUrlEncoded
     @POST(Constants.DO_SEND_SMS)
-    fun doSendSms () : Call<RespBean<*>>
+    fun doSendSms (@FieldMap params: Map<String, Any>) : Call<RespBean<*>>
 
     /**
      * 用户信息
      * */
     @FormUrlEncoded
     @POST(Constants.REQ_USER_INFO)
-    fun reqUserInfo () : Call<RespBean<*>>
+    fun reqUserInfo (@FieldMap params: Map<String, Any>) : Call<RespBean<*>>
 
 }
