@@ -10,15 +10,19 @@ import android.text.style.UnderlineSpan
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.owulia.makekotlin.R
-import com.owulia.makekotlin.base.BaseActivity
+import com.owulia.makekotlin.base.BaseMvpActivity
 import com.owulia.makekotlin.bean.WebViewOptionBean
+import com.owulia.makekotlin.contacts.UserRegisterContacts
+import com.owulia.makekotlin.presenter.UserRegisterPresenter
 import com.owulia.makekotlin.utils.Constants
 import com.owulia.makekotlin.utils.WowToastUtils
 import kotlinx.android.synthetic.main.activity_user_register.*
 
-class UserRegisterActivity : BaseActivity() {
+class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegisterContacts.IView {
 
     override fun getContentViewResourceId(): Int = R.layout.activity_user_register
+
+    override fun bindPresenter(): UserRegisterPresenter = UserRegisterPresenter()
 
     override fun initView() {
         super.initView()
@@ -97,6 +101,19 @@ class UserRegisterActivity : BaseActivity() {
     private fun initParams () {
         val account = intent.getStringExtra(Constants.KEY_ACCOUNT)
         WowToastUtils.show(account?: "")
+    }
+
+    override fun initListener() {
+        super.initListener()
+
+    }
+
+    override fun callbackRegisterSuccess() {
+        TODO("Not yet implemented")
+    }
+
+    override fun callbackSendSms() {
+        TODO("Not yet implemented")
     }
 
 }

@@ -17,13 +17,6 @@ open class BasePresenter<V : IBaseView> : IBasePresenter  {
     }
 
     /**
-     * 判断 IBaseView 的生命周期是否结束
-     * */
-//    fun isViewAttach () : Boolean {
-//        return mvpReference != null && mvpReference?.get() != null
-//    }
-
-    /**
      * 卸载 View
      * */
     override fun detachView() {

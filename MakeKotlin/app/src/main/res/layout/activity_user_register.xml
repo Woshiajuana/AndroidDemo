@@ -72,6 +72,7 @@
             android:layout_height="42dp"/>
         <include layout="@layout/widget_input_clear_btn"/>
         <TextView
+            android:id="@+id/vCodeButton"
             android:text="@string/string_code_btn"
             android:textColor="@color/colorMain"
             android:layout_width="wrap_content"
