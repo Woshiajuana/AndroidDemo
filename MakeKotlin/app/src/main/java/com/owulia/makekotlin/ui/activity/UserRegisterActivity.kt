@@ -25,6 +25,8 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
 
     override fun bindPresenter(): UserRegisterPresenter = UserRegisterPresenter()
 
+    private var mAccount: String? = null
+
     override fun initView() {
         super.initView()
         render(RenderState.SUCCESS)
@@ -102,14 +104,20 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
      * 参数获取
      * */
     private fun initParams() {
-        val account = intent.getStringExtra(Constants.KEY_ACCOUNT)
-        WowToastUtils.show(account ?: "")
+        intent.apply {
+            getStringExtra(Constants.KEY_ACCOUNT)?.let {
+                mAccount = it
+            }
+        }
     }
 
     override fun initListener() {
         super.initListener()
         vCodeButton.setOnClickListener {
+            val params = HashMap<String, Any> ()
+            params["account"] = mAccount?: ""
 
+            mvpPresenter?.doSendSms(params)
         }
         vTypeSwitch.setOnClickListener {
             vInputPassword.inputType =
