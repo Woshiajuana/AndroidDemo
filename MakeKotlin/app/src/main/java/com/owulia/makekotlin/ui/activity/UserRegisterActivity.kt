@@ -105,7 +105,12 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
 
     override fun initListener() {
         super.initListener()
+        vCodeButton.setOnClickListener {
 
+        }
+        vInputPassword.setOnClickListener {
+
+        }
     }
 
     override fun callbackRegisterSuccess() {
