@@ -1,6 +1,7 @@
 package com.owulia.makekotlin.ui.activity
 
 import android.content.Intent
+import android.text.InputType
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
@@ -34,7 +35,7 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
     /**
      * 渲染协议部分
      * */
-    private fun initAgreement () {
+    private fun initAgreement() {
         val strAgreement = SpannableString(getString(R.string.string_agreement_tip))
         strAgreement.apply {
             setSpan(object : ClickableSpan() {
@@ -72,7 +73,8 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
             setSpan(object : ClickableSpan() {
                 override fun onClick(widget: View) {
                     val intent = Intent(this@UserRegisterActivity, WebViewActivity::class.java)
-                    intent.putExtra(Constants.KEY_WEB_VIEW_OPTION_MODEL,
+                    intent.putExtra(
+                        Constants.KEY_WEB_VIEW_OPTION_MODEL,
                         WebViewOptionBean(
                             link = getString(R.string.string_link_agreement_privacy),
                             title = getString(R.string.string_privacy_agreement)
@@ -91,16 +93,17 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
         vAgreement.apply {
             text = strAgreement
             movementMethod = LinkMovementMethod.getInstance()
-            highlightColor = ContextCompat.getColor(this@UserRegisterActivity, android.R.color.transparent)
+            highlightColor =
+                ContextCompat.getColor(this@UserRegisterActivity, android.R.color.transparent)
         }
     }
 
     /**
      * 参数获取
      * */
-    private fun initParams () {
+    private fun initParams() {
         val account = intent.getStringExtra(Constants.KEY_ACCOUNT)
-        WowToastUtils.show(account?: "")
+        WowToastUtils.show(account ?: "")
     }
 
     override fun initListener() {
@@ -108,8 +111,11 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
         vCodeButton.setOnClickListener {
 
         }
-        vInputPassword.setOnClickListener {
-
+        vTypeSwitch.setOnClickListener {
+            vInputPassword.inputType =
+                if (vInputPassword.inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD)
+                    InputType.TYPE_CLASS_TEXT
+                else InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
     }
 
