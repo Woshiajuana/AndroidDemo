@@ -16,7 +16,6 @@ import com.owulia.makekotlin.bean.WebViewOptionBean
 import com.owulia.makekotlin.contacts.UserRegisterContacts
 import com.owulia.makekotlin.presenter.UserRegisterPresenter
 import com.owulia.makekotlin.utils.Constants
-import com.owulia.makekotlin.utils.WowToastUtils
 import kotlinx.android.synthetic.main.activity_user_register.*
 
 class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegisterContacts.IView {
@@ -26,6 +25,8 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
     override fun bindPresenter(): UserRegisterPresenter = UserRegisterPresenter()
 
     private var mAccount: String? = null
+    private val mDefCount = 10
+    private var mCount = mDefCount
 
     override fun initView() {
         super.initView()
@@ -115,8 +116,8 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
         super.initListener()
         vCodeButton.setOnClickListener {
             val params = HashMap<String, Any> ()
-            params["account"] = mAccount?: ""
-
+            params["loginNo"] = mAccount?: ""
+            params["smsType"] = "COMMON"
             mvpPresenter?.doSendSms(params)
         }
         vTypeSwitch.setOnClickListener {
@@ -125,6 +126,27 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
                     InputType.TYPE_CLASS_TEXT
                 else InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
+    }
+
+    fun codeButtonStatus () {
+        val isClickable = mCount == mDefCount
+        vCodeButton.apply {
+            this.isClickable = isClickable
+            if (isClickable) {
+                text = getString(R.string.string_code_btn)
+            } else {
+                text = "$mCount s"
+            }
+        }
+    }
+
+    fun countDown () {
+        mCount--
+        if (mCount <= 0) {
+            mCount = mDefCount
+            return codeButtonStatus()
+        }
+        postDelayed
     }
 
     override fun callbackRegisterSuccess() {
