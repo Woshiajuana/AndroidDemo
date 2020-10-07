@@ -1,6 +1,7 @@
 package com.owulia.makekotlin.ui.activity
 
 import android.content.Intent
+import android.os.Handler
 import android.text.InputType
 import android.text.SpannableString
 import android.text.Spanned
@@ -128,7 +129,7 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
         }
     }
 
-    fun codeButtonStatus () {
+    private fun codeButtonStatus () {
         val isClickable = mCount == mDefCount
         vCodeButton.apply {
             this.isClickable = isClickable
@@ -146,7 +147,9 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
             mCount = mDefCount
             return codeButtonStatus()
         }
-        postDelayed
+        Handler().postDelayed({
+            countDown()
+        }, 1000)
     }
 
     override fun callbackRegisterSuccess() {
