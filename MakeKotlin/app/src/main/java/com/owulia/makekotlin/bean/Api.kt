@@ -11,7 +11,7 @@ interface Api {
      * */
     @FormUrlEncoded
     @POST(Constants.DO_CHECK_ACCOUNT)
-    fun doCheckAccount (@FieldMap params: Map<String, Any?>) : Call<RespBean<RespCheckAccountBean>>
+    fun doCheckAccount (@FieldMap params: Map<String, Any>) : Call<RespBean<RespCheckAccountBean>>
 
     /**
      * 登录接口
