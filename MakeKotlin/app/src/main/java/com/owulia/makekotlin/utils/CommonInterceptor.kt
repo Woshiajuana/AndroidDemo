@@ -64,7 +64,7 @@ class CommonInterceptor : Interceptor {
             /**
              * 添加签名
              * */
-            val params = HashMap<String, Any>()
+            val params = HashMap<String, Any?>()
             val newBody = builder.build()
             for (i in 0 until newBody.size()) {
                 params[newBody.name(i)] = newBody.value(i)
@@ -105,10 +105,10 @@ class CommonInterceptor : Interceptor {
      * 获取签名字符串
      * */
     private fun signatureTempGenerate(
-        params: Map<String, Any>,
+        params: Map<String, Any?>,
         key: String
     ): String {
-        val signMap: SortedMap<String, Any> = TreeMap(params)
+        val signMap: SortedMap<String, Any?> = TreeMap(params)
         val stringBuffer = StringBuffer()
         val es = signMap.entries
         for (e in es) {

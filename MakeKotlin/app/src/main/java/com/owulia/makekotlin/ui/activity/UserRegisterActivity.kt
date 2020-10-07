@@ -116,7 +116,7 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
     override fun initListener() {
         super.initListener()
         vCodeButton.setOnClickListener {
-            val params = HashMap<String, Any> ()
+            val params = HashMap<String, Any?> ()
             params["loginNo"] = mAccount?: ""
             params["smsType"] = "COMMON"
             mvpPresenter?.doSendSms(params)

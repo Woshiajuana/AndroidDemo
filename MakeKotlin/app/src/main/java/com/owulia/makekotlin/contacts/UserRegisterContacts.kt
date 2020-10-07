@@ -26,12 +26,12 @@ class UserRegisterContacts {
         /**
          * 注册
          * */
-        fun doUserRegister (params: Map<String, Any>)
+        fun doUserRegister (params: Map<String, Any?>)
 
         /**
          * 获取验证码
          * */
-        fun doSendSms (params: Map<String, Any>)
+        fun doSendSms (params: Map<String, Any?>)
 
     }
 
@@ -40,12 +40,12 @@ class UserRegisterContacts {
         /**
          * 注册
          * */
-        fun doUserRegister (params: Map<String, Any>) : Call<RespBean<*>>
+        fun doUserRegister (params: Map<String, Any?>) : Call<RespBean<*>>
 
         /**
          * 获取验证码
          * */
-        fun doSendSms (params: Map<String, Any>) : Call<RespBean<*>>
+        fun doSendSms (params: Map<String, Any?>) : Call<RespBean<*>>
 
     }
 

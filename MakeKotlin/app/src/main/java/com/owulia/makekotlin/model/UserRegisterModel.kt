@@ -7,11 +7,11 @@ import retrofit2.Call
 
 class UserRegisterModel : UserRegisterContacts.IModel {
 
-    override fun doUserRegister(params: Map<String, Any>): Call<RespBean<*>> {
+    override fun doUserRegister(params: Map<String, Any?>): Call<RespBean<*>> {
         return RetrofitManager.instant.getApi().doUserRegister(params)
     }
 
-    override fun doSendSms(params: Map<String, Any>): Call<RespBean<*>> {
+    override fun doSendSms(params: Map<String, Any?>): Call<RespBean<*>> {
         return RetrofitManager.instant.getApi().doSendSms(params)
     }
 

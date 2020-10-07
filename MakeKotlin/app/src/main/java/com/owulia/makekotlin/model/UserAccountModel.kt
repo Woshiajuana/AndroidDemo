@@ -24,7 +24,7 @@ class UserAccountModel : UserAccountContacts.IModel {
     )
 
     override fun checkAccount(account: String) : Call<RespBean<RespCheckAccountBean>> {
-        val params = HashMap<String, String>()
+        val params = HashMap<String, Any?>()
         params["loginNo"] = account
         params["loginType"] = "PWD"
         return RetrofitManager.instant.getApi().doCheckAccount(params)
