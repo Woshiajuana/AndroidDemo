@@ -12,12 +12,13 @@ interface Api {
     @FormUrlEncoded
     @POST(Constants.DO_CHECK_ACCOUNT)
     @JvmSuppressWildcards
-    fun doCheckAccount (@FieldMap params: Map<String, Any>) : Call<RespBean<RespCheckAccountBean>>
+    fun doCheckAccount (@FieldMap params: Map<String, Any?>) : Call<RespBean<RespCheckAccountBean>>
 
     /**
      * 登录接口
      * */
     @GET(Constants.DO_USER_LOGIN)
+    @JvmSuppressWildcards
     fun doUserLogin (@QueryMap params: Map<String, Any?>)
 
     /**
@@ -25,6 +26,7 @@ interface Api {
      * */
     @FormUrlEncoded
     @POST(Constants.DO_USER_REGISTER)
+    @JvmSuppressWildcards
     fun doUserRegister (@FieldMap params: Map<String, Any?>) : Call<RespBean<*>>
 
     /**
@@ -32,6 +34,7 @@ interface Api {
      * */
     @FormUrlEncoded
     @POST(Constants.DO_USER_RESET_PASSWORD)
+    @JvmSuppressWildcards
     fun doUserResetPassword (@FieldMap params: Map<String, Any?>) : Call<RespBean<*>>
 
     /**
@@ -39,6 +42,7 @@ interface Api {
      * */
     @FormUrlEncoded
     @POST(Constants.DO_SEND_SMS)
+    @JvmSuppressWildcards
     fun doSendSms (@FieldMap params: Map<String, Any?>) : Call<RespBean<*>>
 
     /**
@@ -46,6 +50,7 @@ interface Api {
      * */
     @FormUrlEncoded
     @POST(Constants.REQ_USER_INFO)
+    @JvmSuppressWildcards
     fun reqUserInfo (@FieldMap params: Map<String, Any?>) : Call<RespBean<*>>
 
 }
