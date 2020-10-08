@@ -77,8 +77,9 @@
         <TextView
             android:id="@+id/vCodeButton"
             android:text="@string/string_code_btn"
+            android:textAlignment="center"
             android:textColor="@color/colorMain"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 

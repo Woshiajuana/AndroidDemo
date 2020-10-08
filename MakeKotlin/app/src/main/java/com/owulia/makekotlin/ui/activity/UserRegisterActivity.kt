@@ -17,7 +17,6 @@ import com.owulia.makekotlin.bean.WebViewOptionBean
 import com.owulia.makekotlin.contacts.UserRegisterContacts
 import com.owulia.makekotlin.presenter.UserRegisterPresenter
 import com.owulia.makekotlin.utils.Constants
-import com.owulia.makekotlin.utils.WowLogUtils
 import com.owulia.makekotlin.utils.WowToastUtils
 import kotlinx.android.synthetic.main.activity_user_register.*
 
@@ -123,7 +122,6 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
 //            params["smsType"] = "COMMON"
 //            mvpPresenter?.doSendSms(params)
             countDown()
-             WowToastUtils.show("获取验证码")
         }
         vTypeSwitch.setOnClickListener {
             vInputPassword.inputType =
@@ -137,21 +135,21 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
         val isClickable = mCount == mDefCount
         vCodeButton.apply {
             this.isClickable = isClickable
-            if (isClickable) {
-                text = getString(R.string.string_code_btn)
+            text = if (isClickable) {
+                getString(R.string.string_code_btn)
             } else {
-                text = "$mCount s"
+                "$mCount s"
             }
         }
     }
 
     private fun countDown () {
+        codeButtonStatus()
         mCount--
         if (mCount <= 0) {
             mCount = mDefCount
-            return codeButtonStatus()
+            return
         }
-
         Handler().postDelayed({
             countDown()
         }, 1000)
