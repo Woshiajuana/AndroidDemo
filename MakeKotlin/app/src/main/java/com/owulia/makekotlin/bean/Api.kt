@@ -11,6 +11,7 @@ interface Api {
      * */
     @FormUrlEncoded
     @POST(Constants.DO_CHECK_ACCOUNT)
+    @JvmSuppressWildcards
     fun doCheckAccount (@FieldMap params: Map<String, Any>) : Call<RespBean<RespCheckAccountBean>>
 
     /**
