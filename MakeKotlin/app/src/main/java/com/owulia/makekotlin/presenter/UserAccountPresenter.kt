@@ -1,5 +1,6 @@
 package com.owulia.makekotlin.presenter
 
+import android.text.TextUtils
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BasePresenter
 import com.owulia.makekotlin.bean.RespBean
@@ -18,6 +19,10 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAcc
     private val mvpModel: UserAccountModel = UserAccountModel()
 
     override fun checkAccount(account: String) {
+        if (TextUtils.isEmpty(account)) {
+            mvpView?.toast(R.string.string_account_hint)
+            return
+        }
         mvpView?.loadingShow()
         mvpModel.checkAccount(account)
             .enqueue(object : Callback<RespBean<RespCheckAccountBean>> {
