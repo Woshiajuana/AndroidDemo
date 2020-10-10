@@ -133,9 +133,10 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
     }
 
     private fun codeButtonStatus () {
-        val isClickable = mCount == mDefCount
+        val isBoolean = mCount == mDefCount
         vCodeButton.apply {
-            this.isClickable = isClickable
+            isClickable = isBoolean
+            isEnabled = isBoolean
             text = if (isClickable) {
                 getString(R.string.string_code_btn)
             } else {

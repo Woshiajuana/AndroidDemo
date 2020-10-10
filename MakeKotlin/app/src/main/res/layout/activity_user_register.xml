@@ -78,9 +78,12 @@
             android:id="@+id/vCodeButton"
             android:text="@string/string_code_btn"
             android:textAlignment="center"
-            android:textColor="@color/colorMain"
+            android:clickable="true"
+            android:enabled="true"
+            android:textColor="@drawable/selector_clickable_text_bg"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:focusable="true" />
     </LinearLayout>
 
     <TextView
