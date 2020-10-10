@@ -121,6 +121,7 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
 //            params["loginNo"] = mAccount?: ""
 //            params["smsType"] = "COMMON"
 //            mvpPresenter?.doSendSms(params)
+            WowToastUtils.show("点击了我")
             countDown()
         }
         vTypeSwitch.setOnClickListener {
@@ -144,15 +145,15 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
     }
 
     private fun countDown () {
-        codeButtonStatus()
         mCount--
         if (mCount <= 0) {
             mCount = mDefCount
-            return
+        } else {
+            Handler().postDelayed({
+                countDown()
+            }, 1000)
         }
-        Handler().postDelayed({
-            countDown()
-        }, 1000)
+        codeButtonStatus()
     }
 
     override fun callbackRegisterSuccess() {
