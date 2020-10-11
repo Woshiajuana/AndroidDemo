@@ -28,7 +28,8 @@
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <EditText
+        <com.owulia.makekotlin.widget.WowClearEditText
+            android:gravity="center_vertical"
             android:id="@+id/vAccountInput"
             android:autofillHints="string/string_account_hint"
             android:inputType="phone"
@@ -82,9 +83,11 @@
     </LinearLayout>
 
     <com.owulia.makekotlin.widget.WowClearEditText
+        android:gravity="center_vertical"
         android:layout_marginTop="100dp"
         android:hint="@string/string_account_hint"
         android:layout_below="@+id/text"
+        android:background="#ff0000"
         android:inputType="phone"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>

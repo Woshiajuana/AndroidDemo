@@ -1,5 +1,6 @@
 package com.owulia.makekotlin.widget
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.text.Editable
@@ -63,12 +64,16 @@ class WowClearEditText @JvmOverloads constructor(
      * 当按下的位置在 EditText 的宽度 - 图标到控件右边的间距 - 图标的宽度 和
      * EditText 的宽度 - 图标到控件右边的间距之间，就算点击了图标，竖直方向不考虑
      * */
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         event?.apply {
             if (action == MotionEvent.ACTION_UP) {
                 if (mClearDrawable != null) {
                     val touchable = x > (width - totalPaddingEnd) && x < (width - paddingEnd)
-                    WowToastUtils.show("点击了我")
+                    if (touchable) {
+                        setText("")
+                        return false
+                    }
                 }
             }
         }
