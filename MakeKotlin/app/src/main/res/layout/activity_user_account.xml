@@ -82,7 +82,10 @@
     </LinearLayout>
 
     <com.owulia.makekotlin.widget.WowClearEditText
+        android:layout_marginTop="100dp"
+        android:hint="@string/string_account_hint"
         android:layout_below="@+id/text"
+        android:inputType="phone"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
 
