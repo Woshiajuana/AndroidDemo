@@ -121,6 +121,7 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
 //            params["loginNo"] = mAccount?: ""
 //            params["smsType"] = "COMMON"
 //            mvpPresenter?.doSendSms(params)
+            WowToastUtils.show("哈哈")
             countDown()
         }
         vTypeSwitch.setOnClickListener {
@@ -134,9 +135,8 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
     private fun codeButtonStatus () {
         val isBoolean = mCount == mDefCount
         vCodeButton.apply {
-            isClickable = isBoolean
             isEnabled = isBoolean
-            text = if (isClickable) {
+            text = if (isBoolean) {
                 getString(R.string.string_code_btn)
             } else {
                 "$mCount s"
