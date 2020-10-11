@@ -2,10 +2,7 @@ package com.owulia.makekotlin.ui.activity
 
 import android.content.Intent
 import android.os.Handler
-import android.text.InputType
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.TextPaint
+import android.text.*
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.UnderlineSpan
@@ -19,8 +16,9 @@ import com.owulia.makekotlin.presenter.UserRegisterPresenter
 import com.owulia.makekotlin.utils.Constants
 import com.owulia.makekotlin.utils.WowToastUtils
 import kotlinx.android.synthetic.main.activity_user_register.*
+import kotlinx.android.synthetic.main.widget_button.*
 
-class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegisterContacts.IView {
+class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegisterContacts.IView, TextWatcher {
 
     override fun getContentViewResourceId(): Int = R.layout.activity_user_register
 
@@ -116,6 +114,7 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
 
     override fun initListener() {
         super.initListener()
+
         vCodeButton.setOnClickListener {
 //            val params = HashMap<String, Any?> ()
 //            params["loginNo"] = mAccount?: ""
@@ -124,13 +123,20 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
             WowToastUtils.show("哈哈")
             countDown()
         }
+
         vTypeSwitch.setOnClickListener {
             vInputPassword.inputType =
                 if (vInputPassword.inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD)
                     InputType.TYPE_CLASS_TEXT
                 else InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
+
+        vInputPassword.addTextChangedListener(this)
+
+        vInputCode.addTextChangedListener(this)
     }
+
+
 
     private fun codeButtonStatus () {
         val isBoolean = mCount == mDefCount
@@ -162,6 +168,16 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
 
     override fun callbackSendSms() {
         TODO("Not yet implemented")
+    }
+
+    override fun afterTextChanged(s: Editable?) {
+        vSubmitButton.isEnabled = !TextUtils.isEmpty(vInputCode.text) && !TextUtils.isEmpty(vInputPassword.text)
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
     }
 
 }

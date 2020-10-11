@@ -27,7 +27,8 @@
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <EditText
+        <com.owulia.makekotlin.widget.WowClearEditText
+            android:gravity="center_vertical"
             android:id="@+id/vInputPassword"
             android:autofillHints="string/string_account_hint"
             android:inputType="text"
@@ -40,7 +41,6 @@
             android:layout_weight="1"
             android:layout_height="42dp"
             tools:ignore="TextFields" />
-        <include layout="@layout/widget_input_clear_btn"/>
         <ImageView
             android:id="@+id/vTypeSwitch"
             android:contentDescription="@string/string_image_tip"
@@ -62,7 +62,9 @@
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <EditText
+        <com.owulia.makekotlin.widget.WowClearEditText
+            android:id="@+id/vInputCode"
+            android:gravity="center_vertical"
             android:autofillHints="string/string_account_hint"
             android:inputType="text"
             android:hint="@string/string_code_hint"
@@ -73,7 +75,6 @@
             android:textSize="18sp"
             android:layout_weight="1"
             android:layout_height="42dp"/>
-        <include layout="@layout/widget_input_clear_btn"/>
         <TextView
             android:id="@+id/vCodeButton"
             android:text="@string/string_code_btn"
