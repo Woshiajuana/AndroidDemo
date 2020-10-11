@@ -13,7 +13,6 @@ import com.owulia.makekotlin.base.BaseMvpActivity
 import com.owulia.makekotlin.contacts.UserAccountContacts
 import com.owulia.makekotlin.presenter.UserAccountPresenter
 import com.owulia.makekotlin.utils.Constants
-import com.owulia.makekotlin.utils.WowToastUtils
 import kotlinx.android.synthetic.main.activity_user_account.*
 import kotlinx.android.synthetic.main.widget_button.*
 import kotlinx.android.synthetic.main.widget_input_clear_btn.*
@@ -65,8 +64,10 @@ class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>(), UserAccount
             override fun afterTextChanged(s: Editable?) {
                 if (TextUtils.isEmpty(s.toString())) {
                     vInputClear.visibility = View.GONE
+                    vSubmitButton.isEnabled = false
                 } else {
                     vInputClear.visibility = View.VISIBLE
+                    vSubmitButton.isEnabled = true
                 }
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

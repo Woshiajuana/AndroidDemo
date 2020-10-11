@@ -7,7 +7,7 @@
     android:textSize="16sp"
     android:gravity="center"
     android:clickable="true"
-    android:enabled="true"
+    android:enabled="false"
     android:background="@drawable/selector_widget_button_bg"
     android:layout_width="140dp"
     android:layout_height="56dp"
