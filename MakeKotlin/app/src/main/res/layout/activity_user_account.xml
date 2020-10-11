@@ -42,7 +42,6 @@
             android:textSize="18sp"
             android:layout_weight="1"
             android:layout_height="42dp"/>
-        <include layout="@layout/widget_input_clear_btn"/>
         <ImageView
             android:id="@+id/vHistoryOpen"
             android:contentDescription="@string/string_image_tip"
@@ -81,16 +80,6 @@
             android:layout_height="56dp"
             layout="@layout/widget_button" />
     </LinearLayout>
-
-    <com.owulia.makekotlin.widget.WowClearEditText
-        android:gravity="center_vertical"
-        android:layout_marginTop="100dp"
-        android:hint="@string/string_account_hint"
-        android:layout_below="@+id/text"
-        android:background="#ff0000"
-        android:inputType="phone"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"/>
 
     <include layout="@layout/widget_user_bottom_logo"/>
 

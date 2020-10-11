@@ -11,7 +11,6 @@ import android.view.animation.CycleInterpolator
 import android.view.animation.TranslateAnimation
 import androidx.appcompat.widget.AppCompatEditText
 import com.owulia.makekotlin.R
-import com.owulia.makekotlin.utils.WowToastUtils
 
 class WowClearEditText @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

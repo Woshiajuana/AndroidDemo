@@ -15,7 +15,6 @@ import com.owulia.makekotlin.presenter.UserAccountPresenter
 import com.owulia.makekotlin.utils.Constants
 import kotlinx.android.synthetic.main.activity_user_account.*
 import kotlinx.android.synthetic.main.widget_button.*
-import kotlinx.android.synthetic.main.widget_input_clear_btn.*
 
 class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>(), UserAccountContacts.IView {
 
@@ -62,24 +61,13 @@ class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>(), UserAccount
         // input 输入监听
         vAccountInput.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (TextUtils.isEmpty(s.toString())) {
-                    vInputClear.visibility = View.GONE
-                    vSubmitButton.isEnabled = false
-                } else {
-                    vInputClear.visibility = View.VISIBLE
-                    vSubmitButton.isEnabled = true
-                }
+                vSubmitButton.isEnabled = !TextUtils.isEmpty(s.toString())
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
         })
-
-        // 清空 input 内容
-        vInputClear.setOnClickListener {
-            vAccountInput.setText("")
-        }
 
         // 打开关闭登录历史
         vHistoryOpen.setOnClickListener { it as ImageView
