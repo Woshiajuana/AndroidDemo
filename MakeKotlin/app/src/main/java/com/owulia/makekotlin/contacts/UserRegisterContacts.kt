@@ -51,7 +51,7 @@ class UserRegisterContacts {
          * 获取验证码
          * @param account [String] 账号
          * */
-        fun doSendSms (account: String) : Call<RespBean<*>>
+        fun doSendSms (account: String) : Call<RespBean<Any>>
 
     }
 

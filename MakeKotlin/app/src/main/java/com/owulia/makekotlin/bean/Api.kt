@@ -43,7 +43,7 @@ interface Api {
     @FormUrlEncoded
     @POST(Constants.DO_SEND_SMS)
     @JvmSuppressWildcards
-    fun doSendSms (@FieldMap params: Map<String, Any?>) : Call<RespBean<*>>
+    fun doSendSms (@FieldMap params: Map<String, Any?>) : Call<RespBean<Any>>
 
     /**
      * 用户信息

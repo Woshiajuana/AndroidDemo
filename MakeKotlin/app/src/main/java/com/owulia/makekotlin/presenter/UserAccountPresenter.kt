@@ -52,10 +52,14 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAcc
                                 mvpView?.callbackGoToRegister(account, body.data?.headPortrait)
                             }
                         } else {
-                            mvpView?.toast(R.string.string_http_code_tip)
+                            if (body?.msg?: "" == "") {
+                                mvpView?.toast(R.string.string_http_code_tip)
+                            } else {
+                                mvpView?.toast(body?.msg?:"")
+                            }
                         }
                     } else {
-                        mvpView?.toast(response.message()?: "请求失败，请稍后再试")
+                        mvpView?.toast(response.message())
                         WowLogUtils.d(this, "请求失败 => ${response}")
                     }
                 }

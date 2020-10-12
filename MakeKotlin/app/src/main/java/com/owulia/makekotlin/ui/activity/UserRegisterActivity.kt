@@ -117,9 +117,6 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
         super.initListener()
 
         vCodeButton.setOnClickListener {
-//            val params = HashMap<String, Any?> ()
-//            params["loginNo"] = mAccount?: ""
-//            params["smsType"] = "COMMON"
             mvpPresenter?.doSendSms(mAccount?: "")
         }
 
@@ -183,7 +180,7 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
     }
 
     override fun callbackSendSms() {
-        TODO("Not yet implemented")
+        countDown()
     }
 
     override fun afterTextChanged(s: Editable?) {
