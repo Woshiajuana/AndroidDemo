@@ -24,7 +24,7 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAcc
             mvpView?.toast(R.string.string_account_hint)
             return
         }
-        if (!WowCommonUtils.checkPhone(account)) {
+        if (!WowCommonUtils.checkIsPhone(account)) {
             mvpView?.toast("手机号输入有误")
             return
         }

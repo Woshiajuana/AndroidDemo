@@ -10,10 +10,56 @@ class WowCommonUtils {
 
         /**
          * 校验手机号
-         * @param phone [String]
+         * @param v [String]
+         * @return [Boolean]
          * */
-        fun checkPhone (phone: String) : Boolean {
-            return Regex("""^1\d{10}${'$'}""").matches(phone)
+        fun checkIsPhone (v: String) : Boolean {
+            return Regex("""^1\d{10}${'$'}""").matches(v)
+        }
+
+        /**
+         * 校验身份证
+         * @param v [String]
+         * @return [Boolean]
+         * */
+        fun checkIsIDCard (v: String) : Boolean {
+            return Regex("""^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}${'$'})|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])${'$'})${'$'}""").matches(v)
+        }
+
+        /**
+         * 校验银行卡
+         * @param v [String]
+         * @return [Boolean]
+         * */
+        fun checkIsBankCard (v: String) : Boolean {
+            return Regex("""^(\d{16}|\d{18}|\d{19})${'$'}""").matches(v)
+        }
+
+        /**
+         * 校验邮箱
+         * @param v [String]
+         * @return [Boolean]
+         * */
+        fun checkIsEmail(v: String) : Boolean {
+            return Regex("""^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*${'$'}""").matches(v)
+        }
+
+        /**
+         * 校验金额
+         * @param v [String]
+         * @return [Boolean]
+         * */
+        fun checkIsMoney(v: String) : Boolean {
+            return Regex("""^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)${'$'}""").matches(v)
+        }
+
+        /**
+         * 校验是否是中文
+         * @param v [String]
+         * @return [Boolean]
+         * */
+        fun checkIsZH(v: String) : Boolean {
+            return Regex("""^[\d\w\u4e00-\u9fa5]{1,12}${'$'}""").matches(v)
         }
 
         /**
