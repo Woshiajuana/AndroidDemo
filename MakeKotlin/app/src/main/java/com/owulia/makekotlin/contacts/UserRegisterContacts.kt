@@ -26,9 +26,10 @@ class UserRegisterContacts {
         /**
          * 注册
          * @param account [String] 账号
+         * @param password [String] 密码
          * @param smsCode [String] 验证码
          * */
-        fun doUserRegister (account: String, smsCode: String)
+        fun doUserRegister (account: String, password: String, smsCode: String)
 
         /**
          * 获取验证码
@@ -43,9 +44,10 @@ class UserRegisterContacts {
         /**
          * 注册
          * @param account [String] 账号
+         * @param password [String] 密码
          * @param smsCode [String] 验证码
          * */
-        fun doUserRegister (account: String, smsCode: String) : Call<RespBean<*>>
+        fun doUserRegister (account: String, password: String, smsCode: String) : Call<RespBean<*>>
 
         /**
          * 获取验证码

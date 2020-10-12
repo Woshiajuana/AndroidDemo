@@ -66,5 +66,7 @@
     <string name="string_link_agreement_service">http://ossmk2.jfpays.com/www_make_v1/h5/agreement_service.html</string>
     <string name="string_link_agreement_privacy">http://ossmk2.jfpays.com/www_make_v1/h5/agreement_privacy.html</string>
     <string name="string_http_code_tip">请求失败，请稍后再试</string>
+    <string name="string_sms_send_success_tip">发送验证码成功</string>
+    <string name="string_register_success_tip">注册成功</string>
 
 </resources>

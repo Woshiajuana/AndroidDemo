@@ -19,7 +19,8 @@ import com.owulia.makekotlin.utils.WowLogUtils
 import kotlinx.android.synthetic.main.activity_user_register.*
 import kotlinx.android.synthetic.main.widget_button.*
 
-class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegisterContacts.IView, TextWatcher {
+class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegisterContacts.IView,
+    TextWatcher {
 
     override fun getContentViewResourceId(): Int = R.layout.activity_user_register
 
@@ -117,10 +118,11 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
         super.initListener()
 
         vCodeButton.setOnClickListener {
-            mvpPresenter?.doSendSms(mAccount?: "")
+            mvpPresenter?.doSendSms(mAccount ?: "")
         }
 
-        vTypeSwitch.setOnClickListener {it as ImageView
+        vTypeSwitch.setOnClickListener {
+            it as ImageView
             vInputPassword.apply {
                 inputType = if (inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
                     /**隐藏*/
@@ -142,7 +144,11 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
 
         vSubmitButton.setOnClickListener {
             if (vAgreementButton.isChecked) {
-//                mvpPresenter?.doUserRegister()
+                mvpPresenter?.doUserRegister(
+                    mAccount ?: "",
+                    vInputPassword.text.toString(),
+                    vInputCode.text.toString()
+                )
             } else {
                 toast(R.string.string_agreement_toast)
             }
@@ -150,8 +156,7 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
     }
 
 
-
-    private fun codeButtonStatus () {
+    private fun codeButtonStatus() {
         val isBoolean = mCount == mDefCount
         vCodeButton.apply {
             isEnabled = isBoolean
@@ -163,7 +168,7 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
         }
     }
 
-    private fun countDown () {
+    private fun countDown() {
         mCount--
         if (mCount <= 0) {
             mCount = mDefCount
@@ -176,15 +181,18 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
     }
 
     override fun callbackRegisterSuccess() {
-        TODO("Not yet implemented")
+        toast(R.string.string_register_success_tip)
+        finish()
     }
 
     override fun callbackSendSms() {
         countDown()
+        toast(R.string.string_sms_send_success_tip)
     }
 
     override fun afterTextChanged(s: Editable?) {
-        vSubmitButton.isEnabled = !TextUtils.isEmpty(vInputCode.text) && !TextUtils.isEmpty(vInputPassword.text)
+        vSubmitButton.isEnabled =
+            !TextUtils.isEmpty(vInputCode.text) && !TextUtils.isEmpty(vInputPassword.text)
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

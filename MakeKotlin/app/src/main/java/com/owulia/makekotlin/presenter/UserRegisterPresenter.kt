@@ -52,12 +52,12 @@ class UserRegisterPresenter : BasePresenter<UserRegisterContacts.IView>(), UserR
             })
     }
 
-    override fun doUserRegister(account: String, smsCode: String) {
+    override fun doUserRegister(account: String, password: String, smsCode: String) {
         if (!WowCommonUtils.checkIsPhone(account)) {
             mvpView?.toast("手机号有误")
             return
         }
-        mvpModel.doUserRegister(account, smsCode)
+        mvpModel.doUserRegister(account, password, smsCode)
     }
 
 }
