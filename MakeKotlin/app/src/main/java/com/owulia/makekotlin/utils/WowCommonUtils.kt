@@ -9,6 +9,14 @@ class WowCommonUtils {
     companion object {
 
         /**
+         * 校验手机号
+         * @param phone [String]
+         * */
+        fun checkPhone (phone: String) : Boolean {
+            return Regex("""^1\d{10}${'$'}""").matches(phone)
+        }
+
+        /**
          * 格式化手机号
          * @param phone [String]
          * @param division [String]

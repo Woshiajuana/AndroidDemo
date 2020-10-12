@@ -8,6 +8,7 @@ import com.owulia.makekotlin.bean.RespCheckAccountBean
 import com.owulia.makekotlin.contacts.UserAccountContacts
 import com.owulia.makekotlin.model.UserAccountModel
 import com.owulia.makekotlin.utils.Constants
+import com.owulia.makekotlin.utils.WowCommonUtils
 import com.owulia.makekotlin.utils.WowLogUtils
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,6 +22,10 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAcc
     override fun checkAccount(account: String) {
         if (TextUtils.isEmpty(account)) {
             mvpView?.toast(R.string.string_account_hint)
+            return
+        }
+        if (!WowCommonUtils.checkPhone(account)) {
+            mvpView?.toast("手机号输入有误")
             return
         }
         mvpView?.loadingShow()

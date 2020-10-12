@@ -120,31 +120,36 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
 //            val params = HashMap<String, Any?> ()
 //            params["loginNo"] = mAccount?: ""
 //            params["smsType"] = "COMMON"
-//            mvpPresenter?.doSendSms(params)
-            countDown()
+            mvpPresenter?.doSendSms(mAccount?: "")
         }
 
         vTypeSwitch.setOnClickListener {it as ImageView
-            WowLogUtils.d(this, "vInputPassword.inputType => ${vInputPassword.inputType}")
-            WowLogUtils.d(this, "InputType.TYPE_TEXT_VARIATION_PASSWORD => ${InputType.TYPE_TEXT_VARIATION_PASSWORD}")
-            WowLogUtils.d(this, "InputType.TYPE_CLASS_TEXT => ${InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD}")
-
             vInputPassword.apply {
-                if (inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
-                    // 显示
-                    it.setImageResource(R.mipmap.ic_eye_on)
-                    inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-                } else {
-                    // 隐藏
+                inputType = if (inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                    /**隐藏*/
                     it.setImageResource(R.mipmap.ic_eye_off)
-                    inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                } else {
+                    /**显示*/
+                    it.setImageResource(R.mipmap.ic_eye_on)
+                    InputType.TYPE_TEXT_VARIATION_PASSWORD
                 }
+                /**设置光标*/
+                setSelection(length())
             }
         }
 
         vInputPassword.addTextChangedListener(this)
 
         vInputCode.addTextChangedListener(this)
+
+        vSubmitButton.setOnClickListener {
+            if (vAgreementButton.isChecked) {
+//                mvpPresenter?.doUserRegister()
+            } else {
+                toast(R.string.string_agreement_toast)
+            }
+        }
     }
 
 

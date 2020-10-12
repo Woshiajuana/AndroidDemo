@@ -25,13 +25,16 @@ class UserRegisterContacts {
 
         /**
          * 注册
+         * @param account [String] 账号
+         * @param smsCode [String] 验证码
          * */
-        fun doUserRegister (params: Map<String, Any?>)
+        fun doUserRegister (account: String, smsCode: String)
 
         /**
          * 获取验证码
+         * @param account [String] 账号
          * */
-        fun doSendSms (params: Map<String, Any?>)
+        fun doSendSms (account: String)
 
     }
 

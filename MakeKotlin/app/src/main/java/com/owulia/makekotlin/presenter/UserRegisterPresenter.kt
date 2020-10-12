@@ -8,12 +8,18 @@ class UserRegisterPresenter : BasePresenter<UserRegisterContacts.IView>(), UserR
 
     private val mvpModel = UserRegisterModel()
 
-    override fun doUserRegister(params: Map<String, Any?>) {
-//        TODO("Not yet implemented")
+    override fun doSendSms(account: String) {
+        /**
+         * 校验手机号
+         * */
+
     }
 
-    override fun doSendSms(params: Map<String, Any?>) {
-//        TODO("Not yet implemented")
+    override fun doUserRegister(account: String, smsCode: String) {
+        /**
+         * 校验手机号
+         * */
+
     }
 
 }
