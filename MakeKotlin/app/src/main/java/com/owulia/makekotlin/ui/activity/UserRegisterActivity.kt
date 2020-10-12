@@ -7,6 +7,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.UnderlineSpan
 import android.view.View
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BaseMvpActivity
@@ -14,7 +15,7 @@ import com.owulia.makekotlin.bean.WebViewOptionBean
 import com.owulia.makekotlin.contacts.UserRegisterContacts
 import com.owulia.makekotlin.presenter.UserRegisterPresenter
 import com.owulia.makekotlin.utils.Constants
-import com.owulia.makekotlin.utils.WowToastUtils
+import com.owulia.makekotlin.utils.WowLogUtils
 import kotlinx.android.synthetic.main.activity_user_register.*
 import kotlinx.android.synthetic.main.widget_button.*
 
@@ -123,11 +124,22 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
             countDown()
         }
 
-        vTypeSwitch.setOnClickListener {
-            vInputPassword.inputType =
-                if (vInputPassword.inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD)
-                    InputType.TYPE_CLASS_TEXT
-                else InputType.TYPE_TEXT_VARIATION_PASSWORD
+        vTypeSwitch.setOnClickListener {it as ImageView
+            WowLogUtils.d(this, "vInputPassword.inputType => ${vInputPassword.inputType}")
+            WowLogUtils.d(this, "InputType.TYPE_TEXT_VARIATION_PASSWORD => ${InputType.TYPE_TEXT_VARIATION_PASSWORD}")
+            WowLogUtils.d(this, "InputType.TYPE_CLASS_TEXT => ${InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD}")
+
+            vInputPassword.apply {
+                if (inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                    // 显示
+                    it.setImageResource(R.mipmap.ic_eye_on)
+                    inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                } else {
+                    // 隐藏
+                    it.setImageResource(R.mipmap.ic_eye_off)
+                    inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+                }
+            }
         }
 
         vInputPassword.addTextChangedListener(this)
