@@ -42,13 +42,16 @@ class UserRegisterContacts {
 
         /**
          * 注册
+         * @param account [String] 账号
+         * @param smsCode [String] 验证码
          * */
-        fun doUserRegister (params: Map<String, Any?>) : Call<RespBean<*>>
+        fun doUserRegister (account: String, smsCode: String) : Call<RespBean<*>>
 
         /**
          * 获取验证码
+         * @param account [String] 账号
          * */
-        fun doSendSms (params: Map<String, Any?>) : Call<RespBean<*>>
+        fun doSendSms (account: String) : Call<RespBean<*>>
 
     }
 
