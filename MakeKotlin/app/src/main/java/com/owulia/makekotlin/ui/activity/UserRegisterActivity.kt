@@ -120,7 +120,6 @@ class UserRegisterActivity : BaseMvpActivity<UserRegisterPresenter>(), UserRegis
 //            params["loginNo"] = mAccount?: ""
 //            params["smsType"] = "COMMON"
 //            mvpPresenter?.doSendSms(params)
-            WowToastUtils.show("哈哈")
             countDown()
         }
 
