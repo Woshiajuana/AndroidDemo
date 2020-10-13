@@ -51,6 +51,6 @@ interface Api {
     @FormUrlEncoded
     @POST(Constants.REQ_USER_INFO)
     @JvmSuppressWildcards
-    fun reqUserInfo (@FieldMap params: Map<String, Any?>) : Call<RespBean<*>>
+    fun reqUserInfo (@FieldMap params: Map<String, Any?>) : Call<RespBean<Any>>
 
 }
