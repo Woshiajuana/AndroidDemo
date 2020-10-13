@@ -47,7 +47,7 @@ class UserRegisterContacts {
          * @param password [String] 密码
          * @param smsCode [String] 验证码
          * */
-        fun doUserRegister (account: String, password: String, smsCode: String) : Call<RespBean<*>>
+        fun doUserRegister (account: String, password: String, smsCode: String) : Call<RespBean<Any>>
 
         /**
          * 获取验证码

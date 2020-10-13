@@ -27,7 +27,7 @@ interface Api {
     @FormUrlEncoded
     @POST(Constants.DO_USER_REGISTER)
     @JvmSuppressWildcards
-    fun doUserRegister (@FieldMap params: Map<String, Any?>) : Call<RespBean<*>>
+    fun doUserRegister (@FieldMap params: Map<String, Any?>) : Call<RespBean<Any>>
 
     /**
      * 用户忘记密码
@@ -35,7 +35,7 @@ interface Api {
     @FormUrlEncoded
     @POST(Constants.DO_USER_RESET_PASSWORD)
     @JvmSuppressWildcards
-    fun doUserResetPassword (@FieldMap params: Map<String, Any?>) : Call<RespBean<*>>
+    fun doUserResetPassword (@FieldMap params: Map<String, Any?>) : Call<RespBean<Any>>
 
     /**
      * 发送短信

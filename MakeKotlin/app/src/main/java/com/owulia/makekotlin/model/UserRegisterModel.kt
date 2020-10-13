@@ -7,7 +7,7 @@ import retrofit2.Call
 
 class UserRegisterModel : UserRegisterContacts.IModel {
 
-    override fun doUserRegister(account: String, password: String, smsCode: String): Call<RespBean<*>> {
+    override fun doUserRegister(account: String, password: String, smsCode: String): Call<RespBean<Any>> {
         val params = HashMap<String, Any?>()
         params["loginNo"] = account
         params["password"] = password
