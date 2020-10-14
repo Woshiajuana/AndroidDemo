@@ -1,5 +1,6 @@
 package com.owulia.makekotlin.utils
 
+import com.owulia.makekotlin.BuildConfig
 import com.owulia.makekotlin.bean.Api
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -10,8 +11,9 @@ import java.util.concurrent.TimeUnit
 class RetrofitManager private constructor() {
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
-        level = HttpLoggingInterceptor.Level.BODY
+        level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.BASIC
     }
+
 
     private val commonInterceptor = CommonInterceptor()
 
