@@ -60,7 +60,8 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(), UserAcc
                         }
                     } else {
                         mvpView?.toast(response.message())
-                        WowLogUtils.d(this, "请求失败 => ${response}")
+                        WowLogUtils.d(this, "请求失败 => response.errorBody ${response.errorBody()?.string()}")
+                        WowLogUtils.d(this, "请求失败 => response.body ${response.body()}")
                     }
                 }
             })
