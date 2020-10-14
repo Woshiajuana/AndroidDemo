@@ -8,6 +8,10 @@ import com.owulia.makekotlin.utils.WowToastUtils
 
 class BaseApplication : Application() {
 
+    companion object {
+        var application: Application? = null
+    }
+
     override fun onCreate() {
         super.onCreate()
         build(this)
@@ -17,6 +21,7 @@ class BaseApplication : Application() {
      * 初始化
      * */
     fun build (application: Application) {
+        Companion.application = application
         WowJsonCacheUtils.init(application, Constants.JSON_CACHE_KEY_COMMON)
         WowToastUtils.init(application)
         WowNetworkUtils.init(application)

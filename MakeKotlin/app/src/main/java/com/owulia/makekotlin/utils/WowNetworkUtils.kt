@@ -27,4 +27,14 @@ class WowNetworkUtils private constructor (
         return cm.activeNetworkInfo
     }
 
+    /**
+     * 判断网络是否可用
+     * <p>需添加权限 android.permission.ACCESS_NETWORK_STATE</p>
+     * */
+    fun isAvailable () : Boolean {
+        val cm = content.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        cm.activeNetworkInfo.isAvailable
+        return false
+    }
+
 }
