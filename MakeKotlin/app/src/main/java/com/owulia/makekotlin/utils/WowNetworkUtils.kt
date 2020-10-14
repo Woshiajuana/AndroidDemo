@@ -2,7 +2,9 @@ package com.owulia.makekotlin.utils
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.net.NetworkInfo
+import android.os.Build
 import java.lang.Exception
 
 class WowNetworkUtils private constructor (
@@ -30,11 +32,24 @@ class WowNetworkUtils private constructor (
     /**
      * 判断网络是否可用
      * <p>需添加权限 android.permission.ACCESS_NETWORK_STATE</p>
+     * @return [Boolean]
      * */
-    fun isAvailable () : Boolean {
+    fun isConnected () : Boolean {
         val cm = content.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        cm.activeNetworkInfo.isAvailable
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            /**获取网络属性*/
+            val networkCapabilities = cm.getNetworkCapabilities(cm.activeNetwork)
+            if (networkCapabilities != null) {
+                return networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+            }
+        } else {
+            return cm.activeNetworkInfo?.isAvailable == true
+        }
         return false
     }
+
+    /**
+     * 判断网络在线
+     * */
 
 }
