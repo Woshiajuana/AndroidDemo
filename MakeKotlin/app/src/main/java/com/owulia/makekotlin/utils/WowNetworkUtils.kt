@@ -49,7 +49,24 @@ class WowNetworkUtils private constructor (
     }
 
     /**
-     * 判断网络在线
+     * 判断是否有外网连接（普通方法不能判断外网的网络是否连接，比如连接上局域网）
+     * 直接 ping
+     * 看结果
+     * */
+    fun isOnline () : Boolean {
+        val runtime = Runtime.getRuntime()
+        try {
+            val ipProcess = runtime.exec("ping -c 3 www.baidu.com")
+            val exitValue = ipProcess.waitFor()
+            return exitValue == 0
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return false
+    }
+
+    /**
+     * 检测网络类型
      * */
 
 }
