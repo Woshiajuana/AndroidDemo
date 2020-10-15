@@ -13,6 +13,7 @@ import com.owulia.makekotlin.base.BaseMvpActivity
 import com.owulia.makekotlin.contacts.UserAccountContacts
 import com.owulia.makekotlin.presenter.UserAccountPresenter
 import com.owulia.makekotlin.utils.Constants
+import com.owulia.makekotlin.utils.WowNetworkUtils
 import kotlinx.android.synthetic.main.activity_user_account.*
 import kotlinx.android.synthetic.main.widget_button.*
 
@@ -35,6 +36,8 @@ class UserAccountActivity : BaseMvpActivity<UserAccountPresenter>(), UserAccount
             adapter = mUserHistoryAccountAdapter
             layoutManager = LinearLayoutManager(context)
         }
+
+        WowNetworkUtils.getInstance().test()
     }
 
     override fun initListener() {

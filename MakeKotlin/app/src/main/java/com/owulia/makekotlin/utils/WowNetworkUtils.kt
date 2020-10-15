@@ -3,7 +3,6 @@ package com.owulia.makekotlin.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.NetworkInfo
 import android.os.Build
 import java.lang.Exception
 
@@ -12,6 +11,22 @@ class WowNetworkUtils private constructor (
 ) {
 
     companion object {
+
+        /**
+         * 没有连接网络
+         * */
+        const val NETWORK_NONE = -1
+
+        /**
+         * 移动网络
+         * */
+        const val NETWORK_MOBILE = 0
+
+        /**
+         * 无线网络
+         * */
+        const val NETWORK_WIFI = 1
+
         private var mInstance: WowNetworkUtils? = null
         private var mContext: Context? = null
         fun init (content: Context) {
@@ -21,12 +36,6 @@ class WowNetworkUtils private constructor (
             if (mContext == null) throw Exception("WowNetworkUtils need Application context. You Should init ...")
             WowNetworkUtils(mContext!!).also { mInstance = it }
         }
-    }
-
-    fun getNetworkInfo () : NetworkInfo {
-        val cm = content.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        return cm.activeNetworkInfo
     }
 
     /**
@@ -68,5 +77,48 @@ class WowNetworkUtils private constructor (
     /**
      * 检测网络类型
      * */
+    fun checkNetWorkState () : Int {
+        val cm = content.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        /**
+         * 检测 API 是否小于21，因为 API 21之后 getNetworkInfo(int networkType) 方法被弃用
+         * */
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            /**获取 WIFI 连接信息*/
+            val wifiNetworkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+            /**获取移动数据连接信息*/
+            val mobileNetworkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+            if (wifiNetworkInfo?.isConnected == true) {
+                return NETWORK_WIFI
+            } else if (mobileNetworkInfo?.isConnected == true) {
+                return NETWORK_MOBILE
+            } else {
+                return NETWORK_NONE
+            }
+        }  else {
+            val networks = cm.allNetworks
+            networks.forEach {
+                val netWorkInfo = cm.getNetworkInfo(it)
+                if (netWorkInfo != null) {
+                    if (netWorkInfo.type == ConnectivityManager.TYPE_WIFI) {
+                        return NETWORK_WIFI
+                    } else if (netWorkInfo.type == ConnectivityManager.TYPE_MOBILE) {
+                        return NETWORK_MOBILE
+                    }
+                }
+            }
+        }
+        return NETWORK_NONE
+    }
+
+    fun test () {
+        val cm = content.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val networks = cm.allNetworks
+            networks.forEachIndexed { index, network ->
+                WowLogUtils.d(this, "index => ${index}")
+                WowLogUtils.d(this, "network => ${network}")
+            }
+        }
+    }
 
 }
