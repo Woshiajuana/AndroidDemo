@@ -36,8 +36,9 @@ class RetrofitManager private constructor() {
 
     private val client = OkHttpClient.Builder()
         .addInterceptor(commonInterceptor)
-        .addInterceptor(cacheInterceptor)
         .addInterceptor(loggingInterceptor)
+        .addInterceptor(cacheInterceptor)
+        .addNetworkInterceptor(cacheInterceptor)
         .cache(cache)
         .callTimeout(120, TimeUnit.SECONDS)
         .readTimeout(120, TimeUnit.SECONDS)
