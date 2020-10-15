@@ -27,6 +27,21 @@ class WowNetworkUtils private constructor (
          * */
         const val NETWORK_WIFI = 1
 
+        /**
+         * 蓝牙网络
+         * */
+        const val NETWORK_BLUETOOTH = 2
+
+        /**
+         * 以太网
+         * */
+        const val NETWORK_ETHERNET = 3
+
+        /**
+         * VPN
+         * */
+        const val NETWORK_VPN = 4
+
         private var mInstance: WowNetworkUtils? = null
         private var mContext: Context? = null
         fun init (content: Context) {
@@ -41,7 +56,7 @@ class WowNetworkUtils private constructor (
     /**
      * 判断网络是否可用
      * <p>需添加权限 android.permission.ACCESS_NETWORK_STATE</p>
-     * @return [Boolean]
+     * @return [Boolean] true: 已连接 false: 未连接
      * */
     fun isConnected () : Boolean {
         val cm = content.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -61,6 +76,7 @@ class WowNetworkUtils private constructor (
      * 判断是否有外网连接（普通方法不能判断外网的网络是否连接，比如连接上局域网）
      * 直接 ping
      * 看结果
+     * @return [Boolean] true: 已连接 false: 未连接
      * */
     fun isOnline () : Boolean {
         val runtime = Runtime.getRuntime()
@@ -75,50 +91,89 @@ class WowNetworkUtils private constructor (
     }
 
     /**
-     * 检测网络类型
+     * Wifi 是否已连接
+     * @return [Boolean] true: 是 false: 否
      * */
+    @Suppress("DEPRECATION")
+    fun isWifiConnected () : Boolean {
+        val cm = content.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val networkCapabilities = cm.getNetworkCapabilities(cm.activeNetwork)
+            if (networkCapabilities != null) {
+                return networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+            }
+        } else {
+            val networkInfo = cm.activeNetworkInfo
+            return networkInfo?.isConnected == true && networkInfo.type == ConnectivityManager.TYPE_WIFI
+        }
+        return false
+    }
+
+    /**
+     * 是否流量
+     * @return [Boolean] true: 是 false: 否
+     * */
+    @Suppress("DEPRECATION")
+    fun isMobileData () : Boolean {
+        val cm = content.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val networkCapabilities = cm.getNetworkCapabilities(cm.activeNetwork)
+            if (networkCapabilities != null) {
+                return networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
+            }
+        } else {
+            val networkInfo = cm.activeNetworkInfo
+            return networkInfo?.isConnected == true && networkInfo.type == ConnectivityManager.TYPE_MOBILE
+        }
+        return false
+    }
+
+    /**
+     * 检测网络类型
+     * @return [Int]
+     * */
+    @Suppress("DEPRECATION")
     fun checkNetWorkState () : Int {
         val cm = content.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        /**
-         * 检测 API 是否小于21，因为 API 21之后 getNetworkInfo(int networkType) 方法被弃用
-         * */
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            /**获取 WIFI 连接信息*/
-            val wifiNetworkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
-            /**获取移动数据连接信息*/
-            val mobileNetworkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-            if (wifiNetworkInfo?.isConnected == true) {
-                return NETWORK_WIFI
-            } else if (mobileNetworkInfo?.isConnected == true) {
-                return NETWORK_MOBILE
-            } else {
-                return NETWORK_NONE
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val networkCapabilities = cm.getNetworkCapabilities(cm.activeNetwork)
+            if (networkCapabilities != null) {
+                if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                    return NETWORK_MOBILE
+                }
+                if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                    return NETWORK_WIFI
+                }
+                if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH)) {
+                    return NETWORK_BLUETOOTH
+                }
+                if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+                    return NETWORK_ETHERNET
+                }
+                if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN)) {
+                    return NETWORK_VPN
+                }
             }
         }  else {
-            val networks = cm.allNetworks
-            networks.forEach {
-                val netWorkInfo = cm.getNetworkInfo(it)
-                if (netWorkInfo != null) {
-                    if (netWorkInfo.type == ConnectivityManager.TYPE_WIFI) {
-                        return NETWORK_WIFI
-                    } else if (netWorkInfo.type == ConnectivityManager.TYPE_MOBILE) {
-                        return NETWORK_MOBILE
-                    }
+            val networkInfo = cm.activeNetworkInfo
+            if (networkInfo != null) {
+                if (networkInfo.type == ConnectivityManager.TYPE_MOBILE) {
+                    return NETWORK_MOBILE
+                }
+                if (networkInfo.type == ConnectivityManager.TYPE_WIFI) {
+                    return NETWORK_WIFI
+                }
+                if (networkInfo.type == ConnectivityManager.TYPE_BLUETOOTH) {
+                    return NETWORK_BLUETOOTH
+                }
+                if (networkInfo.type == ConnectivityManager.TYPE_ETHERNET) {
+                    return NETWORK_ETHERNET
+                }
+                if (networkInfo.type == ConnectivityManager.TYPE_VPN) {
+                    return NETWORK_VPN
                 }
             }
         }
         return NETWORK_NONE
     }
-
-    fun test () {
-        val cm = content.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val networks = cm.allNetworks
-            networks.forEachIndexed { index, network ->
-                WowLogUtils.d(this, "index => ${index}")
-                WowLogUtils.d(this, "network => ${network}")
-            }
-        }
-    }
-
 }
