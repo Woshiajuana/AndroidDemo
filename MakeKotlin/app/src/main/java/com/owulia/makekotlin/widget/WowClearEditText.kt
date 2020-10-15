@@ -7,6 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.MotionEvent
+import android.view.View
 import android.view.animation.CycleInterpolator
 import android.view.animation.TranslateAnimation
 import androidx.appcompat.widget.AppCompatEditText
@@ -20,6 +21,11 @@ class WowClearEditText @JvmOverloads constructor(
      * 右边清除按钮
      * */
     private var mClearDrawable: Drawable? = null
+
+    /**
+     * 控件是否有焦点
+     * */
+    private var isHasFocus = false
 
     init {
         /**
@@ -52,10 +58,23 @@ class WowClearEditText @JvmOverloads constructor(
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                setClearIconVisible(s?.length?: 0 > 0)
+                if (isHasFocus) {
+                    setClearIconVisible(s?.length?: 0 > 0)
+                }
             }
         })
 
+        /**
+         * 设置焦点改变监听
+         * */
+        onFocusChangeListener = OnFocusChangeListener { v, hasFocus ->
+            isHasFocus = hasFocus
+            if (isHasFocus) {
+                setClearIconVisible(text?.length?: 0 > 0)
+            } else {
+                setClearIconVisible(false)
+            }
+        }
     }
 
     /**

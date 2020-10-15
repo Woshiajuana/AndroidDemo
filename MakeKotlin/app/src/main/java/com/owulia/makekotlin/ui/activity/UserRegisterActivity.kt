@@ -15,7 +15,6 @@ import com.owulia.makekotlin.bean.WebViewOptionBean
 import com.owulia.makekotlin.contacts.UserRegisterContacts
 import com.owulia.makekotlin.presenter.UserRegisterPresenter
 import com.owulia.makekotlin.utils.Constants
-import com.owulia.makekotlin.utils.WowLogUtils
 import kotlinx.android.synthetic.main.activity_user_register.*
 import kotlinx.android.synthetic.main.widget_button.*
 
