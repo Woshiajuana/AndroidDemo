@@ -68,5 +68,6 @@
     <string name="string_http_code_tip">请求失败，请稍后再试</string>
     <string name="string_sms_send_success_tip">发送验证码成功</string>
     <string name="string_register_success_tip">注册成功</string>
+    <string name="string_error_phone_tip">手机号码输入有误</string>
 
 </resources>
