@@ -1,6 +1,7 @@
 package com.owulia.makekotlin.base
 
 import android.app.Activity
+import android.text.TextUtils
 import com.owulia.makekotlin.widget.WowLoadingDialog
 import com.owulia.makekotlin.utils.WowToastUtils
 
@@ -34,7 +35,9 @@ abstract class BaseMvpActivity<P : IBasePresenter> : BaseActivity (), IBaseView 
     }
 
     override fun toast(msg: String) {
-        WowToastUtils.show(msg)
+        if (!TextUtils.isEmpty(msg)){
+            WowToastUtils.show(msg)
+        }
     }
 
     override fun toast(msg: Int) {
