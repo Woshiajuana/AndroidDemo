@@ -12,13 +12,13 @@ class CacheInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
         /**网络不可用用*/
-        if (WowNetworkUtils.getInstance().isConnected()) {
+        if (!WowNetworkUtils.getInstance().isConnected()) {
             /**在请求头中加入：强制使用缓存，不访问网络*/
             request = request.newBuilder()
                 .cacheControl(CacheControl.FORCE_CACHE)
                 .build()
         }
-        var response = chain.proceed(request)
+        val response = chain.proceed(request)
         /**
          * 网络可用
          * */
