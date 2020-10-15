@@ -19,7 +19,7 @@ interface Api {
      * */
     @GET(Constants.DO_USER_LOGIN)
     @JvmSuppressWildcards
-    fun doUserLogin (@QueryMap params: Map<String, Any?>)
+    fun doUserLogin (@QueryMap params: Map<String, Any?>) : Call<RespBean<RespUserInfoBean>>
 
     /**
      * 用户注册账号

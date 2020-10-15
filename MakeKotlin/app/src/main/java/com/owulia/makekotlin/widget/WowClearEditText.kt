@@ -7,7 +7,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.MotionEvent
-import android.view.View
 import android.view.animation.CycleInterpolator
 import android.view.animation.TranslateAnimation
 import androidx.appcompat.widget.AppCompatEditText
