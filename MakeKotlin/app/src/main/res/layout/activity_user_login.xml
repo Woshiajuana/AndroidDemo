@@ -28,7 +28,9 @@
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <EditText
+        <com.owulia.makekotlin.widget.WowClearEditText
+            android:id="@+id/vInputPassword"
+            android:gravity="center_vertical"
             android:autofillHints="string/string_account_hint"
             android:inputType="textPassword"
             android:hint="@string/string_password_hint"
@@ -41,6 +43,7 @@
             android:layout_height="42dp"/>
         <include layout="@layout/widget_input_clear_btn"/>
         <ImageView
+            android:id="@+id/vTypeSwitch"
             android:contentDescription="@string/string_image_tip"
             android:src="@mipmap/ic_eye_off"
             android:scaleX="0.6"

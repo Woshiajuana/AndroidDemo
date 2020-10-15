@@ -22,7 +22,7 @@ class UserLoginContacts {
         /**
          * 登录
          * */
-        fun doUserLogin (account: String, password: String)
+        fun doUserLogin (account: String?, password: String?)
 
     }
 

@@ -9,12 +9,10 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.adapter.UserHistoryAccountAdapter
-import com.owulia.makekotlin.base.BaseApplication
 import com.owulia.makekotlin.base.BaseMvpActivity
 import com.owulia.makekotlin.contacts.UserAccountContacts
 import com.owulia.makekotlin.presenter.UserAccountPresenter
 import com.owulia.makekotlin.utils.Constants
-import com.owulia.makekotlin.utils.WowLogUtils
 import kotlinx.android.synthetic.main.activity_user_account.*
 import kotlinx.android.synthetic.main.widget_button.*
 

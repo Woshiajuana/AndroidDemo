@@ -12,7 +12,7 @@ class UserLoginPresenter : BasePresenter<UserLoginContacts.IView>(), UserLoginCo
 
     private val mvpModel: UserLoginModel = UserLoginModel()
 
-    override fun doUserLogin(account: String, password: String) {
+    override fun doUserLogin(account: String?, password: String?) {
         if (TextUtils.isEmpty(account)) {
             mvpView?.toast(R.string.string_account_hint)
             return
@@ -22,7 +22,7 @@ class UserLoginPresenter : BasePresenter<UserLoginContacts.IView>(), UserLoginCo
             return
         }
         mvpView?.loadingShow()
-        mvpModel.doUserLogin(account, password)
+        mvpModel.doUserLogin(account!!, password!!)
             .enqueue(object : SimpleCallback<RespUserInfoBean> (mvpView) {
                 override fun onSuccess(data: RespUserInfoBean?) {
                     mvpView?.callbackLoginSuccess(data!!)
