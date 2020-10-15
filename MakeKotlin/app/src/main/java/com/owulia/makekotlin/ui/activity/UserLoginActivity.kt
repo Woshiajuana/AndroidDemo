@@ -80,6 +80,12 @@ class UserLoginActivity : BaseMvpActivity<UserLoginPresenter>(), UserLoginContac
             }
         }
 
+        /**忘记密码*/
+        vForgetLink.setOnClickListener {
+            val intent = Intent(this, UserForgetActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     override fun callbackLoginSuccess(user: RespUserInfoBean) {
