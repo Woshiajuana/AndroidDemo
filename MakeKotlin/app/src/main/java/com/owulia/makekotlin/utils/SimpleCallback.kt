@@ -40,7 +40,7 @@ abstract class SimpleCallback<T : Any> (
             if (string != null) {
                 try {
                     val body = Gson().fromJson(string, RespBean::class.java)
-                    onError(body.msg?: "网络繁忙，请稍后再试[${code}]")
+                    onError(body.msg?: body.message?: "网络繁忙，请稍后再试[${code}]")
                     return
                 } catch (e: Exception) {
                     e.printStackTrace()

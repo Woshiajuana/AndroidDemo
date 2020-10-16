@@ -11,7 +11,7 @@ class UserLoginModel : UserLoginContacts.IModel {
     override fun doUserLogin(account: String, password: String): Call<RespBean<RespUserInfoBean>> {
         val params = HashMap<String, Any>()
         params["username"] = account
-        params["loginPassword"] = password
+        params["password"] = password
         params["code"] = "mf37"
         params["grant_type"] = "password"
         params["scope"] = "server"

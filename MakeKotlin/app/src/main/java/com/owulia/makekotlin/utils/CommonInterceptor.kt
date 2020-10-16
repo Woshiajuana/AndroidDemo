@@ -4,7 +4,6 @@ import cn.hutool.crypto.digest.DigestUtil
 import com.google.gson.GsonBuilder
 import okhttp3.*
 import okio.Buffer
-import org.json.JSONObject
 import java.io.IOException
 import java.nio.charset.StandardCharsets
 import java.util.*
@@ -44,7 +43,6 @@ class CommonInterceptor : Interceptor {
          * 2，方法注解为@FormUrlEncoded
          */
         val body = request.body()
-        WowLogUtils.d(this, "body is FormBody => ${body is FormBody}")
         if (body is FormBody) {
             val builder = FormBody.Builder()
             /**
@@ -97,6 +95,13 @@ class CommonInterceptor : Interceptor {
     }
 
     private fun rebuildGetRequest(request: Request): Request {
+        /**
+         * 添加签名
+         * */
+        val params = HashMap<String, Any?>()
+        val httpUrl = request.url().newBuilder().build()
+        val arrKeys = httpUrl.queryParameterNames()
+
         return request
     }
 

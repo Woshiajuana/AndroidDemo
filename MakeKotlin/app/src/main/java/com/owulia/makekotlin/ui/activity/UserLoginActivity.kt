@@ -1,8 +1,10 @@
 package com.owulia.makekotlin.ui.activity
 
 import android.content.Intent
+import android.text.Editable
 import android.text.InputType
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.widget.ImageView
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BaseMvpActivity
@@ -87,6 +89,17 @@ class UserLoginActivity : BaseMvpActivity<UserLoginPresenter>(), UserLoginContac
             val intent = Intent(this, UserForgetActivity::class.java)
             startActivity(intent)
         }
+
+        // input 输入监听
+        vInputPassword.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                vSubmitButton.isEnabled = !TextUtils.isEmpty(s.toString())
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
 
     }
 
