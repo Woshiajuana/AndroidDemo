@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.owulia.makekotlin.R
@@ -49,10 +50,15 @@ class UserHeaderView @JvmOverloads constructor(
      * 设置图片
      * */
     fun setImage (url: String) {
-        val options = RequestOptions().circleCrop().transform(
-            RoundedCorners(WowSizeUtils.px2dp(600f).toInt())
-        )
-        Glide.with(this).load(url).apply(options).into(vHeaderImg)
+        val options = RequestOptions().apply{
+            transform(RoundedCorners(WowSizeUtils.px2dp(600f).toInt()))
+            transform(CenterCrop(), RoundedCorners(WowSizeUtils.px2dp(600f).toInt()))
+        }
+        Glide.with(this)
+            .load(url)
+            .placeholder(R.mipmap.ic_logo)
+            .apply(options)
+            .into(vHeaderImg)
     }
 
 }

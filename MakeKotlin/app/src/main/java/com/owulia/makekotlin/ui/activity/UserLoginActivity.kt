@@ -4,7 +4,6 @@ import android.content.Intent
 import android.text.InputType
 import android.text.TextUtils
 import android.widget.ImageView
-import com.bumptech.glide.Glide
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BaseMvpActivity
 import com.owulia.makekotlin.bean.RespUserInfoBean
@@ -12,7 +11,6 @@ import com.owulia.makekotlin.contacts.UserLoginContacts
 import com.owulia.makekotlin.presenter.UserLoginPresenter
 import com.owulia.makekotlin.utils.Constants
 import com.owulia.makekotlin.utils.WowCommonUtils
-import com.owulia.makekotlin.utils.WowLogUtils
 import kotlinx.android.synthetic.main.activity_user_login.*
 import kotlinx.android.synthetic.main.widget_button.*
 import kotlinx.android.synthetic.main.widget_user_header.view.*
@@ -35,9 +33,10 @@ class UserLoginActivity : BaseMvpActivity<UserLoginPresenter>(), UserLoginContac
             mAccount?.let {
                 vHeaderTitle.text = WowCommonUtils.formatPhone(it)
             }
-            WowLogUtils.d(this, "mAvatar => $mAvatar")
             mAvatar?.let{
-                Glide.with(this).load(it).into(vHeaderImg)
+                if (!TextUtils.isEmpty(it)) {
+                    vUserHeader.setImage(it)
+                }
             }
         }
     }
@@ -52,9 +51,6 @@ class UserLoginActivity : BaseMvpActivity<UserLoginPresenter>(), UserLoginContac
             }
             getStringExtra(Constants.KEY_AVATAR)?.let {
                 mAvatar = it
-//                if (!TextUtils.isEmpty(it)) {
-//                    vUserHeader.setImage(it)
-//                }
             }
         }
     }

@@ -28,7 +28,6 @@
         </activity>
         <activity android:name=".ui.activity.UserLoginActivity" />
         <activity android:name=".ui.activity.UserAccountActivity" >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
