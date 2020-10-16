@@ -1,17 +1,19 @@
 package com.owulia.makekotlin.model
 
+import cn.hutool.crypto.digest.DigestUtil
 import com.owulia.makekotlin.bean.RespBean
 import com.owulia.makekotlin.bean.RespUserInfoBean
 import com.owulia.makekotlin.contacts.UserLoginContacts
+import com.owulia.makekotlin.utils.AesUtils
 import com.owulia.makekotlin.utils.RetrofitManager
 import retrofit2.Call
 
 class UserLoginModel : UserLoginContacts.IModel {
 
     override fun doUserLogin(account: String, password: String): Call<RespBean<RespUserInfoBean>> {
-        val params = HashMap<String, Any>()
+        val params = HashMap<String, Any?>()
         params["username"] = account
-        params["password"] = password
+        params["password"] = AesUtils.aesEncrypt(password, "shrewshrewshrews")
         params["code"] = "mf37"
         params["grant_type"] = "password"
         params["scope"] = "server"
