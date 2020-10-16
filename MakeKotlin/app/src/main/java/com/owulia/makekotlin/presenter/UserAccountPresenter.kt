@@ -28,9 +28,9 @@ class UserAccountPresenter : BasePresenter<UserAccountContacts.IView>(),
             .enqueue(object : SimpleCallback<RespCheckAccountBean>(mvpView) {
                 override fun onSuccess(data: RespCheckAccountBean?) {
                     if (data?.isRegister == "Y") {
-                        mvpView?.callbackGoToLogin(account)
+                        mvpView?.callbackGoToLogin(account, data?.headPortrait)
                     } else {
-                        mvpView?.callbackGoToRegister(account, data?.headPortrait)
+                        mvpView?.callbackGoToRegister(account)
                     }
                 }
             })

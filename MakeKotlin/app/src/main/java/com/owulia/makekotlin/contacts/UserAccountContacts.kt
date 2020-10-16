@@ -13,15 +13,15 @@ class UserAccountContacts {
         /**
          * 已注册跳转到登录页面
          * @param account [String] 账号
+         * @param avatar [String] 头像
          * */
-        fun callbackGoToLogin (account: String)
+        fun callbackGoToLogin (account: String, avatar: String?)
 
         /**
          * 未注册跳转到注册页面
          * @param account [String] 账号
-         * @param avatar [String] 头像
          * */
-        fun callbackGoToRegister (account: String, avatar: String?)
+        fun callbackGoToRegister (account: String)
 
         /**
          * 历史数据回调

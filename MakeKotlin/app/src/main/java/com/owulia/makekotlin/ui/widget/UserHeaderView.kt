@@ -45,4 +45,14 @@ class UserHeaderView @JvmOverloads constructor(
         }
     }
 
+    /**
+     * 设置图片
+     * */
+    fun setImage (url: String) {
+        val options = RequestOptions().circleCrop().transform(
+            RoundedCorners(WowSizeUtils.px2dp(600f).toInt())
+        )
+        Glide.with(this).load(url).apply(options).into(vHeaderImg)
+    }
+
 }
