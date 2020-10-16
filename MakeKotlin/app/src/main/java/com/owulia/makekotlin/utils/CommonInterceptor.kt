@@ -99,10 +99,23 @@ class CommonInterceptor : Interceptor {
          * 添加签名
          * */
         val params = HashMap<String, Any?>()
-        val httpUrl = request.url().newBuilder().build()
+        var httpUrl = request.url().newBuilder().build()
         val arrKeys = httpUrl.queryParameterNames()
-
-        return request
+        arrKeys.forEachIndexed { i, it ->
+            if (it != "password") {
+                params[it] = httpUrl.queryParameterValue(i)
+            }
+        }
+        val strSignTemp = signatureTempGenerate(params, Constants.ENCRYPT_KEY)
+        val signature = DigestUtil.sha256Hex(strSignTemp.toByteArray(StandardCharsets.UTF_8))
+        httpUrl = httpUrl.newBuilder()
+            .addQueryParameter("signature", signature)
+            .build()
+        return request.newBuilder()
+            .addHeader("Authorization", "Basic c2hyZXc6c2hyZXc=")
+            .addHeader("TENANT_ID", Constants.TENANT_ID)
+            .url(httpUrl)
+            .build()
     }
 
 
