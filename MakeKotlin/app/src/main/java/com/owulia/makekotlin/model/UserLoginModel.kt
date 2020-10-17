@@ -1,6 +1,5 @@
 package com.owulia.makekotlin.model
 
-import cn.hutool.crypto.digest.DigestUtil
 import com.owulia.makekotlin.bean.RespBean
 import com.owulia.makekotlin.bean.RespUserInfoBean
 import com.owulia.makekotlin.contacts.UserLoginContacts
@@ -13,7 +12,7 @@ class UserLoginModel : UserLoginContacts.IModel {
     override fun doUserLogin(account: String, password: String): Call<RespBean<RespUserInfoBean>> {
         val params = HashMap<String, Any?>()
         params["username"] = account
-        params["password"] = AesUtils.aesEncrypt(password, "shrewshrewshrews")
+        params["password"] = AesUtils.encrypt("shrewshrewshrews", password)
         params["code"] = "mf37"
         params["grant_type"] = "password"
         params["scope"] = "server"
