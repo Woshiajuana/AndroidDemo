@@ -59,6 +59,8 @@
     <string name="string_guide_start_tip">开启码可</string>
     <string name="string_agreement_title">码可用户协议和隐私政策</string>
     <string name="string_agreement_cancel">不同意</string>
+    <string name="string_confirm_common_title">温馨提示</string>
+    <string name="string_user_logout_tip">确认退出登录？</string>
     <string name="string_agreement_sure">同意</string>
     <string name="string_agreement_popup_str1">我们非常注重您的个人信息和隐私保护，为了更好的保证您的个人权益，请您认证阅读</string>
     <string name="string_agreement_popup_str2">和</string>
