@@ -6,6 +6,7 @@ import com.owulia.makekotlin.base.BaseActivity
 import com.owulia.makekotlin.ui.fragment.HomeFragment
 import com.owulia.makekotlin.ui.fragment.MaterialFragment
 import com.owulia.makekotlin.ui.fragment.MineFragment
+import com.owulia.makekotlin.utils.WowRouterManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -18,6 +19,7 @@ class MainActivity : BaseActivity() {
 
     override fun initView() {
         super.initView()
+        WowRouterManager.instant.root()
         render(RenderState.SUCCESS)
         vMainTabBar.apply {
             setItemIcon(resources.getDimension(R.dimen.dimen_tab_bar_icon).toInt())
