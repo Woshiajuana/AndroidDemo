@@ -13,6 +13,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.owulia.makekotlin.R
+import com.owulia.makekotlin.bean.RespUserInfoBean
 import com.owulia.makekotlin.bean.UserBean
 import com.owulia.makekotlin.bean.WebViewOptionBean
 import com.owulia.makekotlin.utils.Constants
@@ -28,7 +29,7 @@ class WelcomeActivity : AppCompatActivity() {
         /**
          * 判断用户是否登录
          * */
-        val isUserLogin = WowJsonCacheUtils.getInstance().get(Constants.JSON_CACHE_KEY_USER, UserBean::class.java, null) != null
+        val isUserLogin = WowJsonCacheUtils.getInstance().get(Constants.JSON_CACHE_KEY_USER, RespUserInfoBean::class.java, null) != null
 
         if (isUserLogin) {
 

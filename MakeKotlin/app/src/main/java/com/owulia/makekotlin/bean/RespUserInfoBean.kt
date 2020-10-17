@@ -1,7 +1,10 @@
 package com.owulia.makekotlin.bean
 
+import com.google.gson.annotations.SerializedName
+
 data class RespUserInfoBean(
-    val access_token: String?,
+    @SerializedName("access_token")
+    val accessToken: String?,
     val dept_id: Any?,
     val expires_in: Int?,
     val license: String?,

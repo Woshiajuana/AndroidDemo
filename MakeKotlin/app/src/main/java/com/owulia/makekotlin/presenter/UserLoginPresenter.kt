@@ -6,7 +6,9 @@ import com.owulia.makekotlin.base.BasePresenter
 import com.owulia.makekotlin.bean.RespUserInfoBean
 import com.owulia.makekotlin.contacts.UserLoginContacts
 import com.owulia.makekotlin.model.UserLoginModel
+import com.owulia.makekotlin.utils.Constants
 import com.owulia.makekotlin.utils.UserLoginCallback
+import com.owulia.makekotlin.utils.WowJsonCacheUtils
 
 class UserLoginPresenter : BasePresenter<UserLoginContacts.IView>(), UserLoginContacts.IPresenter {
 
@@ -25,6 +27,7 @@ class UserLoginPresenter : BasePresenter<UserLoginContacts.IView>(), UserLoginCo
         mvpModel.doUserLogin(account!!, password!!)
             .enqueue(object : UserLoginCallback(mvpView) {
                 override fun onSuccess(data: RespUserInfoBean) {
+                    WowJsonCacheUtils.getInstance().set(Constants.JSON_CACHE_KEY_USER, data)
                     mvpView?.callbackLoginSuccess(data)
                 }
             })
