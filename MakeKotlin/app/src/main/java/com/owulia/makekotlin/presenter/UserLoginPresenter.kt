@@ -6,7 +6,7 @@ import com.owulia.makekotlin.base.BasePresenter
 import com.owulia.makekotlin.bean.RespUserInfoBean
 import com.owulia.makekotlin.contacts.UserLoginContacts
 import com.owulia.makekotlin.model.UserLoginModel
-import com.owulia.makekotlin.utils.SimpleCallback
+import com.owulia.makekotlin.utils.UserLoginCallback
 
 class UserLoginPresenter : BasePresenter<UserLoginContacts.IView>(), UserLoginContacts.IPresenter {
 
@@ -23,9 +23,9 @@ class UserLoginPresenter : BasePresenter<UserLoginContacts.IView>(), UserLoginCo
         }
         mvpView?.loadingShow()
         mvpModel.doUserLogin(account!!, password!!)
-            .enqueue(object : SimpleCallback<RespUserInfoBean> (mvpView) {
-                override fun onSuccess(data: RespUserInfoBean?) {
-                    mvpView?.callbackLoginSuccess(data!!)
+            .enqueue(object : UserLoginCallback(mvpView) {
+                override fun onSuccess(data: RespUserInfoBean) {
+                    mvpView?.callbackLoginSuccess(data)
                 }
             })
     }

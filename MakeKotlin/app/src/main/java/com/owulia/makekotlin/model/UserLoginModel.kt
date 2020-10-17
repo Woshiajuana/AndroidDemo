@@ -1,6 +1,5 @@
 package com.owulia.makekotlin.model
 
-import com.owulia.makekotlin.bean.RespBean
 import com.owulia.makekotlin.bean.RespUserInfoBean
 import com.owulia.makekotlin.contacts.UserLoginContacts
 import com.owulia.makekotlin.utils.AesUtils
@@ -9,7 +8,7 @@ import retrofit2.Call
 
 class UserLoginModel : UserLoginContacts.IModel {
 
-    override fun doUserLogin(account: String, password: String): Call<RespBean<RespUserInfoBean>> {
+    override fun doUserLogin(account: String, password: String): Call<RespUserInfoBean> {
         val params = HashMap<String, Any?>()
         params["username"] = account
         params["password"] = AesUtils.encrypt("shrewshrewshrews", password)
