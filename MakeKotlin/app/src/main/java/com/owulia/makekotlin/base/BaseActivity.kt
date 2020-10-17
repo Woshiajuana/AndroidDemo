@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.ui.widget.NavBarView
+import com.owulia.makekotlin.utils.WowRouterManager
 import com.owulia.makekotlin.utils.WowSizeUtils
 import com.owulia.makekotlin.utils.WowStatusBarUtils
 import kotlinx.android.synthetic.main.fragment_base.*
@@ -101,6 +102,11 @@ abstract class BaseActivity : AppCompatActivity() {
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        /**
+         * 添加到堆栈
+         * */
+        WowRouterManager.instant.add(this)
 
         /**
          * 初始化 ViewGroup
@@ -295,6 +301,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        WowRouterManager.instant.remove(this)
         release()
     }
 
