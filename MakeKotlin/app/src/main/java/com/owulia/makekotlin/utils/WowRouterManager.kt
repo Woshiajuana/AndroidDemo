@@ -37,14 +37,28 @@ class WowRouterManager private constructor () {
 
     /**
      * 移出
+     * 假如界面共8页 [1（首页）, 2, 3, 4, 5, 6, 7, 8（当前页）]
+     * <p>
+     * back（1）回到7  不处理
+     * back（8）回到8  不处理
+     * back（3）回到5  移除 6.7
+     * back（2）回到6  移除 7
      * @param  index [Int]
      * */
-    fun remove (index: Int = 1) {
-        for (i in 0 until  index) {
-
+    fun remove (index: Int) {
+        for (i in 0 until index) {
+            if (activityStack.size > 2) {
+                remove(activityStack[activityStack.size - 1])
+            }
         }
+    }
+
+    /**
+     * 重定向到一个页面
+     * */
+    fun redirect () {
         activityStack.forEachIndexed { index, activity ->
-            if (index != 0 && activityStack.size != index + 1) {
+            if (index != activityStack.size - 1) {
                 remove(activity)
             }
         }
