@@ -19,7 +19,6 @@ class MainActivity : BaseActivity() {
 
     override fun initView() {
         super.initView()
-        WowRouterManager.instant.redirect()
         render(RenderState.SUCCESS)
         vMainTabBar.apply {
             setItemIcon(resources.getDimension(R.dimen.dimen_tab_bar_icon).toInt())

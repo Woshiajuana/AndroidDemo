@@ -13,6 +13,7 @@ import com.owulia.makekotlin.contacts.UserLoginContacts
 import com.owulia.makekotlin.presenter.UserLoginPresenter
 import com.owulia.makekotlin.utils.Constants
 import com.owulia.makekotlin.utils.WowCommonUtils
+import com.owulia.makekotlin.utils.WowRouterManager
 import kotlinx.android.synthetic.main.activity_user_login.*
 import kotlinx.android.synthetic.main.widget_button.*
 import kotlinx.android.synthetic.main.widget_user_header.view.*
@@ -106,7 +107,7 @@ class UserLoginActivity : BaseMvpActivity<UserLoginPresenter>(), UserLoginContac
     override fun callbackLoginSuccess(user: RespUserInfoBean) {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        finish()
+        WowRouterManager.instant.remove(3)
     }
 
 }
