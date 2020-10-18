@@ -150,10 +150,8 @@ abstract class BaseFragment : Fragment() {
          * */
         if (isStatusBarLightMode) {
             setStatusBarLightMode()
-            WowLogUtils.d(this, "setStatusBarLightMode => ")
         } else {
             setStatusBarDarkMode()
-            WowLogUtils.d(this, "setStatusBarDarkMode => ")
         }
     }
 

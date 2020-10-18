@@ -56,10 +56,13 @@ class WowRouterManager private constructor () {
     /**
      * 重定向到一个页面
      * */
-    fun redirect () {
-        val size = activityStack.size
-        for (i in 0 until size) {
-            remove(activityStack[i])
+    fun redirect (activity: Activity) {
+        activityStack.forEach { it ->
+            WowLogUtils.d(this, "activity => $activity")
+            WowLogUtils.d(this, "it => $it")
+//            if (activity != it) {
+//                remove(it)
+//            }
         }
     }
 

@@ -63,7 +63,9 @@ class UserLoginActivity : BaseMvpActivity<UserLoginPresenter>(), UserLoginContac
 
         /**登录*/
         vSubmitButton.setOnClickListener {
-            mvpPresenter?.doUserLogin(mAccount, vInputPassword.text.toString())
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+//            mvpPresenter?.doUserLogin(mAccount, vInputPassword.text.toString())
         }
 
         /**
@@ -107,7 +109,6 @@ class UserLoginActivity : BaseMvpActivity<UserLoginPresenter>(), UserLoginContac
     override fun callbackLoginSuccess(user: RespUserInfoBean) {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        WowRouterManager.instant.remove(3)
     }
 
 }
