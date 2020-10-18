@@ -36,6 +36,21 @@ class WowRouterManager private constructor () {
     }
 
     /**
+     * 移出
+     * @param  index [Int]
+     * */
+    fun remove (index: Int = 1) {
+        for (i in 0 until  index) {
+
+        }
+        activityStack.forEachIndexed { index, activity ->
+            if (index != 0 && activityStack.size != index + 1) {
+                remove(activity)
+            }
+        }
+    }
+
+    /**
      * 回退页面
      * */
     fun pop(index: Int = 1) {
