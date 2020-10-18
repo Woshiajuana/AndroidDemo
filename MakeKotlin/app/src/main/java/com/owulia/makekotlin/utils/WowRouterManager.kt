@@ -56,14 +56,8 @@ class WowRouterManager private constructor () {
     /**
      * 重定向到一个页面
      * */
-    fun redirect (activity: Activity) {
-        activityStack.forEach { it ->
-            WowLogUtils.d(this, "activity => $activity")
-            WowLogUtils.d(this, "it => $it")
-//            if (activity != it) {
-//                remove(it)
-//            }
-        }
+    fun redirect (to: Activity) {
+        activityStack.filter { it != to }.forEach { remove(it) }
     }
 
     /**
@@ -81,11 +75,7 @@ class WowRouterManager private constructor () {
      * 回到栈底，保留一个页面
      * */
     fun root() {
-        activityStack.forEachIndexed { index, activity ->
-            if (index != 0) {
-                remove(activity)
-            }
-        }
+        activityStack.filterIndexed { index, _ -> index != 0 }.forEach { remove(it) }
     }
 
     /**
@@ -93,9 +83,7 @@ class WowRouterManager private constructor () {
      * */
     fun exit () {
         try {
-            activityStack.forEach{
-                remove(it)
-            }
+            activityStack.filter { true }.forEach{ remove(it) }
             exitProcess(0)
         } catch (e: Exception) {
             e.printStackTrace()

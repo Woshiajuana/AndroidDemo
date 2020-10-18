@@ -47,17 +47,17 @@ class WowConfirmDialog(context: Context) : Dialog(context, R.style.Dialog_Theme_
             setCancelOnClickListener?.let {
                 val result = it(v)
                 if (result == true) {
-                    hide()
+                    dismiss()
                 }
-            } ?: hide()
+            } ?: dismiss()
         }
         vSureButton.setOnClickListener { v ->
             setSureOnClickListener?.let {
                 val result = it(v)
                 if (result == true) {
-                    hide()
+                    dismiss()
                 }
-            } ?: hide()
+            } ?: dismiss()
         }
     }
 

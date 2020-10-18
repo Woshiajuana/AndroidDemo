@@ -3,14 +3,11 @@ package com.owulia.makekotlin.ui.fragment
 import android.content.Intent
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-
 import com.owulia.makekotlin.R
 import com.owulia.makekotlin.base.BaseFragment
 import com.owulia.makekotlin.bean.MenuCellBean
-import com.owulia.makekotlin.ui.activity.GuidePageActivity
 import com.owulia.makekotlin.ui.activity.UserAccountActivity
 import com.owulia.makekotlin.ui.widget.MenuCellView
-import com.owulia.makekotlin.utils.WowToastUtils
 import com.owulia.makekotlin.widget.WowConfirmDialog
 import kotlinx.android.synthetic.main.fragment_mine.*
 import kotlinx.android.synthetic.main.widget_confirm_dialog.*
@@ -111,10 +108,12 @@ class MineFragment : BaseFragment() {
                 vTitle.setText(R.string.string_confirm_common_title)
                 vMessage.setText(R.string.string_user_logout_tip)
                 setSureOnClickListener = {
-                    hide()
-                    this@MineFragment.requireActivity().overridePendingTransition(R.anim.anim_fade_in, R.anim.anim_fade_out)
-                    startActivity(Intent(this@MineFragment.requireContext(), UserAccountActivity::class.java))
-                    requireActivity().finish()
+                    dismiss()
+                    requireActivity().apply {
+                        overridePendingTransition(R.anim.anim_fade_in, R.anim.anim_fade_out)
+                        startActivity(Intent(requireContext(), UserAccountActivity::class.java))
+                        finish()
+                    }
                     false
                 }
             }
