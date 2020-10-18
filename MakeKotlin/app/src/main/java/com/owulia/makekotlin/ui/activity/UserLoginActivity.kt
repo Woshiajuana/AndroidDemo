@@ -63,9 +63,7 @@ class UserLoginActivity : BaseMvpActivity<UserLoginPresenter>(), UserLoginContac
 
         /**登录*/
         vSubmitButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-//            mvpPresenter?.doUserLogin(mAccount, vInputPassword.text.toString())
+            mvpPresenter?.doUserLogin(mAccount, vInputPassword.text.toString())
         }
 
         /**
