@@ -3,10 +3,13 @@ package com.owulia.mvvmdemo.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.owulia.mvvmdemo.domain.OnSellData
 import com.owulia.mvvmdemo.repository.OnSellRepository
 import kotlinx.coroutines.launch
 
 class OnSellViewModel : ViewModel() {
+
+    val contentList = MutableLiveData<List<OnSellData.TbkDgOptimusMaterialResponse.ResultList.MapData>>()
 
     private val onSellRepository by lazy {
         OnSellRepository()
@@ -35,13 +38,11 @@ class OnSellViewModel : ViewModel() {
     }
 
     private fun listContentByPage (page: Int) {
-        println("result => 开始请求")
         viewModelScope.launch {
             val onSellList = onSellRepository.getOnSellList(page)
-            println("result => ${onSellList.tbk_dg_optimus_material_response.result_list.map_data.size}")
+            contentList.value = onSellList.tbk_dg_optimus_material_response.result_list.map_data
         }
     }
 
-    val contentList = MutableLiveData<MutableList<String>>()
 
 }
