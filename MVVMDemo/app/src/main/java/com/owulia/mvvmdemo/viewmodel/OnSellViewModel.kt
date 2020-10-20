@@ -21,13 +21,15 @@ class OnSellViewModel : ViewModel() {
     }
 
     // 当前页
-    private val mCurrentPage = DEFAULT_PAGE
+    private var mCurrentPage = DEFAULT_PAGE
 
     /**
      * 加载更多内容
      * */
     fun loaderMore () {
-
+        // 加载更多
+        mCurrentPage++
+        listContentByPage(mCurrentPage)
     }
 
     /**

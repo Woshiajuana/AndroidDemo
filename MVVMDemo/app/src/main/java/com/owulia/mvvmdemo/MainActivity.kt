@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
+import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
 import com.owulia.mvvmdemo.adapter.OnSellListAdapter
 import com.owulia.mvvmdemo.viewmodel.OnSellViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -31,13 +33,13 @@ class MainActivity : AppCompatActivity() {
      * 观察数据变化
      * */
     private fun initObserver() {
-        mViewModel.run {
+        mViewModel.apply {
             contentList.observe(this@MainActivity, Observer {
                 // 内容更新
                 // 更新数据
                 mAdapter.setData(it)
             })
-        }
+        }.loadContent()
     }
 
     /**
@@ -47,6 +49,17 @@ class MainActivity : AppCompatActivity() {
         contentListRv.run{
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = mAdapter
+        }
+
+        vRefresh.run {
+            setEnableRefresh(true)
+            setEnableLoadmore(true)
+            setEnableOverScroll(true)
+            setOnRefreshListener(object : RefreshListenerAdapter () {
+                override fun onLoadMore(refreshLayout: TwinklingRefreshLayout?) {
+                    mViewModel.loaderMore()
+                }
+            })
         }
     }
 }

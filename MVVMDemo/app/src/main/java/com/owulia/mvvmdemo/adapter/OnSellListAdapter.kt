@@ -1,9 +1,12 @@
 package com.owulia.mvvmdemo.adapter
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.owulia.mvvmdemo.R
 import com.owulia.mvvmdemo.domain.OnSellData
+import kotlinx.android.synthetic.main.item_on_sell.view.*
 
 class OnSellListAdapter : RecyclerView.Adapter<OnSellListAdapter.InnerHolder>() {
 
@@ -16,15 +19,21 @@ class OnSellListAdapter : RecyclerView.Adapter<OnSellListAdapter.InnerHolder>() 
         parent: ViewGroup,
         viewType: Int
     ): OnSellListAdapter.InnerHolder {
-        TODO("Not yet implemented")
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_on_sell, parent, false)
+        return InnerHolder(itemView)
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return mContentList.size
     }
 
     override fun onBindViewHolder(holder: OnSellListAdapter.InnerHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.itemView.apply {
+            with(mContentList[position]) {
+                itemTitleTv.text = title
+            }
+        }
     }
 
     fun setData(it: List<OnSellData.TbkDgOptimusMaterialResponse.ResultList.MapData>) {
