@@ -33,7 +33,7 @@ class WebViewFragment : BaseFragment() {
 
     override fun initView(view: View) {
         super.initView(view)
-        AndroidBug5497Workaround.assistActivity(activity)
+//        AndroidBug5497Workaround.assistActivity(activity)
         arguments?.apply {
             getString(ConstantsUtils.WEB_VIEW_TITLE)?.let {
                 vNavBar?.setTitle(it)
