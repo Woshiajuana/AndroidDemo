@@ -17,7 +17,7 @@ class DatabaseHelper(
         println("创建数据库...")
         // 创建表
         // sql: create table table_name(_id integer, name varchar, age integer, salary integer);
-        val sql = "create table ${Constants.TABLE_NAME}(_id integer, name varchar, age integer, salary integer)"
+        val sql = "create table ${Constants.TABLE_NAME}(_id integer, name varchar, age integer, salary integer, phone integer, address varchar)"
         db?.execSQL(sql)
     }
 
