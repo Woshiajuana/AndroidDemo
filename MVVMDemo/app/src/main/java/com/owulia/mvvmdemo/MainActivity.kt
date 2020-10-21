@@ -28,10 +28,6 @@ class MainActivity : AppCompatActivity() {
         initView ()
         initObserver()
 
-
-
-        val dao = Dao(this)
-        dao.query()
     }
 
     /**

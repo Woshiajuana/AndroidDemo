@@ -37,7 +37,7 @@ class UserDaoImpl (context: Context) : IUserDao {
 
     override fun getUserById(id: Int): User? {
         val db = helper.writableDatabase
-        val sql = "select * from ${Constants.TABLE_NAME} where ${Constants.FILED_ID} = ?"
+        val sql = "select * from ${Constants.DB_TABLE_NAME} where ${Constants.FILED_ID} = ?"
         val cursor = db.rawQuery(sql, arrayOf(id.toString()))
         var user: User? = null
         if (cursor.moveToNext()) {
@@ -50,7 +50,7 @@ class UserDaoImpl (context: Context) : IUserDao {
 
     override fun listAllUser(): List<User> {
         val db = helper.writableDatabase
-        val cursor = db.query(Constants.TABLE_NAME, null, null, null, null, null, null, null)
+        val cursor = db.query(Constants.DB_TABLE_NAME, null, null, null, null, null, null, null)
         val userList = mutableListOf<User>()
         while (cursor.moveToNext()) {
             userList.add(cursor2User(cursor))
