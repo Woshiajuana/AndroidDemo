@@ -22,11 +22,11 @@ interface IUserDao {
     /**
      * 查询用户
      * */
-    fun getUserById (id: Int) : User
+    fun getUserById (id: Int) : User?
 
     /**
      * 查出所有的用户
      * */
     fun listAllUser () : List<User>
-    
+
 }

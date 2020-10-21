@@ -1,9 +1,9 @@
 package com.owulia.mvvmdemo.pojo
 
 data class User(
-    val _id: Int,
-    val userName: String,
-    val password: String,
-    val sex: String,
-    val age: Int
+    var _id: Int,
+    var userName: String,
+    var password: String,
+    var sex: String,
+    var age: Int
 )

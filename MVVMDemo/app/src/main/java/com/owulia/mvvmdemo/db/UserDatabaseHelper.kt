@@ -16,7 +16,7 @@ class UserDatabaseHelper(
     override fun onCreate(db: SQLiteDatabase?) {
         println("创建表")
         // 创建数据库
-        val sql = "create table user(_id integer primary key autoincrement, userName varchar(30), password varchar(30), sex varchar(5), age integer)"
+        val sql = "create table ${Constants.DB_TABLE_NAME}(${Constants.FILED_ID} integer primary key autoincrement, ${Constants.FILED_USER_NAME} varchar(30), ${Constants.FILED_PASSWORD} varchar(30), ${Constants.FILED_SEX} varchar(5), ${Constants.FILED_AGE} integer)"
         db?.execSQL(sql)
     }
 
