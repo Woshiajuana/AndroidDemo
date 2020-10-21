@@ -35,7 +35,8 @@ class DatabaseHelper(
                 db?.execSQL(sql)
             }
             3 -> {
-
+                val sql = "alter table ${Constants.TABLE_NAME} add phone integer"
+                db?.execSQL(sql)
             }
         }
 
