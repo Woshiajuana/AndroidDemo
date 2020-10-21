@@ -6,5 +6,8 @@ object Constants {
     const val DATABASE_NAME = "mvvmdemo.db"
 
     // 版本号
-    const val VERSION_CODE = 1
+    const val VERSION_CODE = 2
+
+    // 表名
+    const val TABLE_NAME = "employee"
 }

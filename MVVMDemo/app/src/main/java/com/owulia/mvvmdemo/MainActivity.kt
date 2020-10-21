@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity() {
         initView ()
         initObserver()
 
-//        val helper = DatabaseHelper(this)
-//        helper.writableDatabase
+        val helper = DatabaseHelper(this)
+        helper.writableDatabase
     }
 
     /**
