@@ -45,7 +45,7 @@ class TestUserDatabase {
         val users = userDao.listAllUser()
         println("users size is ${users.size}")
         users.forEachIndexed { index, user ->
-            print("index => $index, user => $user")
+            println("index => $index, user => $user")
         }
     }
 

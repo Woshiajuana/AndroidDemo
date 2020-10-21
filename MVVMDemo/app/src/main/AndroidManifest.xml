@@ -19,6 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--    注册 Provider    -->
+        <provider
+            android:authorities="com.owulia.mvvmdemo;wowUserProvider"
+            android:name=".provider.UserProvider"/>
     </application>
 
 </manifest>
