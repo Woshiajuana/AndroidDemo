@@ -2,7 +2,7 @@ package com.owulia.mvvmdemo
 
 import android.content.ContentValues
 import android.content.Context
-import java.lang.Exception
+import com.owulia.mvvmdemo.utils.Constants
 
 /**
  * 操作数据库的增删改查
