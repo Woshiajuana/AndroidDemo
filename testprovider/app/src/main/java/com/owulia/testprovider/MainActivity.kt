@@ -3,12 +3,14 @@ package com.owulia.testprovider
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ContentValues
+import android.content.UriMatcher
 import android.content.pm.PackageManager
 import android.database.ContentObserver
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.provider.CalendarContract
 import android.provider.ContactsContract
@@ -18,10 +20,26 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    /**
+     * 倒计时
+     * */
+    val mCountDownTimer = object : CountDownTimer(60 * 1000, 1000) {
+        override fun onFinish() {
+        }
+
+        override fun onTick(millisUntilFinished: Long) {
+            
+        }
+    }
+
     companion object {
         const val PERMISSION_REQUEST_CODE = 1
         const val PERMISSION_CONTACTS_REQUEST_CODE = 2
         const val PERMISSION_SMS_REQUEST_CODE = 3
+        const val SMS_MATCHER_CODE = 1
+        val smsUriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
+            addURI("sms", "inbox/#", SMS_MATCHER_CODE)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,12 +47,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val uri = Uri.parse("content://com.owulia.mvvmdemo/user")
-        contentResolver.registerContentObserver(uri, true, object : ContentObserver(Handler()){
-            override fun onChange(selfChange: Boolean) {
-                super.onChange(selfChange)
-                println("数据发生了变化")
-            }
-        })
+//        contentResolver.registerContentObserver(uri, true, object : ContentObserver(Handler()){
+//            override fun onChange(selfChange: Boolean) {
+//                super.onChange(selfChange)
+//                println("数据发生了变化")
+//            }
+//        })
 
 
         /**
@@ -44,7 +62,20 @@ class MainActivity : AppCompatActivity() {
         contentResolver.registerContentObserver(smsUri, true, object : ContentObserver(Handler()) {
             override fun onChange(selfChange: Boolean, uri: Uri?) {
                 super.onChange(selfChange, uri)
-                println("监听短信uri => $uri")
+                if (smsUriMatcher.match(uri) == SMS_MATCHER_CODE) {
+                    println("监听短信uri => $uri")
+                    val cursor = contentResolver.query(uri!!, null, null, null, null)
+                    val columnNames = cursor?.columnNames
+                    while (cursor?.moveToNext() == true) {
+                        println("===========================")
+                        columnNames?.forEach {
+                            val value = cursor.getString(cursor.getColumnIndex(it))
+                            println("Name: $it  <======>  Value: $value")
+                        }
+                        println("===========================")
+                    }
+                    cursor?.close()
+                }
             }
         })
 
@@ -305,4 +336,5 @@ class MainActivity : AppCompatActivity() {
         val reminderResultUri = contentResolver.insert(reminderUri, reminderValues)
         println("reminderResultUri => $reminderResultUri")
     }
+
 }

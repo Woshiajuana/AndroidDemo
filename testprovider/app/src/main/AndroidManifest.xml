@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.owulia.testprovider">
+    <!-- 读写日历权限 -->
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
-    <!--    读写日历权限-->
-    <uses-permission android:name="android.permission.READ_CALENDAR"/>
-    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    <!-- 通讯录权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
-    <!--    通讯录权限-->
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <!-- 读短信权限 -->
+    <uses-permission android:name="android.permission.READ_SMS" />
 
-    <!--    读短信权限-->
-    <uses-permission android:name="android.permission.READ_SMS"/>
+    <!-- 读取存储权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -19,12 +21,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
         </activity>
     </application>
 
