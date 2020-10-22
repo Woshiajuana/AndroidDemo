@@ -13,14 +13,24 @@ class UserProvider : ContentProvider () {
     companion object {
         const val USER_MATCHER_CODE = 1
         val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
-            addURI("com.owulia.mvvmdemo", null, USER_MATCHER_CODE)
+            addURI("com.owulia.mvvmdemo", "user", USER_MATCHER_CODE)
         }
     }
 
     var userDatabaseHelper: UserDatabaseHelper? = null
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        TODO("Not yet implemented")
+        val match = uriMatcher.match(uri)
+        if (match != USER_MATCHER_CODE) {
+            throw IllegalAccessException("参数错误")
+        }
+        val db = userDatabaseHelper?.writableDatabase
+        val id = db?.insert(Constants.DB_TABLE_NAME, null, values)
+        val resultUri = Uri.parse("content://com.owulia.mvvmdemo/user/${id}")
+        // 插入数据成功，数据已经变化了，所以通知其他地方，谁监听就通知谁
+        println("新增数据 => $id")
+        context?.contentResolver?.notifyChange(resultUri, null)
+        return resultUri
     }
 
     override fun query(
@@ -30,12 +40,12 @@ class UserProvider : ContentProvider () {
         selectionArgs: Array<out String>?,
         sortOrder: String?
     ): Cursor? {
-        val rule = uriMatcher.match(uri)
-        if (rule != USER_MATCHER_CODE) {
+        val match = uriMatcher.match(uri)
+        if (match != USER_MATCHER_CODE) {
             throw IllegalAccessException("参数错误")
         }
         val db = userDatabaseHelper?.writableDatabase
-        return db?.query(Constants.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder)
+        return db?.query(Constants.DB_TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder)
     }
 
     override fun onCreate(): Boolean {
@@ -49,14 +59,14 @@ class UserProvider : ContentProvider () {
         selection: String?,
         selectionArgs: Array<out String>?
     ): Int {
-        TODO("Not yet implemented")
+        return 1
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        return 1
     }
 
     override fun getType(uri: Uri): String? {
-        TODO("Not yet implemented")
+        return null
     }
 }
