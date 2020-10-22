@@ -97,18 +97,44 @@ class MainActivity : AppCompatActivity() {
      * 获取通讯录信息
      * */
     private fun getContactsInfo () {
-        val uri = Uri.parse("content://${ContactsContract.AUTHORITY}/raw_contacts")
-        val cursor = contentResolver.query(uri, null, null, null, null, null)
+//        val uri = Uri.parse("content://${ContactsContract.AUTHORITY}/raw_contacts")
+        val uri = ContactsContract.Contacts.CONTENT_URI
+        val cursor = contentResolver.query(uri, arrayOf(
+            ContactsContract.Contacts._ID,
+            ContactsContract.Contacts.DISPLAY_NAME
+        ), null, null, null, null)
         val columnNames = cursor?.columnNames
+        val userList = mutableListOf<UserInfo>()
         while (cursor?.moveToNext() == true) {
-            println("===========================")
-            columnNames?.forEach {
-                val value = cursor.getString(cursor.getColumnIndex(it))
-                println("Name: $it  <======>  Value: $value")
-            }
-            println("===========================")
+//            println("===========================")
+//            columnNames?.forEach {
+//                val value = cursor.getString(cursor.getColumnIndex(it))
+//                println("Name: $it  <======>  Value: $value")
+//            }
+            userList.add(UserInfo(
+                id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID)),
+                name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
+            ))
+//            println("===========================")
         }
         cursor?.close()
+
+        //
+        val phoneUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
+        userList.forEach{
+            val phoneCursor = contentResolver.query(phoneUri, arrayOf(
+                ContactsContract.CommonDataKinds.Phone.NUMBER
+            ), "${ContactsContract.CommonDataKinds.Phone.CONTACT_ID}=?", arrayOf(
+                it.id
+            ), null)
+            if (phoneCursor?.moveToNext() == true) {
+                it.phone = phoneCursor.getString(0)
+            }
+            phoneCursor?.close()
+        }
+        userList.forEach {
+            println("user => $it")
+        }
     }
 
     /**
