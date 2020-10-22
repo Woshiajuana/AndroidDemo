@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val PERMISSION_REQUEST_CODE = 1
         const val PERMISSION_CONTACTS_REQUEST_CODE = 2
+        const val PERMISSION_SMS_REQUEST_CODE = 3
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +36,17 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+
+        /**
+         * 监听短信
+         * */
+        val smsUri = Uri.parse("content://sms")
+        contentResolver.registerContentObserver(smsUri, true, object : ContentObserver(Handler()) {
+            override fun onChange(selfChange: Boolean, uri: Uri?) {
+                super.onChange(selfChange, uri)
+                println("监听短信uri => $uri")
+            }
+        })
 
         /**
          * 获取数据
@@ -91,6 +103,43 @@ class MainActivity : AppCompatActivity() {
                 getContactsInfo()
             }
         }
+
+
+        vSmsButton.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                val redPermission = checkSelfPermission(Manifest.permission.READ_SMS)
+                if (redPermission == PackageManager.PERMISSION_GRANTED) {
+                    // 有权限
+                    getSmsInfo()
+                } else {
+                    // 没有权限
+                    // 做个提示，用户点击了确定了之后再去请求调用权限
+                    // 如果点击了不再提示，就不再获取了
+                    // 如果不能使用则直接退出
+                    requestPermissions(arrayOf(Manifest.permission.READ_SMS), PERMISSION_SMS_REQUEST_CODE)
+                }
+            } else {
+                getSmsInfo()
+            }
+        }
+    }
+
+    /**
+     * 获取短信信息
+     * */
+    private fun getSmsInfo () {
+        val uri = Uri.parse("content://sms")
+        val cursor = contentResolver.query(uri, null, null, null, null)
+        val columnNames = cursor?.columnNames
+        while (cursor?.moveToNext() == true) {
+            println("===========================")
+            columnNames?.forEach {
+                val value = cursor.getString(cursor.getColumnIndex(it))
+                println("Name: $it  <======>  Value: $value")
+            }
+            println("===========================")
+        }
+        cursor?.close()
     }
 
     /**
@@ -180,6 +229,15 @@ class MainActivity : AppCompatActivity() {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // 有权限
                 getContactsInfo()
+            } else {
+                // 没权限
+//                finish()
+            }
+        }
+        if (requestCode == PERMISSION_SMS_REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // 有权限
+                getSmsInfo()
             } else {
                 // 没权限
 //                finish()
