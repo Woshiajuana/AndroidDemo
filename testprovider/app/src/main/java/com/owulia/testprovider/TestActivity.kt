@@ -1,6 +1,7 @@
 package com.owulia.testprovider
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -40,7 +41,8 @@ class TestActivity : AppCompatActivity() {
     }
 
     private fun getMediaInfo () {
-
+        val intent = Intent(this, PickerActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onRequestPermissionsResult(
@@ -52,7 +54,7 @@ class TestActivity : AppCompatActivity() {
         println("onRequestPermissionsResult => permissions = $permissions")
         println("onRequestPermissionsResult => grantResults = ${grantResults[0]}")
         if (requestCode == PERMISSION_MEDIA_REQUEST_CODE) {
-            if (grantResults.size == 2 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // 有权限
                 getMediaInfo()
             } else {
