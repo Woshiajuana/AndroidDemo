@@ -25,4 +25,10 @@
         android:layout_height="wrap_content"
         android:text="插入日历提醒数据"/>
 
+    <Button
+        android:id="@+id/vContactsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取通讯录"/>
+
 </LinearLayout>
