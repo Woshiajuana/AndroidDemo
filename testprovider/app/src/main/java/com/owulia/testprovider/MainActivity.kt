@@ -50,5 +50,27 @@ class MainActivity : AppCompatActivity() {
             }
             contentResolver.insert(uri, values)
         }
+
+        /**
+         * 插入日历数据
+         * */
+        vAddCalendarButton.setOnClickListener {
+            insertCalendar()
+        }
+    }
+
+    private fun insertCalendar () {
+        val uri = Uri.parse("content://com.android.calendar/calendars")
+        val cursor = contentResolver.query(uri,null, null, null, null, null)
+        val columnNames = cursor?.columnNames
+        while (cursor?.moveToNext() == true) {
+            println("===========================")
+            columnNames?.forEach {
+                val value = cursor.getString(cursor.getColumnIndex(it))
+                println("Name: $it  || Value: $value")
+            }
+            println("===========================")
+        }
+        cursor?.close()
     }
 }
