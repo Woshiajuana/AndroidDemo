@@ -1,7 +1,8 @@
-package com.owulia.mall
+package com.owulia.mall.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.owulia.mall.R
 
 class MainActivity : AppCompatActivity() {
 
