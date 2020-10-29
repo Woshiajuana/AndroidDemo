@@ -1,10 +1,28 @@
-apply plugin: 'com.android.library'
+if (isUserModule.toBoolean()) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
+
+    sourceSets {
+        main {
+            if (isUserModule.toBoolean()) {
+                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+                // release 模式下排除 debug 文件夹中的所有 Java 文件
+                java {
+                    exclude 'debug/**'
+                }
+            } else {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            }
+        }
+    }
 
     defaultConfig {
         minSdkVersion 19
