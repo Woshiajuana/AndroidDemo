@@ -20,7 +20,7 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView  {
         mRegisterBtn.setOnClickListener {
 //            startActivity(intentFor<TestActivity>("id" to 5))
 //            startActivity<TestActivity>("id" to 10)
-            mPresenter.register("", "")
+            mPresenter.register("", "", "")
         }
     }
 
