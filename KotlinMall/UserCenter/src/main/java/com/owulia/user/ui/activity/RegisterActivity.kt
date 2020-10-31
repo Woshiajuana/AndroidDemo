@@ -8,7 +8,7 @@ import com.owulia.user.presenter.view.RegisterView
 import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.toast
 
-class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView  {
+class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +20,7 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView  {
         mRegisterBtn.setOnClickListener {
 //            startActivity(intentFor<TestActivity>("id" to 5))
 //            startActivity<TestActivity>("id" to 10)
-            mPresenter.register("", "", "")
+            mPresenter.register(mMobileEt.text.toString(), mVerifyCodeEt.text.toString(), mPwdEt.text.toString())
         }
     }
 
