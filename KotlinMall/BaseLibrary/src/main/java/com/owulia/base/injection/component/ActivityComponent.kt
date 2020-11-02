@@ -1,6 +1,6 @@
 package com.owulia.base.injection.component
 
-import android.content.Context
+import android.app.Activity
 import com.owulia.base.injection.ActivityScope
 import com.owulia.base.injection.module.ActivityModule
 import dagger.Component
@@ -8,5 +8,5 @@ import dagger.Component
 @ActivityScope
 @Component(dependencies = [AppComponent::class], modules = [ActivityModule::class])
 interface ActivityComponent {
-    fun context () : Context
+    fun activity () : Activity
 }

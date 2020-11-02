@@ -18,8 +18,6 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
 
         initInjection()
 
-//        mPresenter = RegisterPresenter()
-
         mRegisterBtn.setOnClickListener {
 //            startActivity(intentFor<TestActivity>("id" to 5))
 //            startActivity<TestActivity>("id" to 10)
@@ -28,8 +26,10 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
     }
 
     private fun initInjection () {
-//        DaggerUserComponet
-        DaggerUserComponent.builder().userModule(UserModule())
+        DaggerUserComponent
+            .builder()
+            .activityComponent(activityComponent)
+            .userModule(UserModule())
             .build()
             .inject(this)
         mPresenter.mView = this
