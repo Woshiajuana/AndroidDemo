@@ -27,6 +27,7 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
 
     private fun initInjection () {
 //        DaggerUserComponet
+
         mPresenter.mView = this
     }
 
