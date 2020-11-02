@@ -3,6 +3,8 @@ package com.owulia.user.ui.activity
 import android.os.Bundle
 import com.owulia.base.ui.activity.BaseMvpActivity
 import com.owulia.user.R
+import com.owulia.user.injection.component.DaggerUserComponent
+import com.owulia.user.injection.module.UserModule
 import com.owulia.user.presenter.RegisterPresenter
 import com.owulia.user.presenter.view.RegisterView
 import kotlinx.android.synthetic.main.activity_register.*
@@ -27,7 +29,9 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
 
     private fun initInjection () {
 //        DaggerUserComponet
-
+        DaggerUserComponent.builder().userModule(UserModule())
+            .build()
+            .inject(this)
         mPresenter.mView = this
     }
 
