@@ -1,7 +1,10 @@
 package com.owulia.base.common
 
 import android.app.Activity
+import android.app.ActivityManager
+import android.content.Context
 import java.util.*
+import kotlin.system.exitProcess
 
 class AppManager private constructor () {
 
@@ -41,6 +44,16 @@ class AppManager private constructor () {
             activity.finish()
         }
         activityStack.clear()
+    }
+
+    /**
+     * 退出应用程序
+     * */
+    fun exitApp (context: Context) {
+        finishAllActivity()
+        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        activityManager.killBackgroundProcesses(context.packageName)
+        exitProcess(0)
     }
 
 }
