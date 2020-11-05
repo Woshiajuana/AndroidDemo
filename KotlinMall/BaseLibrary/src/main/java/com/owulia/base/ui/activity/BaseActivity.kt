@@ -1,7 +1,7 @@
 package com.owulia.base.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity
 
-open class BaseActivity : AppCompatActivity() {
+open class BaseActivity : RxAppCompatActivity() {
 
 }
