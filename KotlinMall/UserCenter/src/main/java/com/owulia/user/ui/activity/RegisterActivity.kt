@@ -16,8 +16,6 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        initInjection()
-
         mRegisterBtn.setOnClickListener {
 //            startActivity(intentFor<TestActivity>("id" to 5))
 //            startActivity<TestActivity>("id" to 10)
@@ -25,7 +23,11 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         }
     }
 
-    private fun initInjection () {
+    override fun onRegisterResult(result: String) {
+        toast(result)
+    }
+
+    override fun injectComponent() {
         DaggerUserComponent
             .builder()
             .activityComponent(activityComponent)
@@ -33,9 +35,5 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
             .build()
             .inject(this)
         mPresenter.mView = this
-    }
-
-    override fun onRegisterResult(result: Boolean) {
-        toast("注册成功")
     }
 }
