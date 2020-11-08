@@ -13,6 +13,12 @@ class RegisterPresenter @Inject constructor(): BasePresenter<RegisterView>() {
     lateinit var userService: UserServiceImpl
 
     fun register (mobile: String, verifyCode: String, pwd: String) {
+
+        if (!checkNetWork()) {
+//            mView?.toast
+            return
+        }
+
         // 业务逻辑
         mView.showLoading()
         userService.register(mobile, verifyCode, pwd)
@@ -22,7 +28,6 @@ class RegisterPresenter @Inject constructor(): BasePresenter<RegisterView>() {
                     if (t) {
                         mView.onRegisterResult("注册成功")
                     }
-                    mView.hideLoading()
                 }
             }, lifecycleProvider)
     }

@@ -1,6 +1,8 @@
 package com.owulia.base.presenter
 
+import android.content.Context
 import com.owulia.base.presenter.view.BaseView
+import com.owulia.base.utils.NetWorkUtils
 import com.trello.rxlifecycle.LifecycleProvider
 import javax.inject.Inject
 
@@ -9,4 +11,11 @@ open class BasePresenter<T: BaseView> {
 
     @Inject
     lateinit var lifecycleProvider: LifecycleProvider<*>
+
+    @Inject
+    lateinit var context: Context
+
+    fun checkNetWork (): Boolean {
+        return NetWorkUtils.isNetWorkAvailable(context)
+    }
 }
