@@ -30,7 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-        <Button
+        <com.owulia.base.widgets.VerifyButton
+            android:id="@+id/mGetVerifyCodeBtn"
             android:text="获取验证码"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

@@ -3,6 +3,7 @@ package com.owulia.user.ui.activity
 import android.os.Bundle
 import com.owulia.base.common.AppManager
 import com.owulia.base.ui.activity.BaseMvpActivity
+import com.owulia.base.widgets.VerifyButton
 import com.owulia.user.R
 import com.owulia.user.injection.component.DaggerUserComponent
 import com.owulia.user.injection.module.UserModule
@@ -23,6 +24,15 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
 //            startActivity(intentFor<TestActivity>("id" to 5))
 //            startActivity<TestActivity>("id" to 10)
             mPresenter.register(mMobileEt.text.toString(), mVerifyCodeEt.text.toString(), mPwdEt.text.toString())
+        }
+
+        mGetVerifyCodeBtn.setOnVerifyBtnClick(object : VerifyButton.OnVerifyBtnClick {
+            override fun onClick() {
+                toast("获取验证码")
+            }
+        })
+        mGetVerifyCodeBtn.setOnClickListener {
+            mGetVerifyCodeBtn.requestSendVerifyNumber()
         }
     }
 
