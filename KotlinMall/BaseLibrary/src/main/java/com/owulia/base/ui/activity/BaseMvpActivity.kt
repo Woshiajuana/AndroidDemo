@@ -9,6 +9,7 @@ import com.owulia.base.injection.module.LifecycleProviderModule
 import com.owulia.base.presenter.BasePresenter
 import com.owulia.base.presenter.view.BaseView
 import com.owulia.base.widgets.ProgressLoading
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
@@ -21,7 +22,8 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
         mLoadingDialog.hideLoading()
     }
 
-    override fun onError() {
+    override fun onError(text: String) {
+        toast(text)
     }
 
     @Inject

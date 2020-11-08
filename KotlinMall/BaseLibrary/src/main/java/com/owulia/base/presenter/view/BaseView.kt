@@ -6,5 +6,5 @@ interface BaseView {
 
     fun hideLoading ()
 
-    fun onError ()
+    fun onError (text: String)
 }

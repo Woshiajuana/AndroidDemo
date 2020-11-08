@@ -15,7 +15,6 @@ class RegisterPresenter @Inject constructor(): BasePresenter<RegisterView>() {
     fun register (mobile: String, verifyCode: String, pwd: String) {
 
         if (!checkNetWork()) {
-//            mView?.toast
             return
         }
 

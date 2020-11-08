@@ -8,6 +8,7 @@ import com.owulia.base.injection.module.ActivityModule
 import com.owulia.base.injection.module.LifecycleProviderModule
 import com.owulia.base.presenter.BasePresenter
 import com.owulia.base.presenter.view.BaseView
+import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
 
 abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView {
@@ -18,7 +19,8 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
     override fun hideLoading() {
     }
 
-    override fun onError() {
+    override fun onError(text: String) {
+        toast(text)
     }
 
     @Inject
