@@ -8,14 +8,17 @@ import com.owulia.base.injection.module.ActivityModule
 import com.owulia.base.injection.module.LifecycleProviderModule
 import com.owulia.base.presenter.BasePresenter
 import com.owulia.base.presenter.view.BaseView
+import com.owulia.base.widgets.ProgressLoading
 import javax.inject.Inject
 
 abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
 
     override fun showLoading() {
+        mLoadingDialog.showLoading()
     }
 
     override fun hideLoading() {
+        mLoadingDialog.hideLoading()
     }
 
     override fun onError() {
@@ -24,6 +27,8 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
     @Inject
     lateinit var mPresenter: T
 
+    private lateinit var mLoadingDialog: ProgressLoading
+
     lateinit var activityComponent: ActivityComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +36,8 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
 
         initActivityInjection()
         injectComponent()
+
+        mLoadingDialog = ProgressLoading.create(this)
     }
 
     abstract fun injectComponent ()
