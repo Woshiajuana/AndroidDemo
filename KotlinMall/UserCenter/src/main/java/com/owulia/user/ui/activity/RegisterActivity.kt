@@ -26,14 +26,14 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
             mPresenter.register(mMobileEt.text.toString(), mVerifyCodeEt.text.toString(), mPwdEt.text.toString())
         }
 
-        mGetVerifyCodeBtn.setOnVerifyBtnClick(object : VerifyButton.OnVerifyBtnClick {
-            override fun onClick() {
-                toast("获取验证码")
-            }
-        })
-        mGetVerifyCodeBtn.setOnClickListener {
-            mGetVerifyCodeBtn.requestSendVerifyNumber()
-        }
+//        mGetVerifyCodeBtn.setOnVerifyBtnClick(object : VerifyButton.OnVerifyBtnClick {
+//            override fun onClick() {
+//                toast("获取验证码")
+//            }
+//        })
+//        mGetVerifyCodeBtn.setOnClickListener {
+//            mGetVerifyCodeBtn.requestSendVerifyNumber()
+//        }
     }
 
     override fun onRegisterResult(result: String) {
