@@ -1,10 +1,13 @@
 package com.owulia.base.ext
 
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import com.owulia.base.data.protocol.BaseResp
 import com.owulia.base.rx.BaseFunc
 import com.owulia.base.rx.BaseFuncBoolean
 import com.owulia.base.rx.BaseSubscriber
+import com.owulia.base.widgets.DefaultTextWatcher
 import com.trello.rxlifecycle.LifecycleProvider
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -32,4 +35,12 @@ fun View.onClick(listener: View.OnClickListener) {
 
 fun View.onClick(method: () -> Unit) {
     this.setOnClickListener { method() }
+}
+
+fun Button.enable(et: EditText, method: () -> Boolean) {
+    et.addTextChangedListener(object : DefaultTextWatcher () {
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            this@enable.isEnabled = method()
+        }
+    })
 }

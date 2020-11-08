@@ -1,9 +1,11 @@
 package com.owulia.user.ui.activity
 
 import android.os.Bundle
+import android.view.View
 import com.owulia.base.common.AppManager
+import com.owulia.base.ext.enable
+import com.owulia.base.ext.onClick
 import com.owulia.base.ui.activity.BaseMvpActivity
-import com.owulia.base.widgets.VerifyButton
 import com.owulia.user.R
 import com.owulia.user.injection.component.DaggerUserComponent
 import com.owulia.user.injection.module.UserModule
@@ -12,7 +14,7 @@ import com.owulia.user.presenter.view.RegisterView
 import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.toast
 
-class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
+class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, View.OnClickListener {
 
     private var pressTime: Long = 0
 
@@ -20,20 +22,20 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        mRegisterBtn.setOnClickListener {
-//            startActivity(intentFor<TestActivity>("id" to 5))
-//            startActivity<TestActivity>("id" to 10)
-            mPresenter.register(mMobileEt.text.toString(), mVerifyCodeEt.text.toString(), mPwdEt.text.toString())
-        }
+        initView()
 
-//        mGetVerifyCodeBtn.setOnVerifyBtnClick(object : VerifyButton.OnVerifyBtnClick {
-//            override fun onClick() {
-//                toast("获取验证码")
-//            }
-//        })
-//        mGetVerifyCodeBtn.setOnClickListener {
-//            mGetVerifyCodeBtn.requestSendVerifyNumber()
-//        }
+    }
+
+    private fun initView () {
+
+        mRegisterBtn.onClick(this)
+        mVerifyCodeBtn.onClick(this)
+
+        mRegisterBtn.enable(mMobileEt) { isBtnEnable() }
+        mRegisterBtn.enable(mVerifyCodeEt) { isBtnEnable() }
+        mRegisterBtn.enable(mPwdConfirmEt) { isBtnEnable() }
+        mRegisterBtn.enable(mPwdEt) { isBtnEnable() }
+
     }
 
     override fun onRegisterResult(result: String) {
@@ -60,4 +62,24 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
             AppManager.instant.exitApp(this)
         }
     }
+
+    override fun onClick(v: View?) {
+        when(v?.id) {
+            R.id.mVerifyCodeBtn -> {
+                mVerifyCodeBtn.requestSendVerifyNumber()
+                toast("发送成功")
+            }
+            R.id.mRegisterBtn -> {
+                mPresenter.register(mMobileEt.text.toString(), mVerifyCodeEt.text.toString(), mPwdEt.text.toString())
+            }
+        }
+    }
+
+    fun isBtnEnable () : Boolean {
+        return mMobileEt.text.isNullOrEmpty().not()
+                && mVerifyCodeEt.text.isNullOrEmpty().not()
+                && mPwdConfirmEt.text.isNullOrEmpty().not()
+                && mPwdEt.text.isNullOrEmpty().not()
+    }
+
 }
