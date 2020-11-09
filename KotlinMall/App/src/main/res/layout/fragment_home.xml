@@ -50,14 +50,14 @@
         android:textStyle="bold"
         tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"/>
 
-<!--    <android.support.v7.widget.RecyclerView-->
-<!--        android:id="@+id/mHomeDiscountRv"-->
-<!--        style="@style/commonRecyclerView"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@color/common_white"-->
-<!--        android:paddingBottom="@dimen/common_padding_small"-->
-<!--        android:paddingLeft="@dimen/common_padding"-->
-<!--        android:paddingRight="@dimen/common_padding"/>-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mHomeDiscountRv"
+        style="@style/commonRecyclerView"
+        android:layout_height="wrap_content"
+        android:background="@color/common_white"
+        android:paddingBottom="@dimen/common_padding_small"
+        android:paddingLeft="@dimen/common_padding"
+        android:paddingRight="@dimen/common_padding"/>
 
 <!--    <me.crosswall.lib.coverflow.core.PagerContainer-->
 <!--        android:id="@+id/mTopicContainer"-->
