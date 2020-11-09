@@ -24,4 +24,14 @@ class UserServiceImpl @Inject constructor() : UserService {
             .convert()
     }
 
+    override fun forget(mobile: String, verifyCode: String): Observable<Boolean> {
+        return repository.forget(mobile, verifyCode)
+            .convertBoolean()
+    }
+
+    override fun reset(mobile: String, pwd: String): Observable<Boolean> {
+        return repository.reset(mobile, pwd)
+            .convertBoolean()
+    }
+
 }

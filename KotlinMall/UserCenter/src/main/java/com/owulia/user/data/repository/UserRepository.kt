@@ -3,9 +3,7 @@ package com.owulia.user.data.repository
 import com.owulia.base.data.net.RetrofitFactory
 import com.owulia.base.data.protocol.BaseResp
 import com.owulia.user.data.api.UserApi
-import com.owulia.user.data.protocol.LoginReq
-import com.owulia.user.data.protocol.RegisterReq
-import com.owulia.user.data.protocol.UserInfo
+import com.owulia.user.data.protocol.*
 import rx.Observable
 import javax.inject.Inject
 
@@ -19,6 +17,16 @@ class UserRepository @Inject constructor() {
     fun login (mobile: String, pwd: String, pushId: String): Observable<BaseResp<UserInfo>> {
         return RetrofitFactory.instant.create(UserApi::class.java)
             .login(LoginReq(mobile, pwd, pushId))
+    }
+
+    fun forget(mobile: String, verifyCode: String): Observable<BaseResp<String>> {
+        return RetrofitFactory.instant.create(UserApi::class.java)
+            .forget(ForgetReq(mobile, verifyCode))
+    }
+
+    fun reset(mobile: String, pwd: String): Observable<BaseResp<String>> {
+        return RetrofitFactory.instant.create(UserApi::class.java)
+            .reset(ResetReq(mobile, pwd))
     }
 
 }
