@@ -85,4 +85,7 @@ dependencies {
     // alert view
     api "com.bigkoo:alertview:${alert_view_version}"
 
+    // 底部导航
+    api "com.ashokvarma.android:bottom-navigation-bar:2.0.2"
+
 }
