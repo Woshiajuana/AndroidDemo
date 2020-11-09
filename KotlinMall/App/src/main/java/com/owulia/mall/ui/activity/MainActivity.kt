@@ -3,6 +3,7 @@ package com.owulia.mall.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.owulia.mall.R
+import com.owulia.mall.ui.fragment.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -22,5 +23,13 @@ class MainActivity : AppCompatActivity() {
             .subscribe(){
                 mBottomNavBar.checkMsgBadge(true)
             }
+
+        initView ()
+    }
+
+    private fun initView () {
+        val manager = supportFragmentManager.beginTransaction()
+        manager.replace(R.id.mContainer, HomeFragment())
+        manager.commit()
     }
 }
