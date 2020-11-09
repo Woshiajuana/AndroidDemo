@@ -76,4 +76,13 @@ dependencies {
     // recyclerview
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
+    // circle_imageView_version
+    api "de.hdodenhof:circleimageview:${circle_imageView_version}"
+
+    // take photo
+    api "com.jph.takephoto:takephoto_library:${take_photo_version}"
+
+    // alert view
+    api "com.bigkoo:alertview:${alert_view_version}"
+
 }

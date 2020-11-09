@@ -42,6 +42,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
 
     override fun onLoginResult(result: UserInfo) {
         toast("$result")
+        startActivity<UserInfoActivity>()
     }
 
     override fun injectComponent() {
