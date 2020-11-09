@@ -15,8 +15,9 @@
         android:supportsRtl="true"
         android:name="com.owulia.base.common.BaseApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.TestActivity"></activity>
-        <activity android:name=".ui.activity.RegisterActivity">
+        <activity android:name=".ui.activity.TestActivity"/>
+        <activity android:name=".ui.activity.RegisterActivity"/>
+        <activity android:name=".ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

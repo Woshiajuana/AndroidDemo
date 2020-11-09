@@ -2,7 +2,6 @@ package com.owulia.user.ui.activity
 
 import android.os.Bundle
 import android.view.View
-import com.owulia.base.common.AppManager
 import com.owulia.base.ext.enable
 import com.owulia.base.ext.onClick
 import com.owulia.base.ui.activity.BaseMvpActivity
@@ -15,8 +14,6 @@ import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.toast
 
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, View.OnClickListener {
-
-    private var pressTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,17 +47,6 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
             .build()
             .inject(this)
         mPresenter.mView = this
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        val time = System.currentTimeMillis()
-        if (time - pressTime > 2000) {
-            toast("再按一次退出程序")
-            pressTime = time
-        } else {
-            AppManager.instant.exitApp(this)
-        }
     }
 
     override fun onClick(v: View?) {

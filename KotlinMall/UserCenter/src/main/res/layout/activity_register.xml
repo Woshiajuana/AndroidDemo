@@ -12,7 +12,6 @@
         android:id="@+id/mHeaderBar"
         style="@style/MatchWrap"
         app:isShowBack="true"
-        app:rightText="登录"
         app:titleText="注册"/>
 
     <LinearLayout
