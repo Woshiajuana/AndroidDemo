@@ -27,9 +27,15 @@ class HomeFragment : BaseFragment() {
         return rootView
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initBanner()
+        initNews()
+    }
+
+    private fun initNews() {
+        // 公告
+
     }
 
     private fun initBanner() {
