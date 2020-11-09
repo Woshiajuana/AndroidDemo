@@ -14,10 +14,10 @@ interface UserApi {
     @POST("userCenter/login")
     fun login (@Body req: LoginReq) : Observable<BaseResp<UserInfo>>
 
-    @POST("userCenter/login")
+    @POST("userCenter/register")
     fun forget (@Body req: ForgetReq) : Observable<BaseResp<String>>
 
-    @POST("userCenter/login")
+    @POST("userCenter/register")
     fun reset (@Body req: ResetReq) : Observable<BaseResp<String>>
 
 }
