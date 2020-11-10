@@ -3,10 +3,12 @@ package com.owulia.base.ext
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import com.owulia.base.data.protocol.BaseResp
 import com.owulia.base.rx.BaseFunc
 import com.owulia.base.rx.BaseFuncBoolean
 import com.owulia.base.rx.BaseSubscriber
+import com.owulia.base.utils.GlideUtils
 import com.owulia.base.widgets.DefaultTextWatcher
 import com.trello.rxlifecycle.LifecycleProvider
 import rx.Observable
@@ -43,4 +45,8 @@ fun Button.enable(et: EditText, method: () -> Boolean) {
             this@enable.isEnabled = method()
         }
     })
+}
+
+fun ImageView.loadUrl(url: String) {
+    GlideUtils.loadUrlImage(context, url, this)
 }

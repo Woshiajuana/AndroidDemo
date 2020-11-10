@@ -2,6 +2,7 @@ package com.owulia.user.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.owulia.base.common.AppManager
 import com.owulia.base.ext.enable
 import com.owulia.base.ext.onClick
@@ -16,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
+@Route(path = "/userCenter/login")
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
     private var pressTime: Long = 0
