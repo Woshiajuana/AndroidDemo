@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.owulia.base.ui.fragment.BaseFragment
 import com.owulia.mall.R
 import kotlinx.android.synthetic.main.fragment_me.*
+import org.jetbrains.anko.support.v4.toast
 
 class MeFragment : BaseFragment() {
 
@@ -25,7 +26,8 @@ class MeFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mUserNameTv.setOnClickListener {
-            ARouter.getInstance().build("/userCenter/login")
+            toast("xxxx")
+            ARouter.getInstance().build("/userCenter/login").navigation()
         }
     }
 
