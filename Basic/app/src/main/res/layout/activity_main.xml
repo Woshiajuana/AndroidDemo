@@ -5,6 +5,63 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+    <RelativeLayout
+        android:background="#dddddd"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <RelativeLayout
+            android:background="#ff0000"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <RelativeLayout
+            android:layout_toStartOf="@id/right"
+            android:background="#0000ff"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <RelativeLayout
+            android:id="@+id/right"
+            android:layout_alignParentEnd="true"
+            android:background="#00ff00"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <LinearLayout
+            android:background="#ff0000"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <LinearLayout
+            android:background="#00ff00"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <LinearLayout
+            android:background="#0000ff"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <Button
+        android:text="弹出PopupWindow"
+        android:onClick="showPopupWindow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示弹窗"
+        android:onClick="showAlert"
+    />
+
     <androidx.appcompat.widget.Toolbar
         app:navigationIcon="@drawable/baseline_person_24"
         app:title="标题"

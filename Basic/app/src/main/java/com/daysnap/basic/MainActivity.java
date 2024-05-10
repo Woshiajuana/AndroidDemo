@@ -3,10 +3,13 @@ package com.daysnap.basic;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -14,8 +17,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -78,5 +83,58 @@ public class MainActivity extends AppCompatActivity {
 
     public void cancelNotification(View view) {
         notificationManager.cancel(1);
+    }
+
+    public void showAlert(View view) {
+        @SuppressLint("InflateParams") View dialogView = getLayoutInflater().inflate(R.layout.dialog_view, null);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.mipmap.ic_launcher)
+                .setTitle("我是对话框")
+                .setMessage("今天天气怎么样呀")
+                .setView(dialogView)
+                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Log.i("xxx => ", "点击了确认");
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Log.i("xxx => ", "点击了取消");
+                    }
+                })
+                .setNeutralButton("中间", new DialogInterface.OnClickListener() {
+                    @Override
+                      public void onClick(DialogInterface dialogInterface, int i) {
+                        Log.i("xxx => ", "点击了中间");
+                    }
+                })
+                .create()
+                .show();
+    }
+
+    public void showPopupWindow(View view) {
+        @SuppressLint("InflateParams") View popupView = getLayoutInflater().inflate(R.layout.dialog_view, null);
+
+        Button btn = popupView.findViewById(R.id.btn);
+
+        PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+
+        // 设置背景
+        popupWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_launcher_background));
+        // 相对某个控件的位置（正左下方）无偏移
+        popupWindow.showAsDropDown(view);
+
+        // 有偏移
+//        popupWindow.showAsDropDown(view, view.getWidth(), view.getHeight());
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupWindow.dismiss(); // 关闭
+            }
+        });
     }
 }
