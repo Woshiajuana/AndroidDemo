@@ -1,8 +1,13 @@
 package com.daysnap.basic;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Notification;
@@ -21,6 +26,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,6 +82,54 @@ public class MainActivity extends AppCompatActivity {
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true) // 设置点击通知后自动清除通知
                 .build();
+
+
+        // 动画 ValueAnimator
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
+        valueAnimator.setDuration(2000);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
+                float value = (float) valueAnimator.getAnimatedValue();
+                Log.d("ddd", "onAnimationUpdate: " + value);
+            }
+        });
+        valueAnimator.start();
+
+        // 动画 ObjectAnimator
+        TextView tvOa = findViewById(R.id.tv_oa);
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(tvOa, "alpha", 0f, 1f);
+        objectAnimator.setDuration(4000);
+        objectAnimator.start();
+        // 监听
+        objectAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(@NonNull Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(@NonNull Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(@NonNull Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(@NonNull Animator animator) {
+
+            }
+        });
+        // 简洁适配版本
+        objectAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationCancel(Animator animation) {
+                super.onAnimationCancel(animation);
+            }
+        });
     }
 
     public void sendNotification(View view){
