@@ -33,10 +33,13 @@ public class IntentActivity extends AppCompatActivity implements View.OnClickLis
             public void onActivityResult(ActivityResult result) {
                 if (result.getResultCode() == RESULT_OK) {
                     // 处理从启动的 Activity 返回的结果
-                    String data = result.getData().getStringExtra("result");
-                    // 在这里使用返回的数据
-                    TextView tv = findViewById(R.id.tv_return_result);
-                    tv.setText(data);
+                    Intent intent = result.getData();
+                    if (intent != null) {
+                        // 在这里使用返回的数据
+                        String data = intent.getStringExtra("result");
+                        TextView tv = findViewById(R.id.tv_return_result);
+                        tv.setText(data);
+                    }
                 }
             }
         });
