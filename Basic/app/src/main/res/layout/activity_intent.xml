@@ -36,4 +36,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="跳转页面传递参数" />
+
+    <Button
+        android:id="@+id/btn_request"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转页面并返回结果" />
+
+    <TextView
+        android:id="@+id/tv_return_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="返回的结果这里显示"/>
 </LinearLayout>
