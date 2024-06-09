@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutId="first"
+        android:shortcutLongLabel="@string/first_long_label"
+        android:shortcutShortLabel="@string/first_short_label">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.daysnap.basic.ViewPagerActivity"
+            android:targetPackage="com.daysnap.basic" />
+
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutId="two"
+        android:shortcutLongLabel="@string/two_short_label"
+        android:shortcutShortLabel="@string/two_long_label">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.daysnap.basic.CalculatorActivity"
+            android:targetPackage="com.daysnap.basic" />
+
+    </shortcut>
+
+</shortcuts>
