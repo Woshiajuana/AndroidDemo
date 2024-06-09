@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Basic</string>
+    <string name="first_short_label">菜单1</string>
+    <string name="first_long_label">菜单1-扫一扫</string>
+    <string name="two_short_label">菜单2</string>
+    <string name="two_long_label">菜单2-pagerView</string>
 </resources>
