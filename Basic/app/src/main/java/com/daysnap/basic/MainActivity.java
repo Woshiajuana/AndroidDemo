@@ -58,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // 创建通知通道（Notification Channel），这是Android 8.0（API 26）及以上版本要求的。
             NotificationChannel channel = new NotificationChannel(
-                channelId,
-                "消息通知",
-                NotificationManager.IMPORTANCE_HIGH
+                    channelId,
+                    "消息通知",
+                    NotificationManager.IMPORTANCE_HIGH
             );
             notificationManager.createNotificationChannel(channel);
         }
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void sendNotification(View view){
+    public void sendNotification(View view) {
         Log.e("xxx => ", "发送通知");
         notificationManager.notify(1, notification);
     }
@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setNeutralButton("中间", new DialogInterface.OnClickListener() {
                     @Override
-                      public void onClick(DialogInterface dialogInterface, int i) {
+                    public void onClick(DialogInterface dialogInterface, int i) {
                         Log.i("xxx => ", "点击了中间");
                     }
                 })
