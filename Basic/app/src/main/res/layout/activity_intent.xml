@@ -48,4 +48,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="返回的结果这里显示"/>
+
+    <Button
+        android:id="@+id/btn_meta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取ActivityMetadata" />
 </LinearLayout>

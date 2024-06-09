@@ -27,6 +27,7 @@ public class IntentActivity extends AppCompatActivity implements View.OnClickLis
         findViewById(R.id.btn_jump_my).setOnClickListener(this);
         findViewById(R.id.btn_send).setOnClickListener(this);
         findViewById(R.id.btn_request).setOnClickListener(this);
+        findViewById(R.id.btn_meta).setOnClickListener(this);
 
         activityLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -91,6 +92,9 @@ public class IntentActivity extends AppCompatActivity implements View.OnClickLis
             intent.putExtras(bundle);
 //            startActivityForResult(intent, 1); // 这种写法过期了
             activityLauncher.launch(intent);
+        } else if (id == R.id.btn_meta) {
+            Intent intent = new Intent(this, MetadataActivity.class);
+            startActivity(intent);
         }
     }
 }
