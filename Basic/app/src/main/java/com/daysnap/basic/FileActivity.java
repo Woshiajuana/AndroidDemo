@@ -35,6 +35,8 @@ public class FileActivity extends AppCompatActivity implements View.OnClickListe
             // 保存
             String fileName = System.currentTimeMillis() + ".txt";
             String directory = null;
+            // 内部存储私有空间
+//            directory = getFilesDir().toString();
             // 外部存储的私有空间
             directory = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString();
 

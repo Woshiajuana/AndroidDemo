@@ -2,23 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-
     <application
-        android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.Basic"
         tools:targetApi="31">
         <activity
-            android:name=".FileActivity"
+            android:name=".ImageWriteActivity"
             android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,12 +23,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SQLiteHelperActivity"
+            android:name=".FileActivity"
             android:exported="true">
         </activity>
         <activity
-            android:name=".SQLiteActivity"
+            android:name=".SQLiteHelperActivity"
             android:exported="true"></activity>
+        <activity
+            android:name=".SQLiteActivity"
+            android:exported="true" />
         <activity
             android:name=".SharedPreferencesActivity"
             android:exported="false" />
@@ -90,6 +90,9 @@
             <!-- </intent-filter> -->
         </activity>
     </application>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>
