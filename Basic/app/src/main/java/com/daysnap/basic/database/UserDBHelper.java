@@ -75,7 +75,8 @@ public class UserDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        String sql = "ALTER TABLE " + TABLE_NAME + " ADD COLUMN phone VARCHAR;";
+        db.execSQL(sql);
     }
 
     // 添加
@@ -124,5 +125,28 @@ public class UserDBHelper extends SQLiteOpenHelper {
             list.add(user);
         }
         return list;
+    }
+
+    // sql 查询
+    public void query () {
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE name = 张三 ORDER BY _id DESC LIMIT 1;";
+        Cursor cursor = mRDB.rawQuery(sql, null);
+        if (cursor.moveToNext()) {
+            // todo
+        }
+    }
+
+    // 事务操作
+    public void transaction () {
+        try {
+            mWDB.beginTransaction();
+            ContentValues values = new ContentValues();
+            mWDB.insert(TABLE_NAME, null, values);
+            mWDB.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            mWDB.endTransaction();
+        }
     }
 }
