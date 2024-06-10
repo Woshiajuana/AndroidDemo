@@ -43,5 +43,4 @@ public class Utils {
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
     }
-
 }
