@@ -1,8 +1,12 @@
 package com.daysnap.basic;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Utils {
@@ -21,4 +25,23 @@ public class Utils {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         return sdf.format(new Date());
     }
+
+    // 关闭软键盘
+    public static void hideOneInputMethod(Activity act, View v) {
+        // 从系统服务中获取输入法管理器
+        InputMethodManager imm = (InputMethodManager) act.getSystemService(Context.INPUT_METHOD_SERVICE);
+        // 关闭屏幕上的输入法软键盘
+        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+    }
+
+    // 获取当前的年月日
+    public static void getCurrentDateTime () {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+    }
+
 }
