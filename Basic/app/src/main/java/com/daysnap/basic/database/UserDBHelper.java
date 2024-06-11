@@ -149,4 +149,10 @@ public class UserDBHelper extends SQLiteOpenHelper {
             mWDB.endTransaction();
         }
     }
+
+    // 统计数量
+    public void count () {
+//        String sql = "SELECT SUM(count) from " + TABLE_NAME;
+//        mRDB.rawQuery(sql, null);
+    }
 }

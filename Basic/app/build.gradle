@@ -41,4 +41,10 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.3.2'
 
 //    implementation 'androidx.viewpager2:viewpager2:1.1.0'
+
+    // Room 框架导入
+    // Room 是谷歌公司退出的数据库处理框架，该框架同样基于 SQLite，但它通过注解技术极大简化了数据
+    // 库的操作，减少了原来相当一部分编码的工作量
+    implementation 'androidx.room:room-runtime:2.6.1'
+    annotationProcessor 'androidx.room:room-compiler:2.6.1'
 }

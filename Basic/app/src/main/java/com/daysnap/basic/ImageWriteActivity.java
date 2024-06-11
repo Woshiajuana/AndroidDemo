@@ -42,6 +42,8 @@ public class ImageWriteActivity extends AppCompatActivity implements View.OnClic
             // 从指定资源文件中获取位图对象
             Bitmap b1 = BitmapFactory.decodeResource(getResources(), R.drawable.yuantu);
             FileUtil.saveImage(path, b1);
+            // 回收位图对象
+            b1.recycle();
             ToastUtil.show(this, "保存成功");
         } else if (id == R.id.btn_read) {
             // 第1种
