@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -24,6 +25,9 @@ public class ImageWriteActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_write);
+
+        // 获取布局文件 item_cart.xml 的根视图
+//        View view = LayoutInflater.from(this).inflate(R.layout.activity_image_write, null);
 
         ivContent = findViewById(R.id.iv_content);
 
