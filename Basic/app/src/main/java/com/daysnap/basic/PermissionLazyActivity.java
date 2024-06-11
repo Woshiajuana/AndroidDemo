@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 
 import com.daysnap.basic.utils.PermissionUtil;
@@ -58,13 +61,24 @@ public class PermissionLazyActivity extends AppCompatActivity implements View.On
                 ToastUtil.show(this, "通讯录权限获取成功");
             } else {
                 ToastUtil.show(this, "获取通讯录读写权限失败");
+                jumpToSettings();
             }
         } else if (requestCode == REQUEST_CODE_SMS) {
             if (PermissionUtil.checkGrant(grantResults)) {
                 ToastUtil.show(this, "收发短信权限获取成功");
             } else {
                 ToastUtil.show(this, "收发短信获取权限失败");
+                jumpToSettings();
             }
         }
+    }
+
+    // 跳转到应用设置界面
+    private void jumpToSettings() {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        intent.setData(Uri.fromParts("package", getPackageName(), null));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
