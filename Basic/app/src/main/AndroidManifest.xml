@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" /> <!-- 安卓11 安装应用需要权限 -->
+    <uses-permission android:name="android.permission.READ_SMS" /> <!-- 安卓8之后 安装应用需要权限 -->
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:name=".MyApplication"
@@ -12,13 +22,16 @@
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.Basic"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".SpinnerActivity"
+            android:exported="false" />
         <activity
             android:name=".ProviderApkActivity"
             android:exported="false" />
         <activity
             android:name=".AlbumImageActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +40,7 @@
         </activity>
         <activity
             android:name=".SendMmsActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ContentObserverActivity"
             android:exported="true" />
@@ -54,7 +67,7 @@
             android:exported="false" />
         <activity
             android:name=".MetadataActivity"
-            android:exported="true">
+            android:exported="true" >
             <meta-data
                 android:name="name"
                 android:value="我是metadata的数据" />
@@ -64,7 +77,7 @@
             android:exported="true" />
         <activity
             android:name=".IntentActivity"
-            android:exported="true">
+            android:exported="true" >
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -82,7 +95,7 @@
             android:exported="true" />
         <activity
             android:name=".ViewPagerActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEWPAGER" />
 
@@ -94,7 +107,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -106,24 +119,11 @@
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="@string/file_provider"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true" >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
-    <uses-permission android:name="android.permission.READ_SMS" />
-
-    <!--   安卓11 安装应用需要权限 -->
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-    <!--   安卓8之后 安装应用需要权限 -->
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-
-    <uses-permission android:name="android.permission.SEND_SMS" />
 
 </manifest>
