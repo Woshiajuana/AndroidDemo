@@ -1,11 +1,13 @@
 package com.daysnap.basic.utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -95,5 +97,19 @@ public class FileUtil {
             }
         }
         return bitmap;
+    }
+
+    // 检查文件是否存在，以及文件路径是否合法
+    public static boolean checkFileUri(Context context, String path) {
+        File file = new File(path);
+        if (!file.exists() || !file.isFile() || file.length() <= 0) {
+            return false;
+        }
+        try {
+            //
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 }
