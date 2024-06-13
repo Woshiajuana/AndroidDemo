@@ -8,6 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.daysnap.basic.adapter.PlanetBaseAdapter;
+import com.daysnap.basic.bean.Planet;
+
 public class SpinnerActivity extends AppCompatActivity {
 
     private Spinner spinner;
@@ -47,7 +50,8 @@ public class SpinnerActivity extends AppCompatActivity {
         });
 
         spinnerDialog = findViewById(R.id.sp_dropdown_dialog);
-        spinnerDialog.setAdapter(starAdapter);
+        PlanetBaseAdapter adapter = new PlanetBaseAdapter(this, Planet.getDefaultList());
+        spinnerDialog.setAdapter(adapter);
         spinnerDialog.setPrompt("请选择行星");
         spinnerDialog.setSelection(0);
     }

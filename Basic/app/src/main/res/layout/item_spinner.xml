@@ -4,5 +4,6 @@
     android:gravity="center"
     android:textSize="17sp"
     android:textColor="#0000ff"
+    android:id="@+id/tv_name"
     android:layout_height="50dp">
 </TextView>
