@@ -56,6 +56,16 @@ public class PlantGridAdapter extends BaseAdapter {
         holder.tvName.setText(planet.name);
         holder.ivImage.setImageResource(planet.image);
         holder.tvDesc.setText(planet.desc);
+
+        holder.ivImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mAddClickListener != null) {
+                    mAddClickListener.onClick(position);
+                }
+            }
+        });
+
         return convertView;
     }
 
@@ -63,5 +73,16 @@ public class PlantGridAdapter extends BaseAdapter {
         public TextView tvName;
         public TextView tvDesc;
         public ImageView ivImage;
+    }
+
+    private AddClickListener mAddClickListener;
+
+    public void setMAddClickListener(AddClickListener mAddClickListener) {
+        this.mAddClickListener = mAddClickListener;
+    }
+
+    // 定义一个接口
+    public interface AddClickListener {
+        void onClick(int position);
     }
 }
