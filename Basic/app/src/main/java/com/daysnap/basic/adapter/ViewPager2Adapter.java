@@ -13,6 +13,7 @@ import com.daysnap.basic.bean.Planet;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.viewpager.widget.PagerAdapter;
 
 public class ViewPager2Adapter extends PagerAdapter {
@@ -51,5 +52,11 @@ public class ViewPager2Adapter extends PagerAdapter {
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         // todo 这里可能有问题
         container.removeAllViews();
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return mPlanetList.get(position).name;
     }
 }
