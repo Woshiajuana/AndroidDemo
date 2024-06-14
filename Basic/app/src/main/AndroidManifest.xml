@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <!-- 震动权限 -->
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -14,13 +14,17 @@
         android:theme="@style/Theme.Basic"
         tools:targetApi="31">
         <activity
-            android:name=".BroadStandardActivity"
+            android:name=".SystemBroadcastActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".BroadStandardActivity"
+            android:exported="true">
         </activity>
         <activity
             android:name=".PagerTabActivity"
@@ -30,8 +34,7 @@
             android:exported="false" />
         <activity
             android:name=".GridViewActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".ListViewActivity"
             android:exported="true" />
@@ -121,7 +124,8 @@
 
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
-        </activity> <!-- 兼容 android7.0 把访问文件的 Uri 方式改成 FileProvider -->
+        </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="@string/file_provider"
@@ -129,9 +133,17 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-        </provider>
-    </application> <!-- 安卓11 安装应用需要权限 -->
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- 安卓8之后 安装应用需要权限 -->
+        </provider> <!-- 兼容 android7.0 把访问文件的 Uri 方式改成 FileProvider -->
+        <receiver
+            android:name=".receiver.ShockReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.daysnap.basic.shock" />
+            </intent-filter>
+        </receiver>
+    </application> <!-- 安卓8之后 安装应用需要权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />

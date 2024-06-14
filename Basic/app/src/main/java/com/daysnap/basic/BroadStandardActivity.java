@@ -2,6 +2,7 @@ package com.daysnap.basic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ public class BroadStandardActivity extends AppCompatActivity implements View.OnC
 
     public static final String ORDER_ACTION = "com.daysnap.basic.order";
 
+    public static final String SHOCK_ACTION = "com.daysnap.basic.shock";
+
     private StandardReceiver standardReceiver;
     private OrderAReceiver orderAReceiver;
     private OrderBReceiver orderBReceiver;
@@ -27,6 +30,7 @@ public class BroadStandardActivity extends AppCompatActivity implements View.OnC
 
         findViewById(R.id.btn_send_standard).setOnClickListener(this);
         findViewById(R.id.btn_send_order).setOnClickListener(this);
+        findViewById(R.id.btn_send_shock).setOnClickListener(this);
     }
 
     @Override
@@ -36,6 +40,15 @@ public class BroadStandardActivity extends AppCompatActivity implements View.OnC
             sendBroadcast();
         } else if (id == R.id.btn_send_order) {
             sendOrderBroadcast();
+        } else if (id == R.id.btn_send_shock) {
+            // Android 8 之后删除了大部分静态注册，防止 APP 退出之后仍在接收广播
+            Intent intent = new Intent(SHOCK_ACTION);
+            // 为了让应用能够继续接收静态广播，需要给静态注册的广播指定包名
+            String fullName = "com.daysnap.basic.receiver.ShockReceiver";
+            ComponentName componentName = new ComponentName(this, fullName);
+            // 设置意图的组件信息
+            intent.setComponent(componentName);
+            sendBroadcast(intent);
         }
     }
 
