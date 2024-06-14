@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.btn_lifecycle).setOnClickListener(this);
+        findViewById(R.id.btn_lifecycle_service).setOnClickListener(this);
     }
 
     @Override
@@ -21,6 +22,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = v.getId();
         if (id == R.id.btn_lifecycle) {
             Intent intent = new Intent(this, LifecycleActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.btn_lifecycle_service) {
+            Intent intent = new Intent(this, LifecycleServiceActivity.class);
             startActivity(intent);
         }
     }
