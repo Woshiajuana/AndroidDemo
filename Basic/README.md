@@ -29,4 +29,10 @@
 
 - 发送标准广播
 - 定义广播接收器
-- -
+- 开关广播接收器
+
+### 回到桌面与切到任务列表
+
+- 需要接听系统广播 `Intent.ACTION_CLOSE_SYSTEM_DIALOGS`，从收到的广播意图中获取原因 `reason` 字段，该字段值为 `homekey` 时表示回到桌面，值为 `recentapps` 时表示打开了任务列表。
+- 调用 `enterPictureInPictureMode` 方法进入画中画模式
+- 重写活动页面的 `onPictureInPictureModeChanged` 方法，补充进入画中画模式或退出画中画模式时的处理逻辑；
