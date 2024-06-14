@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <!-- 震动权限 -->
+    <!-- 安卓8之后 安装应用需要权限 -->
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Basic"
         tools:targetApi="31">
         <activity
-            android:name=".SystemBroadcastActivity"
+            android:name=".AlarmManagerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,9 +23,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BroadStandardActivity"
+            android:name=".SystemBroadcastActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".BroadStandardActivity"
+            android:exported="true"></activity>
         <activity
             android:name=".PagerTabActivity"
             android:exported="false" />
@@ -141,7 +144,7 @@
                 <action android:name="com.daysnap.basic.shock" />
             </intent-filter>
         </receiver>
-    </application> <!-- 安卓8之后 安装应用需要权限 -->
+    </application>
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
