@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JetpckStudy"
         tools:targetApi="31">
+        <activity
+            android:name=".ProcessLifecycleOwnerActivity"
+            android:exported="false" />
         <activity
             android:name=".LifecycleServiceActivity"
             android:exported="false" />
@@ -29,7 +30,10 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".service.MyLocationService"/>
+        <service android:name=".service.MyLocationService" />
     </application>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>
