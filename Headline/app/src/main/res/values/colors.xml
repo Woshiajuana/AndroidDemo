@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primary">#f04142</color>
+    <color name="primary30">#a92e29</color>
+
+    <!--主色识，亮一点，主要用在主色识checkbox，默认选中时-->
+    <color name="primary50" >#c92e29</color>
+    <color name="primary60">#4c85a7</color>
+
+    <!--主色调，暗一点按钮颜色，主要用来在用户详情，发送消息等按钮文本颜色-->
+    <color name="primary_button">#596c94</color>
+
+    <!--链接颜色，例如: 聊天界面，可以点击的消息内容高亮颜色-->
+    <color name="link">@color/primary_button</color>
+
+    <!--item点击高亮颜色-->
+    <color name="super_click_background">#ffd5d5d5</color>
+
+    <!--文本颜色-->
+    <color name="super_text">#ff161616</color>
+
+    <!--灰色，例如: 设置item右侧图标，右侧更多文本颜色-->
+    <color name="super_light_grey">#ff888888</color>
+
+    <!--默认toast背景颜色-->
+    <color name="super_toast_background">#ff313131</color>
+
+    <color name="white">#ffffff</color>
+
+    <color name="black17">#212121</color>
 </resources>

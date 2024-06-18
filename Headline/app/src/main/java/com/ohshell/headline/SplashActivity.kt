@@ -2,6 +2,7 @@ package com.ohshell.headline
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ohshell.headline.utils.OhShellThemeUtil
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 
 class SplashActivity : AppCompatActivity() {
@@ -12,7 +13,12 @@ class SplashActivity : AppCompatActivity() {
         // 设置沉浸式状态栏
         QMUIStatusBarHelper.translucent(this)
 
-        // 状态栏文字颜色
-        QMUIStatusBarHelper.setStatusBarLightMode(this)
+        if (OhShellThemeUtil.isDark(this)) {
+            // 状态栏文字颜色
+            QMUIStatusBarHelper.setStatusBarDarkMode(this)
+        } else {
+            // 状态栏文字颜色
+            QMUIStatusBarHelper.setStatusBarLightMode(this)
+        }
     }
 }
