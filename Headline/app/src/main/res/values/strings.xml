@@ -3,4 +3,20 @@
 
     <!-- 版权文本 -->
     <string name="copyright">Copyright © %1$d daysnap.cn All Rights Reserved</string>
+
+    <string name="agreement_dialog_title">服务条款和隐私政策</string>
+    <string name="agreement_dialog_content">
+        <Data>
+            <![CDATA[
+            <p>能够直接使用的标签比较有限，若要实现其他效果，如改变字体颜色或者大小等，可使用转义html标签，或者接下来所述的CDDATA方法；</p>
+
+            <p>能够直接使用的标签比较有限，若要实现其他效果，如改变字体颜色或者大小等，可使用转义html标签，或者接下来所述的CDDATA方法；</p>
+
+            <p>能够直接使用的标签比较有限，若要实现其他效果，如改变字体颜色或者大小等，可使用转义html标签，或者接下来所述的CDDATA方法；</p>
+
+            <p>能够直接使用的标签比较有限，若要实现其他效果，如改变字体颜色或者大小等，可使用转义html标签，或者接下来所述的CDDATA方法；</p>
+            <p>能够直接使用的标签比较有限，若要实现其他效果，如改变字体颜色或者大小等，可使用转义html标签，或者接下来所述的CDDATA方法；</p>
+            ]]>
+        </Data>
+    </string>
 </resources>

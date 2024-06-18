@@ -3,6 +3,7 @@ package com.ohshell.headline.ui.activity
 import android.os.Bundle
 import com.ohshell.headline.R
 import com.ohshell.headline.base.BaseLogicActivity
+import com.ohshell.headline.ui.dialog.AgreementDialogFragment
 import com.ohshell.headline.utils.OhShellThemeUtil
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 
@@ -32,6 +33,6 @@ class SplashActivity : BaseLogicActivity() {
     }
 
     private fun showAgreementDialog() {
-        TODO("Not yet implemented")
+        AgreementDialogFragment.show(supportFragmentManager)
     }
 }
