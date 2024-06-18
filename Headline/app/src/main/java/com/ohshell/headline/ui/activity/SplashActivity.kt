@@ -1,9 +1,12 @@
 package com.ohshell.headline.ui.activity
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import com.ohshell.headline.R
 import com.ohshell.headline.base.BaseLogicActivity
 import com.ohshell.headline.ui.dialog.AgreementDialogFragment
+import com.ohshell.headline.utils.OhShellLogUtil
 import com.ohshell.headline.utils.OhShellThemeUtil
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 
@@ -22,7 +25,7 @@ class SplashActivity : BaseLogicActivity() {
             // 状态栏文字颜色
             QMUIStatusBarHelper.setStatusBarDarkMode(this)
         } else {
-            // 状态栏文字颜色
+            //  状态栏文字颜色
             QMUIStatusBarHelper.setStatusBarLightMode(this)
         }
     }
@@ -33,6 +36,10 @@ class SplashActivity : BaseLogicActivity() {
     }
 
     private fun showAgreementDialog() {
-        AgreementDialogFragment.show(supportFragmentManager)
+        AgreementDialogFragment.show(supportFragmentManager, object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                OhShellLogUtil.d("我同意了协议")
+            }
+        })
     }
 }

@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/dp20">
 
     <TextView
         android:gravity="center_horizontal"
@@ -13,9 +14,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     
-    <TextView
-        android:text="@string/agreement_dialog_content"
+    <ScrollView
+        android:layout_marginTop="@dimen/dp16"
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+        <TextView
+            android:id="@+id/content"
+            android:text="@string/agreement_dialog_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/confirm"
+        android:text="@string/agreement_dialog_confirm_button"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp16"
+        android:textSize="@dimen/text_large"
+        android:layout_height="@dimen/button_height"/>
+    
+    <Button
+        android:id="@+id/cancel"
+        android:text="@string/agreement_dialog_cancel_button"
+        android:textColor="@color/black80"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@color/transparent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
 </LinearLayout>

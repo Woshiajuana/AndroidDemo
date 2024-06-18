@@ -19,4 +19,6 @@
             ]]>
         </Data>
     </string>
+    <string name="agreement_dialog_confirm_button">我已阅读并同意</string>
+    <string name="agreement_dialog_cancel_button">不同意并退出应用</string>
 </resources>

@@ -4,9 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.IdRes
 import androidx.fragment.app.DialogFragment
 
 abstract class BaseDialogFragment : DialogFragment() {
+
+    fun <T : View?> findViewById(@IdRes id: Int): T {
+        return requireView().findViewById(id)
+    }
+
     /**
      * 初始化页面
      * */
@@ -22,7 +28,7 @@ abstract class BaseDialogFragment : DialogFragment() {
     /**
      * 设置监听器
      * */
-    protected open fun initListeners () {}
+    protected open fun initListeners() {}
 
     /**
      * 返回要显示的界面
@@ -33,11 +39,15 @@ abstract class BaseDialogFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = getLayoutView(inflater, container, savedInstanceState)
-        
+
         return view
     }
 
-    abstract fun getLayoutView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
+    abstract fun getLayoutView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View?
 
 
     /**
