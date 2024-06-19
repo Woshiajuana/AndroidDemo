@@ -36,10 +36,9 @@ class SplashActivity : BaseLogicActivity() {
     }
 
     private fun showAgreementDialog() {
-        AgreementDialogFragment.show(supportFragmentManager, object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                OhShellLogUtil.d("我同意了协议")
-            }
-        })
+        AgreementDialogFragment.show(supportFragmentManager
+        ) {
+            OhShellLogUtil.d("我同意了协议")
+        }
     }
 }
