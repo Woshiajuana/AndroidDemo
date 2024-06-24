@@ -4,6 +4,11 @@ import android.content.Context
 import android.preference.PreferenceManager
 
 class OhShellPreferenceUtil(context: Context) {
+
+//    val p: MMKV by lazy {
+//        MMKV.defaultMMKV()!!
+//    }
+
     private var context: Context
 
     init {
