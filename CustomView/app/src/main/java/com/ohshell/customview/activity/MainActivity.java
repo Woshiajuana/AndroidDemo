@@ -1,10 +1,12 @@
-package com.ohshell.customview;
+package com.ohshell.customview.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.ohshell.customview.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

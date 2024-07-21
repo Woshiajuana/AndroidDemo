@@ -1,8 +1,10 @@
-package com.ohshell.customview;
+package com.ohshell.customview.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.ohshell.customview.R;
 
 public class NumberInputActivity extends AppCompatActivity {
 
