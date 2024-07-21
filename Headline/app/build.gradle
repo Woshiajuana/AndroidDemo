@@ -53,4 +53,8 @@ dependencies {
 
     // https://github.com/guolindev/PermissionX
     implementation 'com.guolindev.permissionx:permissionx:1.8.0'
+
+    // 圆形指示器
+    // https://github.com/ongakuer/circleIndicator
+    implementation 'me.relex:circleindicator:2.1.6'
 }
